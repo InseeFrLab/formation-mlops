@@ -33,7 +33,7 @@ spec:
             - name: AWS_DEFAULT_REGION
               value: us-east-1
             - name: MLFLOW_TRACKING_URI
-              value: https://projet-ape-417155.user.lab.sspcloud.fr
+              value: https://projet-formation-417155.user.lab.sspcloud.fr
             - name: MLFLOW_MODEL_NAME
               value: fasttext
             - name: MLFLOW_MODEL_VERSION
