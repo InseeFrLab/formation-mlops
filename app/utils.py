@@ -141,14 +141,14 @@ def process_response(
             "code": predictions[0][prediction_index][rank_pred].replace(
                 "__label__", ""
             ),
-            "probabilite": float(predictions[1][prediction_index][rank_pred]),
+            "proba": float(predictions[1][prediction_index][rank_pred]),
         }
         for rank_pred in range(k)
     }
 
     try:
         response = output_dict | {
-            "IC": output_dict[1]["probabilite"]
+            "confidence": output_dict[1]["probabilite"]
             - float(predictions[1][prediction_index][1])
         }
         return response
