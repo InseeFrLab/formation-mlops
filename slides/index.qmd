@@ -1,0 +1,38 @@
+---
+title: An introduction to MLOps with MLflow
+subtitle: |
+  [**[Romain Avouac (Insee), Thomas Faria (Insee), Tom Seimandi (Insee)]{.orange}**]{.orange}
+# date: 
+slide-number: true
+footer: |
+  An introduction to MLOps with MLflow
+# uncomment for French presentations:
+# lang: fr-FR
+# for blind readers:
+slide-tone: false
+# for @olevitt:
+chalkboard: # press the B key to toggle chalkboard
+  theme: whiteboard
+# uncomment to use the multiplex mode:
+#multiplex: true
+format:
+  # pick the light mode (onyxia-revealjs) or the dark mode (onyxia-dark-revealjs)
+  onyxia-revealjs:
+  #onyxia-dark-revealjs:
+    incremental: true 
+    output-file: index.html
+controls: true
+css: custom.css
+from: markdown+emoji
+---
+
+# Introduction
+
+## Context
+
+- [**Who are we ?**]{.orange}
+    - [**data scientists**]{.blue2} from Insee
+    - frustrés par l'[**approche**]{.blue2} souvent purement [**technique**]{.blue2} de la data science
+    - convaincus que les [**bonnes pratiques**]{.blue2} valent à être enseignées
+
+- <romain.avouac@insee.fr>, <thomas.faria@insee.fr>, <tom.seimandi@insee.fr>
