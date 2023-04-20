@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: codification-ape-model-ingress
+spec:
+  tls:
+    - hosts:
+        - codification-ape.lab.sspcloud.fr
+  rules:
+    - host: codification-ape.lab.sspcloud.fr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: codification-ape-model-service
+                port:
+                  number: 80

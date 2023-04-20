@@ -2,3 +2,9 @@ fasttext
 mlflow
 scikit-learn
 unidecode
+nltk
+mlflow
+unidecode
+boto3
+uvicorn
+fastapi

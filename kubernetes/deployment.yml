@@ -1,0 +1,51 @@
+# Creating MLflow deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codification-ape-model-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: codification-ape-model-deployment
+  template:
+    metadata:
+      labels:
+        app: codification-ape-model-deployment
+    spec:
+      containers:
+        - name: codif-ape-app
+          image: inseefrlab/codification-ape-api:latest
+          imagePullPolicy: Always
+          env:
+            - name: MLFLOW_S3_ENDPOINT_URL
+              value: https://minio.lab.sspcloud.fr
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: my-s3-creds
+                  key: accessKey
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: my-s3-creds
+                  key: secretKey
+            - name: AWS_DEFAULT_REGION
+              value: us-east-1
+            - name: MLFLOW_TRACKING_URI
+              value: https://projet-ape-417155.user.lab.sspcloud.fr
+            - name: MLFLOW_MODEL_NAME
+              value: fasttext
+            - name: MLFLOW_MODEL_VERSION
+              value: "1"
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "1000m"
+            limits:
+              memory: "5Gi"
+              cpu: "10000m"
