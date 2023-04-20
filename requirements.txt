@@ -1,0 +1,4 @@
+fasttext
+mlflow
+scikit-learn
+unidecode
