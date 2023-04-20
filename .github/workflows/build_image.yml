@@ -21,7 +21,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: inseefrlab/codification-ape-api
+          images: inseefrlab/formation-mlops-api
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1

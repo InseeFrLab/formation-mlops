@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: codification-ape-model-deployment
+  name: codification-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: codification-ape-model-deployment
+      app: codification-api
   template:
     metadata:
       labels:
-        app: codification-ape-model-deployment
+        app: codification-api
     spec:
       containers:
-        - name: codif-ape-app
-          image: inseefrlab/codification-ape-api:latest
+        - name: api
+          image: inseefrlab/formation-mlops-api:init-src
           imagePullPolicy: Always
           env:
             - name: MLFLOW_S3_ENDPOINT_URL
@@ -37,7 +37,7 @@ spec:
             - name: MLFLOW_MODEL_NAME
               value: fasttext
             - name: MLFLOW_MODEL_VERSION
-              value: "1"
+              value: "4"
           ports:
             - name: http
               containerPort: 8000
