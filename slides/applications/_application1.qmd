@@ -1,0 +1,11 @@
+:::{.callout-tip collapse="true" icon=false}
+## Introduction to MLflow concepts
+
+:::{.incremental}
+1. In `VSCode`, open the notebook `mlflow-introduction.ipynb` (from the `notebooks` directory)
+2. Choose our custom `Python` kernel : 
+    + `Select Kernel -> Python environments... -> base (Python 3.x.x)`
+3. Execute the notebook cell by cell. Try to understand carefully how the `Python` session interacts with `MLflow`. Explore the `MLflow` UI and try to build your own experiments from the example code provided in the notebook.
+:::
+
+:::

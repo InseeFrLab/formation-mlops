@@ -148,11 +148,11 @@ from: markdown+emoji
 
 {{< include applications/_application2.qmd >}}
 
-
-# Distributing experiments
-
 # Deploying a model via an API
 
-# Observability
+## Application 3
 
-# Continuous training
+{{< include applications/_application3.qmd >}}
+
+# Conclusion
+
