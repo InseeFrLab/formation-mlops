@@ -140,6 +140,13 @@ from: markdown+emoji
 
 ![](img/mlflow-model-registry.png){fig-align="center" height=400}
 
+## Application 1
+
+{{< include applications/_application1.qmd >}}
+
+## Application 2
+
+{{< include applications/_application2.qmd >}}
 
 
 # Distributing experiments

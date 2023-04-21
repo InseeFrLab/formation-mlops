@@ -10,7 +10,7 @@ COPY /import_corpus.sh /code/import_corpus.sh
 
 # install all the requirements and import corpus
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt && \
-    /code/import_corpus.sh
+    python -m nltk.downloader stopwords
 
 # copy the main code of fastapi
 COPY ./app /api/app
