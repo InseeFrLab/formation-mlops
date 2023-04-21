@@ -95,9 +95,12 @@ from: markdown+emoji
   - Large computational [**resources**]{.blue2} (including GPUs)
 
 - Based on the [Onyxia](https://github.com/InseeFrLab/onyxia-web) project
-  - User-friendly [web interface](https://datalab.sspcloud.fr/) to launch data science services
+  - User-friendly [interface](https://datalab.sspcloud.fr/) to launch data science services
   - A [catalog of services](https://datalab.sspcloud.fr/catalog/ide) which covers the full lifecycle of data science projects
 
+## Application 0
+
+{{< include applications/_application0.qmd >}}
 
 
 # MLflow : concepts

@@ -1,0 +1,15 @@
+:::{.callout-tip collapse="true" icon=false}
+## Preparation of the working environment
+
+:::{.incremental}
+1. Create an account on the [SSP Cloud](https://datalab.sspcloud.fr/home) using your professional mail address
+2. From the [Automation](https://datalab.sspcloud.fr/catalog/automation) catalog, launch a `MLflow` service
+3. From the [Interactive services](https://datalab.sspcloud.fr/catalog/ide) catalog, launch a `Vscode-python` service
+4. In `VSCode`, open a terminal and clone the training repository : <br/>
+`git clone https://github.com/InseeFrLab/formation-mlops.git`
+5. In the terminal, move the current directory to the cloned project : <br/>
+`cd formation-mlops`
+6. You're all set !
+:::
+
+:::
