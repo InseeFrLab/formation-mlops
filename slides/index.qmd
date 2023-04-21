@@ -98,6 +98,14 @@ from: markdown+emoji
   - User-friendly [interface](https://datalab.sspcloud.fr/) to launch data science services
   - A [catalog of services](https://datalab.sspcloud.fr/catalog/ide) which covers the full lifecycle of data science projects
 
+## Plan de la partie
+
+:one: Le [**contrôle de version**]{.orange} : pourquoi faire ?
+
+. . .
+
+:two: Le [**contrôle de version**]{.orange} avec `Git`
+
 ## Application 0
 
 {{< include applications/_application0.qmd >}}
@@ -148,11 +156,17 @@ from: markdown+emoji
 
 {{< include applications/_application2.qmd >}}
 
-# Deploying a model via an API
+# Deploying a model as an API
 
 ## Application 3
 
 {{< include applications/_application3.qmd >}}
+
+# Distributing the hyperparameter optimization
+
+## Application 4
+
+{{< include applications/_application4.qmd >}}
 
 # Conclusion
 

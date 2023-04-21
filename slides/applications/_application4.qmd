@@ -1,0 +1,8 @@
+:::{.callout-tip collapse="true" icon=false}
+## Distributing the hyperparameter optimization with an orchestrator
+
+:::{.incremental}
+1. 
+:::
+
+:::
