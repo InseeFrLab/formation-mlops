@@ -31,7 +31,7 @@ from: markdown+emoji
 ## Who are we ?
 
 - [**Data scientists**]{.orange} at Insee
-    - methological and IT innovation teams
+    - methodological and IT innovation teams
     - support data science projects
 
 - [**Contact us**]{.orange}
@@ -70,6 +70,8 @@ from: markdown+emoji
 ## MLOps : principles
 
 - [**Reproducibility**]{.orange}
+
+- [**Versioning**]{.orange}
 
 - [**Automation**]{.orange}
 
