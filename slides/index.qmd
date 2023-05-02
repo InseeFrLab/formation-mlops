@@ -162,17 +162,29 @@ from: markdown+emoji
 
 {{< include applications/_application2.qmd >}}
 
+
+
+
+
 # Deploying a model as an API
 
 ## Application 3
 
 {{< include applications/_application3.qmd >}}
 
+
+
+
+
 # Distributing the hyperparameter optimization
 
 ## Application 4
 
 {{< include applications/_application4.qmd >}}
+
+
+
+
 
 # Conclusion
 
