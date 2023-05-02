@@ -158,6 +158,18 @@ from: markdown+emoji
 
 {{< include applications/_application1.qmd >}}
 
+# A Practical Example: NACE Code Prediction for French Companies
+
+## Context
+
+- [**NACE**]{.orange}
+  - European standard classification of productive [**economic activities**]{.blue}
+  - [**Hierarchical structure**]{.blue} with 4 levels and 615 codes
+
+- At Insee previously handled by an outdated [**rule-based**]{.orange} algorithm
+
+- [**Common problematic**]{.orange} to all National statistical institutes
+
 ## Application 2
 
 {{< include applications/_application2.qmd >}}
