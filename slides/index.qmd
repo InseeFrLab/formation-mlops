@@ -100,13 +100,17 @@ from: markdown+emoji
   - User-friendly [interface](https://datalab.sspcloud.fr/) to launch data science services
   - A [catalog of services](https://datalab.sspcloud.fr/catalog/ide) which covers the full lifecycle of data science projects
 
-## Plan de la partie
+## Outline
 
-:one: Le [**contrôle de version**]{.orange} : pourquoi faire ?
+:one: Introduction to MLFlow
 
 . . .
 
-:two: Le [**contrôle de version**]{.orange} avec `Git`
+:two: Deploying a model as an API
+
+. . .
+
+:three: Distributing the hyperparameter optimization
 
 ## Application 0
 
@@ -116,7 +120,7 @@ from: markdown+emoji
 
 
 
-# MLflow : concepts
+# Introduction to MLFlow
 
 ## Tracking server
 
