@@ -170,6 +170,17 @@ from: markdown+emoji
 
 - [**Common problematic**]{.orange} to all National statistical institutes
 
+## Data used
+
+- show table in slide
+- preprocessing (not the core of the presentation)
+
+## MLflow with non standard framework
+
+- easy with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch...) 
+- sometimes need our own framework 
+- custom class and differences with autolog (describe the code quickly)
+
 ## Application 2
 
 {{< include applications/_application2.qmd >}}
