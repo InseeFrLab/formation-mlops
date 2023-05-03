@@ -163,60 +163,49 @@ from: markdown+emoji
 ## Context
 
 - [**NACE**]{.orange}
-  - European standard classification of productive [**economic activities**]{.blue}
-  - [**Hierarchical structure**]{.blue} with 4 levels and 615 codes
+  - European standard classification of productive [**economic activities**]{.blue2}
+  - [**Hierarchical structure**]{.blue2} with 4 levels and 615 codes
 
 - At Insee previously handled by an outdated [**rule-based**]{.orange} algorithm
 
 - [**Common problematic**]{.orange} to all National statistical institutes
 
-## Data used
+## Data used {.scrollable}
 
 ::: {.panel-tabset}
 
-### Slide
+### Slide 
 
-- show table in slide
-- preprocessing (not the core of the presentation)
+- A simple use-case with only [**2 variables**]{.orange}:
+  - [**Textual description**]{.blue2} of the activity – [text]{.green2}
+  - [**True NACE code**]{.blue2} labelised by the rule-based engine – [nace]{.green2} (732 modalities)
 
-### Data
+- Standard [**preprocessing**]{.orange}:
+  - lowercasing
+  - punctuation removal
+  - number removal
+  - stopwords removal
+  - stemming
+  - ...
 
+
+### Raw
 
 ```{ojs}
-viewof rows = Inputs.table(data_raw,{
-  rows: 25,
-  maxWidth: 840,
-  multiple: false,
-  layout: "fixed"
+viewof table_data = Inputs.table(transpose(data_raw), {
+    rows: 22
 })
 ```
 
-### Data preprocessed
+### Preprocessed
 
-| nace | text |
-|:---------:|:-----|
-| 8220Z      | 12   |
-| 8553Z     | 123  |
-| 5520Z       | 1    |
-| 4791A       | 1    |
-| 4791A       | 1    |
-| 4791A       | 1    |
-| 4791A       | 1    |
-| 4791A       | 1    |
-| 4791A       | 1    |
-| 4791A       | 1    |
-| 4791A       | 1    |
-| 4791A       | 1    |
-| 4791A       | 1    |
-| 4791A       | 1    |
-| 4791A       | 1    |
-| 4791A       | 1    |
-
-: Demonstration of pipe table syntax
+```{ojs}
+viewof table_data_prepro = Inputs.table(transpose(data_prepro), {
+    rows: 22
+})
+```
 
 :::
-
-
 
 ## MLflow with non standard framework
 
@@ -274,22 +263,21 @@ output$phonePlot <- renderPlot({
 
 # Conclusion
 
-
-
-
 ```{python}
 #| cache: false
+import sys
+sys.path.append("../src/")
 
-import s3fs
-import pyarrow.parquet as pq
 import pandas as pd
+from constants import TEXT_FEATURE
+from preprocessor import Preprocessor
 
+preprocessor = Preprocessor()
 
-fs = s3fs.S3FileSystem(
-    client_kwargs={"endpoint_url": "https://minio.lab.sspcloud.fr"},)
+df = pd.read_parquet("../firm_activity_data.parquet")
+df = df.sample(frac=0.001, random_state=0)
 
-df = pq.ParquetDataset("projet-formation/diffusion/mlops/data/firm_activity_data.parquet", filesystem=fs).read_pandas().to_pandas()
+df_prepro = preprocessor.clean_text(df, TEXT_FEATURE)
 
-ojs_define(data_raw = df, data_prepro = df)
+ojs_define(data_raw = df, data_prepro = df_prepro)
 ```
-
