@@ -32,11 +32,27 @@ class Preprocessor():
         Returns:
             df (pd.DataFrame): Clean DataFrame.
         """
+        df = df.copy()
+        
         # Fix encoding
         df[text_feature] = df[text_feature].map(unidecode.unidecode)
 
         # To lowercase
         df[text_feature] = df[text_feature].str.lower()
+
+        # define replacement patterns
+        replacements = {
+            # Remove punctuations
+            r"[^\w\s]": " ",
+            # Remove numbers
+            r"[\d+]": " ",
+        }
+
+        # apply replacements to text_feature column
+        for pattern, replacement in replacements.items():
+            df[text_feature] = df[text_feature].str.replace(
+                pattern, replacement, regex=True
+            )
 
         # Remove one-letter words
         df[text_feature] = df[text_feature].apply(
