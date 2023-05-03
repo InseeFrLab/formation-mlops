@@ -172,14 +172,77 @@ from: markdown+emoji
 
 ## Data used
 
+::: {.panel-tabset}
+
+### Slide
+
 - show table in slide
 - preprocessing (not the core of the presentation)
+
+### Data
+
+
+```{ojs}
+viewof rows = Inputs.table(data_raw,{
+  rows: 25,
+  maxWidth: 840,
+  multiple: false,
+  layout: "fixed"
+})
+```
+
+### Data preprocessed
+
+| nace | text |
+|:---------:|:-----|
+| 8220Z      | 12   |
+| 8553Z     | 123  |
+| 5520Z       | 1    |
+| 4791A       | 1    |
+| 4791A       | 1    |
+| 4791A       | 1    |
+| 4791A       | 1    |
+| 4791A       | 1    |
+| 4791A       | 1    |
+| 4791A       | 1    |
+| 4791A       | 1    |
+| 4791A       | 1    |
+| 4791A       | 1    |
+| 4791A       | 1    |
+| 4791A       | 1    |
+| 4791A       | 1    |
+
+: Demonstration of pipe table syntax
+
+:::
+
+
 
 ## MLflow with non standard framework
 
 - easy with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch...) 
 - sometimes need our own framework 
 - custom class and differences with autolog (describe the code quickly)
+
+```r
+# Fill in the spot we created for a plot
+output$phonePlot <- renderPlot({
+  # Render a barplot
+})
+```
+
+## {auto-animate=true}
+
+```r
+# Fill in the spot we created for a plot
+output$phonePlot <- renderPlot({
+  # Render a barplot
+  barplot(WorldPhones[,input$region]*1000, 
+          main=input$region,
+          ylab="Number of Telephones",
+          xlab="Year")
+})
+```
 
 ## Application 2
 
@@ -210,4 +273,23 @@ from: markdown+emoji
 
 
 # Conclusion
+
+
+
+
+```{python}
+#| cache: false
+
+import s3fs
+import pyarrow.parquet as pq
+import pandas as pd
+
+
+fs = s3fs.S3FileSystem(
+    client_kwargs={"endpoint_url": "https://minio.lab.sspcloud.fr"},)
+
+df = pq.ParquetDataset("projet-formation/diffusion/mlops/data/firm_activity_data.parquet", filesystem=fs).read_pandas().to_pandas()
+
+ojs_define(data_raw = df, data_prepro = df)
+```
 
