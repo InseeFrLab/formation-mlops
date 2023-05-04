@@ -2,6 +2,7 @@ boto3
 fastapi
 fasttext-wheel
 mlflow
+nbformat
 nltk
 numpy
 pandas
