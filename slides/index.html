@@ -710,15 +710,18 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </section>
 <section id="mlflow-with-a-non-standard-framework-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>MLflow with a non standard framework</h2>
+<div>
+<div class="fragment" data-fragment-index="1">
 <ul>
-<li class="fragment">There are 2 main differences when using your own framework:
+<li>There are <span class="orange"><strong>2 main differences</strong></span> when using your own framework:
 <ul>
-<li class="fragment"><span class="orange"><strong>logging</strong></span> of parameters, metrics and artifacts</li>
-<li class="fragment">[<strong>wrapping</strong>] your custom model so that MLflow can serve it</li>
+<li><span class="blue2"><strong>logging</strong></span> of parameters, metrics and artifacts</li>
+<li><span class="blue2"><strong>wrapping</strong></span> of your custom model so that MLflow can serve it</li>
 </ul></li>
 </ul>
-<!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># define a custom model</span></span>
+</div>
+<div class="fragment" data-fragment-index="2">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Define a custom model</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="kw">class</span> MyModel(mlflow.pyfunc.PythonModel):</span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
 <span id="cb3-4"><a href="#cb3-4"></a>    <span class="kw">def</span> load_context(<span class="va">self</span>, context):</span>
@@ -726,53 +729,116 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb3-6"><a href="#cb3-6"></a></span>
 <span id="cb3-7"><a href="#cb3-7"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, context, model_input):</span>
 <span id="cb3-8"><a href="#cb3-8"></a>        <span class="cf">return</span> <span class="va">self</span>.my_model.predict(model_input)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#| cache: false</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> sys</span>
 <span id="cb4-3"><a href="#cb4-3"></a>sys.path.append(<span class="st">"../src/"</span>)</span>
 <span id="cb4-4"><a href="#cb4-4"></a></span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="im">from</span> constants <span class="im">import</span> TEXT_FEATURE</span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="im">from</span> preprocessor <span class="im">import</span> Preprocessor</span>
-<span id="cb4-8"><a href="#cb4-8"></a></span>
-<span id="cb4-9"><a href="#cb4-9"></a>preprocessor <span class="op">=</span> Preprocessor()</span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="im">import</span> s3fs</span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="im">import</span> pyarrow.parquet <span class="im">as</span> pq</span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="im">from</span> constants <span class="im">import</span> TEXT_FEATURE, DATA_PATH</span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="im">from</span> preprocessor <span class="im">import</span> Preprocessor</span>
 <span id="cb4-10"><a href="#cb4-10"></a></span>
-<span id="cb4-11"><a href="#cb4-11"></a>df <span class="op">=</span> pd.read_parquet(<span class="st">"../firm_activity_data.parquet"</span>)</span>
-<span id="cb4-12"><a href="#cb4-12"></a>df <span class="op">=</span> df.sample(frac<span class="op">=</span><span class="fl">0.001</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb4-13"><a href="#cb4-13"></a></span>
-<span id="cb4-14"><a href="#cb4-14"></a>df_prepro <span class="op">=</span> preprocessor.clean_text(df, TEXT_FEATURE)</span>
-<span id="cb4-15"><a href="#cb4-15"></a></span>
-<span id="cb4-16"><a href="#cb4-16"></a>ojs_define(data_raw <span class="op">=</span> df, data_prepro <span class="op">=</span> df_prepro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-11"><a href="#cb4-11"></a>preprocessor <span class="op">=</span> Preprocessor()</span>
+<span id="cb4-12"><a href="#cb4-12"></a>fs <span class="op">=</span> s3fs.S3FileSystem(</span>
+<span id="cb4-13"><a href="#cb4-13"></a>    client_kwargs<span class="op">=</span>{<span class="st">"endpoint_url"</span>: <span class="st">"https://minio.lab.sspcloud.fr"</span>}</span>
+<span id="cb4-14"><a href="#cb4-14"></a>)</span>
+<span id="cb4-15"><a href="#cb4-15"></a>df <span class="op">=</span> pq.ParquetDataset(DATA_PATH, filesystem<span class="op">=</span>fs).read_pandas().to_pandas()</span>
+<span id="cb4-16"><a href="#cb4-16"></a>df <span class="op">=</span> df.sample(frac<span class="op">=</span><span class="fl">0.001</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-17"><a href="#cb4-17"></a></span>
+<span id="cb4-18"><a href="#cb4-18"></a>df_prepro <span class="op">=</span> preprocessor.clean_text(df, TEXT_FEATURE)</span>
+<span id="cb4-19"><a href="#cb4-19"></a></span>
+<span id="cb4-20"><a href="#cb4-20"></a>ojs_define(data_raw <span class="op">=</span> df, data_prepro <span class="op">=</span> df_prepro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="application-2" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<section id="application-2" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
 <h2>Application 2</h2>
-<p>:::{.callout-tip collapse=“true” icon=false} ## From notebook to python scripts</p>
-<p>:::{.nonincremental}</p>
+<div>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Part 1 : From notebook to python scripts</strong></p>
+</div>
+<div class="callout-content">
 <ol type="1">
-<li class="fragment">All scripts related to our custom model are stored in the <code>src</code> folder. Check them out.</li>
-<li class="fragment">Run a training of the model using MLflow. To do so:
+<li>All scripts related to our custom model are stored in the <code>src</code> folder. Check them out.</li>
+<li>Run a training of the model using MLflow. To do so:
 <ol type="a">
-<li class="fragment">Create a <code>mlflow-run.sh</code> empty file at the root of the project</li>
-<li class="fragment">Change it permissions by running <code>chmod 777 mlflow-run.sh</code> in the terminal</li>
-<li class="fragment">Add the following content to <code>mlflow-run.sh</code>:</li>
+<li>Create a <code>mlflow-run.sh</code> empty file at the root of the project</li>
+<li>Change it permissions by running <code>chmod 777 mlflow-run.sh</code> in the terminal</li>
+<li>Add the following content to <code>mlflow-run.sh</code>:</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#! /bin/bash</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># Set MLFLOW_TRACKING_URI environment variable</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="bu">export</span> <span class="va">MLFLOW_TRACKING_URI</span><span class="op">=</span><span class="st">"https://projet-ape-543061.user.lab.sspcloud.fr"</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="ex">mlflow</span> run ~/work/codification-ape/ <span class="at">--env-manager</span><span class="op">=</span>local <span class="dt">\</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>-P remote_server_uri=<span class="va">$MLFLOW_TRACKING_URI</span> <span class="dt">\</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>-P experiment_name=<span class="va">$MLFLOW_EXPERIMENT_NAME</span> <span class="dt">\</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>-P data_path=<span class="va">$DATA_PATH</span> <span class="dt">\</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>-P config_path=<span class="va">$CONFIG_PATH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Set MLFLOW_S3_ENDPOINT_URL environment variable</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="bu">export</span> <span class="va">MLFLOW_S3_ENDPOINT_URL</span><span class="op">=</span><span class="st">'https://minio.lab.sspcloud.fr'</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># Set MLFLOW_TRACKING_URI environment variable</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="bu">export</span> <span class="va">MLFLOW_TRACKING_URI</span><span class="op">=</span><span class="st">"https://projet-formation-417155.user.lab.sspcloud.fr"</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># Set MLFLOW_EXPERIMENT_NAME environment variable</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="bu">export</span> <span class="va">MLFLOW_EXPERIMENT_NAME</span><span class="op">=</span><span class="st">"fasttext"</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="ex">mlflow</span> run ~/work/formation-mlops/ <span class="at">--env-manager</span><span class="op">=</span>local <span class="dt">\</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>-P remote_server_uri=<span class="va">$MLFLOW_TRACKING_URI</span> <span class="dt">\</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>-P experiment_name=<span class="va">$MLFLOW_EXPERIMENT_NAME</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="4" type="a">
-<li class="fragment">Execute <code>./mlflow-run.sh</code> in the terminal</li>
+<li>Execute <code>./mlflow-run.sh</code> in the terminal</li>
 </ol></li>
-<li class="fragment">Open the MLFlow interface</li>
+<li>Open the MLflow user interface:
+<ul>
+<li><code>SSPCloud -&gt; My services -&gt; Open MLflow</code></li>
+</ul></li>
+<li>Look at the results of your previous run:
+<ul>
+<li><code>Experiments -&gt; fasttext -&gt; &lt;run_name&gt;</code></li>
+</ul></li>
+<li>In <code>train.py</code> change some parameters (i.e.&nbsp;<code>dim = 25</code>)</li>
+<li>Train a new model by executing <code>./mlflow-run.sh</code></li>
+<li>In MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e.&nbsp;<code>dim</code>)
+<ul>
+<li><code>Select the 2 runs -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis</code></li>
+</ul></li>
 </ol>
-<!-- - leur faire logger des params ou metrics en plus
-
-1. From notebook to python scripts + run
-2. Autolog versus manual log 
-3. Model delivery with onboarded preprocessing (notebook comme romain sur ex precedent fetch + pred) -->
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="application-2-1" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
+<h2>Application 2</h2>
+<div>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Part 2 : Manual logging</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li>Log new parameters by adding these lines of code appropriately:</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>    mlflow.log_param(<span class="st">"TEXT_FEATURE"</span>, TEXT_FEATURE)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    mlflow.log_param(<span class="st">"Y"</span>, Y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Log the training dataset used by adding this line of code appropriately:</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>    <span class="co">"train_data"</span>: training_data_path,</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Log a new metric which is simply the accuracy in percentage:</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>    accuracy_percent <span class="op">=</span> accuracy <span class="op">*</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Train a model by executing <code>./mlflow-run.sh</code></li>
+<li>In MLflow, check that everything has been logged correctly</li>
+<li>Look at the <code>training_data.txt</code> in MLflow</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li class="fragment">Model delivery with onboarded preprocessing (notebook comme romain sur ex precedent fetch + pred) –&gt;</li>
+</ol>
 </section></section>
 <section>
 <section id="distributing-the-hyperparameter-optimization" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
