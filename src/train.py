@@ -88,7 +88,6 @@ def train(remote_server_uri, experiment_name, run_name):
 
             artifacts = {
                 "model_path": model_path,
-                "train_data": training_data_path,
             }
 
             mlflow.pyfunc.log_model(
@@ -104,8 +103,6 @@ def train(remote_server_uri, experiment_name, run_name):
         # Log parameters
         for param_name, param_value in params.items():
             mlflow.log_param(param_name, param_value)
-        mlflow.log_param("TEXT_FEATURE", TEXT_FEATURE)
-        mlflow.log_param("Y", Y)
 
         # Evaluation
         test_texts = []
