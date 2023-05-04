@@ -1,9 +1,13 @@
+boto3
+fastapi
 fasttext
 mlflow
+nltk
+numpy
+pandas
+pyarrow
+pydantic
+s3fs
 scikit-learn
 unidecode
-nltk
-mlflow
-boto3
 uvicorn
-fastapi
