@@ -1,0 +1,31 @@
+## Tracking server
+
+- "An [**API**]{.orange} and [**UI**]{.orange} for [**logging**]{.orange} parameters, code versions, metrics, and artifacts"
+
+. . .
+
+![](img/mlflow-tracking.png){fig-align="center" height=400}
+
+## Projects
+
+- "A standard format for [**packaging**]{.orange} reusable data science code"
+
+. . .
+
+![](img/mlflow-projects.png){fig-align="center" height=400}
+
+## Models
+
+- "A convention for [**packaging**]{.orange} machine learning [**models**]{.orange} in multiple [**flavors**]{.orange}"
+
+. . .
+
+![](img/mlflow-models.png){fig-align="center" height=400}
+
+## Model registry
+
+- "A [**centralized model store**]{.orange}, set of APIs, and UI, to [**collaboratively**]{.orange} manage the full lifecycle of an MLflow Model"
+
+. . .
+
+![](img/mlflow-model-registry.png){fig-align="center" height=400}

@@ -7,6 +7,7 @@ import mlflow
 import pandas as pd
 
 from preprocessor import Preprocessor
+from constants import TEXT_FEATURE
 
 
 class FastTextWrapper(mlflow.pyfunc.PythonModel):
@@ -57,7 +58,7 @@ class FastTextWrapper(mlflow.pyfunc.PythonModel):
         """
         df = self.preprocessor.clean_text(
             pd.DataFrame(model_input["query"]),
-            text_feature="TEXT_FEATURE"
+            text_feature=TEXT_FEATURE
         )
 
         texts = df.apply(self._format_item, axis=1).to_list()
@@ -74,5 +75,5 @@ class FastTextWrapper(mlflow.pyfunc.PythonModel):
         Returns:
             A formatted item string.
         """
-        formatted_item = row["TEXT_FEATURE"]
+        formatted_item = row[TEXT_FEATURE]
         return formatted_item

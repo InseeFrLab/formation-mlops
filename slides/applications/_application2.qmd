@@ -1,8 +1,32 @@
 :::{.callout-tip collapse="true" icon=false}
-## A real use-case : predicting the field of activity of French companies
+## From notebook to python scripts
 
-:::{.incremental}
-1. 
-:::
+:::{.nonincremental}
 
-:::
+1. All scripts related to our custom model are stored in the `src` folder. Check them out.
+2. Run a training of the model using MLflow. To do so:
+    a. Create a `mlflow-run.sh` empty file at the root of the project
+    b. Change it permissions by running `chmod 777 mlflow-run.sh` in the terminal
+    c. Add the following content to `mlflow-run.sh`:
+
+    ```sh
+    #! /bin/bash
+    # Set MLFLOW_TRACKING_URI environment variable
+    export MLFLOW_TRACKING_URI="https://projet-ape-543061.user.lab.sspcloud.fr"
+    mlflow run ~/work/codification-ape/ --env-manager=local \
+    -P remote_server_uri=$MLFLOW_TRACKING_URI \
+    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \
+    -P data_path=$DATA_PATH \
+    -P config_path=$CONFIG_PATH
+
+    ```
+
+    d. Execute `./mlflow-run.sh` in the terminal
+3. Open the MLFlow interface
+
+
+<!-- - leur faire logger des params ou metrics en plus
+
+1. From notebook to python scripts + run
+2. Autolog versus manual log 
+3. Model delivery with onboarded preprocessing (notebook comme romain sur ex precedent fetch + pred) -->

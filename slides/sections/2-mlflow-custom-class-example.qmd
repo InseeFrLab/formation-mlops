@@ -1,0 +1,91 @@
+## Context
+
+- [**NACE**]{.orange}
+  - European standard classification of productive [**economic activities**]{.blue2}
+  - [**Hierarchical structure**]{.blue2} with 4 levels and 615 codes
+
+- At Insee previously handled by an outdated [**rule-based**]{.orange} algorithm
+
+- [**Common problematic**]{.orange} to all National statistical institutes
+
+## Data used {.scrollable}
+
+::: {.panel-tabset}
+
+### Slide 
+
+- A simple use-case with only [**2 variables**]{.orange}:
+  - [**Textual description**]{.blue2} of the activity – [text]{.green2}
+  - [**True NACE code**]{.blue2} labelised by the rule-based engine – [nace]{.green2} (732 modalities)
+
+- Standard [**preprocessing**]{.orange}:
+  - lowercasing
+  - punctuation removal
+  - number removal
+  - stopwords removal
+  - stemming
+  - ...
+
+
+### Raw
+
+```{ojs}
+viewof table_data = Inputs.table(transpose(data_raw), {
+    rows: 22
+})
+```
+
+### Preprocessed
+
+```{ojs}
+viewof table_data_prepro = Inputs.table(transpose(data_prepro), {
+    rows: 22
+})
+```
+
+:::
+
+## MLflow with a non standard framework
+
+- [**Easy to use**]{.orange} with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch...) 
+- Need for more [**flexibility**]{.orange} or need [**own framework**]{.orange} 
+- Possibility to [**track**]{.orange} , [**register**]{.orange} and [**deliver**]{.orange} your own model
+
+## MLflow with a non standard framework
+
+- There are 2 main differences when using your own framework:
+  - [**logging**]{.orange} of parameters, metrics and artifacts
+  - [**wrapping**] your custom model so that MLflow can serve it
+
+
+<!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
+
+```python
+# define a custom model
+class MyModel(mlflow.pyfunc.PythonModel):
+
+    def load_context(self, context):
+      self.my_model.load_model(context.artifacts["my_model"])
+
+    def predict(self, context, model_input):
+        return self.my_model.predict(model_input)
+```
+
+```{python}
+#| cache: false
+import sys
+sys.path.append("../src/")
+
+import pandas as pd
+from constants import TEXT_FEATURE
+from preprocessor import Preprocessor
+
+preprocessor = Preprocessor()
+
+df = pd.read_parquet("../firm_activity_data.parquet")
+df = df.sample(frac=0.001, random_state=0)
+
+df_prepro = preprocessor.clean_text(df, TEXT_FEATURE)
+
+ojs_define(data_raw = df, data_prepro = df_prepro)
+```

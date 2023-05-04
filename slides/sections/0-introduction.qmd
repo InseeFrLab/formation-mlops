@@ -1,0 +1,84 @@
+
+## Who are we ?
+
+- [**Data scientists**]{.orange} at Insee
+    - methodological and IT innovation teams
+    - support data science projects
+
+- [**Contact us**]{.orange}
+  - <romain.avouac@insee.fr>
+  - <thomas.faria@insee.fr>
+  - <tom.seimandi@insee.fr>
+
+## Context
+
+- Difficulty of transitioning from experiments to [**production-grade**]{.orange} machine learning systems
+
+- Leverage [**best practices**]{.orange} from software engineering
+  - Improve [**reproducibility**]{.blue2} of analysis
+  - [**Deploy**]{.blue2} applications in a [**scalable**]{.blue2} way
+
+## The DevOps approach
+
+- [**Unify**]{.orange} development (*dev*) and system administration (*ops*)
+  - [**shorten**]{.blue2} development time
+  - maintain software [**quality**]{.blue2} 
+
+. . .
+
+![](img/devops.png){fig-align="center" height=300}
+
+## The MLOps approach
+
+- Integrate the [**specificities**]{.orange} of machine learning projects
+  - [**Experimentation**]{.blue2}
+  - [**Continuous improvement**]{.blue2}
+
+. . .
+
+![](img/mlops.png){fig-align="center" height=400}
+
+## MLOps : principles
+
+- [**Reproducibility**]{.orange}
+
+- [**Versioning**]{.orange}
+
+- [**Automation**]{.orange}
+
+- [**Monitoring**]{.orange}
+
+- [**Collaboration**]{.orange}
+
+## Why MLflow ?
+
+- Multiple [**frameworks**]{.orange} implement the MLOps principles
+
+- Pros of `MLflow`
+  - [**Open-source**]{.blue2}
+  - Covers the whole [**ML lifecycle**]{.blue2}
+  - [**Agnostic**]{.blue2} to the ML library used
+  - We have [**experience**]{.blue2} with it
+
+## Training platform : the SSP Cloud
+
+- An [**open innovation production-like**]{.orange} environment
+  - [**Kubernetes**]{.blue2} cluster
+  - S3-compatible [**object storage**]{.blue2}
+  - Large computational [**resources**]{.blue2} (including GPUs)
+
+- Based on the [Onyxia](https://github.com/InseeFrLab/onyxia-web) project
+  - User-friendly [interface](https://datalab.sspcloud.fr/) to launch data science services
+  - A [catalog of services](https://datalab.sspcloud.fr/catalog/ide) which covers the full lifecycle of data science projects
+
+## Outline
+
+:one: Introduction to MLFlow
+
+. . .
+
+:two: Deploying a model as an API
+
+. . .
+
+:three: Distributing the hyperparameter optimization
