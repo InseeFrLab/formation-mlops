@@ -2,6 +2,7 @@ boto3
 fastapi
 fasttext-wheel
 mlflow
+nbclient
 nbformat
 nltk
 numpy
