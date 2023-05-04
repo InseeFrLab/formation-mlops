@@ -79,7 +79,7 @@ class MyModel(mlflow.pyfunc.PythonModel):
 <!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
 
 
-```python
+```{python}
 #| cache: false
 import sys
 sys.path.append("../src/")
