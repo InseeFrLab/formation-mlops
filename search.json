@@ -1,0 +1,149 @@
+[
+  {
+    "objectID": "slides/index.html#who-are-we",
+    "href": "slides/index.html#who-are-we",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Who are we ?",
+    "text": "Who are we ?\n\nData scientists at Insee\n\nmethodological and IT innovation teams\nsupport data science projects\n\nContact us\n\nromain.avouac at insee dot fr\nthomas.faria at insee dot fr\ntom.seimandi at insee dot fr"
+  },
+  {
+    "objectID": "slides/index.html#context",
+    "href": "slides/index.html#context",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Context",
+    "text": "Context\n\nDifficulty of transitioning from experiments to production-grade machine learning systems\nLeverage best practices from software engineering\n\nImprove reproducibility of analysis\nDeploy applications in a scalable way"
+  },
+  {
+    "objectID": "slides/index.html#the-devops-approach",
+    "href": "slides/index.html#the-devops-approach",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "The DevOps approach",
+    "text": "The DevOps approach\n\nUnify development (dev) and system administration (ops)\n\nshorten development time\nmaintain software quality"
+  },
+  {
+    "objectID": "slides/index.html#the-mlops-approach",
+    "href": "slides/index.html#the-mlops-approach",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "The MLOps approach",
+    "text": "The MLOps approach\n\nIntegrate the specificities of machine learning projects\n\nExperimentation\nContinuous improvement"
+  },
+  {
+    "objectID": "slides/index.html#mlops-principles",
+    "href": "slides/index.html#mlops-principles",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "MLOps : principles",
+    "text": "MLOps : principles\n\nReproducibility\nVersioning\nAutomation\nMonitoring\nCollaboration"
+  },
+  {
+    "objectID": "slides/index.html#why-mlflow",
+    "href": "slides/index.html#why-mlflow",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Why MLflow ?",
+    "text": "Why MLflow ?\n\nMultiple frameworks implement the MLOps principles\nPros of MLflow\n\nOpen-source\nCovers the whole ML lifecycle\nAgnostic to the ML library used\nWe have experience with it"
+  },
+  {
+    "objectID": "slides/index.html#training-platform-the-ssp-cloud",
+    "href": "slides/index.html#training-platform-the-ssp-cloud",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Training platform : the SSP Cloud",
+    "text": "Training platform : the SSP Cloud\n\nAn open innovation production-like environment\n\nKubernetes cluster\nS3-compatible object storage\nLarge computational resources (including GPUs)\n\nBased on the Onyxia project\n\nUser-friendly interface to launch data science services\nA catalog of services which covers the full lifecycle of data science projects"
+  },
+  {
+    "objectID": "slides/index.html#outline",
+    "href": "slides/index.html#outline",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Outline",
+    "text": "Outline\n1️⃣ Introduction to MLFlow\n\n2️⃣ Deploying a model as an API\n\n\n3️⃣ Distributing the hyperparameter optimization"
+  },
+  {
+    "objectID": "slides/index.html#application-0",
+    "href": "slides/index.html#application-0",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 0",
+    "text": "Application 0\n\n\n\nPreparation of the working environment\n\n\n\n\nCreate an account on the SSP Cloud using your professional mail address\nLaunch a MLflow service by clicking this URL\nLaunch a VSCode service by clicking this URL\nOpen the VSCode service and input the service password (either automatically copied or available in the README of the service)\nYou’re all set !"
+  },
+  {
+    "objectID": "slides/index.html#tracking-server",
+    "href": "slides/index.html#tracking-server",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Tracking server",
+    "text": "Tracking server\n\n“An API and UI for logging parameters, code versions, metrics, and artifacts”"
+  },
+  {
+    "objectID": "slides/index.html#projects",
+    "href": "slides/index.html#projects",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Projects",
+    "text": "Projects\n\n“A standard format for packaging reusable data science code”"
+  },
+  {
+    "objectID": "slides/index.html#models",
+    "href": "slides/index.html#models",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Models",
+    "text": "Models\n\n“A convention for packaging machine learning models in multiple flavors”"
+  },
+  {
+    "objectID": "slides/index.html#model-registry",
+    "href": "slides/index.html#model-registry",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Model registry",
+    "text": "Model registry\n\n“A centralized model store, set of APIs, and UI, to collaboratively manage the full lifecycle of an MLflow Model”"
+  },
+  {
+    "objectID": "slides/index.html#application-1",
+    "href": "slides/index.html#application-1",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 1",
+    "text": "Application 1\n\n\n\nIntroduction to MLflow concepts\n\n\n\n\nIn VSCode, open the notebook mlflow-introduction.ipynb (from the notebooks directory)\nChoose our custom Python kernel :\n\nSelect Kernel -&gt; Python environments... -&gt; base (Python 3.x.x)\n\nExecute the notebook cell by cell. Try to understand carefully how the Python session interacts with the MLflow API. Explore the MLflow UI and try to build your own experiments from the example code provided in the notebook."
+  },
+  {
+    "objectID": "slides/index.html#context-1",
+    "href": "slides/index.html#context-1",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Context",
+    "text": "Context\n\nNACE\n\nEuropean standard classification of productive economic activities\nHierarchical structure with 4 levels and 615 codes\n\nAt Insee previously handled by an outdated rule-based algorithm\nCommon problematic to all National statistical institutes"
+  },
+  {
+    "objectID": "slides/index.html#data-used",
+    "href": "slides/index.html#data-used",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Data used",
+    "text": "Data used\n\nSlideRawPreprocessed\n\n\n\nA simple use-case with only 2 variables:\n\nTextual description of the activity – text\nTrue NACE code labelised by the rule-based engine – nace (732 modalities)\n\nStandard preprocessing:\n\nlowercasing\npunctuation removal\nnumber removal\nstopwords removal\nstemming\n…\n\n\n\n\n\nviewof table_data = Inputs.table(transpose(data_raw), {\n    rows: 22\n})\n\n\n\n\n\n\n\n\n\nviewof table_data_prepro = Inputs.table(transpose(data_prepro), {\n    rows: 22\n})"
+  },
+  {
+    "objectID": "slides/index.html#mlflow-with-a-non-standard-framework",
+    "href": "slides/index.html#mlflow-with-a-non-standard-framework",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "MLflow with a non standard framework",
+    "text": "MLflow with a non standard framework\n\nEasy to use with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch…)\nNeed for more flexibility or need own framework\nPossibility to track , register and deliver your own model"
+  },
+  {
+    "objectID": "slides/index.html#mlflow-with-a-non-standard-framework-1",
+    "href": "slides/index.html#mlflow-with-a-non-standard-framework-1",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "MLflow with a non standard framework",
+    "text": "MLflow with a non standard framework\n\nThere are 2 main differences when using your own framework:\n\nlogging of parameters, metrics and artifacts\n[wrapping] your custom model so that MLflow can serve it\n\n\n\n# define a custom model\nclass MyModel(mlflow.pyfunc.PythonModel):\n\n    def load_context(self, context):\n      self.my_model.load_model(context.artifacts[\"my_model\"])\n\n    def predict(self, context, model_input):\n        return self.my_model.predict(model_input)\n#| cache: false\nimport sys\nsys.path.append(\"../src/\")\n\nimport pandas as pd\nfrom constants import TEXT_FEATURE\nfrom preprocessor import Preprocessor\n\npreprocessor = Preprocessor()\n\ndf = pd.read_parquet(\"../firm_activity_data.parquet\")\ndf = df.sample(frac=0.001, random_state=0)\n\ndf_prepro = preprocessor.clean_text(df, TEXT_FEATURE)\n\nojs_define(data_raw = df, data_prepro = df_prepro)"
+  },
+  {
+    "objectID": "slides/index.html#application-2",
+    "href": "slides/index.html#application-2",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 2",
+    "text": "Application 2\n:::{.callout-tip collapse=“true” icon=false} ## From notebook to python scripts\n:::{.nonincremental}\n\nAll scripts related to our custom model are stored in the src folder. Check them out.\nRun a training of the model using MLflow. To do so:\n\nCreate a mlflow-run.sh empty file at the root of the project\nChange it permissions by running chmod 777 mlflow-run.sh in the terminal\nAdd the following content to mlflow-run.sh:\n\n#! /bin/bash\n# Set MLFLOW_TRACKING_URI environment variable\nexport MLFLOW_TRACKING_URI=\"https://projet-ape-543061.user.lab.sspcloud.fr\"\nmlflow run ~/work/codification-ape/ --env-manager=local \\\n-P remote_server_uri=$MLFLOW_TRACKING_URI \\\n-P experiment_name=$MLFLOW_EXPERIMENT_NAME \\\n-P data_path=$DATA_PATH \\\n-P config_path=$CONFIG_PATH\n\nExecute ./mlflow-run.sh in the terminal\n\nOpen the MLFlow interface"
+  },
+  {
+    "objectID": "slides/index.html#application-3",
+    "href": "slides/index.html#application-3",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 3",
+    "text": "Application 3\n\n\n\nDeploying a machine-learning model as an API"
+  },
+  {
+    "objectID": "slides/index.html#application-4",
+    "href": "slides/index.html#application-4",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 4",
+    "text": "Application 4\n\n\n\nDistributing the hyperparameter optimization with an orchestrator"
+  }
+]

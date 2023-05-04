@@ -1,0 +1,1 @@
+Sitemap: https://github.com/InseeFrLab/formation-mlops/sitemap.xml
