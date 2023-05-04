@@ -14,8 +14,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-            ref: "3-chap-2"
 
       - name: Set up quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -28,7 +26,7 @@ jobs:
 
       - name: Install python Dependencies
         run: | 
-          pip install pybind11 
+          pip install pybind11
           pip install -r requirements.txt
         
       - name: Download nltk corpus
