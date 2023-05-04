@@ -36,13 +36,37 @@
 ::::
 :::
 
+## Application 2 {.scrollable}
 
+:::{.nonincremental}
+:::: {.callout-tip collapse="true" icon=false}
+## Part 2 : Manual logging
+1. Log new parameters by adding these lines of code appropriately:
+
+```python
+    mlflow.log_param("TEXT_FEATURE", TEXT_FEATURE)
+    mlflow.log_param("Y", Y)
+```
+
+2. Log the training dataset used by adding this line of code appropriately:
+
+```python
+    "train_data": training_data_path,
+```
+
+3. Log a new metric which is simply the accuracy in percentage:
+
+```python
+    accuracy_percent = accuracy * 100
+```
+
+4. Train a model by executing `./mlflow-run.sh`
+5. In MLflow, check that everything has been logged correctly
+5. Look at the `training_data.txt` in MLflow
+
+::::
 :::
 
-:::
 
-<!-- - leur faire logger des params ou metrics en plus
 
-1. From notebook to python scripts + run
-2. Autolog versus manual log 
 3. Model delivery with onboarded preprocessing (notebook comme romain sur ex precedent fetch + pred) -->
