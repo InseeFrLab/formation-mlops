@@ -137,7 +137,14 @@
     "href": "slides/index.html#application-2-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 2",
-    "text": "Application 2\n\n\n\n\nPart 2 : Manual logging\n\n\n\nLog new parameters by adding these lines of code appropriately:\n\n    mlflow.log_param(\"TEXT_FEATURE\", TEXT_FEATURE)\n    mlflow.log_param(\"Y\", Y)\n\nLog the training dataset used by adding this line of code appropriately:\n\n    \"train_data\": training_data_path,\n\nLog a new metric which is simply the accuracy in percentage:\n\n    accuracy_percent = accuracy * 100\n\nTrain a model by executing ./mlflow-run.sh\nIn MLflow, check that everything has been logged correctly\nLook at the training_data.txt in MLflow\n\n\n\n\n\n\nModel delivery with onboarded preprocessing (notebook comme romain sur ex precedent fetch + pred) –&gt;"
+    "text": "Application 2\n\n\n\n\nPart 2 : Manual logging\n\n\n\nLog new parameters by adding these lines of code appropriately:\n\n    mlflow.log_param(\"TEXT_FEATURE\", TEXT_FEATURE)\n    mlflow.log_param(\"Y\", Y)\n\nLog the training dataset used by adding this line of code appropriately:\n\n    \"train_data\": training_data_path,\n\nLog a new metric which is simply the accuracy in percentage:\n\n    accuracy_percent = accuracy * 100\n\nTrain a model by executing ./mlflow-run.sh\nIn MLflow, check that everything has been logged correctly\nLook at the training_data.txt in MLflow"
+  },
+  {
+    "objectID": "slides/index.html#application-2-2",
+    "href": "slides/index.html#application-2-2",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 2",
+    "text": "Application 2\n\n\n\n\nPart 3 : Model delivery with onboarded preprocessing"
   },
   {
     "objectID": "slides/index.html#application-3",
