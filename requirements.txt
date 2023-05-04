@@ -1,6 +1,7 @@
 boto3
 fastapi
 fasttext-wheel
+ipykernel
 mlflow
 nbclient
 nbformat
