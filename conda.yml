@@ -1,0 +1,6 @@
+name: train-env
+dependencies:
+  - python
+  - pip
+  - pip:
+    - -r requirements.txt
