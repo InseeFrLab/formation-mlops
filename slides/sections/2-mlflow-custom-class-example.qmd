@@ -51,17 +51,19 @@ viewof table_data_prepro = Inputs.table(transpose(data_prepro), {
 - Need for more [**flexibility**]{.orange} or need [**own framework**]{.orange} 
 - Possibility to [**track**]{.orange} , [**register**]{.orange} and [**deliver**]{.orange} your own model
 
-## MLflow with a non standard framework
+## MLflow with a non standard framework 
 
-- There are 2 main differences when using your own framework:
-  - [**logging**]{.orange} of parameters, metrics and artifacts
-  - [**wrapping**] your custom model so that MLflow can serve it
+::: {.nonincremental}
 
+:::: {.fragment fragment-index=1}
+- There are [**2 main differences**]{.orange} when using your own framework:
+  - [**logging**]{.blue2} of parameters, metrics and artifacts
+  - [**wrapping**]{.blue2} of your custom model so that MLflow can serve it
+::::
 
-<!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
-
+:::: {.fragment fragment-index=2}
 ```python
-# define a custom model
+# Define a custom model
 class MyModel(mlflow.pyfunc.PythonModel):
 
     def load_context(self, context):
@@ -70,6 +72,12 @@ class MyModel(mlflow.pyfunc.PythonModel):
     def predict(self, context, model_input):
         return self.my_model.predict(model_input)
 ```
+::::
+
+:::
+
+<!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
+
 
 ```{python}
 #| cache: false
