@@ -3,7 +3,7 @@ name: Publish slides
 on: 
   push:
     branches:
-      - 3-chap-2
+      - main
     paths:
       - slides/**
   workflow_dispatch:
