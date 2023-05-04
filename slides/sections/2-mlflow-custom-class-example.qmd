@@ -85,12 +85,16 @@ import sys
 sys.path.append("../src/")
 
 import pandas as pd
-from constants import TEXT_FEATURE
+import s3fs
+import pyarrow.parquet as pq
+from constants import TEXT_FEATURE, DATA_PATH
 from preprocessor import Preprocessor
 
 preprocessor = Preprocessor()
-
-df = pd.read_parquet("../firm_activity_data.parquet")
+fs = s3fs.S3FileSystem(
+    client_kwargs={"endpoint_url": "https://minio.lab.sspcloud.fr"}
+)
+df = pq.ParquetDataset(DATA_PATH, filesystem=fs).read_pandas().to_pandas()
 df = df.sample(frac=0.001, random_state=0)
 
 df_prepro = preprocessor.clean_text(df, TEXT_FEATURE)
