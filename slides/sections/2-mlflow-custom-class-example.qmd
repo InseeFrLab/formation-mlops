@@ -71,7 +71,7 @@ class MyModel(mlflow.pyfunc.PythonModel):
         return self.my_model.predict(model_input)
 ```
 
-```{python}
+```python
 #| cache: false
 import sys
 sys.path.append("../src/")
