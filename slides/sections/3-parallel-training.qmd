@@ -1,0 +1,13 @@
+## Parallel training
+
+- With our setup, we can train models one by one and log all relevant information to the MLflow tracking server
+- What if we would like to train multiple models at once, for example to optimize hyperparameters ?
+
+## Workflow automation
+
+- Workflow automation tools : Argo Workflows is an open source container-native workflow engine for orchestrating parallel jobs on Kubernetes
+- Available on the SSP Cloud Datalab
+- General principles :
+    - Define workflows where each step in the workflow is a container
+    - Model multi-step workflows as a sequence of tasks as a directed acyclic graph
+    - This allows to easily run compute intensive jobs for machine learning or data processing
