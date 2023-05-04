@@ -95,7 +95,8 @@ def train(remote_server_uri, experiment_name, run_name):
                 python_model=FastTextWrapper(),
                 code_path=[
                     "src/fasttext_wrapper.py",
-                    "src/preprocessor.py"
+                    "src/preprocessor.py",
+                    "src/constants.py"
                 ],
                 artifacts=artifacts,
             )
