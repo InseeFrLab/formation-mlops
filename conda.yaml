@@ -1,4 +1,6 @@
 name: train-env
+channels:
+  - defaults
 dependencies:
   - python
   - pip
