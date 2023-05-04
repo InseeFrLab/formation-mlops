@@ -11,19 +11,25 @@
 
     ```sh
     #! /bin/bash
+
     # Set MLFLOW_TRACKING_URI environment variable
-    export MLFLOW_TRACKING_URI="https://projet-ape-543061.user.lab.sspcloud.fr"
-    mlflow run ~/work/codification-ape/ --env-manager=local \
+    export MLFLOW_TRACKING_URI="https://projet-formation-417155.user.lab.sspcloud.fr"
+
+    # Set MLFLOW_EXPERIMENT_NAME environment variable
+    export MLFLOW_EXPERIMENT_NAME="fasttext"
+
+    mlflow run ~/work/formation-mlops/ --env-manager=local \
     -P remote_server_uri=$MLFLOW_TRACKING_URI \
-    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \
-    -P data_path=$DATA_PATH \
-    -P config_path=$CONFIG_PATH
+    -P experiment_name=$MLFLOW_EXPERIMENT_NAME
 
     ```
 
     d. Execute `./mlflow-run.sh` in the terminal
 3. Open the MLFlow interface
 
+:::
+
+:::
 
 <!-- - leur faire logger des params ou metrics en plus
 
