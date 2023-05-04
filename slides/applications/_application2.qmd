@@ -1,7 +1,6 @@
-:::{.callout-tip collapse="true" icon=false}
-## From notebook to python scripts
-
 :::{.nonincremental}
+:::: {.callout-tip collapse="true" icon=false}
+## Part 1 : From notebook to python scripts
 
 1. All scripts related to our custom model are stored in the `src` folder. Check them out.
 2. Run a training of the model using MLflow. To do so:
@@ -10,7 +9,8 @@
     c. Add the following content to `mlflow-run.sh`:
 
     ```sh
-    #! /bin/bash
+    # Set MLFLOW_S3_ENDPOINT_URL environment variable
+    export MLFLOW_S3_ENDPOINT_URL='https://minio.lab.sspcloud.fr'
 
     # Set MLFLOW_TRACKING_URI environment variable
     export MLFLOW_TRACKING_URI="https://projet-formation-417155.user.lab.sspcloud.fr"
@@ -25,7 +25,17 @@
     ```
 
     d. Execute `./mlflow-run.sh` in the terminal
-3. Open the MLFlow interface
+3. Open the MLflow user interface: 
+    + `SSPCloud -> My services -> Open MLflow`
+4. Look at the results of your previous run:
+    + `Experiments -> fasttext -> <run_name>`
+5. In `train.py` change some parameters (i.e. `dim = 25`)
+6. Train a new model by executing `./mlflow-run.sh`
+7. In MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. `dim`)
+    + `Select the 2 runs -> Compare -> Scatter Plot -> Select your X and Y axis`
+::::
+:::
+
 
 :::
 
