@@ -3,5 +3,5 @@ Constants.
 """
 
 TEXT_FEATURE = "text"
-Y = "ape"
+Y = "nace"
 DATA_PATH = "projet-formation/diffusion/mlops/data/firm_activity_data.parquet"

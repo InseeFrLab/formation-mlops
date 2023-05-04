@@ -50,7 +50,7 @@ from: markdown+emoji
 
 {{< include sections/2-mlflow-custom-class-example.qmd >}}
 
-## Application 2
+## Application 2 {.scrollable}
 
 {{< include applications/_application2.qmd >}}
 

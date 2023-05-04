@@ -57,7 +57,8 @@ class FastTextWrapper(mlflow.pyfunc.PythonModel):
             A tuple containing the k most likely codes to the query.
         """
         df = self.preprocessor.clean_text(
-            pd.DataFrame(model_input["query"]),
+            pd.DataFrame(model_input["query"],
+                         columns=[TEXT_FEATURE]),
             text_feature=TEXT_FEATURE
         )
 
