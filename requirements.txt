@@ -1,6 +1,6 @@
 boto3
 fastapi
-fasttext
+fasttext-wheel
 mlflow
 nltk
 numpy
