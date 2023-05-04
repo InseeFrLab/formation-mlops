@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+            ref: "3-chap-2"
 
       - name: Set up quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -27,6 +29,9 @@ jobs:
       - name: Install python Dependencies
         run: pip install -r requirements.txt
         
+      - name: Download nltk corpus
+        run: python -m nltk.downloader stopwords
+
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
