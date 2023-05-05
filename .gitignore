@@ -133,3 +133,4 @@ dmypy.json
 
 /.quarto/
 _site/
+notebooks/models/
