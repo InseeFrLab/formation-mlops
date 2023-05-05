@@ -12,13 +12,13 @@ spec:
         value: "minio.lab.sspcloud.fr"
        # The MLflow tracking server is responsable to log the hyper-parameter and model metrics.
       - name: mlflow-tracking-uri
-        value: 'https://projet-formation-417155.user.lab.sspcloud.fr/'
+        value: 'https://projet-formation-960419.user.lab.sspcloud.fr/'
       - name: mlflow-experiment-name
         value: "my-experiment"
       - name: mlflow-s3-url
         value: "https://minio.lab.sspcloud.fr"
       - name: code-source-repo
-        value: "https://github.com/InseeFrLab/formation-mlops.git#parallel-training"
+        value: "https://github.com/InseeFrLab/formation-mlops.git"
       - name: model-training-conf-list
         value: |
           [
@@ -44,22 +44,8 @@ spec:
               parameters:
                 - name: dim
                   value: "{{item.dim}}"
-                - name: lr
-                  value: "{{item.lr}}"
-                - name: epoch
-                  value: "{{item.epoch}}"
-                - name: wordNgrams
-                  value: "{{item.wordNgrams}}"
-                - name: minn
-                  value: "{{item.minn}}"
                 - name: maxn
                   value: "{{item.maxn}}"
-                - name: minCount
-                  value: "{{item.minCount}}"
-                - name: bucket
-                  value: "{{item.bucket}}"
-                - name: thread
-                  value: "{{item.thread}}"
             # Pass the inputs to the task using "withParam"
             withParam: "{{workflow.parameters.model-training-conf-list}}"
 
@@ -77,33 +63,22 @@ spec:
       inputs:
         parameters:
           - name: dim
-          - name: lr
-          - name: epoch
-          - name: wordNgrams
-          - name: minn
           - name: maxn
-          - name: minCount
-          - name: bucket
-          - name: thread
       container:
         image: liupengfei99/mlflow:latest
         command: [sh, -c]
-        args: ["mlflow run $CODE_SOURCE_URI -P remote_server_uri=$MLFLOW_TRACKING_URI -P experiment_name=$MLFLOW_EXPERIMENT_NAME
+        args: ["mlflow run $CODE_SOURCE_URI 
+                --version parallel-training
+                -P remote_server_uri=$MLFLOW_TRACKING_URI
+                -P experiment_name=$MLFLOW_EXPERIMENT_NAME
                 -P dim={{inputs.parameters.dim}}
-                -P lr={{inputs.parameters.lr}}
-                -P epoch={{inputs.parameters.epoch}}
-                -P wordNgrams={{inputs.parameters.wordNgrams}}
-                -P minn={{inputs.parameters.minn}}
-                -P maxn={{inputs.parameters.maxn}}
-                -P minCount={{inputs.parameters.minCount}}
-                -P bucket={{inputs.parameters.bucket}}
-                -P thread={{inputs.parameters.thread}}"]
+                -P maxn={{inputs.parameters.maxn}}"]
         env:
           - name: AWS_SECRET_ACCESS_KEY
             valueFrom:
               secretKeyRef:
                 name: my-s3-creds
-                key: accessKey
+                key: secretKey
           - name: AWS_DEFAULT_REGION
             value: "{{workflow.parameters.aws-default-region}}"
           - name: AWS_S3_ENDPOINT
@@ -112,7 +87,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: my-s3-creds
-                key: secretKey
+                key: accessKey
           - name: MLFLOW_TRACKING_URI
             value: "{{workflow.parameters.mlflow-tracking-uri}}"
           - name: MLFLOW_EXPERIMENT_NAME
