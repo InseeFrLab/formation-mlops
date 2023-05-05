@@ -73,7 +73,25 @@
 :::: {.callout-tip collapse="true" icon=false}
 ## Part 3 : Model delivery with onboarded preprocessing
 
-1. 
+1. In MLflow, register your last model
+2. Open and run the notebook `mlflow-custom-model.ipynb`. Do not forget to change your mlflow tracking URI
+3. Once the model loaded, make a prediction with the model. `Hint:` read the documentation of the `predict()` function of the custom class
 
+```python
+model.predict(test_data)
+```
+
+4. Make sure that the two following descriptions give the same results: `"COIFFEUR"` and `"coiffeur, & 98789"`
+5. Change the value of the parameter `k`
 ::::
 :::
+
+<!-- ```python
+list_libs = ["COIFFEUR", "coiffeur, & 98789"]
+
+test_data = {
+    "query": list_libs,
+    "k": 1
+}
+model.predict(test_data)
+``` -->
