@@ -141,15 +141,15 @@ if __name__ == "__main__":
     remote_server_uri = sys.argv[1]
     experiment_name = sys.argv[2]
     run_name = sys.argv[3]
-    dim = sys.argv[4]
-    lr = sys.argv[5]
-    epoch = sys.argv[6]
-    wordNgrams = sys.argv[7]
-    minn = sys.argv[8]
-    maxn = sys.argv[9]
-    minCount = sys.argv[10]
-    bucket = sys.argv[11]
-    thread = sys.argv[12]
+    dim = int(sys.argv[4])
+    lr = float(sys.argv[5])
+    epoch = int(sys.argv[6])
+    wordNgrams = int(sys.argv[7])
+    minn = int(sys.argv[8])
+    maxn = int(sys.argv[9])
+    minCount = int(sys.argv[10])
+    bucket = int(sys.argv[11])
+    thread = int(sys.argv[12])
 
     train(
         remote_server_uri,
