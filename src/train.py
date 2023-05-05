@@ -74,7 +74,7 @@ def train(remote_server_uri, experiment_name, run_name):
             with open(training_data_path, "w", encoding="utf-8") as file:
                 for item in df_train.iterrows():
                     formatted_item = (
-                        f"__label__{item[1][Y]} {item[1][TEXT_FEATURE]}"
+                        f"""{params["label_prefix"]}{item[1][Y]} {item[1][TEXT_FEATURE]}"""
                     )
                     file.write(f"{formatted_item}\n")
 
@@ -99,6 +99,7 @@ def train(remote_server_uri, experiment_name, run_name):
                     "src/constants.py"
                 ],
                 artifacts=artifacts,
+                metadata=params,
             )
 
         # Log parameters
@@ -112,7 +113,7 @@ def train(remote_server_uri, experiment_name, run_name):
             test_texts.append(formatted_item)
 
         predictions = model.predict(test_texts, k=1)
-        predictions = [x[0].replace("__label__", "") for x in predictions[0]]
+        predictions = [x[0].replace(params["label_prefix"], "") for x in predictions[0]]
 
         booleans = [
             prediction == label
