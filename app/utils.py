@@ -35,8 +35,7 @@ def get_model(
         return model
     except Exception as error:
         raise Exception(
-            f"Failed to fetch model {model_name} version "
-            f"{model_version}: {str(error)}"
+            f"Failed to fetch model {model_name} version {model_version}: {str(error)}"
         ) from error
 
 
@@ -63,52 +62,10 @@ def preprocess_query(
     return query
 
 
-def preprocess_batch(query: Dict, nb_echoes_max: int) -> Dict:
-    """
-    Preprocesses a batch of data in a dictionary format for prediction.
-
-    Args:
-        query (dict): A dictionary containing the batch of data.
-        nb_echoes_max (int): The maximum number of echoes allowed.
-    Returns:
-        Dict: A dictionary containing the preprocessed data ready for further
-        processing.
-    Raises:
-        HTTPException: If the 'text_description' field is missing for any
-            liasses in the batch, a HTTPException is raised with a 400
-            status code and a detailed error message.
-    """
-    df = pd.DataFrame(query)
-    df = df.apply(lambda x: x.str.strip())
-    df = df.replace(["null", "", "NA", "NAN", "nan", "None"], np.nan)
-
-    if df["text_description"].isna().any():
-        matches = df.index[df["text_description"].isna()].to_list()
-        raise HTTPException(
-            status_code=400,
-            detail=(
-                "The descriptions is missing for some entries."
-                f"See line(s): {*matches,}"
-            ),
-        )
-
-    df.rename(
-        columns={"text_description": "TEXT_FEATURE"},
-        inplace=True,
-    )
-
-    query = {
-        "query": df.to_dict("list"),
-        "k": nb_echoes_max,
-    }
-    return query
-
-
 def process_response(
     predictions: Tuple,
     prediction_index: int,
-    nb_echoes_max: int,
-    prob_min: float,
+    nb_echoes_max: int
 ) -> Union[Dict, JSONResponse]:
     """
     Process model predictions and generates response.
@@ -124,17 +81,7 @@ def process_response(
         dictionary or a JSONResponse object containing the
         predicted results.
     """
-    k = nb_echoes_max
-    if predictions[1][prediction_index][-1] < prob_min:
-        k = np.min(
-            [
-                np.argmax(
-                    np.logical_not(predictions[1][prediction_index] > prob_min)
-                ),
-                nb_echoes_max,
-            ]
-        )
-
+    
     output_dict = {
         rank_pred
         + 1: {
@@ -143,20 +90,12 @@ def process_response(
             ),
             "proba": float(predictions[1][prediction_index][rank_pred]),
         }
-        for rank_pred in range(k)
+        for rank_pred in range(nb_echoes_max)
     }
 
-    try:
-        response = output_dict | {
-            "confidence": output_dict[1]["probabilite"]
-            - float(predictions[1][prediction_index][1])
-        }
-        return response
-    except KeyError:
-        return JSONResponse(
-            status_code=404,
-            content={
-                "message": "The minimal probability requested is higher "
-                "than the highest prediction probability of the model."
-            },
-        )
+    response = output_dict | {
+        "confidence": output_dict[1]["probabilite"]
+        - float(predictions[1][prediction_index][1])
+    }
+    return response
+
