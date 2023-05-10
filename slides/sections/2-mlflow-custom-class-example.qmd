@@ -47,7 +47,11 @@ viewof table_data_prepro = Inputs.table(transpose(data_prepro), {
 
 ## MLflow with a non standard framework
 
+
 - [**Easy to use**]{.orange} with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch...) 
+
+<!-- Ajouter code chunk scikeat pour rappeler pq ca se passe bien puis un what if -->
+
 - Need for more [**flexibility**]{.orange} or need [**own framework**]{.orange} 
 - Possibility to [**track**]{.orange} , [**register**]{.orange} and [**deliver**]{.orange} your own model
 
@@ -78,6 +82,9 @@ class MyModel(mlflow.pyfunc.PythonModel):
 
 <!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
 
+
+<!-- petite slide sur pourquoi faut tej les notebooks
+versionning, automatisation, packaging de code, deploiement-->
 
 ```{python}
 #| cache: false

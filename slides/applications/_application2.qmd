@@ -2,6 +2,11 @@
 :::: {.callout-tip collapse="true" icon=false}
 ## Part 1 : From notebook to python scripts
 
+<!-- plutot git le file bash et virer de la slide -->
+<!-- MLflow est deja ouvert -->
+<!-- parametriser la fonction et utiliser le MLproject -->
+<!-- tagging en app1 et virer la part 2 et détailler app 3 qui devient 2-->
+
 1. All scripts related to our custom model are stored in the `src` folder. Check them out.
 2. Run a training of the model using MLflow. To do so:
     a. Create a `mlflow-run.sh` empty file at the root of the project
