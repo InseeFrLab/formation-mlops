@@ -23,9 +23,9 @@ spec:
             - name: MLFLOW_TRACKING_URI
               value: https://projet-formation-912310.user.lab.sspcloud.fr
             - name: MLFLOW_MODEL_NAME
-              value: fasttext
+              value: model-name
             - name: MLFLOW_MODEL_VERSION
-              value: "5"
+              value: "1"
           ports:
             - name: http
               containerPort: 8000
