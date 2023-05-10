@@ -9,8 +9,6 @@ from pydantic import BaseModel
 
 from app.utils import (
     get_model,
-    preprocess_query,
-    process_response,
 )
 
 
@@ -83,7 +81,6 @@ def show_welcome_page():
 async def predict(
     description: str,
     nb_echoes_max: int = 5,
-    prob_min: float = 0.01,
 ) -> Dict:
     """
     Predict APE code.
@@ -94,14 +91,14 @@ async def predict(
         description (str): The activity description.
         nb_echoes_max (int): Maximum number of echoes to consider.
             Default is 5.
-        prob_min (float): Minimum probability threshold. Default is 0.01.
-
     Returns:
         Dict: Response containing APE codes.
     """
-    query = preprocess_query(
-        description, nb_echoes_max
-    )
+    query = {
+        "query": [description],
+        "k": nb_echoes_max,
+    }
+
     predictions = model.predict(query)
-    response = process_response(predictions, 0, nb_echoes_max, prob_min)
-    return response
+
+    return predictions[0]
