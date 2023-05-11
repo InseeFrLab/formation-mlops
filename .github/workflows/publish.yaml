@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - 9-chapter-4-deployment
     paths:
       - slides/**
   workflow_dispatch:
