@@ -100,9 +100,14 @@ class MyModel(mlflow.pyfunc.PythonModel):
 
 <!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
 
+## Necessity of avoiding notebooks for production deployment
 
-<!-- petite slide sur pourquoi faut tej les notebooks
-versionning, automatisation, packaging de code, deploiement-->
+- Arguments against using notebooks for [**ML models deployment**]{.orange}:
+  - Limited scalability for [**automation**]{.blue2} of ML pipelines.
+  - Lack of clear and [**reproducible**]{.blue2} workflows.
+  - Hinders [**collaboration**]{.blue2} and [**versioning**]{.blue2} among team members.
+  - Insufficient [**modularity**]{.blue2} for managing complex ML components.
+
 
 ```{python}
 #| cache: false
