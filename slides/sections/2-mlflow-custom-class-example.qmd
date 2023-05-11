@@ -47,13 +47,31 @@ viewof table_data_prepro = Inputs.table(transpose(data_prepro), {
 
 ## MLflow with a non standard framework
 
+::: {.nonincremental}
 
+:::: {.fragment fragment-index=1}
 - [**Easy to use**]{.orange} with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch...) 
+::::
 
-<!-- Ajouter code chunk scikeat pour rappeler pq ca se passe bien puis un what if -->
+:::: {.fragment fragment-index=2}
+```python
+mlflow.sklearn.log_model(pipe_rf, "model")
 
-- Need for more [**flexibility**]{.orange} or need [**own framework**]{.orange} 
+mlflow.pyfunc.load_model(model_uri=f"models:/{model_name}/{version}")
+y_train_pred = model.predict(X_train)
+
+```
+::::
+
+:::: {.fragment fragment-index=3}
+- What if we require greater [**flexibility**]{.orange} or our [**own framework**]{.orange}?
+::::
+
+:::: {.fragment fragment-index=4}
 - Possibility to [**track**]{.orange} , [**register**]{.orange} and [**deliver**]{.orange} your own model
+::::
+
+:::
 
 ## MLflow with a non standard framework 
 
