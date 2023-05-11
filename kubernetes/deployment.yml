@@ -18,14 +18,12 @@ spec:
           image: inseefrlab/formation-mlops-api:init-src
           imagePullPolicy: Always
           env:
-            - name: MLFLOW_S3_ENDPOINT_URL
-              value: https://minio.lab.sspcloud.fr
             - name: MLFLOW_TRACKING_URI
-              value: https://projet-formation-912310.user.lab.sspcloud.fr
+              value: https://projet-formation-268951.user.lab.sspcloud.fr
             - name: MLFLOW_MODEL_NAME
-              value: model-name
+              value: fasttext-model
             - name: MLFLOW_MODEL_VERSION
-              value: "1"
+              value: "2"
           ports:
             - name: http
               containerPort: 8000
