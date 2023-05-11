@@ -1,0 +1,107 @@
+## Parallel training
+
+- With our setup, we can train models [**one by one**]{.orange} and log all relevant information to the MLflow tracking server
+- What if we would like to train [**multiple models at once**]{.orange}, for example to optimize hyperparameters ?
+
+## Workflow automation
+
+- [**Argo Workflows**]{.orange} is an open source container-native workflow engine for orchestrating parallel jobs on Kubernetes
+- Available on the [**SSP Cloud**]{.orange}
+- General principles :
+    - Define workflows where each step in the workflow is a [**container**]{.blue2}
+    - Model multi-step workflows as a [**sequence**]{.blue2} of tasks or as a [**directed acyclic graph**]{.blue2}
+    - This allows to easily [**run in parallel compute intensive jobs**]{.blue2} for machine learning or data processing
+
+## Hello World
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow                  # new type of k8s spec
+metadata:
+  generateName: hello-world-    # name of the workflow spec
+spec:
+  entrypoint: whalesay          # invoke the whalesay template
+  templates:
+    - name: whalesay            # name of the template
+      container:
+        image: docker/whalesay
+        command: [ cowsay ]
+        args: [ "hello world" ]
+```
+
+## Parameters
+
+- Templates can take [**input parameters**]{.orange}
+
+. . .
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-world-parameters-
+spec:
+  entrypoint: whalesay
+  arguments:
+    parameters:
+    - name: message
+      value: hello world
+
+  templates:
+  - name: whalesay
+    inputs:
+      parameters:
+      - name: message       # parameter declaration
+    container:
+      image: docker/whalesay
+      command: [cowsay]
+      args: ["{{inputs.parameters.message}}"]
+```
+
+## Multi-step workflows
+
+- [**Multi-steps workflows**]{.orange} can be specified (`steps` or `dag`)
+
+. . .
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: steps-
+spec:
+  entrypoint: hello-hello-hello
+
+  # This spec contains two templates: hello-hello-hello and whalesay
+  templates:
+  - name: hello-hello-hello
+    # Instead of just running a container
+    # This template has a sequence of steps
+    steps:
+    - - name: hello1            # hello1 is run before the following steps
+        template: whalesay
+    - - name: hello2a           # double dash => run after previous step
+        template: whalesay
+      - name: hello2b           # single dash => run in parallel with previous step
+        template: whalesay
+  - name: whalesay              # name of the template
+    container:
+      image: docker/whalesay
+      command: [ cowsay ]
+      args: [ "hello world" ]
+```
+
+## Further applications
+
+- Workflow [**to test**]{.orange} registered models, or models pushed to staging / production
+- Workflows can be [**triggered**]{.orange} automatically (via Argo Events for example)
+- [**Continuous training workflows**]{.orange}
+- [**Distributed**]{.orange} machine learning pipelines in general (data downloading, processing, etc.)
+
+## Notes
+
+- [**Python SDK**]{.orange} for Argo Workflows
+- Kubeflow pipelines
+- [**Couler**]{.orange} : unified interface for constructing and managing workflows on different workflow engines
+- Other Python-native orchestration tools : [**Apache Airflow**]{.orange}, [**Metaflow**]{.orange}, [**Prefect**]{.orange}
+

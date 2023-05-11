@@ -6,4 +6,13 @@ entry_points:
       remote_server_uri: {type: str, default: https://mlflow.lab.sspcloud.fr}
       experiment_name: {type: str, default: fasttext}
       run_name: {type: str, default: default}
-    command: "python src/train.py {remote_server_uri} {experiment_name} {run_name}"
+      dim: {type: int, default: 150}
+      lr: {type: float, default: 0.2}
+      epoch: {type: int, default: 50}
+      wordNgrams: {type: int, default: 3}
+      minn: {type: int, default: 3}
+      maxn: {type: int, default: 4}
+      minCount: {type: int, default: 3}
+      bucket: {type: int, default: 2000000}
+      thread: {type: int, default: 10}
+    command: "python src/train.py {remote_server_uri} {experiment_name} {run_name} {dim} {lr} {epoch} {wordNgrams} {minn} {maxn} {minCount} {bucket} {thread}"

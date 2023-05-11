@@ -2,7 +2,9 @@
 ## Distributing the hyperparameter optimization with an orchestrator
 
 :::{.incremental}
-1. 
+1. Open an Argo Workflows service and submit the `Hello World` workflow. Visualize the logs on the Argo Workflows UI.
+2. Take a look at the `argo_workflows/workflow.yml` file. What do you expect will happen when we submit this workflow ?
+3. Submit the workflow. Once all jobs are completed, visualize the logs. Then open the MLflow UI to check what has been done.
 :::
 
 :::

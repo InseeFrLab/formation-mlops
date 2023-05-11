@@ -28,7 +28,20 @@ def load_data():
     return df.sample(frac=0.001)
 
 
-def train(remote_server_uri, experiment_name, run_name):
+def train(
+    remote_server_uri,
+    experiment_name,
+    run_name,
+    dim,
+    lr,
+    epoch,
+    wordNgrams,
+    minn,
+    maxn,
+    minCount,
+    bucket,
+    thread
+):
     """
     Train a FastText model.
     """
@@ -57,15 +70,15 @@ def train(remote_server_uri, experiment_name, run_name):
 
         # Train the model and log to MLflow tracking server
         params = {
-            "dim": 150,
-            "lr": 0.2,
-            "epoch": 50,
-            "wordNgrams": 3,
-            "minn": 3,
-            "maxn": 4,
-            "minCount": 3,
-            "bucket": 2000000,
-            "thread": 10,
+            "dim": dim,
+            "lr": lr,
+            "epoch": epoch,
+            "wordNgrams": wordNgrams,
+            "minn": minn,
+            "maxn": maxn,
+            "minCount": minCount,
+            "bucket": bucket,
+            "thread": thread,
             "loss": "ova",
             "label_prefix": "__label__",
         }
@@ -126,4 +139,30 @@ def train(remote_server_uri, experiment_name, run_name):
 
 
 if __name__ == "__main__":
-    train(sys.argv[1], sys.argv[2], sys.argv[3])
+    remote_server_uri = sys.argv[1]
+    experiment_name = sys.argv[2]
+    run_name = sys.argv[3]
+    dim = int(sys.argv[4])
+    lr = float(sys.argv[5])
+    epoch = int(sys.argv[6])
+    wordNgrams = int(sys.argv[7])
+    minn = int(sys.argv[8])
+    maxn = int(sys.argv[9])
+    minCount = int(sys.argv[10])
+    bucket = int(sys.argv[11])
+    thread = int(sys.argv[12])
+
+    train(
+        remote_server_uri,
+        experiment_name,
+        run_name,
+        dim,
+        lr,
+        epoch,
+        wordNgrams,
+        minn,
+        maxn,
+        minCount,
+        bucket,
+        thread
+    )
