@@ -17,6 +17,7 @@
 - Leverage [**best practices**]{.orange} from software engineering
   - Improve [**reproducibility**]{.blue2} of analysis
   - [**Deploy**]{.blue2} applications in a [**scalable**]{.blue2} way
+  - [**Monitor**]{.blue2} running applications 
 
 ## The DevOps approach
 
@@ -77,8 +78,12 @@
 
 . . .
 
-:two: Deploying a model as an API
+:two: A Practical Example: NACE Code Prediction for French Companies
 
 . . .
 
-:three: Distributing the hyperparameter optimization
+:three: Deploying a model as an API
+
+. . .
+
+:four: Distributing the hyperparameter optimization

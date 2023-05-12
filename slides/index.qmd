@@ -46,7 +46,7 @@ from: markdown+emoji
 
 
 
-# A Practical Example: NACE Code Prediction for French Companies
+# A Practical Example
 
 {{< include sections/2-mlflow-custom-class-example.qmd >}}
 
