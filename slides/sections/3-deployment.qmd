@@ -1,0 +1,4 @@
+- On détaille pas la construction d'API, on renvoie vers doc de FastAPI
+- Dire qu'on veut run l'API sous une image docker pour avoir tout ce qu'il nous faut dedans
+- Un topo sur deploiement dans kube et les fichiers deployment, service, ingress. Juste dire rapidement a quoi ils servent
+- Et truc sur Argo cd pour parler du CD

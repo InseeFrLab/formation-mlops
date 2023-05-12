@@ -1,10 +1,49 @@
-:::{.callout-tip collapse="true" icon=false}
+:::{.nonincremental}
+:::: {.callout-tip collapse="true" icon=false}
 ## Deploying a machine-learning model as an API
 
-::::{.incremental}
 1. We construct a very simplistic Rest API using FastAPI. All underlying files are in the `app` folder. Check it.
 2. To deploy an API, you need to run it on a machine that contains all necessary packages, scripts, and configurations. The most convenient way is to build a Docker image containing all these specificities. Open the `Dockerfile` to see how the image is built. The image is publish via Github Actions, if interested have a look to `.github/workflows/build_image.yml`.
-3. 
+3. Open the file `kubernetes/deployment.yml` and modify the highlighted lines accordingly:
+
+```{yml code-line-numbers: "7"}
+containers:
+- name: api
+    image: inseefrlab/formation-mlops-api:main
+    imagePullPolicy: Always
+    env:
+    - name: MLFLOW_TRACKING_URI
+        value: https://projet-formation-******.user.lab.sspcloud.fr
+    - name: MLFLOW_MODEL_NAME
+        value: fasttext-model
+    - name: MLFLOW_MODEL_VERSION
+        value: "1"
+```
+
+4. On the [SSP Cloud](https://datalab.sspcloud.fr/home), launch an Argo-cd service by clicking [this URL](https://datalab.sspcloud.fr/launcher/automation/argo-cd?autoLaunch=true)
+5. Create a new application and use the yaml template stored in the `argocd` folder
+    a. `Create an application  -> Edit as YAML` 
+    b. Adjust the yaml to your purpose
+    c. `Save -> Create`
+6. Reach your API using the URL you defined in your `ingress.yml` file
+7. Display the documentation of your API by adding `/docs` to your URL
+8. Try your API out!
+9. Re-run a new model and deploy this new model in your API
+
+<details>
+<summary>
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the steps </b></font>
+</summary>
+
+    + 1. Run a model
+    + 2. Register the model
+    + 3. Adjust your MLFLOW_MODEL_NAME or MLFLOW_MODEL_VERSION environment variable in the `deployment.yml` file
+    + 4. Commit and push these changes
+    + 5. Synchronise in Argo-cd or wait for 5 minutes
+    + 6. Refresh your API, it should be based on your new version!
+
+</details>
+
 ::::
 
 :::
