@@ -4,9 +4,9 @@
   - European standard classification of productive [**economic activities**]{.blue2}
   - [**Hierarchical structure**]{.blue2} with 4 levels and 615 codes
 
-- At Insee previously handled by an outdated [**rule-based**]{.orange} algorithm
+- At Insee, previously handled by an outdated [**rule-based**]{.orange} algorithm
 
-- [**Common problematic**]{.orange} to all National statistical institutes
+- [**Common problematic**]{.orange} to many National Statistical Institutes
 
 ## Data used {.scrollable}
 
@@ -100,10 +100,10 @@ class MyModel(mlflow.pyfunc.PythonModel):
 
 <!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
 
-## Necessity of avoiding notebooks for production deployment
+## From experiment to production environment
 
-- Arguments against using notebooks for [**ML models deployment**]{.orange}:
-  - Limited scalability for [**automation**]{.blue2} of ML pipelines.
+- Notebooks are not suitable to build [**production-grade**]{.orange} ML systems:
+  - Limited the potential for [**automation**]{.blue2} of ML pipelines.
   - Lack of clear and [**reproducible**]{.blue2} workflows.
   - Hinders [**collaboration**]{.blue2} and [**versioning**]{.blue2} among team members.
   - Insufficient [**modularity**]{.blue2} for managing complex ML components.

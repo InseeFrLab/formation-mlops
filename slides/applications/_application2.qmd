@@ -4,17 +4,18 @@
 
 0. Launch a `VSCode` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»). Open the service and input the service password (either automatically copied or available in the `README` of the service)
 1. All scripts related to our custom model are stored in the `src` folder. Check them out. Have a look at the `MLproject` file as well.
-2. Run a training of the model using MLflow. To do so:
+2. Run a training of the model using MLflow. To do so, open a terminal (`top left button -> Terminal -> New Terminal`) and run the following command :
 
     ```sh
+    export MLFLOW_EXPERIMENT_NAME="fasttext"
     mlflow run ~/work/formation-mlops/ --env-manager=local \
-    -P remote_server_uri=$MLFLOW_TRACKING_URI \
-    -P experiment_name="fasttext"
+        -P remote_server_uri=$MLFLOW_TRACKING_URI \
+        -P experiment_name=$MLFLOW_EXPERIMENT_NAME
     ```
 
-3. Look at the results of your previous run:
+3. In the UI, look at the results of your previous run:
     + `Experiments -> fasttext -> <run_name>`
-4. You have trained the model with some default parameters. In `MLproject` check the parameters available. Re-train a model with different parameters (i.e. `dim = 25`).
+4. You have trained the model with some default parameters. In `MLproject` check the parameters available. Re-train a model with different parameters (e.g. `dim = 25`).
 
 <details>
 <summary>
@@ -24,7 +25,7 @@
 ```sh
 mlflow run ~/work/formation-mlops/ --env-manager=local \
 -P remote_server_uri=$MLFLOW_TRACKING_URI \
--P experiment_name="fasttext"
+-P experiment_name=$MLFLOW_EXPERIMENT_NAME \
 -P dim=25
 ```
 
