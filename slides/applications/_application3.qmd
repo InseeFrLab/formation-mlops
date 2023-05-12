@@ -1,5 +1,5 @@
 :::{.callout-tip collapse="true" icon=false}
-## Distributing the hyperparameter optimization with an orchestrator
+## Deploying a machine-learning model as an API
 
 :::{.incremental}
 1. 
