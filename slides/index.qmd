@@ -55,10 +55,10 @@ from: markdown+emoji
 {{< include applications/_application2.qmd >}}
 
 
+# Deploying a model as an API
 
-# Distributing the hyperparameter optimization
+{{< include sections/3-deployment.qmd >}}
 
-{{< include sections/3-parallel-training.qmd >}}
 
 ## Application 3
 
@@ -66,9 +66,9 @@ from: markdown+emoji
 
 
 
-# Deploying a model as an API
+# Distributing the hyperparameter optimization
 
-{{< include sections/4-deployment.qmd >}}
+{{< include sections/4-parallel-training.qmd >}}
 
 ## Application 4
 
