@@ -2,9 +2,6 @@
 :::: {.callout-tip collapse="true" icon=false}
 ## Part 1 : From notebook to python scripts
 
-<!-- tagging en app1 et virer la part 2 et détailler app 3 qui devient 2-->
-<!-- 
-simplify train et dire de check les diff -->
 
 1. All scripts related to our custom model are stored in the `src` folder. Check them out. Have a look at the `MLproject` file as well.
 2. Run a training of the model using MLflow. To do so:
