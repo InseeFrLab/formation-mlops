@@ -2,6 +2,13 @@
 :::: {.callout-tip collapse="true" icon=false}
 ## Part 1 : From notebook to python scripts
 
+<!-- plutot git le file bash et virer de la slide -->
+<!-- MLflow est deja ouvert -->
+<!-- parametriser la fonction et utiliser le MLproject -->
+<!-- tagging en app1 et virer la part 2 et détailler app 3 qui devient 2-->
+<!-- 
+simplify train et dire de check les diff -->
+
 1. All scripts related to our custom model are stored in the `src` folder. Check them out.
 2. Run a training of the model using MLflow. To do so:
     a. Create a `mlflow-run.sh` empty file at the root of the project
@@ -73,7 +80,25 @@
 :::: {.callout-tip collapse="true" icon=false}
 ## Part 3 : Model delivery with onboarded preprocessing
 
-1. 
+1. In MLflow, register your last model
+2. Open and run the notebook `mlflow-custom-model.ipynb`. Do not forget to change your mlflow tracking URI
+3. Once the model loaded, make a prediction with the model. `Hint:` read the documentation of the `predict()` function of the custom class
 
+```python
+model.predict(test_data)
+```
+
+4. Make sure that the two following descriptions give the same results: `"COIFFEUR"` and `"coiffeur, & 98789"`
+5. Change the value of the parameter `k`
 ::::
 :::
+
+<!-- ```python
+list_libs = ["COIFFEUR", "coiffeur, & 98789"]
+
+test_data = {
+    "query": list_libs,
+    "k": 1
+}
+model.predict(test_data)
+``` -->
