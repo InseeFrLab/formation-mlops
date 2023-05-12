@@ -705,11 +705,29 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </section>
 <section id="mlflow-with-a-non-standard-framework" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>MLflow with a non standard framework</h2>
+<div>
+<div class="fragment" data-fragment-index="1">
 <ul>
-<li class="fragment"><span class="orange"><strong>Easy to use</strong></span> with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch…)</li>
-<li class="fragment">Need for more <span class="orange"><strong>flexibility</strong></span> or need <span class="orange"><strong>own framework</strong></span></li>
-<li class="fragment">Possibility to <span class="orange"><strong>track</strong></span> , <span class="orange"><strong>register</strong></span> and <span class="orange"><strong>deliver</strong></span> your own model</li>
+<li><span class="orange"><strong>Easy to use</strong></span> with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch…)</li>
 </ul>
+</div>
+<div class="fragment" data-fragment-index="2">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>mlflow.sklearn.log_model(pipe_rf, <span class="st">"model"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>mlflow.pyfunc.load_model(model_uri<span class="op">=</span><span class="ss">f"models:/</span><span class="sc">{</span>model_name<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>version<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4"></a>y_train_pred <span class="op">=</span> model.predict(X_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment" data-fragment-index="3">
+<ul>
+<li>What if we require greater <span class="orange"><strong>flexibility</strong></span> or our <span class="orange"><strong>own framework</strong></span>?</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="4">
+<ul>
+<li>Possibility to <span class="orange"><strong>track</strong></span> , <span class="orange"><strong>register</strong></span> and <span class="orange"><strong>deliver</strong></span> your own model</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="mlflow-with-a-non-standard-framework-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>MLflow with a non standard framework</h2>
@@ -724,17 +742,29 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </ul>
 </div>
 <div class="fragment" data-fragment-index="2">
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Define a custom model</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">class</span> MyModel(mlflow.pyfunc.PythonModel):</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="kw">def</span> load_context(<span class="va">self</span>, context):</span>
-<span id="cb3-5"><a href="#cb3-5"></a>      <span class="va">self</span>.my_model.load_model(context.artifacts[<span class="st">"my_model"</span>])</span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, context, model_input):</span>
-<span id="cb3-8"><a href="#cb3-8"></a>        <span class="cf">return</span> <span class="va">self</span>.my_model.predict(model_input)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Define a custom model</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">class</span> MyModel(mlflow.pyfunc.PythonModel):</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="kw">def</span> load_context(<span class="va">self</span>, context):</span>
+<span id="cb4-5"><a href="#cb4-5"></a>      <span class="va">self</span>.my_model.load_model(context.artifacts[<span class="st">"my_model"</span>])</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, context, model_input):</span>
+<span id="cb4-8"><a href="#cb4-8"></a>        <span class="cf">return</span> <span class="va">self</span>.my_model.predict(model_input)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
+</section>
+<section id="necessity-of-avoiding-notebooks-for-production-deployment" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Necessity of avoiding notebooks for production deployment</h2>
+<ul>
+<li class="fragment">Arguments against using notebooks for <span class="orange"><strong>ML models deployment</strong></span>:
+<ul>
+<li class="fragment">Limited scalability for <span class="blue2"><strong>automation</strong></span> of ML pipelines.</li>
+<li class="fragment">Lack of clear and <span class="blue2"><strong>reproducible</strong></span> workflows.</li>
+<li class="fragment">Hinders <span class="blue2"><strong>collaboration</strong></span> and <span class="blue2"><strong>versioning</strong></span> among team members.</li>
+<li class="fragment">Insufficient <span class="blue2"><strong>modularity</strong></span> for managing complex ML components.</li>
+</ul></li>
+</ul>
 <div class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 
@@ -752,38 +782,27 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 <div class="callout-content">
 <ol type="1">
-<li>All scripts related to our custom model are stored in the <code>src</code> folder. Check them out.</li>
-<li>Run a training of the model using MLflow. To do so:
-<ol type="a">
-<li>Create a <code>mlflow-run.sh</code> empty file at the root of the project</li>
-<li>Change it permissions by running <code>chmod 777 mlflow-run.sh</code> in the terminal</li>
-<li>Add the following content to <code>mlflow-run.sh</code>:</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Set MLFLOW_S3_ENDPOINT_URL environment variable</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">export</span> <span class="va">MLFLOW_S3_ENDPOINT_URL</span><span class="op">=</span><span class="st">'https://minio.lab.sspcloud.fr'</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># Set MLFLOW_TRACKING_URI environment variable</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="bu">export</span> <span class="va">MLFLOW_TRACKING_URI</span><span class="op">=</span><span class="st">"https://projet-formation-417155.user.lab.sspcloud.fr"</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># Set MLFLOW_EXPERIMENT_NAME environment variable</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="bu">export</span> <span class="va">MLFLOW_EXPERIMENT_NAME</span><span class="op">=</span><span class="st">"fasttext"</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="ex">mlflow</span> run ~/work/formation-mlops/ <span class="at">--env-manager</span><span class="op">=</span>local <span class="dt">\</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>-P remote_server_uri=<span class="va">$MLFLOW_TRACKING_URI</span> <span class="dt">\</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a>-P experiment_name=<span class="va">$MLFLOW_EXPERIMENT_NAME</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="4" type="a">
-<li>Execute <code>./mlflow-run.sh</code> in the terminal</li>
-</ol></li>
-<li>Open the MLflow user interface:
-<ul>
-<li><code>SSPCloud -&gt; My services -&gt; Open MLflow</code></li>
-</ul></li>
-<li>Look at the results of your previous run:
+<li><p>All scripts related to our custom model are stored in the <code>src</code> folder. Check them out. Have a look at the <code>MLproject</code> file as well.</p></li>
+<li><p>Run a training of the model using MLflow. To do so:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">mlflow</span> run ~/work/formation-mlops/ <span class="at">--env-manager</span><span class="op">=</span>local <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>-P remote_server_uri=<span class="va">$MLFLOW_TRACKING_URI</span> <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>-P experiment_name=<span class="st">"fasttext"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Look at the results of your previous run:</p>
 <ul>
 <li><code>Experiments -&gt; fasttext -&gt; &lt;run_name&gt;</code></li>
 </ul></li>
-<li>In <code>train.py</code> change some parameters (i.e.&nbsp;<code>dim = 25</code>)</li>
-<li>Train a new model by executing <code>./mlflow-run.sh</code></li>
+<li><p>You have trained the model with some default parameters. In <code>MLproject</code> check the parameters available. Re-train a model with different parameters (i.e.&nbsp;<code>dim = 25</code>).</p></li>
+</ol>
+<details>
+<summary>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Click to see the command </b></font>
+</summary>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">mlflow</span> run ~/work/formation-mlops/ <span class="at">--env-manager</span><span class="op">=</span>local <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>-P remote_server_uri=<span class="va">$MLFLOW_TRACKING_URI</span> <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>-P experiment_name=<span class="st">"fasttext"</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="ex">-P</span> dim=25</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="5" type="1">
 <li>In MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e.&nbsp;<code>dim</code>)
 <ul>
 <li><code>Select the 2 runs -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis</code></li>
@@ -800,43 +819,32 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Part 2 : Manual logging</strong></p>
+<p><strong>Part 2 : Model delivery with onboarded preprocessing</strong></p>
 </div>
 <div class="callout-content">
 <ol type="1">
-<li>Log new parameters by adding these lines of code appropriately:</li>
+<li>Explore the <code>src/train.py</code> file carefully. What are the main differences compare to application 1 ?</li>
+<li>Why can we say that the MLflow model onboard the preprocessing ?</li>
+<li>In MLflow, register your last model</li>
+<li>Open and run the notebook <code>mlflow-custom-model.ipynb</code> which loads your model from the model store.</li>
+<li>Read the documentation of the <code>predict()</code> function of the custom class (<code>src/fasttext_wrapper.py</code>)</li>
+<li>Make a prediction of the model</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>    mlflow.log_param(<span class="st">"TEXT_FEATURE"</span>, TEXT_FEATURE)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    mlflow.log_param(<span class="st">"Y"</span>, Y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Log the training dataset used by adding this line of code appropriately:</li>
-</ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>    <span class="co">"train_data"</span>: training_data_path,</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="3" type="1">
-<li>Log a new metric which is simply the accuracy in percentage:</li>
-</ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>    accuracy_percent <span class="op">=</span> accuracy <span class="op">*</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Click to see the command </b></font>
+</summary>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>list_libs <span class="op">=</span> [<span class="st">"vendeur d'huitres"</span>, <span class="st">"boulanger"</span>]</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>test_data <span class="op">=</span> {</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="st">"query"</span>: list_libs,</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="st">"k"</span>: <span class="dv">1</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>}</span>
+<span id="cb7-7"><a href="#cb7-7"></a>model.predict(test_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <ol start="4" type="1">
-<li>Train a model by executing <code>./mlflow-run.sh</code></li>
-<li>In MLflow, check that everything has been logged correctly</li>
-<li>Look at the <code>training_data.txt</code> in MLflow</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="application-2-2" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
-<h2>Application 2</h2>
-<div>
-<div class="callout callout-tip no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Part 3 : Model delivery with onboarded preprocessing</strong></p>
-</div>
-<div class="callout-content">
-<ol type="1">
-<li></li>
+<li>Make sure that the two following descriptions give the same results: <code>"COIFFEUR"</code> and <code>"coiffeur, &amp; 98789"</code></li>
+<li>Change the value of the parameter <code>k</code></li>
 </ol>
 </div>
 </div>
@@ -844,8 +852,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </section></section>
 <section>
-<section id="distributing-the-hyperparameter-optimization" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Distributing the hyperparameter optimization</h1>
+<section id="deploying-a-model-as-an-api" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Deploying a model as an API</h1>
 
 </section>
 <section id="application-3" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -858,6 +866,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout-content">
 <div>
 <ol type="1">
+<li class="fragment">We construct a very simplistic Rest API using FastAPI. All underlying files are in the <code>app</code> folder. Check it.</li>
+<li class="fragment">To deploy an API, you need to run it on a machine that contains all necessary packages, scripts, and configurations. The most convenient way is to build a Docker image containing all these specificities. Open the <code>Dockerfile</code> to see how the image is built. The image is publish via Github Actions, if interested have a look to <code>.github/workflows/build_image.yml</code>.</li>
 <li class="fragment"></li>
 </ol>
 </div>
@@ -866,9 +876,122 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </section></section>
 <section>
-<section id="deploying-a-model-as-an-api" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Deploying a model as an API</h1>
+<section id="distributing-the-hyperparameter-optimization" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Distributing the hyperparameter optimization</h1>
 
+</section>
+<section id="parallel-training" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Parallel training</h2>
+<ul>
+<li class="fragment">With our setup, we can train models <span class="orange"><strong>one by one</strong></span> and log all relevant information to the MLflow tracking server</li>
+<li class="fragment">What if we would like to train <span class="orange"><strong>multiple models at once</strong></span>, for example to optimize hyperparameters ?</li>
+</ul>
+</section>
+<section id="workflow-automation" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Workflow automation</h2>
+<ul>
+<li class="fragment"><span class="orange"><strong>Argo Workflows</strong></span> is an open source container-native workflow engine for orchestrating parallel jobs on Kubernetes</li>
+<li class="fragment">Available on the <span class="orange"><strong>SSP Cloud</strong></span></li>
+<li class="fragment">General principles :
+<ul>
+<li class="fragment">Define workflows where each step in the workflow is a <span class="blue2"><strong>container</strong></span></li>
+<li class="fragment">Model multi-step workflows as a <span class="blue2"><strong>sequence</strong></span> of tasks or as a <span class="blue2"><strong>directed acyclic graph</strong></span></li>
+<li class="fragment">This allows to easily <span class="blue2"><strong>run in parallel compute intensive jobs</strong></span> for machine learning or data processing</li>
+</ul></li>
+</ul>
+</section>
+<section id="hello-world" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Hello World</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span><span class="co">                  # new type of k8s spec</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span><span class="co">    # name of the workflow spec</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">          # invoke the whalesay template</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">            # name of the template</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="at">      </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="at">        </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"hello world"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="parameters" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Parameters</h2>
+<ul>
+<li class="fragment">Templates can take <span class="orange"><strong>input parameters</strong></span></li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-parameters-</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="at">  </span><span class="fu">arguments</span><span class="kw">:</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="at">    </span><span class="fu">parameters</span><span class="kw">:</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="at">      </span><span class="fu">value</span><span class="kw">:</span><span class="at"> hello world</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a></span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="at">    </span><span class="fu">inputs</span><span class="kw">:</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a><span class="at">      </span><span class="fu">parameters</span><span class="kw">:</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span><span class="co">       # parameter declaration</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
+<span id="cb9-19"><a href="#cb9-19"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
+<span id="cb9-20"><a href="#cb9-20"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"{{inputs.parameters.message}}"</span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="multi-step-workflows" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Multi-step workflows</h2>
+<ul>
+<li class="fragment"><span class="orange"><strong>Multi-steps workflows</strong></span> can be specified (<code>steps</code> or <code>dag</code>)</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> steps-</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="co">  # This spec contains two templates: hello-hello-hello and whalesay</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="co">    # Instead of just running a container</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="co">    # This template has a sequence of steps</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello1</span><span class="co">            # hello1 is run before the following steps</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2a</span><span class="co">           # double dash =&gt; run after previous step</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2b</span><span class="co">           # single dash =&gt; run in parallel with previous step</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">              # name of the template</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb10-22"><a href="#cb10-22"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
+<span id="cb10-23"><a href="#cb10-23"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
+<span id="cb10-24"><a href="#cb10-24"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"hello world"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="further-applications" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Further applications</h2>
+<ul>
+<li class="fragment">Workflow <span class="orange"><strong>to test</strong></span> registered models, or models pushed to staging / production</li>
+<li class="fragment">Workflows can be <span class="orange"><strong>triggered</strong></span> automatically (via Argo Events for example)</li>
+<li class="fragment"><span class="orange"><strong>Continuous training workflows</strong></span></li>
+<li class="fragment"><span class="orange"><strong>Distributed</strong></span> machine learning pipelines in general (data downloading, processing, etc.)</li>
+</ul>
+</section>
+<section id="notes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Notes</h2>
+<ul>
+<li class="fragment"><span class="orange"><strong>Python SDK</strong></span> for Argo Workflows</li>
+<li class="fragment">Kubeflow pipelines</li>
+<li class="fragment"><span class="orange"><strong>Couler</strong></span> : unified interface for constructing and managing workflows on different workflow engines</li>
+<li class="fragment">Other Python-native orchestration tools : <span class="orange"><strong>Apache Airflow</strong></span>, <span class="orange"><strong>Metaflow</strong></span>, <span class="orange"><strong>Prefect</strong></span></li>
+</ul>
 </section>
 <section id="application-4" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Application 4</h2>
@@ -880,7 +1003,9 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout-content">
 <div>
 <ol type="1">
-<li class="fragment"></li>
+<li class="fragment">Open an Argo Workflows service and submit the <code>Hello World</code> workflow. Visualize the logs on the Argo Workflows UI.</li>
+<li class="fragment">Take a look at the <code>argo_workflows/workflow.yml</code> file. What do you expect will happen when we submit this workflow ?</li>
+<li class="fragment">Submit the workflow. Once all jobs are completed, visualize the logs. Then open the MLflow UI to check what has been done.</li>
 </ol>
 </div>
 </div>

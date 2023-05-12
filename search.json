@@ -116,7 +116,7 @@
     "href": "slides/index.html#mlflow-with-a-non-standard-framework",
     "title": "An introduction to MLOps with MLflow",
     "section": "MLflow with a non standard framework",
-    "text": "MLflow with a non standard framework\n\nEasy to use with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch…)\nNeed for more flexibility or need own framework\nPossibility to track , register and deliver your own model"
+    "text": "MLflow with a non standard framework\n\n\n\nEasy to use with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch…)\n\n\n\nmlflow.sklearn.log_model(pipe_rf, \"model\")\n\nmlflow.pyfunc.load_model(model_uri=f\"models:/{model_name}/{version}\")\ny_train_pred = model.predict(X_train)\n\n\n\nWhat if we require greater flexibility or our own framework?\n\n\n\n\nPossibility to track , register and deliver your own model"
   },
   {
     "objectID": "slides/index.html#mlflow-with-a-non-standard-framework-1",
@@ -126,38 +126,87 @@
     "text": "MLflow with a non standard framework\n\n\n\nThere are 2 main differences when using your own framework:\n\nlogging of parameters, metrics and artifacts\nwrapping of your custom model so that MLflow can serve it\n\n\n\n\n# Define a custom model\nclass MyModel(mlflow.pyfunc.PythonModel):\n\n    def load_context(self, context):\n      self.my_model.load_model(context.artifacts[\"my_model\"])\n\n    def predict(self, context, model_input):\n        return self.my_model.predict(model_input)"
   },
   {
+    "objectID": "slides/index.html#necessity-of-avoiding-notebooks-for-production-deployment",
+    "href": "slides/index.html#necessity-of-avoiding-notebooks-for-production-deployment",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Necessity of avoiding notebooks for production deployment",
+    "text": "Necessity of avoiding notebooks for production deployment\n\nArguments against using notebooks for ML models deployment:\n\nLimited scalability for automation of ML pipelines.\nLack of clear and reproducible workflows.\nHinders collaboration and versioning among team members.\nInsufficient modularity for managing complex ML components."
+  },
+  {
     "objectID": "slides/index.html#application-2",
     "href": "slides/index.html#application-2",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 2",
-    "text": "Application 2\n\n\n\n\nPart 1 : From notebook to python scripts\n\n\n\nAll scripts related to our custom model are stored in the src folder. Check them out.\nRun a training of the model using MLflow. To do so:\n\nCreate a mlflow-run.sh empty file at the root of the project\nChange it permissions by running chmod 777 mlflow-run.sh in the terminal\nAdd the following content to mlflow-run.sh:\n\n# Set MLFLOW_S3_ENDPOINT_URL environment variable\nexport MLFLOW_S3_ENDPOINT_URL='https://minio.lab.sspcloud.fr'\n\n# Set MLFLOW_TRACKING_URI environment variable\nexport MLFLOW_TRACKING_URI=\"https://projet-formation-417155.user.lab.sspcloud.fr\"\n\n# Set MLFLOW_EXPERIMENT_NAME environment variable\nexport MLFLOW_EXPERIMENT_NAME=\"fasttext\"\n\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n-P remote_server_uri=$MLFLOW_TRACKING_URI \\\n-P experiment_name=$MLFLOW_EXPERIMENT_NAME\n\nExecute ./mlflow-run.sh in the terminal\n\nOpen the MLflow user interface:\n\nSSPCloud -&gt; My services -&gt; Open MLflow\n\nLook at the results of your previous run:\n\nExperiments -&gt; fasttext -&gt; &lt;run_name&gt;\n\nIn train.py change some parameters (i.e. dim = 25)\nTrain a new model by executing ./mlflow-run.sh\nIn MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. dim)\n\nSelect the 2 runs -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis"
+    "text": "Application 2\n\n\n\n\nPart 1 : From notebook to python scripts\n\n\n\nAll scripts related to our custom model are stored in the src folder. Check them out. Have a look at the MLproject file as well.\nRun a training of the model using MLflow. To do so:\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n-P remote_server_uri=$MLFLOW_TRACKING_URI \\\n-P experiment_name=\"fasttext\"\nLook at the results of your previous run:\n\nExperiments -&gt; fasttext -&gt; &lt;run_name&gt;\n\nYou have trained the model with some default parameters. In MLproject check the parameters available. Re-train a model with different parameters (i.e. dim = 25).\n\n\n\nClick to see the command \n\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n-P remote_server_uri=$MLFLOW_TRACKING_URI \\\n-P experiment_name=\"fasttext\"\n-P dim=25\n\n\nIn MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. dim)\n\nSelect the 2 runs -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis"
   },
   {
     "objectID": "slides/index.html#application-2-1",
     "href": "slides/index.html#application-2-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 2",
-    "text": "Application 2\n\n\n\n\nPart 2 : Manual logging\n\n\n\nLog new parameters by adding these lines of code appropriately:\n\n    mlflow.log_param(\"TEXT_FEATURE\", TEXT_FEATURE)\n    mlflow.log_param(\"Y\", Y)\n\nLog the training dataset used by adding this line of code appropriately:\n\n    \"train_data\": training_data_path,\n\nLog a new metric which is simply the accuracy in percentage:\n\n    accuracy_percent = accuracy * 100\n\nTrain a model by executing ./mlflow-run.sh\nIn MLflow, check that everything has been logged correctly\nLook at the training_data.txt in MLflow"
-  },
-  {
-    "objectID": "slides/index.html#application-2-2",
-    "href": "slides/index.html#application-2-2",
-    "title": "An introduction to MLOps with MLflow",
-    "section": "Application 2",
-    "text": "Application 2\n\n\n\n\nPart 3 : Model delivery with onboarded preprocessing"
+    "text": "Application 2\n\n\n\n\nPart 2 : Model delivery with onboarded preprocessing\n\n\n\nExplore the src/train.py file carefully. What are the main differences compare to application 1 ?\nWhy can we say that the MLflow model onboard the preprocessing ?\nIn MLflow, register your last model\nOpen and run the notebook mlflow-custom-model.ipynb which loads your model from the model store.\nRead the documentation of the predict() function of the custom class (src/fasttext_wrapper.py)\nMake a prediction of the model\n\n\n\nClick to see the command \n\nlist_libs = [\"vendeur d'huitres\", \"boulanger\"]\n\ntest_data = {\n    \"query\": list_libs,\n    \"k\": 1\n}\nmodel.predict(test_data)\n\n\nMake sure that the two following descriptions give the same results: \"COIFFEUR\" and \"coiffeur, & 98789\"\nChange the value of the parameter k"
   },
   {
     "objectID": "slides/index.html#application-3",
     "href": "slides/index.html#application-3",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 3",
-    "text": "Application 3\n\n\n\nDeploying a machine-learning model as an API"
+    "text": "Application 3\n\n\n\nDeploying a machine-learning model as an API\n\n\n\n\nWe construct a very simplistic Rest API using FastAPI. All underlying files are in the app folder. Check it.\nTo deploy an API, you need to run it on a machine that contains all necessary packages, scripts, and configurations. The most convenient way is to build a Docker image containing all these specificities. Open the Dockerfile to see how the image is built. The image is publish via Github Actions, if interested have a look to .github/workflows/build_image.yml."
+  },
+  {
+    "objectID": "slides/index.html#parallel-training",
+    "href": "slides/index.html#parallel-training",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Parallel training",
+    "text": "Parallel training\n\nWith our setup, we can train models one by one and log all relevant information to the MLflow tracking server\nWhat if we would like to train multiple models at once, for example to optimize hyperparameters ?"
+  },
+  {
+    "objectID": "slides/index.html#workflow-automation",
+    "href": "slides/index.html#workflow-automation",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Workflow automation",
+    "text": "Workflow automation\n\nArgo Workflows is an open source container-native workflow engine for orchestrating parallel jobs on Kubernetes\nAvailable on the SSP Cloud\nGeneral principles :\n\nDefine workflows where each step in the workflow is a container\nModel multi-step workflows as a sequence of tasks or as a directed acyclic graph\nThis allows to easily run in parallel compute intensive jobs for machine learning or data processing"
+  },
+  {
+    "objectID": "slides/index.html#hello-world",
+    "href": "slides/index.html#hello-world",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Hello World",
+    "text": "Hello World\napiVersion: argoproj.io/v1alpha1\nkind: Workflow                  # new type of k8s spec\nmetadata:\n  generateName: hello-world-    # name of the workflow spec\nspec:\n  entrypoint: whalesay          # invoke the whalesay template\n  templates:\n    - name: whalesay            # name of the template\n      container:\n        image: docker/whalesay\n        command: [ cowsay ]\n        args: [ \"hello world\" ]"
+  },
+  {
+    "objectID": "slides/index.html#parameters",
+    "href": "slides/index.html#parameters",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Parameters",
+    "text": "Parameters\n\nTemplates can take input parameters\n\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: hello-world-parameters-\nspec:\n  entrypoint: whalesay\n  arguments:\n    parameters:\n    - name: message\n      value: hello world\n\n  templates:\n  - name: whalesay\n    inputs:\n      parameters:\n      - name: message       # parameter declaration\n    container:\n      image: docker/whalesay\n      command: [cowsay]\n      args: [\"{{inputs.parameters.message}}\"]"
+  },
+  {
+    "objectID": "slides/index.html#multi-step-workflows",
+    "href": "slides/index.html#multi-step-workflows",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Multi-step workflows",
+    "text": "Multi-step workflows\n\nMulti-steps workflows can be specified (steps or dag)\n\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: steps-\nspec:\n  entrypoint: hello-hello-hello\n\n  # This spec contains two templates: hello-hello-hello and whalesay\n  templates:\n  - name: hello-hello-hello\n    # Instead of just running a container\n    # This template has a sequence of steps\n    steps:\n    - - name: hello1            # hello1 is run before the following steps\n        template: whalesay\n    - - name: hello2a           # double dash =&gt; run after previous step\n        template: whalesay\n      - name: hello2b           # single dash =&gt; run in parallel with previous step\n        template: whalesay\n  - name: whalesay              # name of the template\n    container:\n      image: docker/whalesay\n      command: [ cowsay ]\n      args: [ \"hello world\" ]"
+  },
+  {
+    "objectID": "slides/index.html#further-applications",
+    "href": "slides/index.html#further-applications",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Further applications",
+    "text": "Further applications\n\nWorkflow to test registered models, or models pushed to staging / production\nWorkflows can be triggered automatically (via Argo Events for example)\nContinuous training workflows\nDistributed machine learning pipelines in general (data downloading, processing, etc.)"
+  },
+  {
+    "objectID": "slides/index.html#notes",
+    "href": "slides/index.html#notes",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Notes",
+    "text": "Notes\n\nPython SDK for Argo Workflows\nKubeflow pipelines\nCouler : unified interface for constructing and managing workflows on different workflow engines\nOther Python-native orchestration tools : Apache Airflow, Metaflow, Prefect"
   },
   {
     "objectID": "slides/index.html#application-4",
     "href": "slides/index.html#application-4",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 4",
-    "text": "Application 4\n\n\n\nDistributing the hyperparameter optimization with an orchestrator"
+    "text": "Application 4\n\n\n\nDistributing the hyperparameter optimization with an orchestrator\n\n\n\n\nOpen an Argo Workflows service and submit the Hello World workflow. Visualize the logs on the Argo Workflows UI.\nTake a look at the argo_workflows/workflow.yml file. What do you expect will happen when we submit this workflow ?\nSubmit the workflow. Once all jobs are completed, visualize the logs. Then open the MLflow UI to check what has been done."
   }
 ]
