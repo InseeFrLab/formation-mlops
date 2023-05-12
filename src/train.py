@@ -10,7 +10,7 @@ import nltk
 import pyarrow.parquet as pq
 from sklearn.model_selection import train_test_split
 from preprocessor import Preprocessor
-from constants import TEXT_FEATURE, Y, DATA_PATH
+from constants import TEXT_FEATURE, Y, DATA_PATH, LABEL_PREFIX
 from utils import write_training_data
 from fasttext_wrapper import FastTextWrapper
 
@@ -78,12 +78,13 @@ def train(
             "bucket": bucket,
             "thread": thread,
             "loss": "ova",
-            "label_prefix": "__label__",
+            "label_prefix": LABEL_PREFIX,
         }
 
         # Write training data in a .txt file (fasttext-specific)
         training_data_path = write_training_data(df_train, params)
 
+        # Train the fasttext model
         model = fasttext.train_supervised(training_data_path, **params, verbose=2)
 
         # Save model for logging
@@ -104,7 +105,6 @@ def train(
                 "src/constants.py",
             ],
             artifacts=artifacts,
-            metadata=params,
         )
 
         # Log parameters
@@ -118,7 +118,7 @@ def train(
             test_texts.append(formatted_item)
 
         predictions = model.predict(test_texts, k=1)
-        predictions = [x[0].replace(params["label_prefix"], "") for x in predictions[0]]
+        predictions = [x[0].replace(LABEL_PREFIX, "") for x in predictions[0]]
 
         booleans = [
             prediction == label

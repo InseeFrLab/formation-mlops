@@ -7,7 +7,7 @@ import mlflow
 import pandas as pd
 
 from preprocessor import Preprocessor
-from constants import TEXT_FEATURE
+from constants import TEXT_FEATURE, LABEL_PREFIX
 
 
 class FastTextWrapper(mlflow.pyfunc.PythonModel):
@@ -69,7 +69,7 @@ class FastTextWrapper(mlflow.pyfunc.PythonModel):
             i: {
                 rank_pred
                 + 1: {
-                    "nace": predictions[0][i][rank_pred].replace("__label__", ""),
+                    "nace": predictions[0][i][rank_pred].replace(LABEL_PREFIX, ""),
                     "probability": float(predictions[1][i][rank_pred]),
                 }
                 for rank_pred in range(model_input["k"])
