@@ -1,9 +1,7 @@
 """
 Main script.
 """
-import os
 import s3fs
-import tempfile
 import sys
 import fasttext
 import mlflow
@@ -12,8 +10,8 @@ import nltk
 import pyarrow.parquet as pq
 from sklearn.model_selection import train_test_split
 from preprocessor import Preprocessor
-
 from constants import TEXT_FEATURE, Y, DATA_PATH
+from utils import write_training_data
 from fasttext_wrapper import FastTextWrapper
 
 
@@ -40,12 +38,12 @@ def train(
     maxn,
     minCount,
     bucket,
-    thread
+    thread,
 ):
     """
     Train a FastText model.
     """
-    nltk.download('stopwords')
+    nltk.download("stopwords")
 
     mlflow.set_tracking_uri(remote_server_uri)
     mlflow.set_experiment(experiment_name)
@@ -82,38 +80,32 @@ def train(
             "loss": "ova",
             "label_prefix": "__label__",
         }
-        with tempfile.TemporaryDirectory() as tmpdirname:
-            training_data_path = os.path.join(tmpdirname, "training_data.txt")
-            with open(training_data_path, "w", encoding="utf-8") as file:
-                for item in df_train.iterrows():
-                    formatted_item = (
-                        f"""{params["label_prefix"]}{item[1][Y]} {item[1][TEXT_FEATURE]}"""
-                    )
-                    file.write(f"{formatted_item}\n")
 
-                model = fasttext.train_supervised(
-                    file.name, **params, verbose=2
-                )
+        # Write training data in a .txt file (fasttext-specific)
+        training_data_path = write_training_data(df_train, params)
 
-            # Save model for logging
-            model_path = os.path.join(tmpdirname, run_name + ".bin")
-            model.save_model(model_path)
+        model = fasttext.train_supervised(training_data_path, **params, verbose=2)
 
-            artifacts = {
-                "model_path": model_path,
-            }
+        # Save model for logging
+        model_path = run_name + ".bin"
+        model.save_model(model_path)
 
-            mlflow.pyfunc.log_model(
-                artifact_path=run_name,
-                python_model=FastTextWrapper(),
-                code_path=[
-                    "src/fasttext_wrapper.py",
-                    "src/preprocessor.py",
-                    "src/constants.py"
-                ],
-                artifacts=artifacts,
-                metadata=params,
-            )
+        artifacts = {
+            "model_path": model_path,
+            "train_data": training_data_path,
+        }
+
+        mlflow.pyfunc.log_model(
+            artifact_path=run_name,
+            python_model=FastTextWrapper(),
+            code_path=[
+                "src/fasttext_wrapper.py",
+                "src/preprocessor.py",
+                "src/constants.py",
+            ],
+            artifacts=artifacts,
+            metadata=params,
+        )
 
         # Log parameters
         for param_name, param_value in params.items():
@@ -164,5 +156,5 @@ if __name__ == "__main__":
         maxn,
         minCount,
         bucket,
-        thread
+        thread,
     )
