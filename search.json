@@ -175,6 +175,27 @@
     "text": "Hello World\napiVersion: argoproj.io/v1alpha1\nkind: Workflow                  # new type of k8s spec\nmetadata:\n  generateName: hello-world-    # name of the workflow spec\nspec:\n  entrypoint: whalesay          # invoke the whalesay template\n  templates:\n    - name: whalesay            # name of the template\n      container:\n        image: docker/whalesay\n        command: [ cowsay ]\n        args: [ \"hello world\" ]"
   },
   {
+    "objectID": "slides/index.html#what-is-going-on",
+    "href": "slides/index.html#what-is-going-on",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "What is going on ?",
+    "text": "What is going on ?"
+  },
+  {
+    "objectID": "slides/index.html#what-is-going-on-1",
+    "href": "slides/index.html#what-is-going-on-1",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "What is going on ?",
+    "text": "What is going on ?"
+  },
+  {
+    "objectID": "slides/index.html#what-is-going-on-2",
+    "href": "slides/index.html#what-is-going-on-2",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "What is going on ?",
+    "text": "What is going on ?"
+  },
+  {
     "objectID": "slides/index.html#parameters",
     "href": "slides/index.html#parameters",
     "title": "An introduction to MLOps with MLflow",
@@ -189,11 +210,53 @@
     "text": "Multi-step workflows\n\nMulti-steps workflows can be specified (steps or dag)\n\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: steps-\nspec:\n  entrypoint: hello-hello-hello\n\n  # This spec contains two templates: hello-hello-hello and whalesay\n  templates:\n  - name: hello-hello-hello\n    # Instead of just running a container\n    # This template has a sequence of steps\n    steps:\n    - - name: hello1            # hello1 is run before the following steps\n        template: whalesay\n    - - name: hello2a           # double dash =&gt; run after previous step\n        template: whalesay\n      - name: hello2b           # single dash =&gt; run in parallel with previous step\n        template: whalesay\n  - name: whalesay              # name of the template\n    container:\n      image: docker/whalesay\n      command: [ cowsay ]\n      args: [ \"hello world\" ]"
   },
   {
+    "objectID": "slides/index.html#what-is-going-on-3",
+    "href": "slides/index.html#what-is-going-on-3",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "What is going on ?",
+    "text": "What is going on ?"
+  },
+  {
+    "objectID": "slides/index.html#what-is-going-on-4",
+    "href": "slides/index.html#what-is-going-on-4",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "What is going on ?",
+    "text": "What is going on ?"
+  },
+  {
+    "objectID": "slides/index.html#what-is-going-on-5",
+    "href": "slides/index.html#what-is-going-on-5",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "What is going on ?",
+    "text": "What is going on ?"
+  },
+  {
+    "objectID": "slides/index.html#what-is-going-on-6",
+    "href": "slides/index.html#what-is-going-on-6",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "What is going on ?",
+    "text": "What is going on ?"
+  },
+  {
+    "objectID": "slides/index.html#what-is-going-on-7",
+    "href": "slides/index.html#what-is-going-on-7",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "What is going on ?",
+    "text": "What is going on ?"
+  },
+  {
     "objectID": "slides/index.html#further-applications",
     "href": "slides/index.html#further-applications",
     "title": "An introduction to MLOps with MLflow",
     "section": "Further applications",
     "text": "Further applications\n\nWorkflow to test registered models, or models pushed to staging / production\nWorkflows can be triggered automatically (via Argo Events for example)\nContinuous training workflows\nDistributed machine learning pipelines in general (data downloading, processing, etc.)"
+  },
+  {
+    "objectID": "slides/index.html#further-applications-1",
+    "href": "slides/index.html#further-applications-1",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Further applications",
+    "text": "Further applications"
   },
   {
     "objectID": "slides/index.html#notes",
