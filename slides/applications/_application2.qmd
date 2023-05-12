@@ -2,7 +2,7 @@
 :::: {.callout-tip collapse="true" icon=false}
 ## Part 1 : From notebook to python scripts
 
-
+0. Launch a `VSCode` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»). Open the service and input the service password (either automatically copied or available in the `README` of the service)
 1. All scripts related to our custom model are stored in the `src` folder. Check them out. Have a look at the `MLproject` file as well.
 2. Run a training of the model using MLflow. To do so:
 
