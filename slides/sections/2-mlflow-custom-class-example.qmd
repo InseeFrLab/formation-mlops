@@ -100,7 +100,7 @@ class MyModel(mlflow.pyfunc.PythonModel):
 
 <!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
 
-## From experiment to production
+## From experiment towards production
 
 - Notebooks are not suitable to build [**production-grade**]{.orange} ML systems:
   - Limited potential for [**automation**]{.blue2} of ML pipelines.
