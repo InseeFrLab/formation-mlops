@@ -2,72 +2,81 @@
 :::: {.callout-tip collapse="true" icon=false}
 ## Part 1 : From notebook to python scripts
 
-<!-- plutot git le file bash et virer de la slide -->
-<!-- MLflow est deja ouvert -->
-<!-- parametriser la fonction et utiliser le MLproject -->
 <!-- tagging en app1 et virer la part 2 et détailler app 3 qui devient 2-->
 <!-- 
 simplify train et dire de check les diff -->
 
-1. All scripts related to our custom model are stored in the `src` folder. Check them out.
+1. All scripts related to our custom model are stored in the `src` folder. Check them out. Have a look at the `MLproject` file as well.
 2. Run a training of the model using MLflow. To do so:
 
     ```sh
     mlflow run ~/work/formation-mlops/ --env-manager=local \
     -P remote_server_uri=$MLFLOW_TRACKING_URI \
     -P experiment_name="fasttext"
-
     ```
 
 3. Look at the results of your previous run:
     + `Experiments -> fasttext -> <run_name>`
-5. In `train.py` change some parameters (i.e. `dim = 25`)
-6. Train a new model by executing `./mlflow-run.sh`
-7. In MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. `dim`)
+4. You have trained the model with some default parameters. In `MLproject` check the parameters available. Re-train a model with different parameters (i.e. `dim = 25`).
+
+<details>
+<summary>
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the command </b></font>
+</summary>
+
+```sh
+mlflow run ~/work/formation-mlops/ --env-manager=local \
+-P remote_server_uri=$MLFLOW_TRACKING_URI \
+-P experiment_name="fasttext"
+-P dim=25
+```
+
+</details>
+
+```sh
+#| code-fold=true
+mlflow run ~/work/formation-mlops/ --env-manager=local \
+-P remote_server_uri=$MLFLOW_TRACKING_URI \
+-P experiment_name="fasttext"
+-P dim=25
+```
+
+5. In MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. `dim`)
     + `Select the 2 runs -> Compare -> Scatter Plot -> Select your X and Y axis`
 ::::
 :::
 
-## Application 2 {.scrollable}
-
-:::{.nonincremental}
-:::: {.callout-tip collapse="true" icon=false}
-## Part 2 : Manual logging
-1. Log new parameters by adding these lines of code appropriately:
-
-```python
-    mlflow.log_param("TEXT_FEATURE", TEXT_FEATURE)
-    mlflow.log_param("Y", Y)
-```
-
-2. Log the training dataset used by adding this line of code appropriately:
-
-```python
-    "train_data": training_data_path,
-```
-
-3. Log a new metric which is simply the accuracy in percentage:
-
-```python
-    accuracy_percent = accuracy * 100
-```
-
-4. Train a model by executing `./mlflow-run.sh`
-5. In MLflow, check that everything has been logged correctly
-6. Look at the `training_data.txt` in MLflow
-
-::::
-:::
 
 ## Application 2 {.scrollable}
 
 :::{.nonincremental}
 :::: {.callout-tip collapse="true" icon=false}
-## Part 3 : Model delivery with onboarded preprocessing
+## Part 2 : Model delivery with onboarded preprocessing
 
-1. In MLflow, register your last model
-2. Open and run the notebook `mlflow-custom-model.ipynb`. Do not forget to change your mlflow tracking URI
-3. Once the model loaded, make a prediction with the model. `Hint:` read the documentation of the `predict()` function of the custom class
+1. Explore the `src/train.py` file carefully. What are the main differences compare to application 1 ?
+2. Why can we say that the MLflow model onboard the preprocessing ?
+3. In MLflow, register your last model
+4. Open and run the notebook `mlflow-custom-model.ipynb` which loads your model from the model store.
+5. Read the documentation of the `predict()` function of the custom class (`src/fasttext_wrapper.py`)
+6. Make a prediction of the model
+
+<details>
+<summary>
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the command </b></font>
+</summary>
+
+```python
+list_libs = ["vendeur d'huitres", "boulanger"]
+
+test_data = {
+    "query": list_libs,
+    "k": 1
+}
+model.predict(test_data)
+```
+
+</details>
+
 
 ```python
 model.predict(test_data)
@@ -78,12 +87,3 @@ model.predict(test_data)
 ::::
 :::
 
-<!-- ```python
-list_libs = ["COIFFEUR", "coiffeur, & 98789"]
-
-test_data = {
-    "query": list_libs,
-    "k": 1
-}
-model.predict(test_data)
-``` -->
