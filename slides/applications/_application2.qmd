@@ -1,10 +1,10 @@
 :::{.nonincremental}
 :::: {.callout-tip collapse="true" icon=false}
-## Part 1 : From notebook to python scripts
+## Part 1 : From notebooks to a package-like project
 
 0. Launch a `VSCode` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»). Open the service and input the service password (either automatically copied or available in the `README` of the service)
 1. All scripts related to our custom model are stored in the `src` folder. Check them out. Have a look at the `MLproject` file as well.
-2. Run a training of the model using MLflow. To do so, open a terminal (`top left button -> Terminal -> New Terminal`) and run the following command :
+2. Run a training of the model using MLflow. To do so, open a terminal (top left button `-> Terminal -> New Terminal`) and run the following command :
 
     ```sh
     export MLFLOW_EXPERIMENT_NAME="fasttext"
@@ -13,9 +13,9 @@
         -P experiment_name=$MLFLOW_EXPERIMENT_NAME
     ```
 
-3. In the UI, look at the results of your previous run:
+3. In the UI of `MLflow`, look at the results of your previous run:
     + `Experiments -> fasttext -> <run_name>`
-4. You have trained the model with some default parameters. In `MLproject` check the parameters available. Re-train a model with different parameters (e.g. `dim = 25`).
+4. You have trained the model with some default parameters. In `MLproject` check the available parameters. Re-train a model with different parameters (e.g. `dim = 25`).
 
 <details>
 <summary>
@@ -32,7 +32,7 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 </details>
 
 
-5. In MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. `dim`)
+5. In `MLflow`, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. `dim`)
     + `Select the 2 runs -> Compare -> Scatter Plot -> Select your X and Y axis`
 ::::
 :::
@@ -42,35 +42,47 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 
 :::{.nonincremental}
 :::: {.callout-tip collapse="true" icon=false}
-## Part 2 : Model delivery with onboarded preprocessing
+## Part 2 : Distributing and querying a custom model
 
-1. Explore the `src/train.py` file carefully. What are the main differences compare to application 1 ?
-2. Why can we say that the MLflow model onboard the preprocessing ?
-3. In MLflow, register your last model
-4. Open and run the notebook `mlflow-custom-model.ipynb` which loads your model from the model store.
-5. Read the documentation of the `predict()` function of the custom class (`src/fasttext_wrapper.py`)
-6. Make a prediction of the model
+1. Explore the `src/train.py` file carefully. What are the main differences with application 1 ?
+2. Why can we say that the `MLflow` model onboards the preprocessing ?
+3. In `MLflow`, register your last model as `fasttext-model` to make it queryable from the `Python` API
+4. Create a script `predict.py` at the root of the project. This script should :
+    - load the version 1 of the `fasttext-model`
+    - use the model to predict the NACE codes of a given list of activity description (e.g. `["vendeur d'huitres", "boulanger"]`). 
+    
+Don't forget to read the documentation of the `predict()` function of the custom class (`src/fasttext_wrapper.py`) to understand the expected format for the inputs !
 
 <details>
 <summary>
-    <font size=\"3\" color=\"darkgreen\"><b>Click to see the command </b></font>
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the content of the script </b></font>
 </summary>
 
 ```python
+import mlflow
+
+model_name = "test"
+version = 1
+
+model = mlflow.pyfunc.load_model(
+    model_uri=f"models:/{model_name}/{version}"
+)
+
 list_libs = ["vendeur d'huitres", "boulanger"]
 
 test_data = {
     "query": list_libs,
     "k": 1
 }
-model.predict(test_data)
+
+results = model.predict(test_data)
+print(results)
 ```
 
 </details>
 
 
-4. Make sure that the two following descriptions give the same results: `"COIFFEUR"` and `"coiffeur, & 98789"`
-5. Change the value of the parameter `k`
+5. Make sure that the two following descriptions give the same top prediction : `"COIFFEUR"` and `"coiffeur, & 98789"`
+6. Change the value of the parameter `k` and try to understand how the structure of the output changed as a result
 ::::
 :::
-
