@@ -854,22 +854,62 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <section>
 <section id="deploying-a-model-as-an-api" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Deploying a model as an API</h1>
-
+<ul>
+<li class="fragment">On détaille pas la construction d’API, on renvoie vers doc de FastAPI</li>
+<li class="fragment">Dire qu’on veut run l’API sous une image docker pour avoir tout ce qu’il nous faut dedans</li>
+<li class="fragment">Un topo sur deploiement dans kube et les fichiers deployment, service, ingress. Juste dire rapidement a quoi ils servent</li>
+<li class="fragment">Et truc sur Argo cd pour parler du CD</li>
+</ul>
 </section>
-<section id="application-3" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<section id="application-3" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
 <h2>Application 3</h2>
+<div>
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <p><strong>Deploying a machine-learning model as an API</strong></p>
 </div>
 <div class="callout-content">
-<div>
 <ol type="1">
-<li class="fragment">We construct a very simplistic Rest API using FastAPI. All underlying files are in the <code>app</code> folder. Check it.</li>
-<li class="fragment">To deploy an API, you need to run it on a machine that contains all necessary packages, scripts, and configurations. The most convenient way is to build a Docker image containing all these specificities. Open the <code>Dockerfile</code> to see how the image is built. The image is publish via Github Actions, if interested have a look to <code>.github/workflows/build_image.yml</code>.</li>
-<li class="fragment"></li>
+<li>We construct a very simplistic Rest API using FastAPI. All underlying files are in the <code>app</code> folder. Check it.</li>
+<li>To deploy an API, you need to run it on a machine that contains all necessary packages, scripts, and configurations. The most convenient way is to build a Docker image containing all these specificities. Open the <code>Dockerfile</code> to see how the image is built. The image is publish via Github Actions, if interested have a look to <code>.github/workflows/build_image.yml</code>.</li>
+<li>Open the file <code>kubernetes/deployment.yml</code> and modify the highlighted lines accordingly:</li>
 </ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {yml code-line-numbers: &quot;7&quot;} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>containers:</span>
+<span id="cb8-2"><a href="#cb8-2"></a>- name: api</span>
+<span id="cb8-3"><a href="#cb8-3"></a>    image: inseefrlab/formation-mlops-api:main</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    imagePullPolicy: Always</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    env:</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    - name: MLFLOW_TRACKING_URI</span>
+<span id="cb8-7"><a href="#cb8-7"></a>        value: https://projet-formation-******.user.lab.sspcloud.fr</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    - name: MLFLOW_MODEL_NAME</span>
+<span id="cb8-9"><a href="#cb8-9"></a>        value: fasttext-model</span>
+<span id="cb8-10"><a href="#cb8-10"></a>    - name: MLFLOW_MODEL_VERSION</span>
+<span id="cb8-11"><a href="#cb8-11"></a>        value: "1"</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>On the <a href="https://datalab.sspcloud.fr/home">SSP Cloud</a>, launch an Argo-cd service by clicking <a href="https://datalab.sspcloud.fr/launcher/automation/argo-cd?autoLaunch=true">this URL</a></li>
+<li>Create a new application and use the yaml template stored in the <code>argocd</code> folder
+<ol type="a">
+<li><code>Create an application  -&gt; Edit as YAML</code></li>
+<li>Adjust the yaml to your purpose</li>
+<li><code>Save -&gt; Create</code></li>
+</ol></li>
+<li>Reach your API using the URL you defined in your <code>ingress.yml</code> file</li>
+<li>Display the documentation of your API by adding <code>/docs</code> to your URL</li>
+<li>Try your API out!</li>
+<li>Re-run a new model and deploy this new model in your API</li>
+</ol>
+<details>
+<summary>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Click to see the steps </b></font>
+</summary>
+<pre><code>+ 1. Run a model
++ 2. Register the model
++ 3. Adjust your MLFLOW_MODEL_NAME or MLFLOW_MODEL_VERSION environment variable in the `deployment.yml` file
++ 4. Commit and push these changes
++ 5. Synchronise in Argo-cd or wait for 5 minutes
++ 6. Refresh your API, it should be based on your new version!</code></pre>
+</details>
 </div>
 </div>
 </div>
@@ -902,18 +942,18 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </section>
 <section id="hello-world" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Hello World</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span><span class="co">                  # new type of k8s spec</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span><span class="co">    # name of the workflow spec</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">          # invoke the whalesay template</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">            # name of the template</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="at">      </span><span class="fu">container</span><span class="kw">:</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="at">        </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"hello world"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span><span class="co">                  # new type of k8s spec</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span><span class="co">    # name of the workflow spec</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">          # invoke the whalesay template</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">            # name of the template</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="at">      </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="at">        </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"hello world"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="parameters" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Parameters</h2>
@@ -921,26 +961,26 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li class="fragment">Templates can take <span class="orange"><strong>input parameters</strong></span></li>
 </ul>
 <div class="fragment">
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-parameters-</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="at">  </span><span class="fu">arguments</span><span class="kw">:</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="at">    </span><span class="fu">parameters</span><span class="kw">:</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="at">      </span><span class="fu">value</span><span class="kw">:</span><span class="at"> hello world</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a></span>
-<span id="cb9-12"><a href="#cb9-12"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
-<span id="cb9-13"><a href="#cb9-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb9-14"><a href="#cb9-14"></a><span class="at">    </span><span class="fu">inputs</span><span class="kw">:</span></span>
-<span id="cb9-15"><a href="#cb9-15"></a><span class="at">      </span><span class="fu">parameters</span><span class="kw">:</span></span>
-<span id="cb9-16"><a href="#cb9-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span><span class="co">       # parameter declaration</span></span>
-<span id="cb9-17"><a href="#cb9-17"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
-<span id="cb9-18"><a href="#cb9-18"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
-<span id="cb9-19"><a href="#cb9-19"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
-<span id="cb9-20"><a href="#cb9-20"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"{{inputs.parameters.message}}"</span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-parameters-</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="at">  </span><span class="fu">arguments</span><span class="kw">:</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="at">    </span><span class="fu">parameters</span><span class="kw">:</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="at">      </span><span class="fu">value</span><span class="kw">:</span><span class="at"> hello world</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a></span>
+<span id="cb11-12"><a href="#cb11-12"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a><span class="at">    </span><span class="fu">inputs</span><span class="kw">:</span></span>
+<span id="cb11-15"><a href="#cb11-15"></a><span class="at">      </span><span class="fu">parameters</span><span class="kw">:</span></span>
+<span id="cb11-16"><a href="#cb11-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span><span class="co">       # parameter declaration</span></span>
+<span id="cb11-17"><a href="#cb11-17"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb11-18"><a href="#cb11-18"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
+<span id="cb11-19"><a href="#cb11-19"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
+<span id="cb11-20"><a href="#cb11-20"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"{{inputs.parameters.message}}"</span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="multi-step-workflows" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -949,30 +989,30 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li class="fragment"><span class="orange"><strong>Multi-steps workflows</strong></span> can be specified (<code>steps</code> or <code>dag</code>)</li>
 </ul>
 <div class="fragment">
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> steps-</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a></span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="co">  # This spec contains two templates: hello-hello-hello and whalesay</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
-<span id="cb10-11"><a href="#cb10-11"></a><span class="co">    # Instead of just running a container</span></span>
-<span id="cb10-12"><a href="#cb10-12"></a><span class="co">    # This template has a sequence of steps</span></span>
-<span id="cb10-13"><a href="#cb10-13"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb10-14"><a href="#cb10-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello1</span><span class="co">            # hello1 is run before the following steps</span></span>
-<span id="cb10-15"><a href="#cb10-15"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb10-16"><a href="#cb10-16"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2a</span><span class="co">           # double dash =&gt; run after previous step</span></span>
-<span id="cb10-17"><a href="#cb10-17"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb10-18"><a href="#cb10-18"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2b</span><span class="co">           # single dash =&gt; run in parallel with previous step</span></span>
-<span id="cb10-19"><a href="#cb10-19"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb10-20"><a href="#cb10-20"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">              # name of the template</span></span>
-<span id="cb10-21"><a href="#cb10-21"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
-<span id="cb10-22"><a href="#cb10-22"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
-<span id="cb10-23"><a href="#cb10-23"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
-<span id="cb10-24"><a href="#cb10-24"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"hello world"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> steps-</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="co">  # This spec contains two templates: hello-hello-hello and whalesay</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="co">    # Instead of just running a container</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="co">    # This template has a sequence of steps</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello1</span><span class="co">            # hello1 is run before the following steps</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2a</span><span class="co">           # double dash =&gt; run after previous step</span></span>
+<span id="cb12-17"><a href="#cb12-17"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb12-18"><a href="#cb12-18"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2b</span><span class="co">           # single dash =&gt; run in parallel with previous step</span></span>
+<span id="cb12-19"><a href="#cb12-19"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb12-20"><a href="#cb12-20"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">              # name of the template</span></span>
+<span id="cb12-21"><a href="#cb12-21"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb12-22"><a href="#cb12-22"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
+<span id="cb12-23"><a href="#cb12-23"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
+<span id="cb12-24"><a href="#cb12-24"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"hello world"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="further-applications" class="slide level2" data-background-image="background.svg" data-background-size="contain">
