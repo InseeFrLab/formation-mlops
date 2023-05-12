@@ -60,7 +60,7 @@ from: markdown+emoji
 {{< include sections/3-deployment.qmd >}}
 
 
-## Application 3
+## Application 3 {.scrollable}
 
 {{< include applications/_application3.qmd >}}
 
