@@ -1,9 +1,7 @@
 """
 Main script.
 """
-import os
 import s3fs
-import tempfile
 import sys
 import fasttext
 import mlflow
@@ -12,8 +10,8 @@ import nltk
 import pyarrow.parquet as pq
 from sklearn.model_selection import train_test_split
 from preprocessor import Preprocessor
-
-from constants import TEXT_FEATURE, Y, DATA_PATH
+from constants import TEXT_FEATURE, Y, DATA_PATH, LABEL_PREFIX
+from utils import write_training_data
 from fasttext_wrapper import FastTextWrapper
 
 
@@ -28,11 +26,24 @@ def load_data():
     return df.sample(frac=0.001)
 
 
-def train(remote_server_uri, experiment_name, run_name):
+def train(
+    remote_server_uri,
+    experiment_name,
+    run_name,
+    dim,
+    lr,
+    epoch,
+    wordNgrams,
+    minn,
+    maxn,
+    minCount,
+    bucket,
+    thread,
+):
     """
     Train a FastText model.
     """
-    nltk.download('stopwords')
+    nltk.download("stopwords")
 
     mlflow.set_tracking_uri(remote_server_uri)
     mlflow.set_experiment(experiment_name)
@@ -57,49 +68,44 @@ def train(remote_server_uri, experiment_name, run_name):
 
         # Train the model and log to MLflow tracking server
         params = {
-            "dim": 150,
-            "lr": 0.2,
-            "epoch": 50,
-            "wordNgrams": 3,
-            "minn": 3,
-            "maxn": 4,
-            "minCount": 3,
-            "bucket": 2000000,
-            "thread": 10,
+            "dim": dim,
+            "lr": lr,
+            "epoch": epoch,
+            "wordNgrams": wordNgrams,
+            "minn": minn,
+            "maxn": maxn,
+            "minCount": minCount,
+            "bucket": bucket,
+            "thread": thread,
             "loss": "ova",
-            "label_prefix": "__label__",
+            "label_prefix": LABEL_PREFIX,
         }
-        with tempfile.TemporaryDirectory() as tmpdirname:
-            training_data_path = os.path.join(tmpdirname, "training_data.txt")
-            with open(training_data_path, "w", encoding="utf-8") as file:
-                for item in df_train.iterrows():
-                    formatted_item = (
-                        f"__label__{item[1][Y]} {item[1][TEXT_FEATURE]}"
-                    )
-                    file.write(f"{formatted_item}\n")
 
-                model = fasttext.train_supervised(
-                    file.name, **params, verbose=2
-                )
+        # Write training data in a .txt file (fasttext-specific)
+        training_data_path = write_training_data(df_train, params)
 
-            # Save model for logging
-            model_path = os.path.join(tmpdirname, run_name + ".bin")
-            model.save_model(model_path)
+        # Train the fasttext model
+        model = fasttext.train_supervised(training_data_path, **params, verbose=2)
 
-            artifacts = {
-                "model_path": model_path,
-            }
+        # Save model for logging
+        model_path = run_name + ".bin"
+        model.save_model(model_path)
 
-            mlflow.pyfunc.log_model(
-                artifact_path=run_name,
-                python_model=FastTextWrapper(),
-                code_path=[
-                    "src/fasttext_wrapper.py",
-                    "src/preprocessor.py",
-                    "src/constants.py"
-                ],
-                artifacts=artifacts,
-            )
+        artifacts = {
+            "model_path": model_path,
+            "train_data": training_data_path,
+        }
+
+        mlflow.pyfunc.log_model(
+            artifact_path=run_name,
+            python_model=FastTextWrapper(),
+            code_path=[
+                "src/fasttext_wrapper.py",
+                "src/preprocessor.py",
+                "src/constants.py",
+            ],
+            artifacts=artifacts,
+        )
 
         # Log parameters
         for param_name, param_value in params.items():
@@ -112,7 +118,7 @@ def train(remote_server_uri, experiment_name, run_name):
             test_texts.append(formatted_item)
 
         predictions = model.predict(test_texts, k=1)
-        predictions = [x[0].replace("__label__", "") for x in predictions[0]]
+        predictions = [x[0].replace(LABEL_PREFIX, "") for x in predictions[0]]
 
         booleans = [
             prediction == label
@@ -125,4 +131,30 @@ def train(remote_server_uri, experiment_name, run_name):
 
 
 if __name__ == "__main__":
-    train(sys.argv[1], sys.argv[2], sys.argv[3])
+    remote_server_uri = sys.argv[1]
+    experiment_name = sys.argv[2]
+    run_name = sys.argv[3]
+    dim = int(sys.argv[4])
+    lr = float(sys.argv[5])
+    epoch = int(sys.argv[6])
+    wordNgrams = int(sys.argv[7])
+    minn = int(sys.argv[8])
+    maxn = int(sys.argv[9])
+    minCount = int(sys.argv[10])
+    bucket = int(sys.argv[11])
+    thread = int(sys.argv[12])
+
+    train(
+        remote_server_uri,
+        experiment_name,
+        run_name,
+        dim,
+        lr,
+        epoch,
+        wordNgrams,
+        minn,
+        maxn,
+        minCount,
+        bucket,
+        thread,
+    )

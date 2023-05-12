@@ -7,7 +7,7 @@ import mlflow
 import pandas as pd
 
 from preprocessor import Preprocessor
-from constants import TEXT_FEATURE
+from constants import TEXT_FEATURE, LABEL_PREFIX
 
 
 class FastTextWrapper(mlflow.pyfunc.PythonModel):
@@ -57,14 +57,27 @@ class FastTextWrapper(mlflow.pyfunc.PythonModel):
             A tuple containing the k most likely codes to the query.
         """
         df = self.preprocessor.clean_text(
-            pd.DataFrame(model_input["query"],
-                         columns=[TEXT_FEATURE]),
-            text_feature=TEXT_FEATURE
+            pd.DataFrame(model_input["query"], columns=[TEXT_FEATURE]),
+            text_feature=TEXT_FEATURE,
         )
 
         texts = df.apply(self._format_item, axis=1).to_list()
 
-        return self.model.predict(texts, k=model_input["k"])
+        predictions = self.model.predict(texts, k=model_input["k"])
+
+        predictions_formatted = {
+            i: {
+                rank_pred
+                + 1: {
+                    "nace": predictions[0][i][rank_pred].replace(LABEL_PREFIX, ""),
+                    "probability": float(predictions[1][i][rank_pred]),
+                }
+                for rank_pred in range(model_input["k"])
+            }
+            for i in range(len(predictions[0]))
+        }
+
+        return predictions_formatted
 
     def _format_item(self, row: pd.Series) -> str:
         """

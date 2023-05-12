@@ -9,9 +9,6 @@ from pydantic import BaseModel
 
 from app.utils import (
     get_model,
-    preprocess_batch,
-    preprocess_query,
-    process_response,
 )
 
 
@@ -58,7 +55,7 @@ class ActivityDescriptions(BaseModel):
         }
 
 
-codification_ape_app = FastAPI(
+app = FastAPI(
     lifespan=lifespan,
     title="APE classifier",
     description="Classifier for firm activity descriptions",
@@ -66,7 +63,7 @@ codification_ape_app = FastAPI(
 )
 
 
-@codification_ape_app.get("/", tags=["Welcome"])
+@app.get("/", tags=["Welcome"])
 def show_welcome_page():
     """
     Show welcome page with current model name and version.
@@ -80,11 +77,10 @@ def show_welcome_page():
     }
 
 
-@codification_ape_app.get("/predict", tags=["Predict"])
+@app.get("/predict", tags=["Predict"])
 async def predict(
     description: str,
     nb_echoes_max: int = 5,
-    prob_min: float = 0.01,
 ) -> Dict:
     """
     Predict APE code.
@@ -95,41 +91,14 @@ async def predict(
         description (str): The activity description.
         nb_echoes_max (int): Maximum number of echoes to consider.
             Default is 5.
-        prob_min (float): Minimum probability threshold. Default is 0.01.
-
     Returns:
         Dict: Response containing APE codes.
     """
-    query = preprocess_query(
-        description, nb_echoes_max
-    )
+    query = {
+        "query": [description],
+        "k": nb_echoes_max,
+    }
+
     predictions = model.predict(query)
-    response = process_response(predictions, 0, nb_echoes_max, prob_min)
-    return response
 
-
-@codification_ape_app.post("/predict-batch", tags=["Predict"])
-async def predict_batch(
-    descriptions: ActivityDescriptions,
-    nb_echoes_max: int = 5,
-    prob_min: float = 0.01,
-) -> List:
-    """
-    Predict APE codes from activity descriptions.
-
-    Args:
-        descriptions (str): Activity descriptions.
-        nb_echoes_max (int): Maximum number of echoes to consider.
-            Default is 5.
-        prob_min (float): Minimum probability threshold. Default is 0.01.
-
-    Returns:
-        List: Response containing APE codes.
-    """
-    query = preprocess_batch(descriptions.dict(), nb_echoes_max)
-    predictions = model.predict(query)
-    response = [
-        process_response(predictions, i, nb_echoes_max, prob_min)
-        for i in range(len(predictions[0]))
-    ]
-    return response
+    return predictions[0]
