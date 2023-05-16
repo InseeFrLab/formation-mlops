@@ -53,7 +53,7 @@
     "href": "slides/index.html#outline",
     "title": "An introduction to MLOps with MLflow",
     "section": "Outline",
-    "text": "Outline\n1️⃣ Introduction to MLFlow\n\n2️⃣ A Practical Example: NACE Code Prediction for French Companies\n\n\n3️⃣ Deploying a model as an API\n\n\n4️⃣ Distributing the hyperparameter optimization"
+    "text": "Outline\n1️⃣ Introduction to MLFlow\n\n2️⃣ A Practical Example: NACE Code Prediction for French Companies\n\n\n3️⃣ Deploying a ML model as an API\n\n\n4️⃣ Distributing the hyperparameter optimization"
   },
   {
     "objectID": "slides/index.html#application-0",
