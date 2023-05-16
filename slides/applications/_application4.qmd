@@ -1,13 +1,26 @@
 :::{.callout-tip collapse="true" icon=false}
-## Distributing the hyperparameter optimization with an orchestrator
+## Part 1 : introduction to `Argo Workflows`
 
 :::{.incremental}
 1. Open an `Argo Workflows` service on the `SSP Cloud`
 2. In `VSCode`, create a `hello_world.yaml` file and copy into it the content from the [Hello world](https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/hello-world.yaml) example workflow
 3. Submit the `Hello world` workflow via a terminal in `VSCode` : 
     + `argo submit hello_world.yaml`
-2. Take a look at the `argo_workflows/workflow.yml` file. What do you expect will happen when we submit this workflow ?
-3. Submit the workflow. Once all jobs are completed, visualize the logs. Then open the MLflow UI to check what has been done.
+4. Open the UI of `Argo Workflows`. Find the logs of the workflow you just launched.
+:::
+
+:::
+
+## Application 4
+
+:::{.callout-tip collapse="true" icon=false}
+## Part 2 : distributing the hyperparameters optimization
+
+:::{.incremental}
+1. Take a look at the `argo_workflows/workflow.yml` file. What do you expect will happen when we submit this workflow ?
+2. Submit the workflow and look at the jobs completing live in the UI. 
+3. Once all jobs are completed, visualize the logs of the whole workflow. 
+4. Finally, open the `MLflow` UI to check what has been done.
 :::
 
 :::
