@@ -1,10 +1,24 @@
 ## Exposing a model via an API
 
-- [**API**]{.orange}: interface between the user (client) and the trained model
-- [**API REST**]{.orange}: allows querying the model using a [**simple**]{.blue2} syntax (HTTP) in a [**scalable**]{.blue2}  manner
-- For more details on constructing an API, refer to the documentation of [FastAPI](https://fastapi.tiangolo.com)
+::: {.nonincremental}
 
+:::: {.fragment fragment-index=1}
+- [**API**]{.orange}: interface between the user (client) and the trained model
+::::
+
+:::: {.fragment fragment-index=2}
+- [**API REST**]{.orange}: allows querying the model using a [**simple**]{.blue2} syntax (HTTP) in a [**scalable**]{.blue2}  manner
+::::
+
+:::: {.fragment fragment-index=3}
+- For more details on constructing an API, refer to the documentation of [FastAPI](https://fastapi.tiangolo.com)
+::::
+
+:::: {.fragment fragment-index=4}
 ![](img/API.png){fig-align="center"}
+::::
+
+:::
 
 
 ## Run the API in a container
