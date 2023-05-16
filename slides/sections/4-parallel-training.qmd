@@ -5,7 +5,7 @@
 
 ## Workflow automation
 
-- General principles :
+- [**General principles**]{.orange} :
     - Define workflows where each step in the workflow is a [**container**]{.blue2} (reproducibility)
     - Model multi-step workflows as a [**sequence**]{.blue2} of tasks or as a [**directed acyclic graph**]{.blue2}
     - This allows to easily [**run in parallel compute intensive jobs**]{.blue2} for machine learning or data processing
@@ -17,7 +17,9 @@
   - [**container-native**]{.blue2}
   - available on the [**SSP Cloud**]{.orange}
 
-![](img/argo-logo.png){fig-align="center" height=300}
+. . .
+
+![](img/argo-logo.png){fig-align="center" height=200}
 
 ## Hello World
 
