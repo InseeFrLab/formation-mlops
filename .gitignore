@@ -2,8 +2,8 @@ slides/index.html
 slides/index_files/
 slides/index.ipynb
 
-default.bin
-training_data.txt
+data/
+models/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
