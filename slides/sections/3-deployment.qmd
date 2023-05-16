@@ -4,7 +4,7 @@
 - [**API REST**]{.orange}: allows querying the model using a [**simple**]{.blue2} syntax (HTTP) in a [**scalable**]{.blue2}  manner
 - For more details on constructing an API, refer to the documentation of [FastAPI](https://fastapi.tiangolo.com)
 
-- Schéma de Romain
+![](img/API.png){fig-align="center"}
 
 
 ## Run the API in a container
@@ -13,15 +13,12 @@
 - Containers provide high [**portability**]{.orange} and [**scalability**]{.orange} for distributing your model efficiently.
 - The `Dockerfile` is used to configure and build the Docker container.
 
-- Schéma de Romain sur le dev -> dockerfile -> docker image -> dockerhub... ??
-
 ## Deploying an API
 
 <!-- - Need a [**container orchestration tool**]{.orange} such as kubernetes -->
-- 3 main files are needed to deploy an API:
+- [**3 main files**]{.orange} are needed to deploy an API:
     - `deployment.yaml` : defines how the API should [**run**]{.blue2} (container image, resources, and env variables)
     - `service.yaml` : establishes a stable [**internal**]{.blue2} network endpoint for the API.
     - `ingress.yaml` : provides an entry point for [**external**]{.blue2} clients to access the API.
 - [**Argo CD**]{.orange}:
-    - [**Deployment tool**]{.blue2} used to streamline and automate the deployment process.
-    - [**Simplifies**]{.blue2} managing application deployments (e.g. rollbacks and updates).
+    - [**Deployment tool**]{.blue2} used to automate and simplify the deployment process.
