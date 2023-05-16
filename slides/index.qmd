@@ -36,7 +36,7 @@ from: markdown+emoji
 
 
 
-# Introduction to MLFlow
+# :one: Introduction to MLFlow
 
 {{< include sections/1-mlflow-intro.qmd >}}
 
@@ -46,7 +46,7 @@ from: markdown+emoji
 
 
 
-# A Practical Example
+# :two: A Practical Example
 
 {{< include sections/2-mlflow-custom-class-example.qmd >}}
 
@@ -55,7 +55,7 @@ from: markdown+emoji
 {{< include applications/_application2.qmd >}}
 
 
-# Deploying a ML model as an API
+# :three: Deploying a ML model as an API
 
 {{< include sections/3-deployment.qmd >}}
 
@@ -66,7 +66,7 @@ from: markdown+emoji
 
 
 
-# Distributing the hyperparameter optimization
+# :four: Distributing the hyperparameter optimization
 
 {{< include sections/4-parallel-training.qmd >}}
 

@@ -82,7 +82,7 @@
 
 . . .
 
-:three: Deploying a model as an API
+:three: Deploying a ML model as an API
 
 . . .
 
