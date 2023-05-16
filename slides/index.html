@@ -450,6 +450,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <ul>
 <li class="fragment">Improve <span class="blue2"><strong>reproducibility</strong></span> of analysis</li>
 <li class="fragment"><span class="blue2"><strong>Deploy</strong></span> applications in a <span class="blue2"><strong>scalable</strong></span> way</li>
+<li class="fragment"><span class="blue2"><strong>Monitor</strong></span> running applications</li>
 </ul></li>
 </ul>
 </section>
@@ -530,10 +531,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <h2>Outline</h2>
 <p><span class="emoji" data-emoji="one">1️⃣</span> Introduction to MLFlow</p>
 <div class="fragment">
-<p><span class="emoji" data-emoji="two">2️⃣</span> Deploying a model as an API</p>
+<p><span class="emoji" data-emoji="two">2️⃣</span> A Practical Example: NACE Code Prediction for French Companies</p>
 </div>
 <div class="fragment">
-<p><span class="emoji" data-emoji="three">3️⃣</span> Distributing the hyperparameter optimization</p>
+<p><span class="emoji" data-emoji="three">3️⃣</span> Deploying a model as an API</p>
+</div>
+<div class="fragment">
+<p><span class="emoji" data-emoji="four">4️⃣</span> Distributing the hyperparameter optimization</p>
 </div>
 </section>
 <section id="application-0" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -548,8 +552,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <ol type="1">
 <li class="fragment">Create an account on the <a href="https://datalab.sspcloud.fr/home">SSP Cloud</a> using your professional mail address</li>
 <li class="fragment">Launch a <code>MLflow</code> service by clicking <a href="https://datalab.sspcloud.fr/launcher/automation/mlflow?autoLaunch=true">this URL</a></li>
-<li class="fragment">Launch a <code>VSCode</code> service by clicking <a href="https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&amp;init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»">this URL</a></li>
-<li class="fragment">Open the <code>VSCode</code> service and input the service password (either automatically copied or available in the <code>README</code> of the service)</li>
+<li class="fragment">Launch a <code>Jupyter-python</code> service by clicking <a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&amp;init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»">this URL</a></li>
+<li class="fragment">Open the <code>Jupyter-python</code> service and input the service password (either automatically copied or available in the <code>README</code> of the service)</li>
 <li class="fragment">You’re all set !</li>
 </ol>
 </div>
@@ -624,12 +628,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout-content">
 <div>
 <ol type="1">
-<li class="fragment">In <code>VSCode</code>, open the notebook <code>mlflow-introduction.ipynb</code> (from the <code>notebooks</code> directory)</li>
+<li class="fragment">In <code>JupyterLab</code>, open the notebook located at <code>formation-mlops/notebooks/mlflow-introduction.ipynb</code></li>
 <li class="fragment">Choose our custom <code>Python</code> kernel :
 <ul>
 <li class="fragment"><code>Select Kernel -&gt; Python environments... -&gt; base (Python 3.x.x)</code></li>
 </ul></li>
-<li class="fragment">Execute the notebook cell by cell. Try to understand carefully how the <code>Python</code> session interacts with the <code>MLflow</code> API. Explore the <code>MLflow</code> UI and try to build your own experiments from the example code provided in the notebook.</li>
+<li class="fragment">Execute the notebook cell by cell. If you are finished early, explore the <code>MLflow</code> UI and try to build your own experiments from the example code provided in the notebook.</li>
 </ol>
 </div>
 </div>
@@ -637,8 +641,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </section></section>
 <section>
-<section id="a-practical-example-nace-code-prediction-for-french-companies" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>A Practical Example: NACE Code Prediction for French Companies</h1>
+<section id="a-practical-example" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>A Practical Example</h1>
 
 </section>
 <section id="context-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -649,8 +653,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li class="fragment">European standard classification of productive <span class="blue2"><strong>economic activities</strong></span></li>
 <li class="fragment"><span class="blue2"><strong>Hierarchical structure</strong></span> with 4 levels and 615 codes</li>
 </ul></li>
-<li class="fragment"><p>At Insee previously handled by an outdated <span class="orange"><strong>rule-based</strong></span> algorithm</p></li>
-<li class="fragment"><p><span class="orange"><strong>Common problematic</strong></span> to all National statistical institutes</p></li>
+<li class="fragment"><p>At Insee, previously handled by an outdated <span class="orange"><strong>rule-based</strong></span> algorithm</p></li>
+<li class="fragment"><p><span class="orange"><strong>Common problematic</strong></span> to many National Statistical Institutes</p></li>
 </ul>
 </section>
 <section id="data-used" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
@@ -719,7 +723,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 <div class="fragment" data-fragment-index="3">
 <ul>
-<li>What if we require greater <span class="orange"><strong>flexibility</strong></span> or our <span class="orange"><strong>own framework</strong></span>?</li>
+<li>What if we require greater <span class="orange"><strong>flexibility</strong></span>, e.g.&nbsp;to use a <span class="orange"><strong>custom framework</strong></span>?</li>
 </ul>
 </div>
 <div class="fragment" data-fragment-index="4">
@@ -754,12 +758,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 <!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
 </section>
-<section id="necessity-of-avoiding-notebooks-for-production-deployment" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Necessity of avoiding notebooks for production deployment</h2>
+<section id="from-experiment-towards-production" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>From experiment towards production</h2>
 <ul>
-<li class="fragment">Arguments against using notebooks for <span class="orange"><strong>ML models deployment</strong></span>:
+<li class="fragment">Notebooks are not suitable to build <span class="orange"><strong>production-grade</strong></span> ML systems:
 <ul>
-<li class="fragment">Limited scalability for <span class="blue2"><strong>automation</strong></span> of ML pipelines.</li>
+<li class="fragment">Limited potential for <span class="blue2"><strong>automation</strong></span> of ML pipelines.</li>
 <li class="fragment">Lack of clear and <span class="blue2"><strong>reproducible</strong></span> workflows.</li>
 <li class="fragment">Hinders <span class="blue2"><strong>collaboration</strong></span> and <span class="blue2"><strong>versioning</strong></span> among team members.</li>
 <li class="fragment">Insufficient <span class="blue2"><strong>modularity</strong></span> for managing complex ML components.</li>
@@ -778,20 +782,22 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Part 1 : From notebook to python scripts</strong></p>
+<p><strong>Part 1 : From notebooks to a package-like project</strong></p>
 </div>
 <div class="callout-content">
-<ol type="1">
+<ol start="0" type="1">
+<li><p>Launch a <code>VSCode</code> service by clicking <a href="https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&amp;init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»">this URL</a>. Open the service and input the service password (either automatically copied or available in the <code>README</code> of the service)</p></li>
 <li><p>All scripts related to our custom model are stored in the <code>src</code> folder. Check them out. Have a look at the <code>MLproject</code> file as well.</p></li>
-<li><p>Run a training of the model using MLflow. To do so:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">mlflow</span> run ~/work/formation-mlops/ <span class="at">--env-manager</span><span class="op">=</span>local <span class="dt">\</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>-P remote_server_uri=<span class="va">$MLFLOW_TRACKING_URI</span> <span class="dt">\</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>-P experiment_name=<span class="st">"fasttext"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Look at the results of your previous run:</p>
+<li><p>Run a training of the model using MLflow. To do so, open a terminal (top left button <code>-&gt; Terminal -&gt; New Terminal</code>) and run the following command :</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="bu">export</span> <span class="va">MLFLOW_EXPERIMENT_NAME</span><span class="op">=</span><span class="st">"fasttext"</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">mlflow</span> run ~/work/formation-mlops/ <span class="at">--env-manager</span><span class="op">=</span>local <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="at">-P</span> remote_server_uri=<span class="va">$MLFLOW_TRACKING_URI</span> <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="at">-P</span> experiment_name=<span class="va">$MLFLOW_EXPERIMENT_NAME</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>In the UI of <code>MLflow</code>, look at the results of your previous run:</p>
 <ul>
 <li><code>Experiments -&gt; fasttext -&gt; &lt;run_name&gt;</code></li>
 </ul></li>
-<li><p>You have trained the model with some default parameters. In <code>MLproject</code> check the parameters available. Re-train a model with different parameters (i.e.&nbsp;<code>dim = 25</code>).</p></li>
+<li><p>You have trained the model with some default parameters. In <code>MLproject</code> check the available parameters. Re-train a model with different parameters (e.g.&nbsp;<code>dim = 25</code>).</p></li>
 </ol>
 <details>
 <summary>
@@ -799,11 +805,11 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </summary>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">mlflow</span> run ~/work/formation-mlops/ <span class="at">--env-manager</span><span class="op">=</span>local <span class="dt">\</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>-P remote_server_uri=<span class="va">$MLFLOW_TRACKING_URI</span> <span class="dt">\</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>-P experiment_name=<span class="st">"fasttext"</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="ex">-P</span> dim=25</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3"></a>-P experiment_name=<span class="va">$MLFLOW_EXPERIMENT_NAME</span> <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>-P dim=25</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="5" type="1">
-<li>In MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e.&nbsp;<code>dim</code>)
+<li>In <code>MLflow</code>, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e.&nbsp;<code>dim</code>)
 <ul>
 <li><code>Select the 2 runs -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis</code></li>
 </ul></li>
@@ -819,32 +825,46 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Part 2 : Model delivery with onboarded preprocessing</strong></p>
+<p><strong>Part 2 : Distributing and querying a custom model</strong></p>
 </div>
 <div class="callout-content">
 <ol type="1">
-<li>Explore the <code>src/train.py</code> file carefully. What are the main differences compare to application 1 ?</li>
-<li>Why can we say that the MLflow model onboard the preprocessing ?</li>
-<li>In MLflow, register your last model</li>
-<li>Open and run the notebook <code>mlflow-custom-model.ipynb</code> which loads your model from the model store.</li>
-<li>Read the documentation of the <code>predict()</code> function of the custom class (<code>src/fasttext_wrapper.py</code>)</li>
-<li>Make a prediction of the model</li>
+<li>Explore the <code>src/train.py</code> file carefully. What are the main differences with application 1 ?</li>
+<li>Why can we say that the <code>MLflow</code> model onboards the preprocessing ?</li>
+<li>In <code>MLflow</code>, register your last model as <code>fasttext-model</code> to make it queryable from the <code>Python</code> API</li>
+<li>Create a script <code>predict.py</code> at the root of the project. This script should :
+<ul>
+<li>load the version 1 of the <code>fasttext-model</code></li>
+<li>use the model to predict the NACE codes of a given list of activity description (e.g.&nbsp;<code>["vendeur d'huitres", "boulanger"]</code>).</li>
+</ul></li>
 </ol>
+<p>Don’t forget to read the documentation of the <code>predict()</code> function of the custom class (<code>src/fasttext_wrapper.py</code>) to understand the expected format for the inputs !</p>
 <details>
 <summary>
-<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Click to see the command </b></font>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Click to see the content of the script </b></font>
 </summary>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>list_libs <span class="op">=</span> [<span class="st">"vendeur d'huitres"</span>, <span class="st">"boulanger"</span>]</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> mlflow</span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a>test_data <span class="op">=</span> {</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    <span class="st">"query"</span>: list_libs,</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="st">"k"</span>: <span class="dv">1</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>}</span>
-<span id="cb7-7"><a href="#cb7-7"></a>model.predict(test_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3"></a>model_name <span class="op">=</span> <span class="st">"test"</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>version <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a>model <span class="op">=</span> mlflow.pyfunc.load_model(</span>
+<span id="cb7-7"><a href="#cb7-7"></a>    model_uri<span class="op">=</span><span class="ss">f"models:/</span><span class="sc">{</span>model_name<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>version<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>)</span>
+<span id="cb7-9"><a href="#cb7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10"></a>list_libs <span class="op">=</span> [<span class="st">"vendeur d'huitres"</span>, <span class="st">"boulanger"</span>]</span>
+<span id="cb7-11"><a href="#cb7-11"></a></span>
+<span id="cb7-12"><a href="#cb7-12"></a>test_data <span class="op">=</span> {</span>
+<span id="cb7-13"><a href="#cb7-13"></a>    <span class="st">"query"</span>: list_libs,</span>
+<span id="cb7-14"><a href="#cb7-14"></a>    <span class="st">"k"</span>: <span class="dv">1</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>}</span>
+<span id="cb7-16"><a href="#cb7-16"></a></span>
+<span id="cb7-17"><a href="#cb7-17"></a>results <span class="op">=</span> model.predict(test_data)</span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="bu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<ol start="4" type="1">
-<li>Make sure that the two following descriptions give the same results: <code>"COIFFEUR"</code> and <code>"coiffeur, &amp; 98789"</code></li>
-<li>Change the value of the parameter <code>k</code></li>
+<ol start="5" type="1">
+<li>Make sure that the two following descriptions give the same top prediction : <code>"COIFFEUR"</code> and <code>"coiffeur, &amp; 98789"</code></li>
+<li>Change the value of the parameter <code>k</code> and try to understand how the structure of the output changed as a result</li>
 </ol>
 </div>
 </div>

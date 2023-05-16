@@ -11,7 +11,7 @@
     "href": "slides/index.html#context",
     "title": "An introduction to MLOps with MLflow",
     "section": "Context",
-    "text": "Context\n\nDifficulty of transitioning from experiments to production-grade machine learning systems\nLeverage best practices from software engineering\n\nImprove reproducibility of analysis\nDeploy applications in a scalable way"
+    "text": "Context\n\nDifficulty of transitioning from experiments to production-grade machine learning systems\nLeverage best practices from software engineering\n\nImprove reproducibility of analysis\nDeploy applications in a scalable way\nMonitor running applications"
   },
   {
     "objectID": "slides/index.html#the-devops-approach",
@@ -53,14 +53,14 @@
     "href": "slides/index.html#outline",
     "title": "An introduction to MLOps with MLflow",
     "section": "Outline",
-    "text": "Outline\n1️⃣ Introduction to MLFlow\n\n2️⃣ Deploying a model as an API\n\n\n3️⃣ Distributing the hyperparameter optimization"
+    "text": "Outline\n1️⃣ Introduction to MLFlow\n\n2️⃣ A Practical Example: NACE Code Prediction for French Companies\n\n\n3️⃣ Deploying a model as an API\n\n\n4️⃣ Distributing the hyperparameter optimization"
   },
   {
     "objectID": "slides/index.html#application-0",
     "href": "slides/index.html#application-0",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 0",
-    "text": "Application 0\n\n\n\nPreparation of the working environment\n\n\n\n\nCreate an account on the SSP Cloud using your professional mail address\nLaunch a MLflow service by clicking this URL\nLaunch a VSCode service by clicking this URL\nOpen the VSCode service and input the service password (either automatically copied or available in the README of the service)\nYou’re all set !"
+    "text": "Application 0\n\n\n\nPreparation of the working environment\n\n\n\n\nCreate an account on the SSP Cloud using your professional mail address\nLaunch a MLflow service by clicking this URL\nLaunch a Jupyter-python service by clicking this URL\nOpen the Jupyter-python service and input the service password (either automatically copied or available in the README of the service)\nYou’re all set !"
   },
   {
     "objectID": "slides/index.html#tracking-server",
@@ -95,14 +95,14 @@
     "href": "slides/index.html#application-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 1",
-    "text": "Application 1\n\n\n\nIntroduction to MLflow concepts\n\n\n\n\nIn VSCode, open the notebook mlflow-introduction.ipynb (from the notebooks directory)\nChoose our custom Python kernel :\n\nSelect Kernel -&gt; Python environments... -&gt; base (Python 3.x.x)\n\nExecute the notebook cell by cell. Try to understand carefully how the Python session interacts with the MLflow API. Explore the MLflow UI and try to build your own experiments from the example code provided in the notebook."
+    "text": "Application 1\n\n\n\nIntroduction to MLflow concepts\n\n\n\n\nIn JupyterLab, open the notebook located at formation-mlops/notebooks/mlflow-introduction.ipynb\nChoose our custom Python kernel :\n\nSelect Kernel -&gt; Python environments... -&gt; base (Python 3.x.x)\n\nExecute the notebook cell by cell. If you are finished early, explore the MLflow UI and try to build your own experiments from the example code provided in the notebook."
   },
   {
     "objectID": "slides/index.html#context-1",
     "href": "slides/index.html#context-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "Context",
-    "text": "Context\n\nNACE\n\nEuropean standard classification of productive economic activities\nHierarchical structure with 4 levels and 615 codes\n\nAt Insee previously handled by an outdated rule-based algorithm\nCommon problematic to all National statistical institutes"
+    "text": "Context\n\nNACE\n\nEuropean standard classification of productive economic activities\nHierarchical structure with 4 levels and 615 codes\n\nAt Insee, previously handled by an outdated rule-based algorithm\nCommon problematic to many National Statistical Institutes"
   },
   {
     "objectID": "slides/index.html#data-used",
@@ -116,7 +116,7 @@
     "href": "slides/index.html#mlflow-with-a-non-standard-framework",
     "title": "An introduction to MLOps with MLflow",
     "section": "MLflow with a non standard framework",
-    "text": "MLflow with a non standard framework\n\n\n\nEasy to use with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch…)\n\n\n\nmlflow.sklearn.log_model(pipe_rf, \"model\")\n\nmlflow.pyfunc.load_model(model_uri=f\"models:/{model_name}/{version}\")\ny_train_pred = model.predict(X_train)\n\n\n\nWhat if we require greater flexibility or our own framework?\n\n\n\n\nPossibility to track , register and deliver your own model"
+    "text": "MLflow with a non standard framework\n\n\n\nEasy to use with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch…)\n\n\n\nmlflow.sklearn.log_model(pipe_rf, \"model\")\n\nmlflow.pyfunc.load_model(model_uri=f\"models:/{model_name}/{version}\")\ny_train_pred = model.predict(X_train)\n\n\n\nWhat if we require greater flexibility, e.g. to use a custom framework?\n\n\n\n\nPossibility to track , register and deliver your own model"
   },
   {
     "objectID": "slides/index.html#mlflow-with-a-non-standard-framework-1",
@@ -126,25 +126,25 @@
     "text": "MLflow with a non standard framework\n\n\n\nThere are 2 main differences when using your own framework:\n\nlogging of parameters, metrics and artifacts\nwrapping of your custom model so that MLflow can serve it\n\n\n\n\n# Define a custom model\nclass MyModel(mlflow.pyfunc.PythonModel):\n\n    def load_context(self, context):\n      self.my_model.load_model(context.artifacts[\"my_model\"])\n\n    def predict(self, context, model_input):\n        return self.my_model.predict(model_input)"
   },
   {
-    "objectID": "slides/index.html#necessity-of-avoiding-notebooks-for-production-deployment",
-    "href": "slides/index.html#necessity-of-avoiding-notebooks-for-production-deployment",
+    "objectID": "slides/index.html#from-experiment-towards-production",
+    "href": "slides/index.html#from-experiment-towards-production",
     "title": "An introduction to MLOps with MLflow",
-    "section": "Necessity of avoiding notebooks for production deployment",
-    "text": "Necessity of avoiding notebooks for production deployment\n\nArguments against using notebooks for ML models deployment:\n\nLimited scalability for automation of ML pipelines.\nLack of clear and reproducible workflows.\nHinders collaboration and versioning among team members.\nInsufficient modularity for managing complex ML components."
+    "section": "From experiment towards production",
+    "text": "From experiment towards production\n\nNotebooks are not suitable to build production-grade ML systems:\n\nLimited potential for automation of ML pipelines.\nLack of clear and reproducible workflows.\nHinders collaboration and versioning among team members.\nInsufficient modularity for managing complex ML components."
   },
   {
     "objectID": "slides/index.html#application-2",
     "href": "slides/index.html#application-2",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 2",
-    "text": "Application 2\n\n\n\n\nPart 1 : From notebook to python scripts\n\n\n\nAll scripts related to our custom model are stored in the src folder. Check them out. Have a look at the MLproject file as well.\nRun a training of the model using MLflow. To do so:\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n-P remote_server_uri=$MLFLOW_TRACKING_URI \\\n-P experiment_name=\"fasttext\"\nLook at the results of your previous run:\n\nExperiments -&gt; fasttext -&gt; &lt;run_name&gt;\n\nYou have trained the model with some default parameters. In MLproject check the parameters available. Re-train a model with different parameters (i.e. dim = 25).\n\n\n\nClick to see the command \n\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n-P remote_server_uri=$MLFLOW_TRACKING_URI \\\n-P experiment_name=\"fasttext\"\n-P dim=25\n\n\nIn MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. dim)\n\nSelect the 2 runs -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis"
+    "text": "Application 2\n\n\n\n\nPart 1 : From notebooks to a package-like project\n\n\n\nLaunch a VSCode service by clicking this URL. Open the service and input the service password (either automatically copied or available in the README of the service)\nAll scripts related to our custom model are stored in the src folder. Check them out. Have a look at the MLproject file as well.\nRun a training of the model using MLflow. To do so, open a terminal (top left button -&gt; Terminal -&gt; New Terminal) and run the following command :\nexport MLFLOW_EXPERIMENT_NAME=\"fasttext\"\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME\nIn the UI of MLflow, look at the results of your previous run:\n\nExperiments -&gt; fasttext -&gt; &lt;run_name&gt;\n\nYou have trained the model with some default parameters. In MLproject check the available parameters. Re-train a model with different parameters (e.g. dim = 25).\n\n\n\nClick to see the command \n\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n-P remote_server_uri=$MLFLOW_TRACKING_URI \\\n-P experiment_name=$MLFLOW_EXPERIMENT_NAME \\\n-P dim=25\n\n\nIn MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. dim)\n\nSelect the 2 runs -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis"
   },
   {
     "objectID": "slides/index.html#application-2-1",
     "href": "slides/index.html#application-2-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 2",
-    "text": "Application 2\n\n\n\n\nPart 2 : Model delivery with onboarded preprocessing\n\n\n\nExplore the src/train.py file carefully. What are the main differences compare to application 1 ?\nWhy can we say that the MLflow model onboard the preprocessing ?\nIn MLflow, register your last model\nOpen and run the notebook mlflow-custom-model.ipynb which loads your model from the model store.\nRead the documentation of the predict() function of the custom class (src/fasttext_wrapper.py)\nMake a prediction of the model\n\n\n\nClick to see the command \n\nlist_libs = [\"vendeur d'huitres\", \"boulanger\"]\n\ntest_data = {\n    \"query\": list_libs,\n    \"k\": 1\n}\nmodel.predict(test_data)\n\n\nMake sure that the two following descriptions give the same results: \"COIFFEUR\" and \"coiffeur, & 98789\"\nChange the value of the parameter k"
+    "text": "Application 2\n\n\n\n\nPart 2 : Distributing and querying a custom model\n\n\n\nExplore the src/train.py file carefully. What are the main differences with application 1 ?\nWhy can we say that the MLflow model onboards the preprocessing ?\nIn MLflow, register your last model as fasttext-model to make it queryable from the Python API\nCreate a script predict.py at the root of the project. This script should :\n\nload the version 1 of the fasttext-model\nuse the model to predict the NACE codes of a given list of activity description (e.g. [\"vendeur d'huitres\", \"boulanger\"]).\n\n\nDon’t forget to read the documentation of the predict() function of the custom class (src/fasttext_wrapper.py) to understand the expected format for the inputs !\n\n\nClick to see the content of the script \n\nimport mlflow\n\nmodel_name = \"test\"\nversion = 1\n\nmodel = mlflow.pyfunc.load_model(\n    model_uri=f\"models:/{model_name}/{version}\"\n)\n\nlist_libs = [\"vendeur d'huitres\", \"boulanger\"]\n\ntest_data = {\n    \"query\": list_libs,\n    \"k\": 1\n}\n\nresults = model.predict(test_data)\nprint(results)\n\n\nMake sure that the two following descriptions give the same top prediction : \"COIFFEUR\" and \"coiffeur, & 98789\"\nChange the value of the parameter k and try to understand how the structure of the output changed as a result"
   },
   {
     "objectID": "slides/index.html#exposing-a-model-via-an-api",
