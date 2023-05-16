@@ -2,8 +2,8 @@
 :::: {.callout-tip collapse="true" icon=false}
 ## Deploying a machine-learning model as an API
 
-1. We construct a very simplistic Rest API using FastAPI. All underlying files are in the `app` folder. Check it.
-2. To deploy an API, you need to run it on a machine that contains all necessary packages, scripts, and configurations. The most convenient way is to build a Docker image containing all these specificities. Open the `Dockerfile` to see how the image is built. The image is publish via Github Actions, if interested have a look to `.github/workflows/build_image.yml`.
+1. We constructed a very simplistic Rest API using FastAPI. All underlying files are in the `app` folder. Check it.
+2. Open the `Dockerfile` to see how the image is built. The image is publish via Github Actions, if interested have a look to `.github/workflows/build_image.yml`.
 3. Open the file `kubernetes/deployment.yml` and modify the highlighted lines accordingly:
 
 ```{yml code-line-numbers: "7"}
@@ -35,12 +35,12 @@ containers:
     <font size=\"3\" color=\"darkgreen\"><b>Click to see the steps </b></font>
 </summary>
 
-    + 1. Run a model
-    + 2. Register the model
-    + 3. Adjust your MLFLOW_MODEL_NAME or MLFLOW_MODEL_VERSION environment variable in the `deployment.yml` file
-    + 4. Commit and push these changes
-    + 5. Synchronise in Argo-cd or wait for 5 minutes
-    + 6. Refresh your API, it should be based on your new version!
+1. Run a model
+2. Register the model
+3. Adjust your MLFLOW_MODEL_NAME or MLFLOW_MODEL_VERSION environment variable in the `deployment.yml` file
+4. Commit and push these changes
+5. Synchronise in Argo-cd or wait for 5 minutes
+6. Refresh your API, it should be based on your new version!
 
 </details>
 

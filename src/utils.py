@@ -18,7 +18,7 @@ def get_root_path() -> Path:
 
 def write_training_data(df, params):
     warnings.filterwarnings("ignore", "Setuptools is replacing distutils.")
-    training_data_path = get_root_path() / "training_data.txt"
+    training_data_path = get_root_path() / "data/training_data.txt"
 
     with open(training_data_path, "w", encoding="utf-8") as file:
         for _, item in df.iterrows():
