@@ -1,5 +1,9 @@
 slides/index.html
 slides/index_files/
+slides/index.ipynb
+
+data/
+models/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

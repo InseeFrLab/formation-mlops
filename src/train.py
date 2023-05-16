@@ -88,7 +88,7 @@ def train(
         model = fasttext.train_supervised(training_data_path, **params, verbose=2)
 
         # Save model for logging
-        model_path = run_name + ".bin"
+        model_path = f"models/{run_name}.bin"
         model.save_model(model_path)
 
         artifacts = {

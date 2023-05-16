@@ -38,7 +38,7 @@ from: markdown+emoji
 
 # Introduction to MLFlow
 
-{{< include sections/1-mlflow-example.qmd >}}
+{{< include sections/1-mlflow-intro.qmd >}}
 
 ## Application 1
 
@@ -46,7 +46,7 @@ from: markdown+emoji
 
 
 
-# A Practical Example: NACE Code Prediction for French Companies
+# A Practical Example
 
 {{< include sections/2-mlflow-custom-class-example.qmd >}}
 
