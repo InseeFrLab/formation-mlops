@@ -151,7 +151,7 @@
     "href": "slides/index.html#exposing-a-model-via-an-api",
     "title": "An introduction to MLOps with MLflow",
     "section": "Exposing a model via an API",
-    "text": "Exposing a model via an API\n\nAPI: interface between the user (client) and the trained model\nAPI REST: allows querying the model using a simple syntax (HTTP) in a scalable manner\nFor more details on constructing an API, refer to the documentation of FastAPI"
+    "text": "Exposing a model via an API\n\n\n\nAPI: interface between the user (client) and the trained model\n\n\n\n\nAPI REST: allows querying the model using a simple syntax (HTTP) in a scalable manner\n\n\n\n\nFor more details on constructing an API, refer to the documentation of FastAPI"
   },
   {
     "objectID": "slides/index.html#run-the-api-in-a-container",
