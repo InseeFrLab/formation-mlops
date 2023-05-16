@@ -55,7 +55,7 @@ from: markdown+emoji
 {{< include applications/_application2.qmd >}}
 
 
-# Deploying a model as an API
+# Deploying a ML model as an API
 
 {{< include sections/3-deployment.qmd >}}
 
