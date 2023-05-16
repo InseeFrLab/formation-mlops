@@ -8,7 +8,7 @@ spec:
     parameters:
       # The MLflow tracking server is responsable to log the hyper-parameter and model metrics.
       - name: mlflow-tracking-uri
-        value: 'https://user-avouacr-299568.user.lab.sspcloud.fr/'
+        value: 'https://projet-formation-960419.user.lab.sspcloud.fr/'
       - name: mlflow-experiment-name
         value: "fasttext-distributed"
       - name: model-training-conf-list
@@ -56,6 +56,7 @@ spec:
           - name: lr
       container:
         image: inseefrlab/formation-mlops:latest
+        imagePullPolicy: Always
         command: [sh, -c]
         args: ["mlflow run .
                 -P remote_server_uri=$MLFLOW_TRACKING_URI
@@ -67,5 +68,3 @@ spec:
             value: "{{workflow.parameters.mlflow-tracking-uri}}"
           - name: MLFLOW_EXPERIMENT_NAME
             value: "{{workflow.parameters.mlflow-experiment-name}}"
-          - name: CODE_SOURCE_URI
-            value: "{{workflow.parameters.code-source-repo}}"
