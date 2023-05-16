@@ -6,17 +6,11 @@ spec:
   entrypoint: main
   arguments:
     parameters:
-      - name: aws-default-region
-        value: "us-east-1"
-      - name: aws-s3-endpoint
-        value: "minio.lab.sspcloud.fr"
       # The MLflow tracking server is responsable to log the hyper-parameter and model metrics.
       - name: mlflow-tracking-uri
-        value: 'https://projet-formation-960419.user.lab.sspcloud.fr/'
+        value: 'https://user-avouacr-299568.user.lab.sspcloud.fr/'
       - name: mlflow-experiment-name
         value: "my-experiment"
-      - name: mlflow-s3-url
-        value: "https://minio.lab.sspcloud.fr"
       - name: code-source-repo
         value: "https://github.com/InseeFrLab/formation-mlops.git"
       - name: model-training-conf-list
@@ -65,7 +59,7 @@ spec:
           - name: dim
           - name: maxn
       container:
-        image: liupengfei99/mlflow:latest
+        image: inseefrlab/mlflow:v2.2.2
         command: [sh, -c]
         args: ["mlflow run $CODE_SOURCE_URI 
                 --version parallel-training
@@ -92,7 +86,5 @@ spec:
             value: "{{workflow.parameters.mlflow-tracking-uri}}"
           - name: MLFLOW_EXPERIMENT_NAME
             value: "{{workflow.parameters.mlflow-experiment-name}}"
-          - name: MLFLOW_S3_ENDPOINT_URL
-            value: "{{workflow.parameters.mlflow-s3-url}}"
           - name: CODE_SOURCE_URI
             value: "{{workflow.parameters.code-source-repo}}"
