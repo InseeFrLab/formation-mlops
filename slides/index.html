@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.340">
+  <meta name="generator" content="quarto-1.3.353">
 
   <title>An introduction to MLOps with MLflow</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -94,7 +94,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="_extensions/InseeFrLab/onyxia/logo.css">
   <link rel="stylesheet" href="custom.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -852,13 +852,43 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </section></section>
 <section>
-<section id="deploying-a-model-as-an-api" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Deploying a model as an API</h1>
+<section id="deploying-a-ml-model-as-an-api" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Deploying a ML model as an API</h1>
+
+</section>
+<section id="exposing-a-model-via-an-api" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Exposing a model via an API</h2>
 <ul>
-<li class="fragment">On détaille pas la construction d’API, on renvoie vers doc de FastAPI</li>
-<li class="fragment">Dire qu’on veut run l’API sous une image docker pour avoir tout ce qu’il nous faut dedans</li>
-<li class="fragment">Un topo sur deploiement dans kube et les fichiers deployment, service, ingress. Juste dire rapidement a quoi ils servent</li>
-<li class="fragment">Et truc sur Argo cd pour parler du CD</li>
+<li class="fragment"><p><span class="orange"><strong>API</strong></span>: interface between the user (client) and the trained model</p></li>
+<li class="fragment"><p><span class="orange"><strong>API REST</strong></span>: allows querying the model using a <span class="blue2"><strong>simple</strong></span> syntax (HTTP) in a <span class="blue2"><strong>scalable</strong></span> manner</p></li>
+<li class="fragment"><p>For more details on constructing an API, refer to the documentation of <a href="https://fastapi.tiangolo.com">FastAPI</a></p></li>
+<li class="fragment"><p>Schéma de Romain</p></li>
+</ul>
+</section>
+<section id="run-the-api-in-a-container" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Run the API in a container</h2>
+<ul>
+<li class="fragment"><p><span class="orange"><strong>Container</strong></span>: <span class="blue2"><strong>self-contained</strong></span> and <span class="blue2"><strong>isolated</strong></span> environment that encapsulates your model, its dependencies and API code</p></li>
+<li class="fragment"><p>Containers provide high <span class="orange"><strong>portability</strong></span> and <span class="orange"><strong>scalability</strong></span> for distributing your model efficiently.</p></li>
+<li class="fragment"><p>The <code>Dockerfile</code> is used to configure and build the Docker container.</p></li>
+<li class="fragment"><p>Schéma de Romain sur le dev -&gt; dockerfile -&gt; docker image -&gt; dockerhub… ??</p></li>
+</ul>
+</section>
+<section id="deploying-an-api" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Deploying an API</h2>
+<!-- - Need a [**container orchestration tool**]{.orange} such as kubernetes -->
+<ul>
+<li class="fragment">3 main files are needed to deploy an API:
+<ul>
+<li class="fragment"><code>deployment.yaml</code> : defines how the API should <span class="blue2"><strong>run</strong></span> (container image, resources, and env variables)</li>
+<li class="fragment"><code>service.yaml</code> : establishes a stable <span class="blue2"><strong>internal</strong></span> network endpoint for the API.</li>
+<li class="fragment"><code>ingress.yaml</code> : provides an entry point for <span class="blue2"><strong>external</strong></span> clients to access the API.</li>
+</ul></li>
+<li class="fragment"><span class="orange"><strong>Argo CD</strong></span>:
+<ul>
+<li class="fragment"><span class="blue2"><strong>Deployment tool</strong></span> used to streamline and automate the deployment process.</li>
+<li class="fragment"><span class="blue2"><strong>Simplifies</strong></span> managing application deployments (e.g.&nbsp;rollbacks and updates).</li>
+</ul></li>
 </ul>
 </section>
 <section id="application-3" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
@@ -871,8 +901,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 <div class="callout-content">
 <ol type="1">
-<li>We construct a very simplistic Rest API using FastAPI. All underlying files are in the <code>app</code> folder. Check it.</li>
-<li>To deploy an API, you need to run it on a machine that contains all necessary packages, scripts, and configurations. The most convenient way is to build a Docker image containing all these specificities. Open the <code>Dockerfile</code> to see how the image is built. The image is publish via Github Actions, if interested have a look to <code>.github/workflows/build_image.yml</code>.</li>
+<li>We constructed a very simplistic Rest API using FastAPI. All underlying files are in the <code>app</code> folder. Check it.</li>
+<li>Open the <code>Dockerfile</code> to see how the image is built. The image is publish via Github Actions, if interested have a look to <code>.github/workflows/build_image.yml</code>.</li>
 <li>Open the file <code>kubernetes/deployment.yml</code> and modify the highlighted lines accordingly:</li>
 </ol>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {yml code-line-numbers: &quot;7&quot;} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>containers:</span>
