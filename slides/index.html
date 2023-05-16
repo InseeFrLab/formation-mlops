@@ -859,26 +859,25 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <section id="exposing-a-model-via-an-api" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Exposing a model via an API</h2>
 <ul>
-<li class="fragment"><p><span class="orange"><strong>API</strong></span>: interface between the user (client) and the trained model</p></li>
-<li class="fragment"><p><span class="orange"><strong>API REST</strong></span>: allows querying the model using a <span class="blue2"><strong>simple</strong></span> syntax (HTTP) in a <span class="blue2"><strong>scalable</strong></span> manner</p></li>
-<li class="fragment"><p>For more details on constructing an API, refer to the documentation of <a href="https://fastapi.tiangolo.com">FastAPI</a></p></li>
-<li class="fragment"><p>Schéma de Romain</p></li>
+<li class="fragment"><span class="orange"><strong>API</strong></span>: interface between the user (client) and the trained model</li>
+<li class="fragment"><span class="orange"><strong>API REST</strong></span>: allows querying the model using a <span class="blue2"><strong>simple</strong></span> syntax (HTTP) in a <span class="blue2"><strong>scalable</strong></span> manner</li>
+<li class="fragment">For more details on constructing an API, refer to the documentation of <a href="https://fastapi.tiangolo.com">FastAPI</a></li>
 </ul>
-</section>
+
+<img data-src="img/API.png" class="r-stretch quarto-figure-center"></section>
 <section id="run-the-api-in-a-container" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Run the API in a container</h2>
 <ul>
-<li class="fragment"><p><span class="orange"><strong>Container</strong></span>: <span class="blue2"><strong>self-contained</strong></span> and <span class="blue2"><strong>isolated</strong></span> environment that encapsulates your model, its dependencies and API code</p></li>
-<li class="fragment"><p>Containers provide high <span class="orange"><strong>portability</strong></span> and <span class="orange"><strong>scalability</strong></span> for distributing your model efficiently.</p></li>
-<li class="fragment"><p>The <code>Dockerfile</code> is used to configure and build the Docker container.</p></li>
-<li class="fragment"><p>Schéma de Romain sur le dev -&gt; dockerfile -&gt; docker image -&gt; dockerhub… ??</p></li>
+<li class="fragment"><span class="orange"><strong>Container</strong></span>: <span class="blue2"><strong>self-contained</strong></span> and <span class="blue2"><strong>isolated</strong></span> environment that encapsulates your model, its dependencies and API code</li>
+<li class="fragment">Containers provide high <span class="orange"><strong>portability</strong></span> and <span class="orange"><strong>scalability</strong></span> for distributing your model efficiently.</li>
+<li class="fragment">The <code>Dockerfile</code> is used to configure and build the Docker container.</li>
 </ul>
 </section>
 <section id="deploying-an-api" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Deploying an API</h2>
 <!-- - Need a [**container orchestration tool**]{.orange} such as kubernetes -->
 <ul>
-<li class="fragment">3 main files are needed to deploy an API:
+<li class="fragment"><span class="orange"><strong>3 main files</strong></span> are needed to deploy an API:
 <ul>
 <li class="fragment"><code>deployment.yaml</code> : defines how the API should <span class="blue2"><strong>run</strong></span> (container image, resources, and env variables)</li>
 <li class="fragment"><code>service.yaml</code> : establishes a stable <span class="blue2"><strong>internal</strong></span> network endpoint for the API.</li>
@@ -886,8 +885,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </ul></li>
 <li class="fragment"><span class="orange"><strong>Argo CD</strong></span>:
 <ul>
-<li class="fragment"><span class="blue2"><strong>Deployment tool</strong></span> used to streamline and automate the deployment process.</li>
-<li class="fragment"><span class="blue2"><strong>Simplifies</strong></span> managing application deployments (e.g.&nbsp;rollbacks and updates).</li>
+<li class="fragment"><span class="blue2"><strong>Deployment tool</strong></span> used to automate and simplify the deployment process.</li>
 </ul></li>
 </ul>
 </section>

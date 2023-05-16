@@ -151,21 +151,21 @@
     "href": "slides/index.html#exposing-a-model-via-an-api",
     "title": "An introduction to MLOps with MLflow",
     "section": "Exposing a model via an API",
-    "text": "Exposing a model via an API\n\nAPI: interface between the user (client) and the trained model\nAPI REST: allows querying the model using a simple syntax (HTTP) in a scalable manner\nFor more details on constructing an API, refer to the documentation of FastAPI\nSchéma de Romain"
+    "text": "Exposing a model via an API\n\nAPI: interface between the user (client) and the trained model\nAPI REST: allows querying the model using a simple syntax (HTTP) in a scalable manner\nFor more details on constructing an API, refer to the documentation of FastAPI"
   },
   {
     "objectID": "slides/index.html#run-the-api-in-a-container",
     "href": "slides/index.html#run-the-api-in-a-container",
     "title": "An introduction to MLOps with MLflow",
     "section": "Run the API in a container",
-    "text": "Run the API in a container\n\nContainer: self-contained and isolated environment that encapsulates your model, its dependencies and API code\nContainers provide high portability and scalability for distributing your model efficiently.\nThe Dockerfile is used to configure and build the Docker container.\nSchéma de Romain sur le dev -&gt; dockerfile -&gt; docker image -&gt; dockerhub… ??"
+    "text": "Run the API in a container\n\nContainer: self-contained and isolated environment that encapsulates your model, its dependencies and API code\nContainers provide high portability and scalability for distributing your model efficiently.\nThe Dockerfile is used to configure and build the Docker container."
   },
   {
     "objectID": "slides/index.html#deploying-an-api",
     "href": "slides/index.html#deploying-an-api",
     "title": "An introduction to MLOps with MLflow",
     "section": "Deploying an API",
-    "text": "Deploying an API\n\n\n3 main files are needed to deploy an API:\n\ndeployment.yaml : defines how the API should run (container image, resources, and env variables)\nservice.yaml : establishes a stable internal network endpoint for the API.\ningress.yaml : provides an entry point for external clients to access the API.\n\nArgo CD:\n\nDeployment tool used to streamline and automate the deployment process.\nSimplifies managing application deployments (e.g. rollbacks and updates)."
+    "text": "Deploying an API\n\n\n3 main files are needed to deploy an API:\n\ndeployment.yaml : defines how the API should run (container image, resources, and env variables)\nservice.yaml : establishes a stable internal network endpoint for the API.\ningress.yaml : provides an entry point for external clients to access the API.\n\nArgo CD:\n\nDeployment tool used to automate and simplify the deployment process."
   },
   {
     "objectID": "slides/index.html#application-3",
