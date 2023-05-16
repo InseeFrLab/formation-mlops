@@ -35,12 +35,12 @@ containers:
     <font size=\"3\" color=\"darkgreen\"><b>Click to see the steps </b></font>
 </summary>
 
-    + 1. Run a model
-    + 2. Register the model
-    + 3. Adjust your MLFLOW_MODEL_NAME or MLFLOW_MODEL_VERSION environment variable in the `deployment.yml` file
-    + 4. Commit and push these changes
-    + 5. Synchronise in Argo-cd or wait for 5 minutes
-    + 6. Refresh your API, it should be based on your new version!
+1. Run a model
+2. Register the model
+3. Adjust your MLFLOW_MODEL_NAME or MLFLOW_MODEL_VERSION environment variable in the `deployment.yml` file
+4. Commit and push these changes
+5. Synchronise in Argo-cd or wait for 5 minutes
+6. Refresh your API, it should be based on your new version!
 
 </details>
 
