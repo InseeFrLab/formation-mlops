@@ -20,7 +20,8 @@ def load_data():
     Load data for training and test.
     """
     fs = s3fs.S3FileSystem(
-        client_kwargs={"endpoint_url": "https://minio.lab.sspcloud.fr"}
+        client_kwargs={"endpoint_url": "https://minio.lab.sspcloud.fr"},
+        anon=True
     )
     df = pq.ParquetDataset(DATA_PATH, filesystem=fs).read_pandas().to_pandas()
     return df.sample(frac=0.001)
