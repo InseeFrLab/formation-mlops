@@ -5,12 +5,21 @@
 
 ## Workflow automation
 
-- [**Argo Workflows**]{.orange} is an open source container-native workflow engine for orchestrating parallel jobs on Kubernetes
-- Available on the [**SSP Cloud**]{.orange}
-- General principles :
-    - Define workflows where each step in the workflow is a [**container**]{.blue2}
+- [**General principles**]{.orange} :
+    - Define workflows where each step in the workflow is a [**container**]{.blue2} (reproducibility)
     - Model multi-step workflows as a [**sequence**]{.blue2} of tasks or as a [**directed acyclic graph**]{.blue2}
     - This allows to easily [**run in parallel compute intensive jobs**]{.blue2} for machine learning or data processing
+
+## Argo workflows
+
+- A popular [**workflow engine**]{.orange} for orchestrating parallel jobs on `Kubernetes`
+  - [**open-source**]{.blue2}
+  - [**container-native**]{.blue2}
+  - available on the [**SSP Cloud**]{.orange}
+
+. . .
+
+![](img/argo-logo.png){fig-align="center" height=200}
 
 ## Hello World
 

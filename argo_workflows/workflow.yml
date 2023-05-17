@@ -6,28 +6,18 @@ spec:
   entrypoint: main
   arguments:
     parameters:
-      - name: aws-default-region
-        value: "us-east-1"
-      - name: aws-s3-endpoint
-        value: "minio.lab.sspcloud.fr"
       # The MLflow tracking server is responsable to log the hyper-parameter and model metrics.
       - name: mlflow-tracking-uri
         value: 'https://projet-formation-960419.user.lab.sspcloud.fr/'
       - name: mlflow-experiment-name
-        value: "my-experiment"
-      - name: mlflow-s3-url
-        value: "https://minio.lab.sspcloud.fr"
-      - name: code-source-repo
-        value: "https://github.com/InseeFrLab/formation-mlops.git"
+        value: "fasttext-distributed"
       - name: model-training-conf-list
         value: |
           [
-            { "dim": 150, "maxn": 4 },
-            { "dim": 120, "maxn": 4 },
-            { "dim": 120, "maxn": 5 }
+            { "dim": 25, "lr": 0.1 },
+            { "dim": 100, "lr": 0.2 },
+            { "dim": 150, "lr": 0.3 }
           ]
- 
-
   templates:
     # Entrypoint DAG template
     - name: main
@@ -44,8 +34,8 @@ spec:
               parameters:
                 - name: dim
                   value: "{{item.dim}}"
-                - name: maxn
-                  value: "{{item.maxn}}"
+                - name: lr
+                  value: "{{item.lr}}"
             # Pass the inputs to the task using "withParam"
             withParam: "{{workflow.parameters.model-training-conf-list}}"
 
@@ -63,36 +53,18 @@ spec:
       inputs:
         parameters:
           - name: dim
-          - name: maxn
+          - name: lr
       container:
-        image: liupengfei99/mlflow:latest
+        image: inseefrlab/formation-mlops:latest
+        imagePullPolicy: Always
         command: [sh, -c]
-        args: ["mlflow run $CODE_SOURCE_URI 
-                --version parallel-training
+        args: ["mlflow run .
                 -P remote_server_uri=$MLFLOW_TRACKING_URI
                 -P experiment_name=$MLFLOW_EXPERIMENT_NAME
                 -P dim={{inputs.parameters.dim}}
-                -P maxn={{inputs.parameters.maxn}}"]
+                -P lr={{inputs.parameters.lr}}"]
         env:
-          - name: AWS_SECRET_ACCESS_KEY
-            valueFrom:
-              secretKeyRef:
-                name: my-s3-creds
-                key: secretKey
-          - name: AWS_DEFAULT_REGION
-            value: "{{workflow.parameters.aws-default-region}}"
-          - name: AWS_S3_ENDPOINT
-            value: "{{workflow.parameters.aws-s3-endpoint}}"
-          - name: AWS_ACCESS_KEY_ID
-            valueFrom:
-              secretKeyRef:
-                name: my-s3-creds
-                key: accessKey
           - name: MLFLOW_TRACKING_URI
             value: "{{workflow.parameters.mlflow-tracking-uri}}"
           - name: MLFLOW_EXPERIMENT_NAME
             value: "{{workflow.parameters.mlflow-experiment-name}}"
-          - name: MLFLOW_S3_ENDPOINT_URL
-            value: "{{workflow.parameters.mlflow-s3-url}}"
-          - name: CODE_SOURCE_URI
-            value: "{{workflow.parameters.code-source-repo}}"

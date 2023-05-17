@@ -1,17 +1,14 @@
-FROM python:3.10
+FROM inseefrlab/onyxia-python-minimal:py3.10.9
 
-# set api as the current work dir
-WORKDIR /api
+# set current work dir
+WORKDIR /formation-mlops
 
-# copy the requirements list
-COPY /requirements.txt /code/requirements.txt
+# copy project files to the image
+COPY . .
 
 # install all the requirements and import corpus
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt && \
+RUN pip install --no-cache-dir --upgrade -r requirements.txt && \
     python -m nltk.downloader stopwords
-
-# copy the main code of fastapi
-COPY ./app /api/app
 
 # launch the unicorn server to run the api
 # If you are running your container behind a TLS Termination Proxy (load balancer) like Nginx or Traefik,
