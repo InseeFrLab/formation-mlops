@@ -3,9 +3,7 @@
 
 :::{.incremental}
 1. In `JupyterLab`, open the notebook located at `formation-mlops/notebooks/mlflow-introduction.ipynb`
-2. Choose our custom `Python` kernel : 
-    + `Select Kernel -> Python environments... -> base (Python 3.x.x)`
-3. Execute the notebook cell by cell. If you are finished early, explore the `MLflow` UI and try to build your own experiments from the example code provided in the notebook.
+2. Execute the notebook cell by cell. If you are finished early, explore the `MLflow` UI and try to build your own experiments from the example code provided in the notebook.
 :::
 
 :::
