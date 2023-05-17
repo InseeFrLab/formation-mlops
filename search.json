@@ -95,7 +95,7 @@
     "href": "slides/index.html#application-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 1",
-    "text": "Application 1\n\n\n\nIntroduction to MLflow concepts\n\n\n\n\nIn JupyterLab, open the notebook located at formation-mlops/notebooks/mlflow-introduction.ipynb\nChoose our custom Python kernel :\n\nSelect Kernel -&gt; Python environments... -&gt; base (Python 3.x.x)\n\nExecute the notebook cell by cell. If you are finished early, explore the MLflow UI and try to build your own experiments from the example code provided in the notebook."
+    "text": "Application 1\n\n\n\nIntroduction to MLflow concepts\n\n\n\n\nIn JupyterLab, open the notebook located at formation-mlops/notebooks/mlflow-introduction.ipynb\nExecute the notebook cell by cell. If you are finished early, explore the MLflow UI and try to build your own experiments from the example code provided in the notebook."
   },
   {
     "objectID": "slides/index.html#context-1",
@@ -186,7 +186,14 @@
     "href": "slides/index.html#workflow-automation",
     "title": "An introduction to MLOps with MLflow",
     "section": "Workflow automation",
-    "text": "Workflow automation\n\nArgo Workflows is an open source container-native workflow engine for orchestrating parallel jobs on Kubernetes\nAvailable on the SSP Cloud\nGeneral principles :\n\nDefine workflows where each step in the workflow is a container\nModel multi-step workflows as a sequence of tasks or as a directed acyclic graph\nThis allows to easily run in parallel compute intensive jobs for machine learning or data processing"
+    "text": "Workflow automation\n\nGeneral principles :\n\nDefine workflows where each step in the workflow is a container (reproducibility)\nModel multi-step workflows as a sequence of tasks or as a directed acyclic graph\nThis allows to easily run in parallel compute intensive jobs for machine learning or data processing"
+  },
+  {
+    "objectID": "slides/index.html#argo-workflows",
+    "href": "slides/index.html#argo-workflows",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Argo workflows",
+    "text": "Argo workflows\n\nA popular workflow engine for orchestrating parallel jobs on Kubernetes\n\nopen-source\ncontainer-native\navailable on the SSP Cloud"
   },
   {
     "objectID": "slides/index.html#hello-world",
@@ -291,6 +298,13 @@
     "href": "slides/index.html#application-4",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 4",
-    "text": "Application 4\n\n\n\nDistributing the hyperparameter optimization with an orchestrator\n\n\n\n\nOpen an Argo Workflows service and submit the Hello World workflow. Visualize the logs on the Argo Workflows UI.\nTake a look at the argo_workflows/workflow.yml file. What do you expect will happen when we submit this workflow ?\nSubmit the workflow. Once all jobs are completed, visualize the logs. Then open the MLflow UI to check what has been done."
+    "text": "Application 4\n\n\n\nPart 1 : introduction to Argo Workflows\n\n\n\n\nOpen an Argo Workflows service on the SSP Cloud\nIn VSCode, create a hello_world.yaml file and copy into it the content from the Hello world example workflow\nSubmit the Hello world workflow via a terminal in VSCode :\n\nargo submit hello_world.yaml\n\nOpen the UI of Argo Workflows. Find the logs of the workflow you just launched."
+  },
+  {
+    "objectID": "slides/index.html#application-4-1",
+    "href": "slides/index.html#application-4-1",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 4",
+    "text": "Application 4\n\n\n\nPart 2 : distributing the hyperparameters optimization\n\n\n\n\nTake a look at the argo_workflows/workflow.yml file. What do you expect will happen when we submit this workflow ?\nSubmit the workflow and look at the jobs completing live in the UI.\nOnce all jobs are completed, visualize the logs of the whole workflow.\nFinally, open the MLflow UI to check what has been done."
   }
 ]

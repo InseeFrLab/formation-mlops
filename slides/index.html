@@ -629,10 +629,6 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div>
 <ol type="1">
 <li class="fragment">In <code>JupyterLab</code>, open the notebook located at <code>formation-mlops/notebooks/mlflow-introduction.ipynb</code></li>
-<li class="fragment">Choose our custom <code>Python</code> kernel :
-<ul>
-<li class="fragment"><code>Select Kernel -&gt; Python environments... -&gt; base (Python 3.x.x)</code></li>
-</ul></li>
 <li class="fragment">Execute the notebook cell by cell. If you are finished early, explore the <code>MLflow</code> UI and try to build your own experiments from the example code provided in the notebook.</li>
 </ol>
 </div>
@@ -998,15 +994,31 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <section id="workflow-automation" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Workflow automation</h2>
 <ul>
-<li class="fragment"><span class="orange"><strong>Argo Workflows</strong></span> is an open source container-native workflow engine for orchestrating parallel jobs on Kubernetes</li>
-<li class="fragment">Available on the <span class="orange"><strong>SSP Cloud</strong></span></li>
-<li class="fragment">General principles :
+<li class="fragment"><span class="orange"><strong>General principles</strong></span> :
 <ul>
-<li class="fragment">Define workflows where each step in the workflow is a <span class="blue2"><strong>container</strong></span></li>
+<li class="fragment">Define workflows where each step in the workflow is a <span class="blue2"><strong>container</strong></span> (reproducibility)</li>
 <li class="fragment">Model multi-step workflows as a <span class="blue2"><strong>sequence</strong></span> of tasks or as a <span class="blue2"><strong>directed acyclic graph</strong></span></li>
 <li class="fragment">This allows to easily <span class="blue2"><strong>run in parallel compute intensive jobs</strong></span> for machine learning or data processing</li>
 </ul></li>
 </ul>
+</section>
+<section id="argo-workflows" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Argo workflows</h2>
+<ul>
+<li class="fragment">A popular <span class="orange"><strong>workflow engine</strong></span> for orchestrating parallel jobs on <code>Kubernetes</code>
+<ul>
+<li class="fragment"><span class="blue2"><strong>open-source</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>container-native</strong></span></li>
+<li class="fragment">available on the <span class="orange"><strong>SSP Cloud</strong></span></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/argo-logo.png" height="200"></p>
+</figure>
+</div>
+</div>
 </section>
 <section id="hello-world" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Hello World</h2>
@@ -1184,14 +1196,38 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Distributing the hyperparameter optimization with an orchestrator</strong></p>
+<p><strong>Part 1 : introduction to <code>Argo Workflows</code></strong></p>
 </div>
 <div class="callout-content">
 <div>
 <ol type="1">
-<li class="fragment">Open an Argo Workflows service and submit the <code>Hello World</code> workflow. Visualize the logs on the Argo Workflows UI.</li>
+<li class="fragment">Open an <code>Argo Workflows</code> service on the <code>SSP Cloud</code></li>
+<li class="fragment">In <code>VSCode</code>, create a <code>hello_world.yaml</code> file and copy into it the content from the <a href="https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/hello-world.yaml">Hello world</a> example workflow</li>
+<li class="fragment">Submit the <code>Hello world</code> workflow via a terminal in <code>VSCode</code> :
+<ul>
+<li class="fragment"><code>argo submit hello_world.yaml</code></li>
+</ul></li>
+<li class="fragment">Open the UI of <code>Argo Workflows</code>. Find the logs of the workflow you just launched.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="application-4-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Application 4</h2>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Part 2 : distributing the hyperparameters optimization</strong></p>
+</div>
+<div class="callout-content">
+<div>
+<ol type="1">
 <li class="fragment">Take a look at the <code>argo_workflows/workflow.yml</code> file. What do you expect will happen when we submit this workflow ?</li>
-<li class="fragment">Submit the workflow. Once all jobs are completed, visualize the logs. Then open the MLflow UI to check what has been done.</li>
+<li class="fragment">Submit the workflow and look at the jobs completing live in the UI.</li>
+<li class="fragment">Once all jobs are completed, visualize the logs of the whole workflow.</li>
+<li class="fragment">Finally, open the <code>MLflow</code> UI to check what has been done.</li>
 </ol>
 </div>
 </div>
