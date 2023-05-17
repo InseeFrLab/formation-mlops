@@ -105,6 +105,13 @@
     "text": "Context\n\nNACE\n\nEuropean standard classification of productive economic activities\nHierarchical structure with 4 levels and 615 codes\n\nAt Insee, previously handled by an outdated rule-based algorithm\nCommon problematic to many National Statistical Institutes"
   },
   {
+    "objectID": "slides/index.html#fasttext",
+    "href": "slides/index.html#fasttext",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Fasttext",
+    "text": "Fasttext\n\n\n\n“Bag of n-gram model” : embeddings for words but also n-gram of words and characters\n\n\n\n\nVery simple and fast model"
+  },
+  {
     "objectID": "slides/index.html#data-used",
     "href": "slides/index.html#data-used",
     "title": "An introduction to MLOps with MLflow",
