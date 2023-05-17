@@ -1,0 +1,3 @@
+## Collaboration
+
+![](img/mlops-collab.png){fig-align="center" height=200}

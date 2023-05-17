@@ -1,0 +1,8 @@
+:::{.callout-tip collapse="true" icon=false}
+## Creation of a monitoring dashboard
+
+:::{.incremental}
+
+:::
+
+:::
