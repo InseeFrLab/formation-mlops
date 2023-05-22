@@ -20,12 +20,10 @@ containers:
         value: "1"
 ```
 
-4. On the [SSP Cloud](https://datalab.sspcloud.fr/home), launch an Argo-cd service by clicking [this URL](https://datalab.sspcloud.fr/launcher/automation/argo-cd?autoLaunch=true)
-5. Create a new application and use the yaml template stored in the `argocd` folder
-    a. `Create an application  -> Edit as YAML` 
-    b. Adjust the yaml to your purpose
-    c. `Save -> Create`
-6. Reach your API using the URL you defined in your `ingress.yml` file
+4. Open the file `kubernetes/ingress.yml` and modify (two times) the URL of the API endpoint to be of the form `<your_firstname>-<your_lastname>-api.lab.sspcloud.fr`
+5. Apply the three `KLubernetes` contracts contained in the `kubernetes/` folder in a terminal to deploy the API
+    + `kubectl apply -f kubernetes/`
+6. Reach your API using the URL defined in your `ingress.yml` file
 7. Display the documentation of your API by adding `/docs` to your URL
 8. Try your API out!
 9. Re-run a new model and deploy this new model in your API

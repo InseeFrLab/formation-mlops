@@ -7,14 +7,14 @@
 2. Run a training of the model using MLflow. To do so, open a terminal (top left button `-> Terminal -> New Terminal`) and run the following command :
 
     ```sh
-    export MLFLOW_EXPERIMENT_NAME="fasttext"
+    export MLFLOW_EXPERIMENT_NAME="fasttext-model"
     mlflow run ~/work/formation-mlops/ --env-manager=local \
         -P remote_server_uri=$MLFLOW_TRACKING_URI \
         -P experiment_name=$MLFLOW_EXPERIMENT_NAME
     ```
 
 3. In the UI of `MLflow`, look at the results of your previous run:
-    + `Experiments -> fasttext -> <run_name>`
+    + `Experiments -> fasttext-model -> <run_name>`
 4. You have trained the model with some default parameters. In `MLproject` check the available parameters. Re-train a model with different parameters (e.g. `dim = 25`).
 
 <details>
