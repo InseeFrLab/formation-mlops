@@ -1,4 +1,4 @@
-## Exposing a model via an API
+## Exposing a model via an API {.scrollable}
 
 ::: {.nonincremental}
 
