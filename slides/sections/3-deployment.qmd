@@ -1,39 +1,38 @@
-## Model serving
+## Exposing a model via an API {.scrollable}
 
-- Once a ML model has been developed, it must be [**deployed**]{.orange} to [**serve**]{.orange} its end users
-    - Which [**production**]{.blue2} infrastructure ?
-    - Who are the [**end users**]{.blue2} ?
-    - [**Batch**]{.blue2} serving vs. [**online**]{.blue2} serving
+::: {.nonincremental}
 
-## A standard setup
+:::: {.fragment fragment-index=1}
+- [**API**]{.orange}: interface between the user (client) and the trained model
+::::
 
-- Production infrastructure : [**Kubernetes**]{.orange} cluster
+:::: {.fragment fragment-index=2}
+- [**API REST**]{.orange}: allows querying the model using a [**simple**]{.blue2} syntax (HTTP) in a [**scalable**]{.blue2}  manner
+::::
 
-- The model might serve [**various applications**]{.orange}
-    - Make the model accessible via an [**API**]{.blue2}
+:::: {.fragment fragment-index=3}
+- For more details on constructing an API, refer to the documentation of [FastAPI](https://fastapi.tiangolo.com)
+::::
 
-- [**Online**]{.blue2} serving
-    - [**Client**]{.blue2} applications send a [**request**]{.blue2} to the API and get a fast [**response**]{.blue2}
-
-## Exposing a model through an API
-
+:::: {.fragment fragment-index=4}
 ![](img/API.png){fig-align="center"}
+::::
+
+:::
+
 
 ## Run the API in a container
 
-- [**Container**]{.orange}: [**self-contained**]{.blue2} and [**isolated**]{.blue2} environment that encapsulates the model, its dependencies and the API code
-
-- Containers provide high [**portability**]{.orange} and [**scalability**]{.orange} for distributing the model efficiently.
-
+- [**Container**]{.orange}: [**self-contained**]{.blue2} and [**isolated**]{.blue2} environment that encapsulates your model, its dependencies and API code
+- Containers provide high [**portability**]{.orange} and [**scalability**]{.orange} for distributing your model efficiently.
 - The `Dockerfile` is used to configure and build the Docker container.
 
-## Deploying an API on `Kubernetes`
+## Deploying an API
 
 <!-- - Need a [**container orchestration tool**]{.orange} such as kubernetes -->
 - [**3 main files**]{.orange} are needed to deploy an API:
     - `deployment.yaml` : defines how the API should [**run**]{.blue2} (container image, resources, and env variables)
     - `service.yaml` : establishes a stable [**internal**]{.blue2} network endpoint for the API.
     - `ingress.yaml` : provides an entry point for [**external**]{.blue2} clients to access the API.
-
 - [**Argo CD**]{.orange}:
     - [**Deployment tool**]{.blue2} used to automate and simplify the deployment process.
