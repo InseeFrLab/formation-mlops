@@ -154,25 +154,39 @@
     "text": "Application 2\n\n\n\n\nPart 2 : Distributing and querying a custom model\n\n\n\nExplore the src/train.py file carefully. What are the main differences with application 1 ?\nWhy can we say that the MLflow model onboards the preprocessing ?\nIn MLflow, register your last model as fasttext-model to make it queryable from the Python API\nCreate a script predict.py at the root of the project. This script should :\n\nload the version 1 of the fasttext-model\nuse the model to predict the NACE codes of a given list of activity description (e.g. [\"vendeur d'huitres\", \"boulanger\"]).\n\n\nDon’t forget to read the documentation of the predict() function of the custom class (src/fasttext_wrapper.py) to understand the expected format for the inputs !\n\n\nClick to see the content of the script \n\nimport mlflow\n\nmodel_name = \"test\"\nversion = 1\n\nmodel = mlflow.pyfunc.load_model(\n    model_uri=f\"models:/{model_name}/{version}\"\n)\n\nlist_libs = [\"vendeur d'huitres\", \"boulanger\"]\n\ntest_data = {\n    \"query\": list_libs,\n    \"k\": 1\n}\n\nresults = model.predict(test_data)\nprint(results)\n\n\nMake sure that the two following descriptions give the same top prediction : \"COIFFEUR\" and \"coiffeur, & 98789\"\nChange the value of the parameter k and try to understand how the structure of the output changed as a result"
   },
   {
-    "objectID": "slides/index.html#exposing-a-model-via-an-api",
-    "href": "slides/index.html#exposing-a-model-via-an-api",
+    "objectID": "slides/index.html#model-serving",
+    "href": "slides/index.html#model-serving",
     "title": "An introduction to MLOps with MLflow",
-    "section": "Exposing a model via an API",
-    "text": "Exposing a model via an API\n\n\n\nAPI: interface between the user (client) and the trained model\n\n\n\n\nAPI REST: allows querying the model using a simple syntax (HTTP) in a scalable manner\n\n\n\n\nFor more details on constructing an API, refer to the documentation of FastAPI"
+    "section": "Model serving",
+    "text": "Model serving\n\nOnce a ML model has been developed, it must be deployed to serve its end users\n\nWhich production infrastructure ?\nWho are the end users ?\nBatch serving vs. online serving"
+  },
+  {
+    "objectID": "slides/index.html#a-standard-setup",
+    "href": "slides/index.html#a-standard-setup",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "A standard setup",
+    "text": "A standard setup\n\nProduction infrastructure : Kubernetes cluster\nThe model might serve various applications\n\nMake the model accessible via an API\n\nOnline serving\n\nClient applications send a request to the API and get a fast response"
+  },
+  {
+    "objectID": "slides/index.html#exposing-a-model-through-an-api",
+    "href": "slides/index.html#exposing-a-model-through-an-api",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Exposing a model through an API",
+    "text": "Exposing a model through an API"
   },
   {
     "objectID": "slides/index.html#run-the-api-in-a-container",
     "href": "slides/index.html#run-the-api-in-a-container",
     "title": "An introduction to MLOps with MLflow",
     "section": "Run the API in a container",
-    "text": "Run the API in a container\n\nContainer: self-contained and isolated environment that encapsulates your model, its dependencies and API code\nContainers provide high portability and scalability for distributing your model efficiently.\nThe Dockerfile is used to configure and build the Docker container."
+    "text": "Run the API in a container\n\nContainer: self-contained and isolated environment that encapsulates the model, its dependencies and the API code\nContainers provide high portability and scalability for distributing the model efficiently.\nThe Dockerfile is used to configure and build the Docker container."
   },
   {
-    "objectID": "slides/index.html#deploying-an-api",
-    "href": "slides/index.html#deploying-an-api",
+    "objectID": "slides/index.html#deploying-an-api-on-kubernetes",
+    "href": "slides/index.html#deploying-an-api-on-kubernetes",
     "title": "An introduction to MLOps with MLflow",
-    "section": "Deploying an API",
-    "text": "Deploying an API\n\n\n3 main files are needed to deploy an API:\n\ndeployment.yaml : defines how the API should run (container image, resources, and env variables)\nservice.yaml : establishes a stable internal network endpoint for the API.\ningress.yaml : provides an entry point for external clients to access the API.\n\nArgo CD:\n\nDeployment tool used to automate and simplify the deployment process."
+    "section": "Deploying an API on Kubernetes",
+    "text": "Deploying an API on Kubernetes\n\n\n3 main files are needed to deploy an API:\n\ndeployment.yaml : defines how the API should run (container image, resources, and env variables)\nservice.yaml : establishes a stable internal network endpoint for the API.\ningress.yaml : provides an entry point for external clients to access the API.\n\nArgo CD:\n\nDeployment tool used to automate and simplify the deployment process."
   },
   {
     "objectID": "slides/index.html#application-3",
