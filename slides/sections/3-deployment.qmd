@@ -34,6 +34,3 @@
     - `deployment.yaml` : defines how the API should [**run**]{.blue2} (container image, resources, and env variables)
     - `service.yaml` : establishes a stable [**internal**]{.blue2} network endpoint for the API.
     - `ingress.yaml` : provides an entry point for [**external**]{.blue2} clients to access the API.
-
-- [**Argo CD**]{.orange}:
-    - [**Deployment tool**]{.blue2} used to automate and simplify the deployment process.

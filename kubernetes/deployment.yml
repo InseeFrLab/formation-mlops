@@ -23,7 +23,7 @@ spec:
             - name: MLFLOW_MODEL_NAME
               value: fasttext-model
             - name: MLFLOW_MODEL_VERSION
-              value: "4"
+              value: "1"
           ports:
             - name: http
               containerPort: 8000
