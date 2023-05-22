@@ -12,7 +12,7 @@
 - The model might serve [**various applications**]{.orange}
     - Make the model accessible via an [**API**]{.blue2}
 
-- [**Online**]{.blue2} serving
+- [**Online serving**]{.orange}
     - [**Client**]{.blue2} applications send a [**request**]{.blue2} to the API and get a fast [**response**]{.blue2}
 
 ## Exposing a model through an API

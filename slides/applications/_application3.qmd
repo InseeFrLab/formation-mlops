@@ -2,9 +2,9 @@
 :::: {.callout-tip collapse="true" icon=false}
 ## Deploying a machine-learning model as an API
 
-1. We constructed a very simplistic Rest API using FastAPI. All underlying files are in the `app` folder. Check it.
-2. Open the `Dockerfile` to see how the image is built. The image is publish via Github Actions, if interested have a look to `.github/workflows/build_image.yml`.
-3. Open the file `kubernetes/deployment.yml` and modify the highlighted lines accordingly:
+1. We constructed a very simplistic Rest API using FastAPI. All underlying files are in the `app` folder. Check them.
+2. Open the `Dockerfile` to see how the image is built. The image is automatically rebuilt and published via Github Actions, if interested have a look to `.github/workflows/build_image.yml`.
+3. Open the file `kubernetes/deployment.yml` and modify the following lines accordingly:
 
 ```{yml code-line-numbers: "7"}
 containers:
