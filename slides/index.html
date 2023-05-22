@@ -894,45 +894,43 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <h1><span class="emoji" data-emoji="three">3️⃣</span> Deploying a ML model as an API</h1>
 
 </section>
-<section id="model-serving" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Model serving</h2>
+<section id="exposing-a-model-via-an-api" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
+<h2>Exposing a model via an API</h2>
+<div>
+<div class="fragment" data-fragment-index="1">
 <ul>
-<li class="fragment">Once a ML model has been developed, it must be <span class="orange"><strong>deployed</strong></span> to <span class="orange"><strong>serve</strong></span> its end users
-<ul>
-<li class="fragment">Which <span class="blue2"><strong>production</strong></span> infrastructure ?</li>
-<li class="fragment">Who are the <span class="blue2"><strong>end users</strong></span> ?</li>
-<li class="fragment"><span class="blue2"><strong>Batch</strong></span> serving vs.&nbsp;<span class="blue2"><strong>online</strong></span> serving</li>
-</ul></li>
+<li><span class="orange"><strong>API</strong></span>: interface between the user (client) and the trained model</li>
 </ul>
-</section>
-<section id="a-standard-setup" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>A standard setup</h2>
+</div>
+<div class="fragment" data-fragment-index="2">
 <ul>
-<li class="fragment"><p>Production infrastructure : <span class="orange"><strong>Kubernetes</strong></span> cluster</p></li>
-<li class="fragment"><p>The model might serve <span class="orange"><strong>various applications</strong></span></p>
-<ul>
-<li class="fragment">Make the model accessible via an <span class="blue2"><strong>API</strong></span></li>
-</ul></li>
-<li class="fragment"><p><span class="blue2"><strong>Online</strong></span> serving</p>
-<ul>
-<li class="fragment"><span class="blue2"><strong>Client</strong></span> applications send a <span class="blue2"><strong>request</strong></span> to the API and get a fast <span class="blue2"><strong>response</strong></span></li>
-</ul></li>
+<li><span class="orange"><strong>API REST</strong></span>: allows querying the model using a <span class="blue2"><strong>simple</strong></span> syntax (HTTP) in a <span class="blue2"><strong>scalable</strong></span> manner</li>
 </ul>
+</div>
+<div class="fragment" data-fragment-index="3">
+<ul>
+<li>For more details on constructing an API, refer to the documentation of <a href="https://fastapi.tiangolo.com">FastAPI</a></li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="4">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/API.png"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="exposing-a-model-through-an-api" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Exposing a model through an API</h2>
-
-<img data-src="img/API.png" class="r-stretch quarto-figure-center"></section>
 <section id="run-the-api-in-a-container" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Run the API in a container</h2>
 <ul>
-<li class="fragment"><p><span class="orange"><strong>Container</strong></span>: <span class="blue2"><strong>self-contained</strong></span> and <span class="blue2"><strong>isolated</strong></span> environment that encapsulates the model, its dependencies and the API code</p></li>
-<li class="fragment"><p>Containers provide high <span class="orange"><strong>portability</strong></span> and <span class="orange"><strong>scalability</strong></span> for distributing the model efficiently.</p></li>
-<li class="fragment"><p>The <code>Dockerfile</code> is used to configure and build the Docker container.</p></li>
+<li class="fragment"><span class="orange"><strong>Container</strong></span>: <span class="blue2"><strong>self-contained</strong></span> and <span class="blue2"><strong>isolated</strong></span> environment that encapsulates your model, its dependencies and API code</li>
+<li class="fragment">Containers provide high <span class="orange"><strong>portability</strong></span> and <span class="orange"><strong>scalability</strong></span> for distributing your model efficiently.</li>
+<li class="fragment">The <code>Dockerfile</code> is used to configure and build the Docker container.</li>
 </ul>
 </section>
-<section id="deploying-an-api-on-kubernetes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Deploying an API on <code>Kubernetes</code></h2>
+<section id="deploying-an-api" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Deploying an API</h2>
 <!-- - Need a [**container orchestration tool**]{.orange} such as kubernetes -->
 <ul>
 <li class="fragment"><span class="orange"><strong>3 main files</strong></span> are needed to deploy an API:
