@@ -24,7 +24,7 @@ def load_data():
         anon=True
     )
     df = pq.ParquetDataset(DATA_PATH, filesystem=fs).read_pandas().to_pandas()
-    return df.sample(frac=0.001)
+    return df.sample(frac=0.1   )
 
 
 def train(
