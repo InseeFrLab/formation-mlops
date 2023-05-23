@@ -15,7 +15,7 @@ containers:
     - name: MLFLOW_TRACKING_URI
         value: https://projet-formation-******.user.lab.sspcloud.fr
     - name: MLFLOW_MODEL_NAME
-        value: fasttext-model
+        value: fasttext
     - name: MLFLOW_MODEL_VERSION
         value: "1"
 ```

@@ -4,7 +4,7 @@ entry_points:
   main:
     parameters:
       remote_server_uri: {type: str, default: https://mlflow.lab.sspcloud.fr}
-      experiment_name: {type: str, default: fasttext}
+      experiment_name: {type: str, default: nace-prediction}
       run_name: {type: str, default: default}
       dim: {type: int, default: 150}
       lr: {type: float, default: 0.2}
