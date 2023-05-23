@@ -15,15 +15,15 @@ spec:
     spec:
       containers:
         - name: api
-          image: inseefrlab/formation-mlops-api:main
+          image: inseefrlab/formation-mlops:main
           imagePullPolicy: Always
           env:
             - name: MLFLOW_TRACKING_URI
-              value: https://projet-formation-975214.user.lab.sspcloud.fr
+              value: https://user-<namespace>-<pod_id>.user.lab.sspcloud.fr
             - name: MLFLOW_MODEL_NAME
-              value: fasttext-model
+              value: fasttext
             - name: MLFLOW_MODEL_VERSION
-              value: "4"
+              value: "1"
           ports:
             - name: http
               containerPort: 8000

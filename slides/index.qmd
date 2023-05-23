@@ -70,7 +70,7 @@ from: markdown+emoji
 
 {{< include sections/4-parallel-training.qmd >}}
 
-## Application 4
+## Application 4 {.scrollable}
 
 {{< include applications/_application4.qmd >}}
 

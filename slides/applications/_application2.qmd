@@ -2,19 +2,19 @@
 :::: {.callout-tip collapse="true" icon=false}
 ## Part 1 : From notebooks to a package-like project
 
-0. Launch a `VSCode` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»). Open the service and input the service password (either automatically copied or available in the `README` of the service)
+0. Launch a `VSCode` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»&kubernetes.role=«admin»). Open the service and input the service password (either automatically copied or available in the `README` of the service)
 1. All scripts related to our custom model are stored in the `src` folder. Check them out. Have a look at the `MLproject` file as well.
 2. Run a training of the model using MLflow. To do so, open a terminal (top left button `-> Terminal -> New Terminal`) and run the following command :
 
     ```sh
-    export MLFLOW_EXPERIMENT_NAME="fasttext"
+    export MLFLOW_EXPERIMENT_NAME="nace-prediction"
     mlflow run ~/work/formation-mlops/ --env-manager=local \
         -P remote_server_uri=$MLFLOW_TRACKING_URI \
         -P experiment_name=$MLFLOW_EXPERIMENT_NAME
     ```
 
 3. In the UI of `MLflow`, look at the results of your previous run:
-    + `Experiments -> fasttext -> <run_name>`
+    + `Experiments -> nace-prediction -> <run_name>`
 4. You have trained the model with some default parameters. In `MLproject` check the available parameters. Re-train a model with different parameters (e.g. `dim = 25`).
 
 <details>
@@ -44,12 +44,12 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 :::: {.callout-tip collapse="true" icon=false}
 ## Part 2 : Distributing and querying a custom model
 
-1. Explore the `src/train.py` file carefully. What are the main differences with application 1 ?
-2. Why can we say that the `MLflow` model onboards the preprocessing ?
-3. In `MLflow`, register your last model as `fasttext-model` to make it queryable from the `Python` API
+1. Explore the `src/train.py` file carefully. What are the main differences with application 1?
+2. Why can we say that the `MLflow` model onboards the preprocessing?
+3. In `MLflow`, register your last model as `fasttext` to make it queryable from the `Python` API
 4. Create a script `predict.py` at the root of the project. This script should :
-    - load the version 1 of the `fasttext-model`
-    - use the model to predict the NACE codes of a given list of activity description (e.g. `["vendeur d'huitres", "boulanger"]`). 
+    a. Load the version 1 of the `fasttext`
+    b. Use the model to predict the NACE codes of a given list of activity description (e.g. `["vendeur d'huitres", "boulanger"]`). 
     
 Don't forget to read the documentation of the `predict()` function of the custom class (`src/fasttext_wrapper.py`) to understand the expected format for the inputs !
 
@@ -61,7 +61,7 @@ Don't forget to read the documentation of the `predict()` function of the custom
 ```python
 import mlflow
 
-model_name = "test"
+model_name = "fasttext"
 version = 1
 
 model = mlflow.pyfunc.load_model(
@@ -81,8 +81,20 @@ print(results)
 
 </details>
 
+5. Run your `predict.py` script.
 
-5. Make sure that the two following descriptions give the same top prediction : `"COIFFEUR"` and `"coiffeur, & 98789"`
-6. Change the value of the parameter `k` and try to understand how the structure of the output changed as a result
+<details>
+<summary>
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the command </b></font>
+</summary>
+
+```shell
+python formation-mlops/predict.py
+```
+
+</details>
+
+6. Make sure that the two following descriptions give the same top prediction : `"COIFFEUR"` and `"coiffeur, & 98789"`
+7. Change the value of the parameter `k` and try to understand how the structure of the output changed as a result
 ::::
 :::

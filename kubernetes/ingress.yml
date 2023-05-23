@@ -5,9 +5,9 @@ metadata:
 spec:
   tls:
     - hosts:
-        - formation-mlops-api.lab.sspcloud.fr
+        - <your_firstname>-<your_lastname>-api.lab.sspcloud.fr
   rules:
-    - host: formation-mlops-api.lab.sspcloud.fr
+    - host: <your_firstname>-<your_lastname>-api.lab.sspcloud.fr
       http:
         paths:
           - path: /
