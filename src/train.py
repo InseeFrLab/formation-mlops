@@ -6,7 +6,6 @@ import sys
 import fasttext
 import mlflow
 import pandas as pd
-import nltk
 import pyarrow.parquet as pq
 from sklearn.model_selection import train_test_split
 from preprocessor import Preprocessor
@@ -44,8 +43,6 @@ def train(
     """
     Train a FastText model.
     """
-    nltk.download("stopwords")
-
     mlflow.set_tracking_uri(remote_server_uri)
     mlflow.set_experiment(experiment_name)
     with mlflow.start_run(run_name=run_name):
@@ -86,7 +83,11 @@ def train(
         training_data_path = write_training_data(df_train, params)
 
         # Train the fasttext model
-        model = fasttext.train_supervised(training_data_path, **params, verbose=2)
+        model = fasttext.train_supervised(
+            training_data_path,
+            **params,
+            verbose=2
+        )
 
         # Save model for logging
         model_path = f"models/{run_name}.bin"

@@ -78,7 +78,7 @@
 
 . . .
 
-:two: A Practical Example: NACE Code Prediction for French Companies
+:two: A Practical Example: NACE Code Prediction for French companies
 
 . . .
 

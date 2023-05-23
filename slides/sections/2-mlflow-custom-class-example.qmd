@@ -100,7 +100,7 @@ y_train_pred = model.predict(X_train)
 class MyModel(mlflow.pyfunc.PythonModel):
 
     def load_context(self, context):
-      self.my_model.load_model(context.artifacts["my_model"])
+        self.my_model.load_model(context.artifacts["my_model"])
 
     def predict(self, context, model_input):
         return self.my_model.predict(model_input)

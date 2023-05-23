@@ -24,9 +24,9 @@
 
 ```sh
 mlflow run ~/work/formation-mlops/ --env-manager=local \
--P remote_server_uri=$MLFLOW_TRACKING_URI \
--P experiment_name=$MLFLOW_EXPERIMENT_NAME \
--P dim=25
+    -P remote_server_uri=$MLFLOW_TRACKING_URI \
+    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \
+    -P dim=25
 ```
 
 </details>
@@ -46,9 +46,9 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 
 1. Explore the `src/train.py` file carefully. What are the main differences with application 1?
 2. Why can we say that the `MLflow` model onboards the preprocessing?
-3. In `MLflow`, register your last model as `fasttext` to make it queryable from the `Python` API
-4. Create a script `predict.py` at the root of the project. This script should :
-    a. Load the version 1 of the `fasttext`
+3. In `MLflow`, register your last model as `fasttext` to make it easily queryable from the `Python` API
+4. Create a script `predict.py` in the `src` folder of the project. This script should :
+    a. Load the version 1 of the `fasttext` model
     b. Use the model to predict the NACE codes of a given list of activity description (e.g. `["vendeur d'huitres", "boulanger"]`). 
     
 Don't forget to read the documentation of the `predict()` function of the custom class (`src/fasttext_wrapper.py`) to understand the expected format for the inputs !
@@ -89,7 +89,7 @@ print(results)
 </summary>
 
 ```shell
-python formation-mlops/predict.py
+python formation-mlops/src/predict.py
 ```
 
 </details>
