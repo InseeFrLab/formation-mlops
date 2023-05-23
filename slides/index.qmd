@@ -76,6 +76,15 @@ from: markdown+emoji
 
 
 
+# :five: Machine learning in production
+
+{{< include sections/5-ml-in-production.qmd >}}
+
+## Application 5
+
+{{< include applications/_application5.qmd >}}
+
+
 # Conclusion
 
 {{< include sections/6-conclusion.qmd >}}
