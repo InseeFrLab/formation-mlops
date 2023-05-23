@@ -4,10 +4,7 @@ FROM inseefrlab/onyxia-python-minimal:py3.10.9
 WORKDIR /formation-mlops
 
 # copy project files to the image
-COPY . .
-
-# fix permissions
-RUN chown -R ${USERNAME}:${GROUPNAME} /formation-mlops
+COPY --chown=${USERNAME}:${GROUPNAME} . .
 
 # install all the requirements and import corpus
 RUN pip install --no-cache-dir --upgrade -r requirements.txt && \
