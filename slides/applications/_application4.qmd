@@ -1,15 +1,44 @@
-:::{.callout-tip collapse="true" icon=false}
+:::{.nonincremental}
+:::: {.callout-tip collapse="true" icon=false}
 ## Part 1 : introduction to `Argo Workflows`
 
-:::{.incremental}
-1. Open an `Argo Workflows` service on the `SSP Cloud`
-2. In `VSCode`, create a `hello_world.yaml` file and copy into it the content from the [Hello world](https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/hello-world.yaml) example workflow
+
+1. Launch an `Argo Workflows` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/automation/argo-workflows?autoLaunch=true). Open the service and input the service password (either automatically copied or available in the `README` of the service)
+2. In `VSCode`, create a file `hello_world.yaml` at the root of the project with the following content:
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-world-
+  labels:
+    workflows.argoproj.io/archive-strategy: "false"
+  annotations:
+    workflows.argoproj.io/description: |
+      This is a simple hello world example.
+      You can also run it in Python: https://couler-proj.github.io/couler/examples/#hello-world
+spec:
+  entrypoint: whalesay
+  templates:
+  - name: whalesay
+    container:
+      image: docker/whalesay:latest
+      command: [cowsay]
+      args: ["hello world"]
+
+```
+
 3. Submit the `Hello world` workflow via a terminal in `VSCode` : 
-    + `argo submit hello_world.yaml`
-4. Open the UI of `Argo Workflows`. Find the logs of the workflow you just launched.
+
+```shell
+argo submit formation-mlops/hello_world.yaml
+```
+4. Open the UI of `Argo Workflows`. Find the logs of the workflow you just launched. You should see the Docker logo <i class="fa-brands fa-docker" style="color: #18a8fe;"></i>.
+
+::::
 :::
 
-:::
+
 
 ## Application 4
 
