@@ -31,6 +31,6 @@
 
 <!-- - Need a [**container orchestration tool**]{.orange} such as kubernetes -->
 - [**3 main files**]{.orange} are needed to deploy an API:
-    - `deployment.yaml` : defines how the API should [**run**]{.blue2} (container image, resources, and env variables)
+    - `deployment.yaml` : defines how the API should [**run**]{.blue2} (container image, resources, and environment variables)
     - `service.yaml` : establishes a stable [**internal**]{.blue2} network endpoint for the API.
     - `ingress.yaml` : provides an entry point for [**external**]{.blue2} clients to access the API.
