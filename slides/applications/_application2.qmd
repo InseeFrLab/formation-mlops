@@ -92,6 +92,8 @@ print(results)
 python formation-mlops/predict.py
 ```
 
+</details>
+
 6. Make sure that the two following descriptions give the same top prediction : `"COIFFEUR"` and `"coiffeur, & 98789"`
 7. Change the value of the parameter `k` and try to understand how the structure of the output changed as a result
 ::::
