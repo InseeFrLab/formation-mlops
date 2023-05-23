@@ -8,24 +8,15 @@
 
 - [**Common problematic**]{.orange} to many National Statistical Institutes
 
-## Fasttext 
+## FastText model {background-image="img/diag-fasttext.png" background-size="95%" background-position="50% 85%"}
 
 ::: {.nonincremental}
 
-:::: {.fragment fragment-index=1}
 - [**"Bag of n-gram model"**]{.orange} : embeddings for words but also n-gram of words and characters
-::::
 
-:::: {.fragment fragment-index=2}
 - Very [**simple**]{.orange} and [**fast**]{.orange} model
-::::
-
-:::: {.fragment fragment-index=3}
-![](img/diag-fasttext.png){fig-align="center"}
-::::
 
 :::
-
 
 
 ## Data used {.scrollable}
