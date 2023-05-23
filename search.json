@@ -109,7 +109,7 @@
     "href": "slides/index.html#fasttext-model",
     "title": "An introduction to MLOps with MLflow",
     "section": "FastText model",
-    "text": "FastText model\n\n\n“Bag of n-gram model” : embeddings for words but also n-gram of words and characters\nVery simple and fast model"
+    "text": "FastText model\n\n\n“Bag of n-gram model” : embeddings for words but also n-gram of words and characters\nVery simple and fast model\n\n\nOVA: One vs. All"
   },
   {
     "objectID": "slides/index.html#data-used",
@@ -180,6 +180,13 @@
     "title": "An introduction to MLOps with MLflow",
     "section": "Run the API in a container",
     "text": "Run the API in a container\n\nContainer: self-contained and isolated environment that encapsulates the model, its dependencies and the API code\nContainers provide high portability and scalability for distributing the model efficiently.\nThe Dockerfile is used to configure and build the Docker container."
+  },
+  {
+    "objectID": "slides/index.html#development-with-docker-architecture",
+    "href": "slides/index.html#development-with-docker-architecture",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Development with Docker architecture",
+    "text": "Development with Docker architecture\n\n\n\n\n\n\n\nSource: R. Krispin"
   },
   {
     "objectID": "slides/index.html#deploying-an-api-on-kubernetes",
