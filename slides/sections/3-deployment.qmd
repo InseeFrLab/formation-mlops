@@ -27,6 +27,15 @@
 
 - The `Dockerfile` is used to configure and build the Docker container.
 
+## Development with Docker architecture
+
+![](img/docker-workflow.png){fig-align="center" width="87%"}
+
+::: aside
+Source: [R. Krispin](https://github.com/RamiKrispin/vscode-python)
+:::
+
+
 ## Deploying an API on `Kubernetes`
 
 <!-- - Need a [**container orchestration tool**]{.orange} such as kubernetes -->
