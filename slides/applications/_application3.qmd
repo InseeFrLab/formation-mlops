@@ -21,7 +21,7 @@ containers:
 ```
 
 4. Open the file `kubernetes/ingress.yml` and modify (two times) the URL of the API endpoint to be of the form `<your_firstname>-<your_lastname>-api.lab.sspcloud.fr`
-5. Apply the three `KLubernetes` contracts contained in the `kubernetes/` folder in a terminal to deploy the API
+5. Apply the three `Kubernetes` contracts contained in the `kubernetes/` folder in a terminal to deploy the API
     + `kubectl apply -f kubernetes/`
 6. Reach your API using the URL defined in your `ingress.yml` file
 7. Display the documentation of your API by adding `/docs` to your URL
