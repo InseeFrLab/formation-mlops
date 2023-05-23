@@ -531,7 +531,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <h2>Outline</h2>
 <p><span class="emoji" data-emoji="one">1️⃣</span> Introduction to MLFlow</p>
 <div class="fragment">
-<p><span class="emoji" data-emoji="two">2️⃣</span> A Practical Example: NACE Code Prediction for French Companies</p>
+<p><span class="emoji" data-emoji="two">2️⃣</span> A Practical Example: NACE Code Prediction for French companies</p>
 </div>
 <div class="fragment">
 <p><span class="emoji" data-emoji="three">3️⃣</span> Deploying a ML model as an API</p>
@@ -755,7 +755,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb4-2"><a href="#cb4-2"></a><span class="kw">class</span> MyModel(mlflow.pyfunc.PythonModel):</span>
 <span id="cb4-3"><a href="#cb4-3"></a></span>
 <span id="cb4-4"><a href="#cb4-4"></a>    <span class="kw">def</span> load_context(<span class="va">self</span>, context):</span>
-<span id="cb4-5"><a href="#cb4-5"></a>      <span class="va">self</span>.my_model.load_model(context.artifacts[<span class="st">"my_model"</span>])</span>
+<span id="cb4-5"><a href="#cb4-5"></a>        <span class="va">self</span>.my_model.load_model(context.artifacts[<span class="st">"my_model"</span>])</span>
 <span id="cb4-6"><a href="#cb4-6"></a></span>
 <span id="cb4-7"><a href="#cb4-7"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, context, model_input):</span>
 <span id="cb4-8"><a href="#cb4-8"></a>        <span class="cf">return</span> <span class="va">self</span>.my_model.predict(model_input)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -809,9 +809,9 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Click to see the command </b></font>
 </summary>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">mlflow</span> run ~/work/formation-mlops/ <span class="at">--env-manager</span><span class="op">=</span>local <span class="dt">\</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>-P remote_server_uri=<span class="va">$MLFLOW_TRACKING_URI</span> <span class="dt">\</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>-P experiment_name=<span class="va">$MLFLOW_EXPERIMENT_NAME</span> <span class="dt">\</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>-P dim=25</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="at">-P</span> remote_server_uri=<span class="va">$MLFLOW_TRACKING_URI</span> <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">-P</span> experiment_name=<span class="va">$MLFLOW_EXPERIMENT_NAME</span> <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">-P</span> dim=25</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="5" type="1">
 <li>In <code>MLflow</code>, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e.&nbsp;<code>dim</code>)
@@ -836,10 +836,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <ol type="1">
 <li>Explore the <code>src/train.py</code> file carefully. What are the main differences with application 1?</li>
 <li>Why can we say that the <code>MLflow</code> model onboards the preprocessing?</li>
-<li>In <code>MLflow</code>, register your last model as <code>fasttext</code> to make it queryable from the <code>Python</code> API</li>
-<li>Create a script <code>predict.py</code> at the root of the project. This script should :
+<li>In <code>MLflow</code>, register your last model as <code>fasttext</code> to make it easily queryable from the <code>Python</code> API</li>
+<li>Create a script <code>predict.py</code> in the <code>src</code> folder of the project. This script should :
 <ol type="a">
-<li>Load the version 1 of the <code>fasttext</code></li>
+<li>Load the version 1 of the <code>fasttext</code> model</li>
 <li>Use the model to predict the NACE codes of a given list of activity description (e.g.&nbsp;<code>["vendeur d'huitres", "boulanger"]</code>).</li>
 </ol></li>
 </ol>
@@ -874,7 +874,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Click to see the command </b></font>
 </summary>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>python formation-mlops/predict.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>python formation-mlops/src/predict.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="6" type="1">
 <li>Make sure that the two following descriptions give the same top prediction : <code>"COIFFEUR"</code> and <code>"coiffeur, &amp; 98789"</code></li>
