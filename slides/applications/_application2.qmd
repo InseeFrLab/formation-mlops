@@ -44,12 +44,12 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 :::: {.callout-tip collapse="true" icon=false}
 ## Part 2 : Distributing and querying a custom model
 
-1. Explore the `src/train.py` file carefully. What are the main differences with application 1 ?
-2. Why can we say that the `MLflow` model onboards the preprocessing ?
+1. Explore the `src/train.py` file carefully. What are the main differences with application 1?
+2. Why can we say that the `MLflow` model onboards the preprocessing?
 3. In `MLflow`, register your last model as `fasttext` to make it queryable from the `Python` API
 4. Create a script `predict.py` at the root of the project. This script should :
-    - load the version 1 of the `fasttext`
-    - use the model to predict the NACE codes of a given list of activity description (e.g. `["vendeur d'huitres", "boulanger"]`). 
+    a. Load the version 1 of the `fasttext`
+    b. Use the model to predict the NACE codes of a given list of activity description (e.g. `["vendeur d'huitres", "boulanger"]`). 
     
 Don't forget to read the documentation of the `predict()` function of the custom class (`src/fasttext_wrapper.py`) to understand the expected format for the inputs !
 
@@ -81,8 +81,18 @@ print(results)
 
 </details>
 
+5. Run your `predict.py` script.
 
-5. Make sure that the two following descriptions give the same top prediction : `"COIFFEUR"` and `"coiffeur, & 98789"`
-6. Change the value of the parameter `k` and try to understand how the structure of the output changed as a result
+<details>
+<summary>
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the command </b></font>
+</summary>
+
+```shell
+python formation-mlops/predict.py
+```
+
+6. Make sure that the two following descriptions give the same top prediction : `"COIFFEUR"` and `"coiffeur, & 98789"`
+7. Change the value of the parameter `k` and try to understand how the structure of the output changed as a result
 ::::
 :::
