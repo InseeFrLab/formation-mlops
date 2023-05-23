@@ -19,9 +19,9 @@ spec:
           imagePullPolicy: Always
           env:
             - name: MLFLOW_TRACKING_URI
-              value: https://projet-formation-975214.user.lab.sspcloud.fr
+              value: https://projet-formation-******.user.lab.sspcloud.fr
             - name: MLFLOW_MODEL_NAME
-              value: fasttext-model
+              value: fasttext
             - name: MLFLOW_MODEL_VERSION
               value: "1"
           ports:
