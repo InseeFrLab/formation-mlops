@@ -55,10 +55,11 @@ spec:
           - name: dim
           - name: lr
       container:
-        image: inseefrlab/formation-mlops:latest
+        image: inseefrlab/formation-mlops:main
         imagePullPolicy: Always
         command: [sh, -c]
         args: ["mlflow run .
+                --env-manager=local
                 -P remote_server_uri=$MLFLOW_TRACKING_URI
                 -P experiment_name=$MLFLOW_EXPERIMENT_NAME
                 -P dim={{inputs.parameters.dim}}
