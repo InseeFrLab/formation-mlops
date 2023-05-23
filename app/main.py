@@ -57,7 +57,7 @@ class ActivityDescriptions(BaseModel):
 
 app = FastAPI(
     lifespan=lifespan,
-    title="APE classifier",
+    title="NACE classifier",
     description="Classifier for firm activity descriptions",
     version="0.0.1",
 )
@@ -71,7 +71,7 @@ def show_welcome_page():
     model_name: str = os.getenv("MLFLOW_MODEL_NAME")
     model_version: str = os.getenv("MLFLOW_MODEL_VERSION")
     return {
-        "message": "APE classifier",
+        "message": "NACE classifier",
         "model_name": f"{model_name}",
         "model_version": f"{model_version}",
     }
@@ -83,16 +83,16 @@ async def predict(
     nb_echoes_max: int = 5,
 ) -> Dict:
     """
-    Predict APE code.
+    Predict NACE code.
     This endpoint accepts input data as query parameters and uses the loaded
-    ML model to predict the APE code based on the input data.
+    ML model to predict the NACE code based on the input data.
 
     Args:
         description (str): The activity description.
         nb_echoes_max (int): Maximum number of echoes to consider.
             Default is 5.
     Returns:
-        Dict: Response containing APE codes.
+        Dict: Response containing NACE codes.
     """
     query = {
         "query": [description],
