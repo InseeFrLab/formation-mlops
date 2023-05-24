@@ -6,9 +6,9 @@ spec:
   entrypoint: main
   arguments:
     parameters:
-      # The MLflow tracking server is responsable to log the hyper-parameter and model metrics.
+      # The MLflow tracking server is responsible to log the hyper-parameter and model metrics.
       - name: mlflow-tracking-uri
-        value: 'https://projet-formation-960419.user.lab.sspcloud.fr/'
+        value: 'https://user-<namespace>-<pod_id>.user.lab.sspcloud.fr'
       - name: mlflow-experiment-name
         value: "fasttext-distributed"
       - name: model-training-conf-list
