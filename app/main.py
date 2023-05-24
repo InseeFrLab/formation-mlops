@@ -95,7 +95,7 @@ async def predict(
             Default is 5.
 
     Returns:
-    
+
         Dict: Response containing NACE codes.
     """
     query = {
