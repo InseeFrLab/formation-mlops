@@ -88,10 +88,14 @@ async def predict(
     ML model to predict the NACE code based on the input data.
 
     Args:
+
         description (str): The activity description.
+
         nb_echoes_max (int): Maximum number of echoes to consider.
             Default is 5.
+
     Returns:
+    
         Dict: Response containing NACE codes.
     """
     query = {
