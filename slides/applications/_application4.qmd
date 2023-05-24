@@ -53,9 +53,9 @@ argo submit formation-mlops/hello_world.yaml
 parameters:
     # The MLflow tracking server is responsable to log the hyper-parameter and model metrics.
     - name: mlflow-tracking-uri
-    value: 'https://user-<namespace>-<pod_id>.user.lab.sspcloud.fr'
+    value: https://user-<namespace>-<pod_id>.user.lab.sspcloud.fr
     - name: mlflow-experiment-name
-    value: "fasttext-distributed"
+    value: nace-prediction
 ```
 
 3. Submit the workflow and look at the jobs completing live in the UI.
