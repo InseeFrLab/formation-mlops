@@ -1,0 +1,78 @@
+:::{.nonincremental}
+:::: {.callout-tip collapse="true" icon=false}
+## Partie 1 : introduction à `Argo Workflows`
+
+1. Lancez un service `Argo Workflows` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/automation/argo-workflows?autoLaunch=true). Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier `README` du service).
+2. Dans `VSCode`, créez un fichier `hello_world.yaml` à la racine du projet avec le contenu suivant :
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-world-
+  labels:
+    workflows.argoproj.io/archive-strategy: "false"
+  annotations:
+    workflows.argoproj.io/description: |
+      Ceci est un exemple simple de "Hello World".
+      Vous pouvez également l'exécuter en Python : https://couler-proj.github.io/couler/examples/#hello-world
+spec:
+  entrypoint: whalesay
+  templates:
+  - name: whalesay
+    container:
+      image: docker/whalesay:latest
+      command: [cowsay]
+      args: ["hello world"]
+
+```
+
+3. Soumettez le workflow "Hello World" via un terminal dans `VSCode` :
+
+```shell
+argo submit formation-mlops/hello_world.yaml
+```
+
+4. Ouvrez l'interface utilisateur d'`Argo Workflows`. Trouvez les logs du workflow que vous venez de lancer. Vous devriez voir le logo Docker <i class="fab fa-docker" style="color: #18a8fe;"></i>.
+
+::::
+:::
+
+
+
+## Application 4
+
+:::{.nonincremental}
+:::: {.callout-tip collapse="true" icon=false}
+## Partie 2 : décentralisation de l'optimisation des hyperparamètres
+
+1. Jetez un coup d'œil au fichier `argo_workflows/workflow.yml`. Que pensez-vous qu'il se passera lorsque nous soumettrons ce flux de travail ?
+2. Modifiez la ligne surlignée de la même manière que dans l'application 3.
+
+```{.yml code-line-numbers="4"}
+parameters:
+    # Le serveur de suivi MLflow est responsable de l'enregistrement des hyper-paramètres et des métriques du modèle.
+    - name: mlflow-tracking-uri
+    value: https://user-<namespace>-<pod_id>.user.lab.sspcloud.fr
+    - name: mlflow-experiment-name
+    value: nace-prediction
+```
+
+3. Soumettez le flux de travail et observez les tâches s'exécuter en direct dans l'interface utilisateur.
+
+<details>
+<summary>
+    <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir la commande </b></font>
+</summary>
+
+```shell
+argo submit formation-mlops/argo_workflows/workflow.yml
+```
+
+</details>
+
+4. Une fois que toutes les tâches sont terminées, visualisez les logs de l'ensemble du flux de travail.
+5. Enfin, ouvrez l'interface utilisateur de `MLflow` pour vérifier ce qui a été fait.
+::::
+
+:::
