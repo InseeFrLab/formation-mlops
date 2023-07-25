@@ -8,7 +8,7 @@
 
 - [**Common problematic**]{.orange} to many National Statistical Institutes
 
-## FastText model {background-image="img/diag-fasttext.png" background-size="95%" background-position="50% 85%"}
+## FastText model {background-image="../img/diag-fasttext.png" background-size="95%" background-position="50% 85%"}
 
 ::: {.nonincremental}
 
@@ -124,7 +124,7 @@ class MyModel(mlflow.pyfunc.PythonModel):
 ```{python}
 #| cache: false
 import sys
-sys.path.append("../src/")
+sys.path.append("../../src/")
 
 import pandas as pd
 import s3fs

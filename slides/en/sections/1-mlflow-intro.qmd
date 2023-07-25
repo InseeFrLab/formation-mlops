@@ -4,7 +4,7 @@
 
 . . .
 
-![](img/mlflow-tracking.png){fig-align="center" height=400}
+![](../img/mlflow-tracking.png){fig-align="center" height=400}
 
 ## Projects
 
@@ -12,7 +12,7 @@
 
 . . .
 
-![](img/mlflow-projects.png){fig-align="center" height=400}
+![](../img/mlflow-projects.png){fig-align="center" height=400}
 
 ## Models
 
@@ -20,7 +20,7 @@
 
 . . .
 
-![](img/mlflow-models.png){fig-align="center" height=400}
+![](../img/mlflow-models.png){fig-align="center" height=400}
 
 ## Model registry
 
@@ -28,4 +28,4 @@
 
 . . .
 
-![](img/mlflow-model-registry.png){fig-align="center" height=400}
+![](../img/mlflow-model-registry.png){fig-align="center" height=400}

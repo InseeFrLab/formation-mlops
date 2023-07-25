@@ -17,7 +17,7 @@
 
 ## Exposing a model through an API
 
-![](img/API.png){fig-align="center"}
+![](../img/API.png){fig-align="center"}
 
 ## Run the API in a container
 
@@ -29,7 +29,7 @@
 
 ## Development with Docker architecture
 
-![](img/docker-workflow.png){fig-align="center" width="87%"}
+![](../img/docker-workflow.png){fig-align="center" width="87%"}
 
 ::: aside
 Source: [R. Krispin](https://github.com/RamiKrispin/vscode-python)

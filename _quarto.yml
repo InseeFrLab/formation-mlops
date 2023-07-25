@@ -1,4 +1,4 @@
 project:
   type: website
   render:
-    - /slides/index.qmd
+    - /slides/**/index.qmd

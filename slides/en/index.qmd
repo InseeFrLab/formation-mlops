@@ -22,7 +22,7 @@ format:
     incremental: true 
     output-file: index.html
 controls: true
-css: custom.css
+css: ../custom.css
 from: markdown+emoji
 ---
 
