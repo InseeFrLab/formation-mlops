@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/InseeFrLab/formation-mlops/slides/index.html</loc>
-    <lastmod>2023-05-25T21:48:37.135Z</lastmod>
+    <loc>https://github.com/InseeFrLab/formation-mlops/slides/fr/index.html</loc>
+    <lastmod>2023-07-25T15:00:11.621Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/InseeFrLab/formation-mlops/slides/en/index.html</loc>
+    <lastmod>2023-07-25T14:59:42.773Z</lastmod>
   </url>
 </urlset>

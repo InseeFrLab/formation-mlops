@@ -1,336 +1,672 @@
 [
   {
-    "objectID": "slides/index.html#who-are-we",
-    "href": "slides/index.html#who-are-we",
+    "objectID": "slides/fr/index.html#qui-sommes-nous",
+    "href": "slides/fr/index.html#qui-sommes-nous",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Qui sommes-nous ?",
+    "text": "Qui sommes-nous ?\n\nData scientists à l’Insee\n\nÉquipes d’innovation méthodologique et informatique\nNous soutenons et accompagnons des projets de datascience\n\nContactez-nous\n\nromain.avouac at insee dot fr\nthomas.faria at insee dot fr\ntom.seimandi at insee dot fr"
+  },
+  {
+    "objectID": "slides/fr/index.html#contexte",
+    "href": "slides/fr/index.html#contexte",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Contexte",
+    "text": "Contexte\n\nDifficulté de passer des expérimentations à la mise en production de modèle de machine learning\nTirer parti des meilleures pratiques en génie logiciel\n\nAméliorer la reproductibilité des analyses\nDéployer des applications de manière extensible\nSurveiller les applications en cours d’exécution"
+  },
+  {
+    "objectID": "slides/fr/index.html#lapproche-devops",
+    "href": "slides/fr/index.html#lapproche-devops",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "L’approche DevOps",
+    "text": "L’approche DevOps\n\nUnifier le développement (dev) et l’administration système (ops)\n\nRéduire le temps de développement\nMaintenir la qualité logicielle"
+  },
+  {
+    "objectID": "slides/fr/index.html#lapproche-mlops",
+    "href": "slides/fr/index.html#lapproche-mlops",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "L’approche MLOps",
+    "text": "L’approche MLOps\n\nIntégrer les spécificités des projets de machine learning\n\nExpérimentation\nAmélioration continue"
+  },
+  {
+    "objectID": "slides/fr/index.html#mlops-principes",
+    "href": "slides/fr/index.html#mlops-principes",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "MLOps : principes",
+    "text": "MLOps : principes\n\nReproductibilité\nCOntrôle de version\nAutomatisation\nSurveillance\nCollaboration"
+  },
+  {
+    "objectID": "slides/fr/index.html#pourquoi-mlflow",
+    "href": "slides/fr/index.html#pourquoi-mlflow",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Pourquoi MLflow ?",
+    "text": "Pourquoi MLflow ?\n\nDe nombreux frameworks implémentent les principes du MLOps\nAvantages de MLflow :\n\nOpen-source\nCouvre l’entièreté du cycle de vie d’un modèle ML\nAgnostic au package ML utilisé\nNous avons de l’expérience avec lui"
+  },
+  {
+    "objectID": "slides/fr/index.html#plateforme-de-formation-le-ssp-cloud",
+    "href": "slides/fr/index.html#plateforme-de-formation-le-ssp-cloud",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Plateforme de formation : le SSP Cloud",
+    "text": "Plateforme de formation : le SSP Cloud\n\nUn environnement d’innovation ouvert\n\nCluster Kubernetes\nStockage d’objets compatible S3\nDe grandes ressources de calcul (y compris des GPU)\n\nBasé sur le projet Onyxia\n\nUne interface conviviale pour les utilisateurs permettant de lancer des services de datascience\nUn catalogue de services couvrant l’ensemble du cycle de vie des projets de datascience"
+  },
+  {
+    "objectID": "slides/fr/index.html#plan",
+    "href": "slides/fr/index.html#plan",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Plan",
+    "text": "Plan\n1️⃣ Introduction à MLFlow\n\n2️⃣ Un exemple concret: Prédiction du code APE pour les entreprises\n\n\n3️⃣ Déployer un modèle ML via une API\n\n\n4️⃣ Décentraliser l’optimisation des hyperparamètres"
+  },
+  {
+    "objectID": "slides/fr/index.html#application-0",
+    "href": "slides/fr/index.html#application-0",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Application 0",
+    "text": "Application 0\n\n\n\nPréparation de l’environnement de travail\n\n\n\n\nCréez un compte sur le SSP Cloud en utilisant votre adresse e-mail professionnelle.\nLancez un service MLflow en cliquant sur cette URL.\nLancez un service Jupyter-python en cliquant sur cette URL.\nOuvrez le service Jupyter-python et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier README du service).\nVous êtes prêt !"
+  },
+  {
+    "objectID": "slides/fr/index.html#tracking-server",
+    "href": "slides/fr/index.html#tracking-server",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Tracking server",
+    "text": "Tracking server\n\n“Une API et une interface utilisateur pour enregistrer les paramètres, les versions du code, les métriques et les artefacts”"
+  },
+  {
+    "objectID": "slides/fr/index.html#projects",
+    "href": "slides/fr/index.html#projects",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Projects",
+    "text": "Projects\n\n“Un format standard pour ‘packager’ du code réutilisable en datascience”"
+  },
+  {
+    "objectID": "slides/fr/index.html#models",
+    "href": "slides/fr/index.html#models",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Models",
+    "text": "Models\n\n“Une convention pour ‘packager’ des modèles de machine learning sous plusieurs formes”"
+  },
+  {
+    "objectID": "slides/fr/index.html#model-registry",
+    "href": "slides/fr/index.html#model-registry",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Model registry",
+    "text": "Model registry\n\n“Un entrepôt centralisé de modèles, un ensemble d’API et une interface utilisateur pour gérer collaborativement le cycle de vie complet d’un modèle MLflow”"
+  },
+  {
+    "objectID": "slides/fr/index.html#application-1",
+    "href": "slides/fr/index.html#application-1",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Application 1",
+    "text": "Application 1\n\n\n\nIntroduction aux concepts de MLflow\n\n\n\n\nDans JupyterLab, ouvrez le notebook situé à l’emplacement formation-mlops/notebooks/mlflow-introduction.ipynb.\nExécutez le notebook cellule par cellule. Si vous avez terminé plus tôt, explorez l’interface utilisateur de MLflow et essayez de créer vos propres expériences à partir du code d’exemple fourni dans le notebook."
+  },
+  {
+    "objectID": "slides/fr/index.html#contexte-1",
+    "href": "slides/fr/index.html#contexte-1",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Contexte",
+    "text": "Contexte\n\nNACE\n\nNomenclature statistique des Activités économiques dans la Communauté Européenne\nStructure hierarchique avec 4 niveaux et 615 codes\n\nA l’Insee, précédemment classifié par un algorithme basé sur des règles de décisions\nproblématique commune à beaucoup d’Instituts nationaux de statistique"
+  },
+  {
+    "objectID": "slides/fr/index.html#le-modèle-fasttext",
+    "href": "slides/fr/index.html#le-modèle-fasttext",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Le modèle FastText",
+    "text": "Le modèle FastText\n\n\nModèle “sac de n-gram” : plongements lexicaux pour les mots mais aussi pour les n-gram de mots et de caractères\nUn modèle très simple et rapide\n\n\nOVA: One vs. All"
+  },
+  {
+    "objectID": "slides/fr/index.html#données-utilisées",
+    "href": "slides/fr/index.html#données-utilisées",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Données utilisées",
+    "text": "Données utilisées\n\nSlideRawPreprocessed\n\n\n\nUn cas d’utilisation simple avec seulement 2 variables:\n\nDescription textuelle de l’activité - text\nCode NACE vrai labelisé par le moteur de règles – nace (732 modalités)\n\nPrétraitements standards :\n\nPassage en minuscules\nSuppression de la ponctuation\nSuppression des nombres\nSuppression des mots vide de sens\nRacinisation (stemming)\n…\n\n\n\n\n\nviewof table_data = Inputs.table(transpose(data_raw), {\n    rows: 22\n})\n\n\n\n\n\n\n\n\n\nviewof table_data_prepro = Inputs.table(transpose(data_prepro), {\n    rows: 22\n})"
+  },
+  {
+    "objectID": "slides/fr/index.html#mlflow-avec-framework-non-standard",
+    "href": "slides/fr/index.html#mlflow-avec-framework-non-standard",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "MLflow avec framework non standard",
+    "text": "MLflow avec framework non standard\n\n\n\nFacile d’utilisation avec une grande variété de framework de machine learning (scikit-learn, Keras, Pytorch…)\n\n\n\nmlflow.sklearn.log_model(pipe_rf, \"model\")\n\nmlflow.pyfunc.load_model(model_uri=f\"models:/{model_name}/{version}\")\ny_train_pred = model.predict(X_train)\n\n\n\nQue se passe-t-il si nous avons besoin d’une plus grande flexibilité, par exemple, pour utiliser un framework personnalisé?\n\n\n\n\nPossibilité de suivre, enregistrer et déployer son propre modèle"
+  },
+  {
+    "objectID": "slides/fr/index.html#mlflow-avec-framework-non-standard-1",
+    "href": "slides/fr/index.html#mlflow-avec-framework-non-standard-1",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "MLflow avec framework non standard",
+    "text": "MLflow avec framework non standard\n\n\n\nil y a 2 principales différences lorsque vous utilisez votre propre framework:\n\nL’enregistrement des paramètres, des métriques et des artefacts\nL’encapsulation de votre modèle personalisé afin que MLflow puisse le servir\n\n\n\n\n# Define a custom model\nclass MyModel(mlflow.pyfunc.PythonModel):\n\n    def load_context(self, context):\n        self.my_model.load_model(context.artifacts[\"my_model\"])\n\n    def predict(self, context, model_input):\n        return self.my_model.predict(model_input)"
+  },
+  {
+    "objectID": "slides/fr/index.html#de-lexpérimentation-à-la-production",
+    "href": "slides/fr/index.html#de-lexpérimentation-à-la-production",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "De l’expérimentation à la production",
+    "text": "De l’expérimentation à la production\n\nLes notebooks ne sont pas adaptés pour une mise en production de modèles ML :\n\nPotentiel limité d’automatisation des pipelines ML.\nWorkflows peu clairs et peu reproductible.\nLimite la collaboration et le contrôle de version entre les membres de l’équipe.\nModularité insuffisante pour gérer des composants ML complexe."
+  },
+  {
+    "objectID": "slides/fr/index.html#application-2",
+    "href": "slides/fr/index.html#application-2",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Application 2",
+    "text": "Application 2\n\n\n\n\nPartie 1 : Des notebooks à un projet de type package\n\n\n\nLancez un service VSCode en cliquant sur cette URL. Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier README du service).\nTous les scripts liés à notre modèle personnalisé sont stockés dans le dossier src. Consultez-les. Regardez également le fichier MLproject.\nExécutez un entraînement du modèle à l’aide de MLflow. Pour ce faire, ouvrez un terminal (bouton en haut à gauche -&gt; Terminal -&gt; Nouveau terminal) et exécutez la commande suivante :\nexport MLFLOW_EXPERIMENT_NAME=\"nace-prediction\"\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME\nDans l’interface de MLflow, examinez les résultats de votre exécution précédente :\n\nExperiments -&gt; nace-prediction -&gt; &lt;nom_de_l_execution&gt;\n\nVous avez entraîné le modèle avec certains paramètres par défaut. Dans MLproject, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, dim = 25).\n\n\n\nCliquez pour voir la commande \n\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \\\n    -P dim=25\n\n\nDans MLflow, comparez les 2 modèles en traçant l’exactitude par rapport à un paramètre que vous avez modifié (par ex. dim)\n\nSélectionnez les 2 exécutions -&gt; Comparer -&gt; Diagramme de dispersion -&gt; Sélectionnez votre axe X et Y"
+  },
+  {
+    "objectID": "slides/fr/index.html#application-2-1",
+    "href": "slides/fr/index.html#application-2-1",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Application 2",
+    "text": "Application 2\n\n\n\n\nPartie 2 : Distribution et interrogation d’un modèle personnalisé\n\n\n\nExplorez attentivement le fichier src/train.py. Quelles sont les principales différences avec l’application 1 ?\nPourquoi pouvons-nous dire que le modèle MLflow intègre le prétraitement ?\nDans MLflow, enregistrez votre dernier modèle en tant que fasttext pour le rendre facilement interrogeable depuis l’API Python.\nCréez un script predict.py dans le dossier src du projet. Ce script devrait : a. Charger la version 1 du modèle fasttext b. Utiliser le modèle pour prédire les codes NACE d’une liste donnée de descriptions d’activité (par exemple, [\"vendeur d'huitres\", \"boulanger\"]).\n\nN’oubliez pas de lire la documentation de la fonction predict() de la classe personnalisée (src/fasttext_wrapper.py) pour comprendre le format attendu des entrées !\n\n\nCliquez pour voir le contenu du script \n\nimport mlflow\n\nmodel_name = \"fasttext\"\nversion = 1\n\nmodel = mlflow.pyfunc.load_model(\n    model_uri=f\"models:/{model_name}/{version}\"\n)\n\nlist_libs = [\"vendeur d'huitres\", \"boulanger\"]\n\ntest_data = {\n    \"query\": list_libs,\n    \"k\": 1\n}\n\nresults = model.predict(test_data)\nprint(results)\n\n\nExécutez votre script predict.py.\n\n\n\nCliquez pour voir la commande \n\npython formation-mlops/src/predict.py\n\n\nAssurez-vous que les deux descriptions suivantes donnent la même prédiction principale : \"COIFFEUR\" et \"coiffeur, & 98789\".\nModifiez la valeur du paramètre k et essayez de comprendre comment la structure de la sortie a changé en conséquence."
+  },
+  {
+    "objectID": "slides/fr/index.html#mise-en-service-du-modèle",
+    "href": "slides/fr/index.html#mise-en-service-du-modèle",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Mise en service du modèle",
+    "text": "Mise en service du modèle\n\nUne fois qu’un modèle de machine learning a été développé, il doit être déployé pour servir ses utilisateurs finaux.\n\nQuelle est l’infrastructure de production ?\nQui sont les utilisateurs finaux ?\nTraitement par lots (batch) par rapport au traitement en ligne (online)"
+  },
+  {
+    "objectID": "slides/fr/index.html#configuration-standard",
+    "href": "slides/fr/index.html#configuration-standard",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Configuration standard",
+    "text": "Configuration standard\n\nInfrastructure de production : cluster Kubernetes\nLe modèle peut servir diverses applications\n\nRendre le modèle accessible via une API\n\nTraitement en ligne (online serving)\n\nLes applications client envoient une requête à l’API et reçoivent une réponse rapide"
+  },
+  {
+    "objectID": "slides/fr/index.html#exposer-un-modèle-via-une-api",
+    "href": "slides/fr/index.html#exposer-un-modèle-via-une-api",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Exposer un modèle via une API",
+    "text": "Exposer un modèle via une API"
+  },
+  {
+    "objectID": "slides/fr/index.html#exécuter-une-api-dans-un-conteneur",
+    "href": "slides/fr/index.html#exécuter-une-api-dans-un-conteneur",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Exécuter une API dans un conteneur",
+    "text": "Exécuter une API dans un conteneur\n\nConteneur : environnement autonome et isolé qui encapsule le modèle, ses dépendances et le code de l’API\nLes conteneurs offrent une grande portabilité et scalabilité pour distribuer le modèle de manière efficace.\nLe fichier Dockerfile est utilisé pour configurer et construire le conteneur Docker."
+  },
+  {
+    "objectID": "slides/fr/index.html#développement-avec-larchitecture-docker",
+    "href": "slides/fr/index.html#développement-avec-larchitecture-docker",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Développement avec l’architecture Docker",
+    "text": "Développement avec l’architecture Docker\n\n\n\n\n\n\n\nSource: R. Krispin"
+  },
+  {
+    "objectID": "slides/fr/index.html#déploiement-dune-api-sur-kubernetes",
+    "href": "slides/fr/index.html#déploiement-dune-api-sur-kubernetes",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Déploiement d’une API sur Kubernetes",
+    "text": "Déploiement d’une API sur Kubernetes\n\n\n3 fichiers principaux sont nécessaires pour déployer une API :\n\ndeployment.yaml : définit le fonctionnement de l’API (image du conteneur, ressources et variables d’environnement)\nservice.yaml : établit un point de terminaison réseau interne stable pour l’API.\ningress.yaml : fournit un point d’entrée pour les clients externes afin d’accéder à l’API."
+  },
+  {
+    "objectID": "slides/fr/index.html#application-3",
+    "href": "slides/fr/index.html#application-3",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Application 3",
+    "text": "Application 3\n\n\n\n\nDéploiement d’un modèle ML en tant qu’API\n\n\n\nNous avons construit une API REST très simpliste à l’aide de FastAPI. Tous les fichiers sous-jacents se trouvent dans le dossier app. Consultez-les.\nOuvrez le Dockerfile pour voir comment l’image est construite. L’image est automatiquement reconstruite et publiée via Github Actions, si vous êtes intéressé, jetez un coup d’œil à .github/workflows/build_image.yml.\nOuvrez le fichier kubernetes/deployment.yml et modifiez les lignes surlignées comme suit :\n\ncontainers:\n- name: api\n    image: inseefrlab/formation-mlops-api:main\n    imagePullPolicy: Always\n    env:\n    - name: MLFLOW_TRACKING_URI\n        value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: MLFLOW_MODEL_NAME\n        value: fasttext\n    - name: MLFLOW_MODEL_VERSION\n        value: \"1\"\n\nOuvrez le fichier kubernetes/ingress.yml et modifiez (deux fois) l’URL du point de terminaison de l’API pour qu’elle soit de la forme &lt;votre_prénom&gt;-&lt;votre_nom&gt;-api.lab.sspcloud.fr.\nAppliquez les trois contrats Kubernetes contenus dans le dossier kubernetes/ dans un terminal pour déployer l’API\n\nkubectl apply -f formation-mlops/kubernetes/\n\nAccédez à votre API en utilisant l’URL définie dans votre fichier ingress.yml.\nAffichez la documentation de votre API en ajoutant /docs à votre URL.\nTestez votre API !\nRéexécutez un nouveau modèle et déployez ce nouveau modèle dans votre API\n\n\n\nCliquez pour voir les étapes \n\n\nExécutez un modèle.\nEnregistrez le modèle.\nAjustez votre variable d’environnement MLFLOW_MODEL_NAME ou MLFLOW_MODEL_VERSION (si vous n’avez pas modifié le nom du modèle) dans le fichier deployment.yml.\nAppliquez les nouveaux contrats Kubernetes pour mettre à jour l’API\n\nkubectl apply -f formation-mlops/kubernetes/\n\nRafraîchissez votre API et vérifiez sur la page d’accueil qu’elle est désormais basée sur la nouvelle version du modèle."
+  },
+  {
+    "objectID": "slides/fr/index.html#entraînement-parallèle",
+    "href": "slides/fr/index.html#entraînement-parallèle",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Entraînement parallèle",
+    "text": "Entraînement parallèle\n\nAvec notre configuration, nous pouvons entraîner des modèles un par un et enregistrer toutes les informations pertinentes sur le serveur MLflow Tracking.\nEt si nous voulions entraîner plusieurs modèles en même temps, par exemple pour optimiser les hyperparamètres ?"
+  },
+  {
+    "objectID": "slides/fr/index.html#automatisation-du-workflow",
+    "href": "slides/fr/index.html#automatisation-du-workflow",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Automatisation du workflow",
+    "text": "Automatisation du workflow\n\nPrincipes généraux :\n\nDéfinir des workflows où chaque étape du processus est un conteneur (reproductibilité).\nModéliser les workflows à plusieurs étapes comme une séquence de tâches ou comme un graphe acyclique orienté.\nCela permet d’exécuter facilement en parallèle des tâches intensives en calcul pour l’entraînement du modèle ou le traitement des données."
+  },
+  {
+    "objectID": "slides/fr/index.html#argo-workflows",
+    "href": "slides/fr/index.html#argo-workflows",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Argo workflows",
+    "text": "Argo workflows\n\nUn moteur de workflow populaire pour orchestrer des tâches parallèles sur Kubernetes.\n\nOpen-source\nContainer-native\nDisponible sur le SSP Cloud"
+  },
+  {
+    "objectID": "slides/fr/index.html#bonjour-le-monde",
+    "href": "slides/fr/index.html#bonjour-le-monde",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Bonjour le monde",
+    "text": "Bonjour le monde\napiVersion: argoproj.io/v1alpha1\nkind: Workflow                  # nouveau type de spécification k8s\nmetadata:\n  generateName: hello-world-    # nom de la spécification du workflow\nspec:\n  entrypoint: whalesay          # invoque le modèle whalesay\n  templates:\n    - name: whalesay            # nom du modèle\n      container:\n        image: docker/whalesay\n        command: [ cowsay ]\n        args: [ \"bonjour le monde\" ]"
+  },
+  {
+    "objectID": "slides/fr/index.html#que-se-passe-t-il",
+    "href": "slides/fr/index.html#que-se-passe-t-il",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Que se passe-t-il ?",
+    "text": "Que se passe-t-il ?"
+  },
+  {
+    "objectID": "slides/fr/index.html#que-se-passe-t-il-1",
+    "href": "slides/fr/index.html#que-se-passe-t-il-1",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Que se passe-t-il ?",
+    "text": "Que se passe-t-il ?"
+  },
+  {
+    "objectID": "slides/fr/index.html#que-se-passe-t-il-2",
+    "href": "slides/fr/index.html#que-se-passe-t-il-2",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Que se passe-t-il ?",
+    "text": "Que se passe-t-il ?"
+  },
+  {
+    "objectID": "slides/fr/index.html#paramètres",
+    "href": "slides/fr/index.html#paramètres",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Paramètres",
+    "text": "Paramètres\n\nLes modèles peuvent prendre des paramètres d’entrée\n\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: hello-world-parameters-\nspec:\n  entrypoint: whalesay\n  arguments:\n    parameters:\n    - name: message\n      value: bonjour le monde\n\n  templates:\n  - name: whalesay\n    inputs:\n      parameters:\n      - name: message       # déclaration du paramètre\n    container:\n      image: docker/whalesay\n      command: [cowsay]\n      args: [\"{{inputs.parameters.message}}\"]"
+  },
+  {
+    "objectID": "slides/fr/index.html#workflows-à-plusieurs-étapes",
+    "href": "slides/fr/index.html#workflows-à-plusieurs-étapes",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Workflows à plusieurs étapes",
+    "text": "Workflows à plusieurs étapes\n\nLes workflows à plusieurs étapes peuvent être spécifiés (steps ou dag)\n\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: steps-\nspec:\n  entrypoint: hello-hello-hello\n\n  # Cette spécification contient deux modèles : hello-hello-hello et whalesay\n  templates:\n  - name: hello-hello-hello\n    # Au lieu d'exécuter uniquement un conteneur\n    # Ce modèle a une séquence d'étapes\n    steps:\n    - - name: hello1            # hello1 est exécuté avant les étapes suivantes\n        template: whalesay\n    - - name: hello2a           # double tiret =&gt; exécuté après l'étape précédente\n        template: whalesay\n      - name: hello2b           # tiret simple =&gt; exécuté en parallèle avec l'étape précédente\n        template: whalesay\n  - name: whalesay              # nom du modèle\n    container:\n      image: docker/whalesay\n      command: [ cowsay ]\n      args: [ \"bonjour le monde\" ]"
+  },
+  {
+    "objectID": "slides/fr/index.html#que-se-passe-t-il-3",
+    "href": "slides/fr/index.html#que-se-passe-t-il-3",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Que se passe-t-il ?",
+    "text": "Que se passe-t-il ?"
+  },
+  {
+    "objectID": "slides/fr/index.html#que-se-passe-t-il-4",
+    "href": "slides/fr/index.html#que-se-passe-t-il-4",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Que se passe-t-il ?",
+    "text": "Que se passe-t-il ?"
+  },
+  {
+    "objectID": "slides/fr/index.html#que-se-passe-t-il-5",
+    "href": "slides/fr/index.html#que-se-passe-t-il-5",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Que se passe-t-il ?",
+    "text": "Que se passe-t-il ?"
+  },
+  {
+    "objectID": "slides/fr/index.html#que-se-passe-t-il-6",
+    "href": "slides/fr/index.html#que-se-passe-t-il-6",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Que se passe-t-il ?",
+    "text": "Que se passe-t-il ?"
+  },
+  {
+    "objectID": "slides/fr/index.html#que-se-passe-t-il-7",
+    "href": "slides/fr/index.html#que-se-passe-t-il-7",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Que se passe-t-il ?",
+    "text": "Que se passe-t-il ?"
+  },
+  {
+    "objectID": "slides/fr/index.html#autres-applications",
+    "href": "slides/fr/index.html#autres-applications",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Autres applications",
+    "text": "Autres applications\n\nWorkflow pour tester des modèles enregistrés, ou des modèles poussés en pré-production / production.\nLes workflows peuvent être déclenchés automatiquement (via Argo Events, par exemple).\nWorkflows d’entraînement continue.\nPipelines de machine learning distribués en général (téléchargement de données, traitement, etc.)."
+  },
+  {
+    "objectID": "slides/fr/index.html#autres-applications-1",
+    "href": "slides/fr/index.html#autres-applications-1",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Autres applications",
+    "text": "Autres applications"
+  },
+  {
+    "objectID": "slides/fr/index.html#notes",
+    "href": "slides/fr/index.html#notes",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Notes",
+    "text": "Notes\n\nPython SDK pour Argo Workflows\nPipelines Kubeflow\nCouler : interface unifiée pour la construction et la gestion de workflows sur différents moteurs de workflows\nAutres outils d’orchestration natifs de Python : Apache Airflow, Metaflow, Prefect"
+  },
+  {
+    "objectID": "slides/fr/index.html#application-4",
+    "href": "slides/fr/index.html#application-4",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Application 4",
+    "text": "Application 4\n\n\n\n\nPartie 1 : introduction à Argo Workflows\n\n\n\nLancez un service Argo Workflows en cliquant sur cette URL. Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier README du service).\nDans VSCode, créez un fichier hello_world.yaml à la racine du projet avec le contenu suivant :\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: hello-world-\n  labels:\n    workflows.argoproj.io/archive-strategy: \"false\"\n  annotations:\n    workflows.argoproj.io/description: |\n      Ceci est un exemple simple de \"Hello World\".\n      Vous pouvez également l'exécuter en Python : https://couler-proj.github.io/couler/examples/#hello-world\nspec:\n  entrypoint: whalesay\n  templates:\n  - name: whalesay\n    container:\n      image: docker/whalesay:latest\n      command: [cowsay]\n      args: [\"hello world\"]\n\nSoumettez le workflow “Hello World” via un terminal dans VSCode :\n\nargo submit formation-mlops/hello_world.yaml\n\nOuvrez l’interface utilisateur d’Argo Workflows. Trouvez les logs du workflow que vous venez de lancer. Vous devriez voir le logo Docker ."
+  },
+  {
+    "objectID": "slides/fr/index.html#application-4-1",
+    "href": "slides/fr/index.html#application-4-1",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Application 4",
+    "text": "Application 4\n\n\n\n\nPartie 2 : décentralisation de l’optimisation des hyperparamètres\n\n\n\nJetez un coup d’œil au fichier argo_workflows/workflow.yml. Que pensez-vous qu’il se passera lorsque nous soumettrons ce flux de travail ?\nModifiez la ligne surlignée de la même manière que dans l’application 3.\n\nparameters:\n    # Le serveur de suivi MLflow est responsable de l'enregistrement des hyper-paramètres et des métriques du modèle.\n    - name: mlflow-tracking-uri\n    value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: mlflow-experiment-name\n    value: nace-prediction\n\nSoumettez le flux de travail et observez les tâches s’exécuter en direct dans l’interface utilisateur.\n\n\n\nCliquez pour voir la commande \n\nargo submit formation-mlops/argo_workflows/workflow.yml\n\n\nUne fois que toutes les tâches sont terminées, visualisez les logs de l’ensemble du flux de travail.\nEnfin, ouvrez l’interface utilisateur de MLflow pour vérifier ce qui a été fait."
+  },
+  {
+    "objectID": "slides/en/index.html#who-are-we",
+    "href": "slides/en/index.html#who-are-we",
     "title": "An introduction to MLOps with MLflow",
     "section": "Who are we ?",
     "text": "Who are we ?\n\nData scientists at Insee\n\nmethodological and IT innovation teams\nsupport data science projects\n\nContact us\n\nromain.avouac at insee dot fr\nthomas.faria at insee dot fr\ntom.seimandi at insee dot fr"
   },
   {
-    "objectID": "slides/index.html#context",
-    "href": "slides/index.html#context",
+    "objectID": "slides/en/index.html#context",
+    "href": "slides/en/index.html#context",
     "title": "An introduction to MLOps with MLflow",
     "section": "Context",
     "text": "Context\n\nDifficulty of transitioning from experiments to production-grade machine learning systems\nLeverage best practices from software engineering\n\nImprove reproducibility of analysis\nDeploy applications in a scalable way\nMonitor running applications"
   },
   {
-    "objectID": "slides/index.html#the-devops-approach",
-    "href": "slides/index.html#the-devops-approach",
+    "objectID": "slides/en/index.html#the-devops-approach",
+    "href": "slides/en/index.html#the-devops-approach",
     "title": "An introduction to MLOps with MLflow",
     "section": "The DevOps approach",
     "text": "The DevOps approach\n\nUnify development (dev) and system administration (ops)\n\nshorten development time\nmaintain software quality"
   },
   {
-    "objectID": "slides/index.html#the-mlops-approach",
-    "href": "slides/index.html#the-mlops-approach",
+    "objectID": "slides/en/index.html#the-mlops-approach",
+    "href": "slides/en/index.html#the-mlops-approach",
     "title": "An introduction to MLOps with MLflow",
     "section": "The MLOps approach",
     "text": "The MLOps approach\n\nIntegrate the specificities of machine learning projects\n\nExperimentation\nContinuous improvement"
   },
   {
-    "objectID": "slides/index.html#mlops-principles",
-    "href": "slides/index.html#mlops-principles",
+    "objectID": "slides/en/index.html#mlops-principles",
+    "href": "slides/en/index.html#mlops-principles",
     "title": "An introduction to MLOps with MLflow",
     "section": "MLOps : principles",
     "text": "MLOps : principles\n\nReproducibility\nVersioning\nAutomation\nMonitoring\nCollaboration"
   },
   {
-    "objectID": "slides/index.html#why-mlflow",
-    "href": "slides/index.html#why-mlflow",
+    "objectID": "slides/en/index.html#why-mlflow",
+    "href": "slides/en/index.html#why-mlflow",
     "title": "An introduction to MLOps with MLflow",
     "section": "Why MLflow ?",
     "text": "Why MLflow ?\n\nMultiple frameworks implement the MLOps principles\nPros of MLflow\n\nOpen-source\nCovers the whole ML lifecycle\nAgnostic to the ML library used\nWe have experience with it"
   },
   {
-    "objectID": "slides/index.html#training-platform-the-ssp-cloud",
-    "href": "slides/index.html#training-platform-the-ssp-cloud",
+    "objectID": "slides/en/index.html#training-platform-the-ssp-cloud",
+    "href": "slides/en/index.html#training-platform-the-ssp-cloud",
     "title": "An introduction to MLOps with MLflow",
     "section": "Training platform : the SSP Cloud",
     "text": "Training platform : the SSP Cloud\n\nAn open innovation production-like environment\n\nKubernetes cluster\nS3-compatible object storage\nLarge computational resources (including GPUs)\n\nBased on the Onyxia project\n\nUser-friendly interface to launch data science services\nA catalog of services which covers the full lifecycle of data science projects"
   },
   {
-    "objectID": "slides/index.html#outline",
-    "href": "slides/index.html#outline",
+    "objectID": "slides/en/index.html#outline",
+    "href": "slides/en/index.html#outline",
     "title": "An introduction to MLOps with MLflow",
     "section": "Outline",
     "text": "Outline\n1️⃣ Introduction to MLFlow\n\n2️⃣ A Practical Example: NACE Code Prediction for French companies\n\n\n3️⃣ Deploying a ML model as an API\n\n\n4️⃣ Distributing the hyperparameter optimization"
   },
   {
-    "objectID": "slides/index.html#application-0",
-    "href": "slides/index.html#application-0",
+    "objectID": "slides/en/index.html#application-0",
+    "href": "slides/en/index.html#application-0",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 0",
     "text": "Application 0\n\n\n\nPreparation of the working environment\n\n\n\n\nCreate an account on the SSP Cloud using your professional mail address\nLaunch a MLflow service by clicking this URL\nLaunch a Jupyter-python service by clicking this URL\nOpen the Jupyter-python service and input the service password (either automatically copied or available in the README of the service)\nYou’re all set !"
   },
   {
-    "objectID": "slides/index.html#tracking-server",
-    "href": "slides/index.html#tracking-server",
+    "objectID": "slides/en/index.html#tracking-server",
+    "href": "slides/en/index.html#tracking-server",
     "title": "An introduction to MLOps with MLflow",
     "section": "Tracking server",
     "text": "Tracking server\n\n“An API and UI for logging parameters, code versions, metrics, and artifacts”"
   },
   {
-    "objectID": "slides/index.html#projects",
-    "href": "slides/index.html#projects",
+    "objectID": "slides/en/index.html#projects",
+    "href": "slides/en/index.html#projects",
     "title": "An introduction to MLOps with MLflow",
     "section": "Projects",
     "text": "Projects\n\n“A standard format for packaging reusable data science code”"
   },
   {
-    "objectID": "slides/index.html#models",
-    "href": "slides/index.html#models",
+    "objectID": "slides/en/index.html#models",
+    "href": "slides/en/index.html#models",
     "title": "An introduction to MLOps with MLflow",
     "section": "Models",
     "text": "Models\n\n“A convention for packaging machine learning models in multiple flavors”"
   },
   {
-    "objectID": "slides/index.html#model-registry",
-    "href": "slides/index.html#model-registry",
+    "objectID": "slides/en/index.html#model-registry",
+    "href": "slides/en/index.html#model-registry",
     "title": "An introduction to MLOps with MLflow",
     "section": "Model registry",
     "text": "Model registry\n\n“A centralized model store, set of APIs, and UI, to collaboratively manage the full lifecycle of an MLflow Model”"
   },
   {
-    "objectID": "slides/index.html#application-1",
-    "href": "slides/index.html#application-1",
+    "objectID": "slides/en/index.html#application-1",
+    "href": "slides/en/index.html#application-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 1",
     "text": "Application 1\n\n\n\nIntroduction to MLflow concepts\n\n\n\n\nIn JupyterLab, open the notebook located at formation-mlops/notebooks/mlflow-introduction.ipynb\nExecute the notebook cell by cell. If you are finished early, explore the MLflow UI and try to build your own experiments from the example code provided in the notebook."
   },
   {
-    "objectID": "slides/index.html#context-1",
-    "href": "slides/index.html#context-1",
+    "objectID": "slides/en/index.html#context-1",
+    "href": "slides/en/index.html#context-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "Context",
     "text": "Context\n\nNACE\n\nEuropean standard classification of productive economic activities\nHierarchical structure with 4 levels and 615 codes\n\nAt Insee, previously handled by an outdated rule-based algorithm\nCommon problematic to many National Statistical Institutes"
   },
   {
-    "objectID": "slides/index.html#fasttext-model",
-    "href": "slides/index.html#fasttext-model",
+    "objectID": "slides/en/index.html#fasttext-model",
+    "href": "slides/en/index.html#fasttext-model",
     "title": "An introduction to MLOps with MLflow",
     "section": "FastText model",
     "text": "FastText model\n\n\n“Bag of n-gram model” : embeddings for words but also n-gram of words and characters\nVery simple and fast model\n\n\nOVA: One vs. All"
   },
   {
-    "objectID": "slides/index.html#data-used",
-    "href": "slides/index.html#data-used",
+    "objectID": "slides/en/index.html#data-used",
+    "href": "slides/en/index.html#data-used",
     "title": "An introduction to MLOps with MLflow",
     "section": "Data used",
     "text": "Data used\n\nSlideRawPreprocessed\n\n\n\nA simple use-case with only 2 variables:\n\nTextual description of the activity – text\nTrue NACE code labelised by the rule-based engine – nace (732 modalities)\n\nStandard preprocessing:\n\nlowercasing\npunctuation removal\nnumber removal\nstopwords removal\nstemming\n…\n\n\n\n\n\nviewof table_data = Inputs.table(transpose(data_raw), {\n    rows: 22\n})\n\n\n\n\n\n\n\n\n\nviewof table_data_prepro = Inputs.table(transpose(data_prepro), {\n    rows: 22\n})"
   },
   {
-    "objectID": "slides/index.html#mlflow-with-a-non-standard-framework",
-    "href": "slides/index.html#mlflow-with-a-non-standard-framework",
+    "objectID": "slides/en/index.html#mlflow-with-a-non-standard-framework",
+    "href": "slides/en/index.html#mlflow-with-a-non-standard-framework",
     "title": "An introduction to MLOps with MLflow",
     "section": "MLflow with a non standard framework",
     "text": "MLflow with a non standard framework\n\n\n\nEasy to use with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch…)\n\n\n\nmlflow.sklearn.log_model(pipe_rf, \"model\")\n\nmlflow.pyfunc.load_model(model_uri=f\"models:/{model_name}/{version}\")\ny_train_pred = model.predict(X_train)\n\n\n\nWhat if we require greater flexibility, e.g. to use a custom framework?\n\n\n\n\nPossibility to track , register and deliver your own model"
   },
   {
-    "objectID": "slides/index.html#mlflow-with-a-non-standard-framework-1",
-    "href": "slides/index.html#mlflow-with-a-non-standard-framework-1",
+    "objectID": "slides/en/index.html#mlflow-with-a-non-standard-framework-1",
+    "href": "slides/en/index.html#mlflow-with-a-non-standard-framework-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "MLflow with a non standard framework",
     "text": "MLflow with a non standard framework\n\n\n\nThere are 2 main differences when using your own framework:\n\nlogging of parameters, metrics and artifacts\nwrapping of your custom model so that MLflow can serve it\n\n\n\n\n# Define a custom model\nclass MyModel(mlflow.pyfunc.PythonModel):\n\n    def load_context(self, context):\n        self.my_model.load_model(context.artifacts[\"my_model\"])\n\n    def predict(self, context, model_input):\n        return self.my_model.predict(model_input)"
   },
   {
-    "objectID": "slides/index.html#from-experiment-towards-production",
-    "href": "slides/index.html#from-experiment-towards-production",
+    "objectID": "slides/en/index.html#from-experiment-towards-production",
+    "href": "slides/en/index.html#from-experiment-towards-production",
     "title": "An introduction to MLOps with MLflow",
     "section": "From experiment towards production",
     "text": "From experiment towards production\n\nNotebooks are not suitable to build production-grade ML systems:\n\nLimited potential for automation of ML pipelines.\nLack of clear and reproducible workflows.\nHinders collaboration and versioning among team members.\nInsufficient modularity for managing complex ML components."
   },
   {
-    "objectID": "slides/index.html#application-2",
-    "href": "slides/index.html#application-2",
+    "objectID": "slides/en/index.html#application-2",
+    "href": "slides/en/index.html#application-2",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 2",
     "text": "Application 2\n\n\n\n\nPart 1 : From notebooks to a package-like project\n\n\n\nLaunch a VSCode service by clicking this URL. Open the service and input the service password (either automatically copied or available in the README of the service)\nAll scripts related to our custom model are stored in the src folder. Check them out. Have a look at the MLproject file as well.\nRun a training of the model using MLflow. To do so, open a terminal (top left button -&gt; Terminal -&gt; New Terminal) and run the following command :\nexport MLFLOW_EXPERIMENT_NAME=\"nace-prediction\"\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME\nIn the UI of MLflow, look at the results of your previous run:\n\nExperiments -&gt; nace-prediction -&gt; &lt;run_name&gt;\n\nYou have trained the model with some default parameters. In MLproject check the available parameters. Re-train a model with different parameters (e.g. dim = 25).\n\n\n\nClick to see the command \n\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \\\n    -P dim=25\n\n\nIn MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. dim)\n\nSelect the 2 runs -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis"
   },
   {
-    "objectID": "slides/index.html#application-2-1",
-    "href": "slides/index.html#application-2-1",
+    "objectID": "slides/en/index.html#application-2-1",
+    "href": "slides/en/index.html#application-2-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 2",
     "text": "Application 2\n\n\n\n\nPart 2 : Distributing and querying a custom model\n\n\n\nExplore the src/train.py file carefully. What are the main differences with application 1?\nWhy can we say that the MLflow model onboards the preprocessing?\nIn MLflow, register your last model as fasttext to make it easily queryable from the Python API\nCreate a script predict.py in the src folder of the project. This script should :\n\nLoad the version 1 of the fasttext model\nUse the model to predict the NACE codes of a given list of activity description (e.g. [\"vendeur d'huitres\", \"boulanger\"]).\n\n\nDon’t forget to read the documentation of the predict() function of the custom class (src/fasttext_wrapper.py) to understand the expected format for the inputs !\n\n\nClick to see the content of the script \n\nimport mlflow\n\nmodel_name = \"fasttext\"\nversion = 1\n\nmodel = mlflow.pyfunc.load_model(\n    model_uri=f\"models:/{model_name}/{version}\"\n)\n\nlist_libs = [\"vendeur d'huitres\", \"boulanger\"]\n\ntest_data = {\n    \"query\": list_libs,\n    \"k\": 1\n}\n\nresults = model.predict(test_data)\nprint(results)\n\n\nRun your predict.py script.\n\n\n\nClick to see the command \n\npython formation-mlops/src/predict.py\n\n\nMake sure that the two following descriptions give the same top prediction : \"COIFFEUR\" and \"coiffeur, & 98789\"\nChange the value of the parameter k and try to understand how the structure of the output changed as a result"
   },
   {
-    "objectID": "slides/index.html#model-serving",
-    "href": "slides/index.html#model-serving",
+    "objectID": "slides/en/index.html#model-serving",
+    "href": "slides/en/index.html#model-serving",
     "title": "An introduction to MLOps with MLflow",
     "section": "Model serving",
     "text": "Model serving\n\nOnce a ML model has been developed, it must be deployed to serve its end users\n\nWhich production infrastructure ?\nWho are the end users ?\nBatch serving vs. online serving"
   },
   {
-    "objectID": "slides/index.html#a-standard-setup",
-    "href": "slides/index.html#a-standard-setup",
+    "objectID": "slides/en/index.html#a-standard-setup",
+    "href": "slides/en/index.html#a-standard-setup",
     "title": "An introduction to MLOps with MLflow",
     "section": "A standard setup",
     "text": "A standard setup\n\nProduction infrastructure : Kubernetes cluster\nThe model might serve various applications\n\nMake the model accessible via an API\n\nOnline serving\n\nClient applications send a request to the API and get a fast response"
   },
   {
-    "objectID": "slides/index.html#exposing-a-model-through-an-api",
-    "href": "slides/index.html#exposing-a-model-through-an-api",
+    "objectID": "slides/en/index.html#exposing-a-model-through-an-api",
+    "href": "slides/en/index.html#exposing-a-model-through-an-api",
     "title": "An introduction to MLOps with MLflow",
     "section": "Exposing a model through an API",
     "text": "Exposing a model through an API"
   },
   {
-    "objectID": "slides/index.html#run-the-api-in-a-container",
-    "href": "slides/index.html#run-the-api-in-a-container",
+    "objectID": "slides/en/index.html#run-the-api-in-a-container",
+    "href": "slides/en/index.html#run-the-api-in-a-container",
     "title": "An introduction to MLOps with MLflow",
     "section": "Run the API in a container",
     "text": "Run the API in a container\n\nContainer: self-contained and isolated environment that encapsulates the model, its dependencies and the API code\nContainers provide high portability and scalability for distributing the model efficiently.\nThe Dockerfile is used to configure and build the Docker container."
   },
   {
-    "objectID": "slides/index.html#development-with-docker-architecture",
-    "href": "slides/index.html#development-with-docker-architecture",
+    "objectID": "slides/en/index.html#development-with-docker-architecture",
+    "href": "slides/en/index.html#development-with-docker-architecture",
     "title": "An introduction to MLOps with MLflow",
     "section": "Development with Docker architecture",
     "text": "Development with Docker architecture\n\n\n\n\n\n\n\nSource: R. Krispin"
   },
   {
-    "objectID": "slides/index.html#deploying-an-api-on-kubernetes",
-    "href": "slides/index.html#deploying-an-api-on-kubernetes",
+    "objectID": "slides/en/index.html#deploying-an-api-on-kubernetes",
+    "href": "slides/en/index.html#deploying-an-api-on-kubernetes",
     "title": "An introduction to MLOps with MLflow",
     "section": "Deploying an API on Kubernetes",
     "text": "Deploying an API on Kubernetes\n\n\n3 main files are needed to deploy an API:\n\ndeployment.yaml : defines how the API should run (container image, resources, and environment variables)\nservice.yaml : establishes a stable internal network endpoint for the API.\ningress.yaml : provides an entry point for external clients to access the API."
   },
   {
-    "objectID": "slides/index.html#application-3",
-    "href": "slides/index.html#application-3",
+    "objectID": "slides/en/index.html#application-3",
+    "href": "slides/en/index.html#application-3",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 3",
     "text": "Application 3\n\n\n\n\nDeploying a machine-learning model as an API\n\n\n\nWe constructed a very simplistic Rest API using FastAPI. All underlying files are in the app folder. Check them.\nOpen the Dockerfile to see how the image is built. The image is automatically rebuilt and published via Github Actions, if interested have a look to .github/workflows/build_image.yml.\nOpen the file kubernetes/deployment.yml and modify the highlighted lines accordingly:\n\ncontainers:\n- name: api\n    image: inseefrlab/formation-mlops-api:main\n    imagePullPolicy: Always\n    env:\n    - name: MLFLOW_TRACKING_URI\n        value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: MLFLOW_MODEL_NAME\n        value: fasttext\n    - name: MLFLOW_MODEL_VERSION\n        value: \"1\"\n\nOpen the file kubernetes/ingress.yml and modify (two times) the URL of the API endpoint to be of the form &lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr\nApply the three Kubernetes contracts contained in the kubernetes/ folder in a terminal to deploy the API\n\nkubectl apply -f formation-mlops/kubernetes/\n\nReach your API using the URL defined in your ingress.yml file\nDisplay the documentation of your API by adding /docs to your URL\nTry your API out!\nRe-run a new model and deploy this new model in your API\n\n\n\nClick to see the steps \n\n\nRun a model\nRegister the model\nAdjust your MLFLOW_MODEL_NAME or MLFLOW_MODEL_VERSION (if you didn’t modify the model name) environment variable in the deployment.yml file\nApply the new Kubernetes contracts to update the API\n\nkubectl apply -f formation-mlops/kubernetes/\n\nRefresh your API, and verify on the home page that it is now based on the new version of the model"
   },
   {
-    "objectID": "slides/index.html#parallel-training",
-    "href": "slides/index.html#parallel-training",
+    "objectID": "slides/en/index.html#parallel-training",
+    "href": "slides/en/index.html#parallel-training",
     "title": "An introduction to MLOps with MLflow",
     "section": "Parallel training",
     "text": "Parallel training\n\nWith our setup, we can train models one by one and log all relevant information to the MLflow tracking server\nWhat if we would like to train multiple models at once, for example to optimize hyperparameters ?"
   },
   {
-    "objectID": "slides/index.html#workflow-automation",
-    "href": "slides/index.html#workflow-automation",
+    "objectID": "slides/en/index.html#workflow-automation",
+    "href": "slides/en/index.html#workflow-automation",
     "title": "An introduction to MLOps with MLflow",
     "section": "Workflow automation",
     "text": "Workflow automation\n\nGeneral principles :\n\nDefine workflows where each step in the workflow is a container (reproducibility)\nModel multi-step workflows as a sequence of tasks or as a directed acyclic graph\nThis allows to easily run in parallel compute intensive jobs for machine learning or data processing"
   },
   {
-    "objectID": "slides/index.html#argo-workflows",
-    "href": "slides/index.html#argo-workflows",
+    "objectID": "slides/en/index.html#argo-workflows",
+    "href": "slides/en/index.html#argo-workflows",
     "title": "An introduction to MLOps with MLflow",
     "section": "Argo workflows",
     "text": "Argo workflows\n\nA popular workflow engine for orchestrating parallel jobs on Kubernetes\n\nopen-source\ncontainer-native\navailable on the SSP Cloud"
   },
   {
-    "objectID": "slides/index.html#hello-world",
-    "href": "slides/index.html#hello-world",
+    "objectID": "slides/en/index.html#hello-world",
+    "href": "slides/en/index.html#hello-world",
     "title": "An introduction to MLOps with MLflow",
     "section": "Hello World",
     "text": "Hello World\napiVersion: argoproj.io/v1alpha1\nkind: Workflow                  # new type of k8s spec\nmetadata:\n  generateName: hello-world-    # name of the workflow spec\nspec:\n  entrypoint: whalesay          # invoke the whalesay template\n  templates:\n    - name: whalesay            # name of the template\n      container:\n        image: docker/whalesay\n        command: [ cowsay ]\n        args: [ \"hello world\" ]"
   },
   {
-    "objectID": "slides/index.html#what-is-going-on",
-    "href": "slides/index.html#what-is-going-on",
+    "objectID": "slides/en/index.html#what-is-going-on",
+    "href": "slides/en/index.html#what-is-going-on",
     "title": "An introduction to MLOps with MLflow",
     "section": "What is going on ?",
     "text": "What is going on ?"
   },
   {
-    "objectID": "slides/index.html#what-is-going-on-1",
-    "href": "slides/index.html#what-is-going-on-1",
+    "objectID": "slides/en/index.html#what-is-going-on-1",
+    "href": "slides/en/index.html#what-is-going-on-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "What is going on ?",
     "text": "What is going on ?"
   },
   {
-    "objectID": "slides/index.html#what-is-going-on-2",
-    "href": "slides/index.html#what-is-going-on-2",
+    "objectID": "slides/en/index.html#what-is-going-on-2",
+    "href": "slides/en/index.html#what-is-going-on-2",
     "title": "An introduction to MLOps with MLflow",
     "section": "What is going on ?",
     "text": "What is going on ?"
   },
   {
-    "objectID": "slides/index.html#parameters",
-    "href": "slides/index.html#parameters",
+    "objectID": "slides/en/index.html#parameters",
+    "href": "slides/en/index.html#parameters",
     "title": "An introduction to MLOps with MLflow",
     "section": "Parameters",
     "text": "Parameters\n\nTemplates can take input parameters\n\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: hello-world-parameters-\nspec:\n  entrypoint: whalesay\n  arguments:\n    parameters:\n    - name: message\n      value: hello world\n\n  templates:\n  - name: whalesay\n    inputs:\n      parameters:\n      - name: message       # parameter declaration\n    container:\n      image: docker/whalesay\n      command: [cowsay]\n      args: [\"{{inputs.parameters.message}}\"]"
   },
   {
-    "objectID": "slides/index.html#multi-step-workflows",
-    "href": "slides/index.html#multi-step-workflows",
+    "objectID": "slides/en/index.html#multi-step-workflows",
+    "href": "slides/en/index.html#multi-step-workflows",
     "title": "An introduction to MLOps with MLflow",
     "section": "Multi-step workflows",
     "text": "Multi-step workflows\n\nMulti-steps workflows can be specified (steps or dag)\n\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: steps-\nspec:\n  entrypoint: hello-hello-hello\n\n  # This spec contains two templates: hello-hello-hello and whalesay\n  templates:\n  - name: hello-hello-hello\n    # Instead of just running a container\n    # This template has a sequence of steps\n    steps:\n    - - name: hello1            # hello1 is run before the following steps\n        template: whalesay\n    - - name: hello2a           # double dash =&gt; run after previous step\n        template: whalesay\n      - name: hello2b           # single dash =&gt; run in parallel with previous step\n        template: whalesay\n  - name: whalesay              # name of the template\n    container:\n      image: docker/whalesay\n      command: [ cowsay ]\n      args: [ \"hello world\" ]"
   },
   {
-    "objectID": "slides/index.html#what-is-going-on-3",
-    "href": "slides/index.html#what-is-going-on-3",
+    "objectID": "slides/en/index.html#what-is-going-on-3",
+    "href": "slides/en/index.html#what-is-going-on-3",
     "title": "An introduction to MLOps with MLflow",
     "section": "What is going on ?",
     "text": "What is going on ?"
   },
   {
-    "objectID": "slides/index.html#what-is-going-on-4",
-    "href": "slides/index.html#what-is-going-on-4",
+    "objectID": "slides/en/index.html#what-is-going-on-4",
+    "href": "slides/en/index.html#what-is-going-on-4",
     "title": "An introduction to MLOps with MLflow",
     "section": "What is going on ?",
     "text": "What is going on ?"
   },
   {
-    "objectID": "slides/index.html#what-is-going-on-5",
-    "href": "slides/index.html#what-is-going-on-5",
+    "objectID": "slides/en/index.html#what-is-going-on-5",
+    "href": "slides/en/index.html#what-is-going-on-5",
     "title": "An introduction to MLOps with MLflow",
     "section": "What is going on ?",
     "text": "What is going on ?"
   },
   {
-    "objectID": "slides/index.html#what-is-going-on-6",
-    "href": "slides/index.html#what-is-going-on-6",
+    "objectID": "slides/en/index.html#what-is-going-on-6",
+    "href": "slides/en/index.html#what-is-going-on-6",
     "title": "An introduction to MLOps with MLflow",
     "section": "What is going on ?",
     "text": "What is going on ?"
   },
   {
-    "objectID": "slides/index.html#what-is-going-on-7",
-    "href": "slides/index.html#what-is-going-on-7",
+    "objectID": "slides/en/index.html#what-is-going-on-7",
+    "href": "slides/en/index.html#what-is-going-on-7",
     "title": "An introduction to MLOps with MLflow",
     "section": "What is going on ?",
     "text": "What is going on ?"
   },
   {
-    "objectID": "slides/index.html#further-applications",
-    "href": "slides/index.html#further-applications",
+    "objectID": "slides/en/index.html#further-applications",
+    "href": "slides/en/index.html#further-applications",
     "title": "An introduction to MLOps with MLflow",
     "section": "Further applications",
     "text": "Further applications\n\nWorkflow to test registered models, or models pushed to staging / production\nWorkflows can be triggered automatically (via Argo Events for example)\nContinuous training workflows\nDistributed machine learning pipelines in general (data downloading, processing, etc.)"
   },
   {
-    "objectID": "slides/index.html#further-applications-1",
-    "href": "slides/index.html#further-applications-1",
+    "objectID": "slides/en/index.html#further-applications-1",
+    "href": "slides/en/index.html#further-applications-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "Further applications",
     "text": "Further applications"
   },
   {
-    "objectID": "slides/index.html#notes",
-    "href": "slides/index.html#notes",
+    "objectID": "slides/en/index.html#notes",
+    "href": "slides/en/index.html#notes",
     "title": "An introduction to MLOps with MLflow",
     "section": "Notes",
     "text": "Notes\n\nPython SDK for Argo Workflows\nKubeflow pipelines\nCouler : unified interface for constructing and managing workflows on different workflow engines\nOther Python-native orchestration tools : Apache Airflow, Metaflow, Prefect"
   },
   {
-    "objectID": "slides/index.html#application-4",
-    "href": "slides/index.html#application-4",
+    "objectID": "slides/en/index.html#application-4",
+    "href": "slides/en/index.html#application-4",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 4",
     "text": "Application 4\n\n\n\n\nPart 1 : introduction to Argo Workflows\n\n\n\nLaunch an Argo Workflows service by clicking this URL. Open the service and input the service password (either automatically copied or available in the README of the service)\nIn VSCode, create a file hello_world.yaml at the root of the project with the following content:\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: hello-world-\n  labels:\n    workflows.argoproj.io/archive-strategy: \"false\"\n  annotations:\n    workflows.argoproj.io/description: |\n      This is a simple hello world example.\n      You can also run it in Python: https://couler-proj.github.io/couler/examples/#hello-world\nspec:\n  entrypoint: whalesay\n  templates:\n  - name: whalesay\n    container:\n      image: docker/whalesay:latest\n      command: [cowsay]\n      args: [\"hello world\"]\n\nSubmit the Hello world workflow via a terminal in VSCode :\n\nargo submit formation-mlops/hello_world.yaml\n\nOpen the UI of Argo Workflows. Find the logs of the workflow you just launched. You should see the Docker logo ."
   },
   {
-    "objectID": "slides/index.html#application-4-1",
-    "href": "slides/index.html#application-4-1",
+    "objectID": "slides/en/index.html#application-4-1",
+    "href": "slides/en/index.html#application-4-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 4",
     "text": "Application 4\n\n\n\n\nPart 2 : distributing the hyperparameters optimization\n\n\n\nTake a look at the argo_workflows/workflow.yml file. What do you expect will happen when we submit this workflow ?\nModify the highlighted line in the same manner as in application 3.\n\nparameters:\n    # The MLflow tracking server is responsable to log the hyper-parameter and model metrics.\n    - name: mlflow-tracking-uri\n    value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: mlflow-experiment-name\n    value: nace-prediction\n\nSubmit the workflow and look at the jobs completing live in the UI.\n\n\n\nClick to see the command \n\nargo submit formation-mlops/argo_workflows/workflow.yml\n\n\nOnce all jobs are completed, visualize the logs of the whole workflow.\nFinally, open the MLflow UI to check what has been done."

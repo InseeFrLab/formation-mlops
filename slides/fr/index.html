@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-html/tabby.min.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+<html lang="fr-FR"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.3.433">
 
-  <title>An introduction to MLOps with MLflow</title>
+  <title>Une introduction au MLOps avec MLflow</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -94,15 +94,15 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
-  <link rel="stylesheet" href="_extensions/InseeFrLab/onyxia/logo.css">
-  <link rel="stylesheet" href="custom.css">
-  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../_extensions/InseeFrLab/onyxia/logo.css">
+  <link rel="stylesheet" href="../custom.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -387,8 +387,8 @@
       margin-right: 0; 
     }
   </style>
-  <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-  <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+  <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
   <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -398,8 +398,8 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="_extensions/InseeFrLab/onyxia/background.svg" data-background-size="contain" class="quarto-title-block center">
-  <h1 class="title">An introduction to MLOps with MLflow</h1>
+<section id="title-slide" data-background-image="../_extensions/InseeFrLab/onyxia/background.svg" data-background-size="contain" class="quarto-title-block center">
+  <h1 class="title">Une introduction au MLOps avec MLflow</h1>
   <p class="subtitle"></p><p><span class="orange"><strong><span class="orange">Romain Avouac (Insee), Thomas Faria (Insee), Tom Seimandi (Insee)</span></strong></span></p><p></p>
 
 <div class="quarto-title-authors">
@@ -411,15 +411,15 @@
 <h1>Introduction</h1>
 
 </section>
-<section id="who-are-we" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Who are we ?</h2>
+<section id="qui-sommes-nous" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Qui sommes-nous ?</h2>
 <ul>
-<li class="fragment"><span class="orange"><strong>Data scientists</strong></span> at Insee
+<li class="fragment"><span class="orange"><strong>Data scientists</strong></span> à l’Insee
 <ul>
-<li class="fragment">methodological and IT innovation teams</li>
-<li class="fragment">support data science projects</li>
+<li class="fragment">Équipes d’innovation <span class="blue2"><strong>méthodologique</strong></span> et <span class="blue2"><strong>informatique</strong></span></li>
+<li class="fragment">Nous soutenons et accompagnons des projets de <em>datascience</em></li>
 </ul></li>
-<li class="fragment"><span class="orange"><strong>Contact us</strong></span>
+<li class="fragment"><span class="orange"><strong>Contactez-nous</strong></span>
 <ul>
 <li class="fragment"><script type="text/javascript">
 <!--
@@ -442,102 +442,102 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </ul></li>
 </ul>
 </section>
-<section id="context" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Context</h2>
+<section id="contexte" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Contexte</h2>
 <ul>
-<li class="fragment"><p>Difficulty of transitioning from experiments to <span class="orange"><strong>production-grade</strong></span> machine learning systems</p></li>
-<li class="fragment"><p>Leverage <span class="orange"><strong>best practices</strong></span> from software engineering</p>
+<li class="fragment"><p>Difficulté de passer des expérimentations à la mise en <span class="orange"><strong>production</strong></span> de modèle de <em>machine learning</em></p></li>
+<li class="fragment"><p>Tirer parti des <span class="orange"><strong>meilleures pratiques</strong></span> en génie logiciel</p>
 <ul>
-<li class="fragment">Improve <span class="blue2"><strong>reproducibility</strong></span> of analysis</li>
-<li class="fragment"><span class="blue2"><strong>Deploy</strong></span> applications in a <span class="blue2"><strong>scalable</strong></span> way</li>
-<li class="fragment"><span class="blue2"><strong>Monitor</strong></span> running applications</li>
+<li class="fragment">Améliorer la <span class="blue2"><strong>reproductibilité</strong></span> des analyses</li>
+<li class="fragment"><span class="blue2"><strong>Déployer</strong></span> des applications de manière <span class="blue2"><strong>extensible</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>Surveiller</strong></span> les applications en cours d’exécution</li>
 </ul></li>
 </ul>
 </section>
-<section id="the-devops-approach" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>The DevOps approach</h2>
+<section id="lapproche-devops" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>L’approche DevOps</h2>
 <ul>
-<li class="fragment"><span class="orange"><strong>Unify</strong></span> development (<em>dev</em>) and system administration (<em>ops</em>)
+<li class="fragment"><span class="orange"><strong>Unifier</strong></span> le développement (<em>dev</em>) et l’administration système (<em>ops</em>)
 <ul>
-<li class="fragment"><span class="blue2"><strong>shorten</strong></span> development time</li>
-<li class="fragment">maintain software <span class="blue2"><strong>quality</strong></span></li>
-</ul></li>
-</ul>
-<div class="fragment">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/devops.png" height="300"></p>
-</figure>
-</div>
-</div>
-</section>
-<section id="the-mlops-approach" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>The MLOps approach</h2>
-<ul>
-<li class="fragment">Integrate the <span class="orange"><strong>specificities</strong></span> of machine learning projects
-<ul>
-<li class="fragment"><span class="blue2"><strong>Experimentation</strong></span></li>
-<li class="fragment"><span class="blue2"><strong>Continuous improvement</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>Réduire</strong></span> le temps de développement</li>
+<li class="fragment">Maintenir la <span class="blue2"><strong>qualité</strong></span> logicielle</li>
 </ul></li>
 </ul>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/mlops.png" height="400"></p>
+<p><img data-src="../img/devops.png" height="300"></p>
 </figure>
 </div>
 </div>
 </section>
-<section id="mlops-principles" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>MLOps : principles</h2>
+<section id="lapproche-mlops" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>L’approche MLOps</h2>
 <ul>
-<li class="fragment"><p><span class="orange"><strong>Reproducibility</strong></span></p></li>
-<li class="fragment"><p><span class="orange"><strong>Versioning</strong></span></p></li>
-<li class="fragment"><p><span class="orange"><strong>Automation</strong></span></p></li>
-<li class="fragment"><p><span class="orange"><strong>Monitoring</strong></span></p></li>
+<li class="fragment">Intégrer les <span class="orange"><strong>spécificités</strong></span> des projets de <em>machine learning</em>
+<ul>
+<li class="fragment"><span class="blue2"><strong>Expérimentation</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>Amélioration continue</strong></span></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/mlops.png" height="400"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="mlops-principes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>MLOps : principes</h2>
+<ul>
+<li class="fragment"><p><span class="orange"><strong>Reproductibilité</strong></span></p></li>
+<li class="fragment"><p><span class="orange"><strong>COntrôle de version</strong></span></p></li>
+<li class="fragment"><p><span class="orange"><strong>Automatisation</strong></span></p></li>
+<li class="fragment"><p><span class="orange"><strong>Surveillance</strong></span></p></li>
 <li class="fragment"><p><span class="orange"><strong>Collaboration</strong></span></p></li>
 </ul>
 </section>
-<section id="why-mlflow" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Why MLflow ?</h2>
+<section id="pourquoi-mlflow" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Pourquoi MLflow ?</h2>
 <ul>
-<li class="fragment"><p>Multiple <span class="orange"><strong>frameworks</strong></span> implement the MLOps principles</p></li>
-<li class="fragment"><p>Pros of <code>MLflow</code></p>
+<li class="fragment"><p>De nombreux <span class="orange"><strong>frameworks</strong></span> implémentent les principes du MLOps</p></li>
+<li class="fragment"><p>Avantages de <code>MLflow</code> :</p>
 <ul>
 <li class="fragment"><span class="blue2"><strong>Open-source</strong></span></li>
-<li class="fragment">Covers the whole <span class="blue2"><strong>ML lifecycle</strong></span></li>
-<li class="fragment"><span class="blue2"><strong>Agnostic</strong></span> to the ML library used</li>
-<li class="fragment">We have <span class="blue2"><strong>experience</strong></span> with it</li>
+<li class="fragment">Couvre l’entièreté du <span class="blue2"><strong>cycle de vie</strong></span> d’un modèle ML</li>
+<li class="fragment"><span class="blue2"><strong>Agnostic</strong></span> au package ML utilisé</li>
+<li class="fragment">Nous avons de l’<span class="blue2"><strong>expérience</strong></span> avec lui</li>
 </ul></li>
 </ul>
 </section>
-<section id="training-platform-the-ssp-cloud" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Training platform : the SSP Cloud</h2>
+<section id="plateforme-de-formation-le-ssp-cloud" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Plateforme de formation : le SSP Cloud</h2>
 <ul>
-<li class="fragment">An <span class="orange"><strong>open innovation production-like</strong></span> environment
+<li class="fragment">Un environnement <span class="orange"><strong>d’innovation ouvert</strong></span>
 <ul>
-<li class="fragment"><span class="blue2"><strong>Kubernetes</strong></span> cluster</li>
-<li class="fragment">S3-compatible <span class="blue2"><strong>object storage</strong></span></li>
-<li class="fragment">Large computational <span class="blue2"><strong>resources</strong></span> (including GPUs)</li>
+<li class="fragment">Cluster <span class="blue2"><strong>Kubernetes</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>Stockage d’objets</strong></span> compatible S3</li>
+<li class="fragment">De grandes <span class="blue2"><strong>ressources</strong></span> de calcul (y compris des GPU)</li>
 </ul></li>
-<li class="fragment">Based on the <a href="https://github.com/InseeFrLab/onyxia-web">Onyxia</a> project
+<li class="fragment">Basé sur le projet <a href="https://github.com/InseeFrLab/onyxia-web">Onyxia</a>
 <ul>
-<li class="fragment">User-friendly <a href="https://datalab.sspcloud.fr/">interface</a> to launch data science services</li>
-<li class="fragment">A <a href="https://datalab.sspcloud.fr/catalog/ide">catalog of services</a> which covers the full lifecycle of data science projects</li>
+<li class="fragment">Une <a href="https://datalab.sspcloud.fr/">interface</a> conviviale pour les utilisateurs permettant de lancer des services de <em>datascience</em></li>
+<li class="fragment">Un <a href="https://datalab.sspcloud.fr/catalog/ide">catalogue de services</a> couvrant l’ensemble du cycle de vie des projets de <em>datascience</em></li>
 </ul></li>
 </ul>
 </section>
-<section id="outline" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Outline</h2>
-<p><span class="emoji" data-emoji="one">1️⃣</span> Introduction to MLFlow</p>
+<section id="plan" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Plan</h2>
+<p><span class="emoji" data-emoji="one">1️⃣</span> Introduction à MLFlow</p>
 <div class="fragment">
-<p><span class="emoji" data-emoji="two">2️⃣</span> A Practical Example: NACE Code Prediction for French companies</p>
+<p><span class="emoji" data-emoji="two">2️⃣</span> Un exemple concret: Prédiction du code APE pour les entreprises</p>
 </div>
 <div class="fragment">
-<p><span class="emoji" data-emoji="three">3️⃣</span> Deploying a ML model as an API</p>
+<p><span class="emoji" data-emoji="three">3️⃣</span> Déployer un modèle ML via une API</p>
 </div>
 <div class="fragment">
-<p><span class="emoji" data-emoji="four">4️⃣</span> Distributing the hyperparameter optimization</p>
+<p><span class="emoji" data-emoji="four">4️⃣</span> Décentraliser l’optimisation des hyperparamètres</p>
 </div>
 </section>
 <section id="application-0" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -545,16 +545,16 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Preparation of the working environment</strong></p>
+<p><strong>Préparation de l’environnement de travail</strong></p>
 </div>
 <div class="callout-content">
 <div>
 <ol type="1">
-<li class="fragment">Create an account on the <a href="https://datalab.sspcloud.fr/home">SSP Cloud</a> using your professional mail address</li>
-<li class="fragment">Launch a <code>MLflow</code> service by clicking <a href="https://datalab.sspcloud.fr/launcher/automation/mlflow?autoLaunch=true">this URL</a></li>
-<li class="fragment">Launch a <code>Jupyter-python</code> service by clicking <a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&amp;init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»">this URL</a></li>
-<li class="fragment">Open the <code>Jupyter-python</code> service and input the service password (either automatically copied or available in the <code>README</code> of the service)</li>
-<li class="fragment">You’re all set !</li>
+<li class="fragment">Créez un compte sur le <a href="https://datalab.sspcloud.fr/home">SSP Cloud</a> en utilisant votre adresse e-mail professionnelle.</li>
+<li class="fragment">Lancez un service <code>MLflow</code> en cliquant sur <a href="https://datalab.sspcloud.fr/launcher/automation/mlflow?autoLaunch=true">cette URL</a>.</li>
+<li class="fragment">Lancez un service <code>Jupyter-python</code> en cliquant sur <a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&amp;init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh%C2%BB">cette URL</a>.</li>
+<li class="fragment">Ouvrez le service <code>Jupyter-python</code> et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier <code>README</code> du service).</li>
+<li class="fragment">Vous êtes prêt !</li>
 </ol>
 </div>
 </div>
@@ -562,19 +562,19 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </section></section>
 <section>
-<section id="introduction-to-mlflow" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1><span class="emoji" data-emoji="one">1️⃣</span> Introduction to MLFlow</h1>
+<section id="introduction-à-mlflow" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1><span class="emoji" data-emoji="one">1️⃣</span> Introduction à MLFlow</h1>
 
 </section>
 <section id="tracking-server" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Tracking server</h2>
 <ul>
-<li class="fragment">“An <span class="orange"><strong>API</strong></span> and <span class="orange"><strong>UI</strong></span> for <span class="orange"><strong>logging</strong></span> parameters, code versions, metrics, and artifacts”</li>
+<li class="fragment">“Une <span class="orange"><strong>API</strong></span> et une <span class="orange"><strong>interface utilisateur</strong></span> pour <span class="orange"><strong>enregistrer</strong></span> les paramètres, les versions du code, les métriques et les artefacts”</li>
 </ul>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/mlflow-tracking.png" height="400"></p>
+<p><img data-src="../img/mlflow-tracking.png" height="400"></p>
 </figure>
 </div>
 </div>
@@ -582,12 +582,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <section id="projects" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Projects</h2>
 <ul>
-<li class="fragment">“A standard format for <span class="orange"><strong>packaging</strong></span> reusable data science code”</li>
+<li class="fragment">“Un format standard pour <span class="orange"><strong>‘packager’</strong></span> du code réutilisable en <em>datascience</em>”</li>
 </ul>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/mlflow-projects.png" height="400"></p>
+<p><img data-src="../img/mlflow-projects.png" height="400"></p>
 </figure>
 </div>
 </div>
@@ -595,12 +595,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <section id="models" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Models</h2>
 <ul>
-<li class="fragment">“A convention for <span class="orange"><strong>packaging</strong></span> machine learning <span class="orange"><strong>models</strong></span> in multiple <span class="orange"><strong>flavors</strong></span>”</li>
+<li class="fragment">“Une convention pour <span class="orange"><strong>‘packager’</strong></span> des <span class="orange"><strong>modèles</strong></span> de <em>machine learning</em> sous plusieurs <span class="orange"><strong>formes</strong></span>”</li>
 </ul>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/mlflow-models.png" height="400"></p>
+<p><img data-src="../img/mlflow-models.png" height="400"></p>
 </figure>
 </div>
 </div>
@@ -608,12 +608,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <section id="model-registry" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Model registry</h2>
 <ul>
-<li class="fragment">“A <span class="orange"><strong>centralized model store</strong></span>, set of APIs, and UI, to <span class="orange"><strong>collaboratively</strong></span> manage the full lifecycle of an MLflow Model”</li>
+<li class="fragment">“Un <span class="orange"><strong>entrepôt centralisé de modèles</strong></span>, un ensemble d’API et une interface utilisateur pour gérer <span class="orange"><strong>collaborativement</strong></span> le cycle de vie complet d’un modèle MLflow”</li>
 </ul>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/mlflow-model-registry.png" height="400"></p>
+<p><img data-src="../img/mlflow-model-registry.png" height="400"></p>
 </figure>
 </div>
 </div>
@@ -623,13 +623,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Introduction to MLflow concepts</strong></p>
+<p><strong>Introduction aux concepts de MLflow</strong></p>
 </div>
 <div class="callout-content">
 <div>
 <ol type="1">
-<li class="fragment">In <code>JupyterLab</code>, open the notebook located at <code>formation-mlops/notebooks/mlflow-introduction.ipynb</code></li>
-<li class="fragment">Execute the notebook cell by cell. If you are finished early, explore the <code>MLflow</code> UI and try to build your own experiments from the example code provided in the notebook.</li>
+<li class="fragment">Dans <code>JupyterLab</code>, ouvrez le notebook situé à l’emplacement <code>formation-mlops/notebooks/mlflow-introduction.ipynb</code>.</li>
+<li class="fragment">Exécutez le notebook cellule par cellule. Si vous avez terminé plus tôt, explorez l’interface utilisateur de <code>MLflow</code> et essayez de créer vos propres expériences à partir du code d’exemple fourni dans le notebook.</li>
 </ol>
 </div>
 </div>
@@ -637,51 +637,51 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </section></section>
 <section>
-<section id="a-practical-example" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1><span class="emoji" data-emoji="two">2️⃣</span> A Practical Example</h1>
+<section id="un-exemple-concret" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1><span class="emoji" data-emoji="two">2️⃣</span> Un exemple concret</h1>
 
 </section>
-<section id="context-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Context</h2>
+<section id="contexte-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Contexte</h2>
 <ul>
 <li class="fragment"><p><span class="orange"><strong>NACE</strong></span></p>
 <ul>
-<li class="fragment">European standard classification of productive <span class="blue2"><strong>economic activities</strong></span></li>
-<li class="fragment"><span class="blue2"><strong>Hierarchical structure</strong></span> with 4 levels and 615 codes</li>
+<li class="fragment">Nomenclature statistique des <span class="blue2"><strong>Activités économiques</strong></span> dans la Communauté Européenne</li>
+<li class="fragment"><span class="blue2"><strong>Structure hierarchique</strong></span> avec 4 niveaux et 615 codes</li>
 </ul></li>
-<li class="fragment"><p>At Insee, previously handled by an outdated <span class="orange"><strong>rule-based</strong></span> algorithm</p></li>
-<li class="fragment"><p><span class="orange"><strong>Common problematic</strong></span> to many National Statistical Institutes</p></li>
+<li class="fragment"><p>A l’Insee, précédemment classifié par un algorithme basé sur des <span class="orange"><strong>règles de décisions</strong></span></p></li>
+<li class="fragment"><p><span class="orange"><strong>problématique commune</strong></span> à beaucoup d’Instituts nationaux de statistique</p></li>
 </ul>
 </section>
-<section id="fasttext-model" class="slide level2" data-background-image="img/diag-fasttext.png" data-background-size="95%" data-background-position="50% 85%">
-<h2>FastText model</h2>
+<section id="le-modèle-fasttext" class="slide level2" data-background-image="../img/diag-fasttext.png" data-background-size="90%" data-background-position="50% 90%">
+<h2>Le modèle FastText</h2>
 <div>
 <ul>
-<li><p><span class="orange"><strong>“Bag of n-gram model”</strong></span> : embeddings for words but also n-gram of words and characters</p></li>
-<li><p>Very <span class="orange"><strong>simple</strong></span> and <span class="orange"><strong>fast</strong></span> model</p></li>
+<li><p><span class="orange"><strong>Modèle “sac de n-gram”</strong></span> : plongements lexicaux pour les mots mais aussi pour les n-gram de mots et de caractères</p></li>
+<li><p>Un modèle très <span class="orange"><strong>simple</strong></span> et <span class="orange"><strong>rapide</strong></span></p></li>
 </ul>
 </div>
 <p><span class="absolute" style="left: -200px; bottom: 20px; ">OVA: One vs.&nbsp;All</span></p>
 </section>
-<section id="data-used" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
-<h2>Data used</h2>
+<section id="données-utilisées" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
+<h2>Données utilisées</h2>
 <div class="panel-tabset">
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Slide</a></li><li><a href="#tabset-1-2">Raw</a></li><li><a href="#tabset-1-3">Preprocessed</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
 <ul>
-<li class="fragment">A simple use-case with only <span class="orange"><strong>2 variables</strong></span>:
+<li class="fragment">Un cas d’utilisation simple avec seulement <span class="orange"><strong>2 variables</strong></span>:
 <ul>
-<li class="fragment"><span class="blue2"><strong>Textual description</strong></span> of the activity – <span class="green2">text</span></li>
-<li class="fragment"><span class="blue2"><strong>True NACE code</strong></span> labelised by the rule-based engine – <span class="green2">nace</span> (732 modalities)</li>
+<li class="fragment"><span class="blue2">Description textuelle</span> de l’activité - <span class="green2">text</span></li>
+<li class="fragment"><span class="blue2"><strong>Code NACE vrai</strong></span> labelisé par le moteur de règles – <span class="green2">nace</span> (732 modalités)</li>
 </ul></li>
-<li class="fragment">Standard <span class="orange"><strong>preprocessing</strong></span>:
+<li class="fragment"><span class="orange"><strong>Prétraitements</strong></span> standards :
 <ul>
-<li class="fragment">lowercasing</li>
-<li class="fragment">punctuation removal</li>
-<li class="fragment">number removal</li>
-<li class="fragment">stopwords removal</li>
-<li class="fragment">stemming</li>
+<li class="fragment">Passage en minuscules</li>
+<li class="fragment">Suppression de la ponctuation</li>
+<li class="fragment">Suppression des nombres</li>
+<li class="fragment">Suppression des mots vide de sens</li>
+<li class="fragment">Racinisation (stemming)</li>
 <li class="fragment">…</li>
 </ul></li>
 </ul>
@@ -690,7 +690,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="cell">
 <div class="sourceCode cell-code hidden" id="cb1" data-startfrom="-1" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line -2;"><span id="cb1--1"><a href="#cb1--1"></a>viewof table_data <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">table</span>(<span class="fu">transpose</span>(data_raw)<span class="op">,</span> {</span>
 <span id="cb1-0"><a href="#cb1-0"></a>    <span class="dt">rows</span><span class="op">:</span> <span class="dv">22</span></span>
-<span id="cb1-1"><a href="#cb1-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-1"><a href="#cb1-1"></a>})</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="declaration">
 
@@ -702,7 +702,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="cell">
 <div class="sourceCode cell-code hidden" id="cb2" data-startfrom="-1" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line -2;"><span id="cb2--1"><a href="#cb2--1"></a>viewof table_data_prepro <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">table</span>(<span class="fu">transpose</span>(data_prepro)<span class="op">,</span> {</span>
 <span id="cb2-0"><a href="#cb2-0"></a>    <span class="dt">rows</span><span class="op">:</span> <span class="dv">22</span></span>
-<span id="cb2-1"><a href="#cb2-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-1"><a href="#cb2-1"></a>})</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="declaration">
 
@@ -713,41 +713,41 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </div>
 </section>
-<section id="mlflow-with-a-non-standard-framework" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>MLflow with a non standard framework</h2>
+<section id="mlflow-avec-framework-non-standard" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>MLflow avec framework non standard</h2>
 <div>
 <div class="fragment" data-fragment-index="1">
 <ul>
-<li><span class="orange"><strong>Easy to use</strong></span> with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch…)</li>
+<li><span class="orange"><strong>Facile d’utilisation</strong></span> avec une grande variété de <em>framework de machine learning</em> (scikit-learn, Keras, Pytorch…)</li>
 </ul>
 </div>
 <div class="fragment" data-fragment-index="2">
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>mlflow.sklearn.log_model(pipe_rf, <span class="st">"model"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
 <span id="cb3-3"><a href="#cb3-3"></a>mlflow.pyfunc.load_model(model_uri<span class="op">=</span><span class="ss">f"models:/</span><span class="sc">{</span>model_name<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>version<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4"></a>y_train_pred <span class="op">=</span> model.predict(X_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4"></a>y_train_pred <span class="op">=</span> model.predict(X_train)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment" data-fragment-index="3">
 <ul>
-<li>What if we require greater <span class="orange"><strong>flexibility</strong></span>, e.g.&nbsp;to use a <span class="orange"><strong>custom framework</strong></span>?</li>
+<li>Que se passe-t-il si nous avons besoin d’une plus grande <span class="orange"><strong>flexibilité</strong></span>, par exemple, pour utiliser un <span class="orange"><strong>framework personnalisé</strong></span>?</li>
 </ul>
 </div>
 <div class="fragment" data-fragment-index="4">
 <ul>
-<li>Possibility to <span class="orange"><strong>track</strong></span> , <span class="orange"><strong>register</strong></span> and <span class="orange"><strong>deliver</strong></span> your own model</li>
+<li>Possibilité de <span class="orange"><strong>suivre</strong></span>, <span class="orange"><strong>enregistrer</strong></span> et <span class="orange"><strong>déployer</strong></span> son propre modèle</li>
 </ul>
 </div>
 </div>
 </section>
-<section id="mlflow-with-a-non-standard-framework-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>MLflow with a non standard framework</h2>
+<section id="mlflow-avec-framework-non-standard-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>MLflow avec framework non standard</h2>
 <div>
 <div class="fragment" data-fragment-index="1">
 <ul>
-<li>There are <span class="orange"><strong>2 main differences</strong></span> when using your own framework:
+<li>il y a <span class="orange"><strong>2 principales différences</strong></span> lorsque vous utilisez votre propre framework:
 <ul>
-<li><span class="blue2"><strong>logging</strong></span> of parameters, metrics and artifacts</li>
-<li><span class="blue2"><strong>wrapping</strong></span> of your custom model so that MLflow can serve it</li>
+<li><span class="blue2"><strong>L’enregistrement</strong></span> des paramètres, des métriques et des artefacts</li>
+<li><span class="blue2"><strong>L’encapsulation</strong></span> de votre modèle personalisé afin que MLflow puisse le servir</li>
 </ul></li>
 </ul>
 </div>
@@ -759,20 +759,20 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb4-5"><a href="#cb4-5"></a>        <span class="va">self</span>.my_model.load_model(context.artifacts[<span class="st">"my_model"</span>])</span>
 <span id="cb4-6"><a href="#cb4-6"></a></span>
 <span id="cb4-7"><a href="#cb4-7"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, context, model_input):</span>
-<span id="cb4-8"><a href="#cb4-8"></a>        <span class="cf">return</span> <span class="va">self</span>.my_model.predict(model_input)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-8"><a href="#cb4-8"></a>        <span class="cf">return</span> <span class="va">self</span>.my_model.predict(model_input)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
 </section>
-<section id="from-experiment-towards-production" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>From experiment towards production</h2>
+<section id="de-lexpérimentation-à-la-production" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>De l’expérimentation à la production</h2>
 <ul>
-<li class="fragment">Notebooks are not suitable to build <span class="orange"><strong>production-grade</strong></span> ML systems:
+<li class="fragment">Les notebooks ne sont pas adaptés pour une <span class="orange"><strong>mise en production</strong></span> de modèles <em>ML</em> :
 <ul>
-<li class="fragment">Limited potential for <span class="blue2"><strong>automation</strong></span> of ML pipelines.</li>
-<li class="fragment">Lack of clear and <span class="blue2"><strong>reproducible</strong></span> workflows.</li>
-<li class="fragment">Hinders <span class="blue2"><strong>collaboration</strong></span> and <span class="blue2"><strong>versioning</strong></span> among team members.</li>
-<li class="fragment">Insufficient <span class="blue2"><strong>modularity</strong></span> for managing complex ML components.</li>
+<li class="fragment">Potentiel limité d’<span class="blue2"><strong>automatisation</strong></span> des pipelines <em>ML</em>.</li>
+<li class="fragment">Workflows peu clairs et peu <span class="blue2"><strong>reproductible</strong></span>.</li>
+<li class="fragment">Limite la <span class="blue2"><strong>collaboration</strong></span> et le <span class="blue2"><strong>contrôle de version</strong></span> entre les membres de l’équipe.</li>
+<li class="fragment"><span class="blue2"><strong>Modularité</strong></span> insuffisante pour gérer des composants <em>ML</em> complexe.</li>
 </ul></li>
 </ul>
 <div class="cell" data-execution_count="1">
@@ -788,36 +788,36 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Part 1 : From notebooks to a package-like project</strong></p>
+<p><strong>Partie 1 : Des notebooks à un projet de type package</strong></p>
 </div>
 <div class="callout-content">
 <ol start="0" type="1">
-<li><p>Launch a <code>VSCode</code> service by clicking <a href="https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&amp;init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»&amp;kubernetes.role=«admin»">this URL</a>. Open the service and input the service password (either automatically copied or available in the <code>README</code> of the service)</p></li>
-<li><p>All scripts related to our custom model are stored in the <code>src</code> folder. Check them out. Have a look at the <code>MLproject</code> file as well.</p></li>
-<li><p>Run a training of the model using MLflow. To do so, open a terminal (top left button <code>-&gt; Terminal -&gt; New Terminal</code>) and run the following command :</p>
+<li><p>Lancez un service <code>VSCode</code> en cliquant sur <a href="https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&amp;init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh%C2%BB&amp;kubernetes.role=%C2%ABadmin%C2%BB">cette URL</a>. Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier <code>README</code> du service).</p></li>
+<li><p>Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier <code>src</code>. Consultez-les. Regardez également le fichier <code>MLproject</code>.</p></li>
+<li><p>Exécutez un entraînement du modèle à l’aide de MLflow. Pour ce faire, ouvrez un terminal (bouton en haut à gauche <code>-&gt; Terminal -&gt; Nouveau terminal</code>) et exécutez la commande suivante :</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="bu">export</span> <span class="va">MLFLOW_EXPERIMENT_NAME</span><span class="op">=</span><span class="st">"nace-prediction"</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="ex">mlflow</span> run ~/work/formation-mlops/ <span class="at">--env-manager</span><span class="op">=</span>local <span class="dt">\</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>    <span class="at">-P</span> remote_server_uri=<span class="va">$MLFLOW_TRACKING_URI</span> <span class="dt">\</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>    <span class="at">-P</span> experiment_name=<span class="va">$MLFLOW_EXPERIMENT_NAME</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>In the UI of <code>MLflow</code>, look at the results of your previous run:</p>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="at">-P</span> experiment_name=<span class="va">$MLFLOW_EXPERIMENT_NAME</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Dans l’interface de <code>MLflow</code>, examinez les résultats de votre exécution précédente :</p>
 <ul>
-<li><code>Experiments -&gt; nace-prediction -&gt; &lt;run_name&gt;</code></li>
+<li><code>Experiments -&gt; nace-prediction -&gt; &lt;nom_de_l_execution&gt;</code></li>
 </ul></li>
-<li><p>You have trained the model with some default parameters. In <code>MLproject</code> check the available parameters. Re-train a model with different parameters (e.g.&nbsp;<code>dim = 25</code>).</p></li>
+<li><p>Vous avez entraîné le modèle avec certains paramètres par défaut. Dans <code>MLproject</code>, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, <code>dim = 25</code>).</p></li>
 </ol>
 <details>
 <summary>
-<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Click to see the command </b></font>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
 </summary>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">mlflow</span> run ~/work/formation-mlops/ <span class="at">--env-manager</span><span class="op">=</span>local <span class="dt">\</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>    <span class="at">-P</span> remote_server_uri=<span class="va">$MLFLOW_TRACKING_URI</span> <span class="dt">\</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">-P</span> experiment_name=<span class="va">$MLFLOW_EXPERIMENT_NAME</span> <span class="dt">\</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">-P</span> dim=25</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">-P</span> dim=25</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="5" type="1">
-<li>In <code>MLflow</code>, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e.&nbsp;<code>dim</code>)
+<li>Dans <code>MLflow</code>, comparez les 2 modèles en traçant l’exactitude par rapport à un paramètre que vous avez modifié (par ex. <code>dim</code>)
 <ul>
-<li><code>Select the 2 runs -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis</code></li>
+<li><code>Sélectionnez les 2 exécutions -&gt; Comparer -&gt; Diagramme de dispersion -&gt; Sélectionnez votre axe X et Y</code></li>
 </ul></li>
 </ol>
 </div>
@@ -831,23 +831,19 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Part 2 : Distributing and querying a custom model</strong></p>
+<p><strong>Partie 2 : Distribution et interrogation d’un modèle personnalisé</strong></p>
 </div>
 <div class="callout-content">
 <ol type="1">
-<li>Explore the <code>src/train.py</code> file carefully. What are the main differences with application 1?</li>
-<li>Why can we say that the <code>MLflow</code> model onboards the preprocessing?</li>
-<li>In <code>MLflow</code>, register your last model as <code>fasttext</code> to make it easily queryable from the <code>Python</code> API</li>
-<li>Create a script <code>predict.py</code> in the <code>src</code> folder of the project. This script should :
-<ol type="a">
-<li>Load the version 1 of the <code>fasttext</code> model</li>
-<li>Use the model to predict the NACE codes of a given list of activity description (e.g.&nbsp;<code>["vendeur d'huitres", "boulanger"]</code>).</li>
-</ol></li>
+<li>Explorez attentivement le fichier <code>src/train.py</code>. Quelles sont les principales différences avec l’application 1 ?</li>
+<li>Pourquoi pouvons-nous dire que le modèle <code>MLflow</code> intègre le prétraitement ?</li>
+<li>Dans <code>MLflow</code>, enregistrez votre dernier modèle en tant que <code>fasttext</code> pour le rendre facilement interrogeable depuis l’API <code>Python</code>.</li>
+<li>Créez un script <code>predict.py</code> dans le dossier <code>src</code> du projet. Ce script devrait : a. Charger la version 1 du modèle <code>fasttext</code> b. Utiliser le modèle pour prédire les codes NACE d’une liste donnée de descriptions d’activité (par exemple, <code>["vendeur d'huitres", "boulanger"]</code>).</li>
 </ol>
-<p>Don’t forget to read the documentation of the <code>predict()</code> function of the custom class (<code>src/fasttext_wrapper.py</code>) to understand the expected format for the inputs !</p>
+<p>N’oubliez pas de lire la documentation de la fonction <code>predict()</code> de la classe personnalisée (<code>src/fasttext_wrapper.py</code>) pour comprendre le format attendu des entrées !</p>
 <details>
 <summary>
-<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Click to see the content of the script </b></font>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir le contenu du script </b></font>
 </summary>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> mlflow</span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
@@ -866,20 +862,20 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb7-15"><a href="#cb7-15"></a>}</span>
 <span id="cb7-16"><a href="#cb7-16"></a></span>
 <span id="cb7-17"><a href="#cb7-17"></a>results <span class="op">=</span> model.predict(test_data)</span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="bu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="bu">print</span>(results)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="5" type="1">
-<li>Run your <code>predict.py</code> script.</li>
+<li>Exécutez votre script <code>predict.py</code>.</li>
 </ol>
 <details>
 <summary>
-<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Click to see the command </b></font>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
 </summary>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>python formation-mlops/src/predict.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>python formation-mlops/src/predict.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="6" type="1">
-<li>Make sure that the two following descriptions give the same top prediction : <code>"COIFFEUR"</code> and <code>"coiffeur, &amp; 98789"</code></li>
-<li>Change the value of the parameter <code>k</code> and try to understand how the structure of the output changed as a result</li>
+<li>Assurez-vous que les deux descriptions suivantes donnent la même prédiction principale : <code>"COIFFEUR"</code> et <code>"coiffeur, &amp; 98789"</code>.</li>
+<li>Modifiez la valeur du paramètre <code>k</code> et essayez de comprendre comment la structure de la sortie a changé en conséquence.</li>
 </ol>
 </div>
 </div>
@@ -887,67 +883,67 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </section></section>
 <section>
-<section id="deploying-a-ml-model-as-an-api" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1><span class="emoji" data-emoji="three">3️⃣</span> Deploying a ML model as an API</h1>
+<section id="déployer-un-modèle-ml-via-une-api" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1><span class="emoji" data-emoji="three">3️⃣</span> Déployer un modèle ML via une API</h1>
 
 </section>
-<section id="model-serving" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Model serving</h2>
+<section id="mise-en-service-du-modèle" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Mise en service du modèle</h2>
 <ul>
-<li class="fragment">Once a ML model has been developed, it must be <span class="orange"><strong>deployed</strong></span> to <span class="orange"><strong>serve</strong></span> its end users
+<li class="fragment">Une fois qu’un modèle de machine learning a été développé, il doit être <span class="orange"><strong>déployé</strong></span> pour <span class="orange"><strong>servir</strong></span> ses utilisateurs finaux.
 <ul>
-<li class="fragment">Which <span class="blue2"><strong>production</strong></span> infrastructure ?</li>
-<li class="fragment">Who are the <span class="blue2"><strong>end users</strong></span> ?</li>
-<li class="fragment"><span class="blue2"><strong>Batch</strong></span> serving vs.&nbsp;<span class="blue2"><strong>online</strong></span> serving</li>
+<li class="fragment">Quelle est l’infrastructure de <span class="blue2"><strong>production</strong></span> ?</li>
+<li class="fragment">Qui sont les <span class="blue2"><strong>utilisateurs finaux</strong></span> ?</li>
+<li class="fragment"><span class="blue2"><strong>Traitement par lots</strong></span> (<em>batch</em>) par rapport au <span class="blue2"><strong>traitement en ligne</strong></span> (<em>online</em>)</li>
 </ul></li>
 </ul>
 </section>
-<section id="a-standard-setup" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>A standard setup</h2>
+<section id="configuration-standard" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Configuration standard</h2>
 <ul>
-<li class="fragment"><p>Production infrastructure : <span class="orange"><strong>Kubernetes</strong></span> cluster</p></li>
-<li class="fragment"><p>The model might serve <span class="orange"><strong>various applications</strong></span></p>
+<li class="fragment"><p>Infrastructure de production : cluster <span class="orange"><strong>Kubernetes</strong></span></p></li>
+<li class="fragment"><p>Le modèle peut servir <span class="orange"><strong>diverses applications</strong></span></p>
 <ul>
-<li class="fragment">Make the model accessible via an <span class="blue2"><strong>API</strong></span></li>
+<li class="fragment">Rendre le modèle accessible via une <span class="blue2"><strong>API</strong></span></li>
 </ul></li>
-<li class="fragment"><p><span class="orange"><strong>Online serving</strong></span></p>
+<li class="fragment"><p><span class="orange"><strong>Traitement en ligne</strong></span> (<em>online serving</em>)</p>
 <ul>
-<li class="fragment"><span class="blue2"><strong>Client</strong></span> applications send a <span class="blue2"><strong>request</strong></span> to the API and get a fast <span class="blue2"><strong>response</strong></span></li>
+<li class="fragment">Les applications <span class="blue2"><strong>client</strong></span> envoient une <span class="blue2"><strong>requête</strong></span> à l’API et reçoivent une <span class="blue2"><strong>réponse</strong></span> rapide</li>
 </ul></li>
 </ul>
 </section>
-<section id="exposing-a-model-through-an-api" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Exposing a model through an API</h2>
+<section id="exposer-un-modèle-via-une-api" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Exposer un modèle via une API</h2>
 
-<img data-src="img/API.png" class="r-stretch quarto-figure-center"></section>
-<section id="run-the-api-in-a-container" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Run the API in a container</h2>
+<img data-src="../img/API.png" class="r-stretch quarto-figure-center"></section>
+<section id="exécuter-une-api-dans-un-conteneur" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Exécuter une API dans un conteneur</h2>
 <ul>
-<li class="fragment"><p><span class="orange"><strong>Container</strong></span>: <span class="blue2"><strong>self-contained</strong></span> and <span class="blue2"><strong>isolated</strong></span> environment that encapsulates the model, its dependencies and the API code</p></li>
-<li class="fragment"><p>Containers provide high <span class="orange"><strong>portability</strong></span> and <span class="orange"><strong>scalability</strong></span> for distributing the model efficiently.</p></li>
-<li class="fragment"><p>The <code>Dockerfile</code> is used to configure and build the Docker container.</p></li>
+<li class="fragment"><p><span class="orange"><strong>Conteneur</strong></span> : environnement <span class="blue2"><strong>autonome</strong></span> et <span class="blue2"><strong>isolé</strong></span> qui encapsule le modèle, ses dépendances et le code de l’API</p></li>
+<li class="fragment"><p>Les conteneurs offrent une grande <span class="orange"><strong>portabilité</strong></span> et <span class="orange"><strong>scalabilité</strong></span> pour distribuer le modèle de manière efficace.</p></li>
+<li class="fragment"><p>Le fichier <code>Dockerfile</code> est utilisé pour configurer et construire le conteneur Docker.</p></li>
 </ul>
 </section>
-<section id="development-with-docker-architecture" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Development with Docker architecture</h2>
+<section id="développement-avec-larchitecture-docker" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Développement avec l’architecture Docker</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/docker-workflow.png" style="width:87.0%"></p>
+<p><img data-src="../img/docker-workflow.png" style="width:87.0%"></p>
 </figure>
 </div>
 
 <aside><div>
 <p>Source: <a href="https://github.com/RamiKrispin/vscode-python">R. Krispin</a></p>
 </div></aside></section>
-<section id="deploying-an-api-on-kubernetes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Deploying an API on <code>Kubernetes</code></h2>
+<section id="déploiement-dune-api-sur-kubernetes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Déploiement d’une API sur <code>Kubernetes</code></h2>
 <!-- - Need a [**container orchestration tool**]{.orange} such as kubernetes -->
 <ul>
-<li class="fragment"><span class="orange"><strong>3 main files</strong></span> are needed to deploy an API:
+<li class="fragment"><span class="orange"><strong>3 fichiers principaux</strong></span> sont nécessaires pour déployer une API :
 <ul>
-<li class="fragment"><code>deployment.yaml</code> : defines how the API should <span class="blue2"><strong>run</strong></span> (container image, resources, and environment variables)</li>
-<li class="fragment"><code>service.yaml</code> : establishes a stable <span class="blue2"><strong>internal</strong></span> network endpoint for the API.</li>
-<li class="fragment"><code>ingress.yaml</code> : provides an entry point for <span class="blue2"><strong>external</strong></span> clients to access the API.</li>
+<li class="fragment"><code>deployment.yaml</code> : définit le fonctionnement de l’API (image du conteneur, ressources et variables d’environnement)</li>
+<li class="fragment"><code>service.yaml</code> : établit un point de terminaison réseau <span class="blue2"><strong>interne</strong></span> stable pour l’API.</li>
+<li class="fragment"><code>ingress.yaml</code> : fournit un point d’entrée pour les clients <span class="blue2"><strong>externes</strong></span> afin d’accéder à l’API.</li>
 </ul></li>
 </ul>
 </section>
@@ -957,13 +953,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Deploying a machine-learning model as an API</strong></p>
+<p><strong>Déploiement d’un modèle ML en tant qu’API</strong></p>
 </div>
 <div class="callout-content">
 <ol type="1">
-<li>We constructed a very simplistic Rest API using FastAPI. All underlying files are in the <code>app</code> folder. Check them.</li>
-<li>Open the <code>Dockerfile</code> to see how the image is built. The image is automatically rebuilt and published via Github Actions, if interested have a look to <code>.github/workflows/build_image.yml</code>.</li>
-<li>Open the file <code>kubernetes/deployment.yml</code> and modify the highlighted lines accordingly:</li>
+<li>Nous avons construit une API REST très simpliste à l’aide de FastAPI. Tous les fichiers sous-jacents se trouvent dans le dossier <code>app</code>. Consultez-les.</li>
+<li>Ouvrez le <code>Dockerfile</code> pour voir comment l’image est construite. L’image est automatiquement reconstruite et publiée via Github Actions, si vous êtes intéressé, jetez un coup d’œil à <code>.github/workflows/build_image.yml</code>.</li>
+<li>Ouvrez le fichier <code>kubernetes/deployment.yml</code> et modifiez les lignes surlignées comme suit :</li>
 </ol>
 <div class="sourceCode" id="cb9" data-code-line-numbers="7,9,11"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">containers</span><span class="kw">:</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> api</span></span>
@@ -975,31 +971,31 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb9-8"><a href="#cb9-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> MLFLOW_MODEL_NAME</span></span>
 <span id="cb9-9"><a href="#cb9-9"></a><span class="at">        </span><span class="fu">value</span><span class="kw">:</span><span class="at"> fasttext</span></span>
 <span id="cb9-10"><a href="#cb9-10"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> MLFLOW_MODEL_VERSION</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="at">        </span><span class="fu">value</span><span class="kw">:</span><span class="at"> </span><span class="st">"1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="at">        </span><span class="fu">value</span><span class="kw">:</span><span class="at"> </span><span class="st">"1"</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="4" type="1">
-<li>Open the file <code>kubernetes/ingress.yml</code> and modify (two times) the URL of the API endpoint to be of the form <code>&lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr</code></li>
-<li>Apply the three <code>Kubernetes</code> contracts contained in the <code>kubernetes/</code> folder in a terminal to deploy the API</li>
+<li>Ouvrez le fichier <code>kubernetes/ingress.yml</code> et modifiez (deux fois) l’URL du point de terminaison de l’API pour qu’elle soit de la forme <code>&lt;votre_prénom&gt;-&lt;votre_nom&gt;-api.lab.sspcloud.fr</code>.</li>
+<li>Appliquez les trois contrats <code>Kubernetes</code> contenus dans le dossier <code>kubernetes/</code> dans un terminal pour déployer l’API</li>
 </ol>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a href="#cb10-1"></a>kubectl apply -f formation-mlops/kubernetes/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a href="#cb10-1"></a>kubectl apply -f formation-mlops/kubernetes/</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="6" type="1">
-<li>Reach your API using the URL defined in your <code>ingress.yml</code> file</li>
-<li>Display the documentation of your API by adding <code>/docs</code> to your URL</li>
-<li>Try your API out!</li>
-<li>Re-run a new model and deploy this new model in your API</li>
+<li>Accédez à votre API en utilisant l’URL définie dans votre fichier <code>ingress.yml</code>.</li>
+<li>Affichez la documentation de votre API en ajoutant <code>/docs</code> à votre URL.</li>
+<li>Testez votre API !</li>
+<li>Réexécutez un nouveau modèle et déployez ce nouveau modèle dans votre API</li>
 </ol>
 <details>
 <summary>
-<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Click to see the steps </b></font>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir les étapes </b></font>
 </summary>
 <ol type="1">
-<li>Run a model</li>
-<li>Register the model</li>
-<li>Adjust your MLFLOW_MODEL_NAME or MLFLOW_MODEL_VERSION (if you didn’t modify the model name) environment variable in the <code>deployment.yml</code> file</li>
-<li>Apply the new <code>Kubernetes</code> contracts to update the API</li>
+<li>Exécutez un modèle.</li>
+<li>Enregistrez le modèle.</li>
+<li>Ajustez votre variable d’environnement <code>MLFLOW_MODEL_NAME</code> ou <code>MLFLOW_MODEL_VERSION</code> (si vous n’avez pas modifié le nom du modèle) dans le fichier <code>deployment.yml</code>.</li>
+<li>Appliquez les nouveaux contrats <code>Kubernetes</code> pour mettre à jour l’API</li>
 </ol>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>kubectl apply -f formation-mlops/kubernetes/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>kubectl apply -f formation-mlops/kubernetes/</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="5" type="1">
-<li>Refresh your API, and verify on the home page that it is now based on the new version of the model</li>
+<li>Rafraîchissez votre API et vérifiez sur la page d’accueil qu’elle est désormais basée sur la nouvelle version du modèle.</li>
 </ol>
 </details>
 </div>
@@ -1008,91 +1004,91 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </section></section>
 <section>
-<section id="distributing-the-hyperparameter-optimization" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1><span class="emoji" data-emoji="four">4️⃣</span> Distributing the hyperparameter optimization</h1>
+<section id="décentraliser-loptimisation-des-hyperparamètres" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1><span class="emoji" data-emoji="four">4️⃣</span> Décentraliser l’optimisation des hyperparamètres</h1>
 
 </section>
-<section id="parallel-training" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Parallel training</h2>
+<section id="entraînement-parallèle" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Entraînement parallèle</h2>
 <ul>
-<li class="fragment">With our setup, we can train models <span class="orange"><strong>one by one</strong></span> and log all relevant information to the MLflow tracking server</li>
-<li class="fragment">What if we would like to train <span class="orange"><strong>multiple models at once</strong></span>, for example to optimize hyperparameters ?</li>
+<li class="fragment">Avec notre configuration, nous pouvons entraîner des modèles <span class="orange"><strong>un par un</strong></span> et enregistrer toutes les informations pertinentes sur le serveur MLflow Tracking.</li>
+<li class="fragment">Et si nous voulions entraîner <span class="orange"><strong>plusieurs modèles en même temps</strong></span>, par exemple pour optimiser les hyperparamètres ?</li>
 </ul>
 </section>
-<section id="workflow-automation" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Workflow automation</h2>
+<section id="automatisation-du-workflow" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Automatisation du workflow</h2>
 <ul>
-<li class="fragment"><span class="orange"><strong>General principles</strong></span> :
+<li class="fragment"><span class="orange"><strong>Principes généraux</strong></span> :
 <ul>
-<li class="fragment">Define workflows where each step in the workflow is a <span class="blue2"><strong>container</strong></span> (reproducibility)</li>
-<li class="fragment">Model multi-step workflows as a <span class="blue2"><strong>sequence</strong></span> of tasks or as a <span class="blue2"><strong>directed acyclic graph</strong></span></li>
-<li class="fragment">This allows to easily <span class="blue2"><strong>run in parallel compute intensive jobs</strong></span> for machine learning or data processing</li>
+<li class="fragment">Définir des workflows où chaque étape du processus est un <span class="blue2"><strong>conteneur</strong></span> (reproductibilité).</li>
+<li class="fragment">Modéliser les workflows à plusieurs étapes comme une <span class="blue2"><strong>séquence</strong></span> de tâches ou comme un <span class="blue2"><strong>graphe acyclique orienté</strong></span>.</li>
+<li class="fragment">Cela permet d’<span class="blue2"><strong>exécuter facilement en parallèle des tâches intensives</strong></span> en calcul pour l’entraînement du modèle ou le traitement des données.</li>
 </ul></li>
 </ul>
 </section>
 <section id="argo-workflows" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Argo workflows</h2>
 <ul>
-<li class="fragment">A popular <span class="orange"><strong>workflow engine</strong></span> for orchestrating parallel jobs on <code>Kubernetes</code>
+<li class="fragment">Un moteur de <span class="orange"><strong>workflow</strong></span> populaire pour orchestrer des tâches parallèles sur <code>Kubernetes</code>.
 <ul>
-<li class="fragment"><span class="blue2"><strong>open-source</strong></span></li>
-<li class="fragment"><span class="blue2"><strong>container-native</strong></span></li>
-<li class="fragment">available on the <span class="orange"><strong>SSP Cloud</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>Open-source</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>Container-native</strong></span></li>
+<li class="fragment">Disponible sur le <span class="orange"><strong>SSP Cloud</strong></span></li>
 </ul></li>
 </ul>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/argo-logo.png" height="200"></p>
+<p><img data-src="../img/argo-logo.png" height="200"></p>
 </figure>
 </div>
 </div>
 </section>
-<section id="hello-world" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Hello World</h2>
+<section id="bonjour-le-monde" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Bonjour le monde</h2>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span><span class="co">                  # new type of k8s spec</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span><span class="co">                  # nouveau type de spécification k8s</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span><span class="co">    # name of the workflow spec</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span><span class="co">    # nom de la spécification du workflow</span></span>
 <span id="cb12-5"><a href="#cb12-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">          # invoke the whalesay template</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">          # invoque le modèle whalesay</span></span>
 <span id="cb12-7"><a href="#cb12-7"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">            # name of the template</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">            # nom du modèle</span></span>
 <span id="cb12-9"><a href="#cb12-9"></a><span class="at">      </span><span class="fu">container</span><span class="kw">:</span></span>
 <span id="cb12-10"><a href="#cb12-10"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
 <span id="cb12-11"><a href="#cb12-11"></a><span class="at">        </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
-<span id="cb12-12"><a href="#cb12-12"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"hello world"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"bonjour le monde"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="what-is-going-on" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>What is going on ?</h2>
+<section id="que-se-passe-t-il" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/argo-0.png" height="500"></p>
+<p><img data-src="../img/argo-0.png" height="500"></p>
 </figure>
 </div>
 </div>
 </section>
-<section id="what-is-going-on-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>What is going on ?</h2>
+<section id="que-se-passe-t-il-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/argo-1a.png" height="500"></p>
+<p><img data-src="../img/argo-1a.png" height="500"></p>
 </figure>
 </div>
 </section>
-<section id="what-is-going-on-2" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>What is going on ?</h2>
+<section id="que-se-passe-t-il-2" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/argo-2a.png" height="500"></p>
+<p><img data-src="../img/argo-2a.png" height="500"></p>
 </figure>
 </div>
 </section>
-<section id="parameters" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Parameters</h2>
+<section id="paramètres" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Paramètres</h2>
 <ul>
-<li class="fragment">Templates can take <span class="orange"><strong>input parameters</strong></span></li>
+<li class="fragment">Les modèles peuvent prendre des <span class="orange"><strong>paramètres d’entrée</strong></span></li>
 </ul>
 <div class="fragment">
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
@@ -1104,23 +1100,23 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb13-7"><a href="#cb13-7"></a><span class="at">  </span><span class="fu">arguments</span><span class="kw">:</span></span>
 <span id="cb13-8"><a href="#cb13-8"></a><span class="at">    </span><span class="fu">parameters</span><span class="kw">:</span></span>
 <span id="cb13-9"><a href="#cb13-9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span></span>
-<span id="cb13-10"><a href="#cb13-10"></a><span class="at">      </span><span class="fu">value</span><span class="kw">:</span><span class="at"> hello world</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="at">      </span><span class="fu">value</span><span class="kw">:</span><span class="at"> bonjour le monde</span></span>
 <span id="cb13-11"><a href="#cb13-11"></a></span>
 <span id="cb13-12"><a href="#cb13-12"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
 <span id="cb13-13"><a href="#cb13-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span></span>
 <span id="cb13-14"><a href="#cb13-14"></a><span class="at">    </span><span class="fu">inputs</span><span class="kw">:</span></span>
 <span id="cb13-15"><a href="#cb13-15"></a><span class="at">      </span><span class="fu">parameters</span><span class="kw">:</span></span>
-<span id="cb13-16"><a href="#cb13-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span><span class="co">       # parameter declaration</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span><span class="co">       # déclaration du paramètre</span></span>
 <span id="cb13-17"><a href="#cb13-17"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
 <span id="cb13-18"><a href="#cb13-18"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
 <span id="cb13-19"><a href="#cb13-19"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
-<span id="cb13-20"><a href="#cb13-20"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"{{inputs.parameters.message}}"</span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-20"><a href="#cb13-20"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"{{inputs.parameters.message}}"</span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="multi-step-workflows" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Multi-step workflows</h2>
+<section id="workflows-à-plusieurs-étapes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Workflows à plusieurs étapes</h2>
 <ul>
-<li class="fragment"><span class="orange"><strong>Multi-steps workflows</strong></span> can be specified (<code>steps</code> or <code>dag</code>)</li>
+<li class="fragment">Les <span class="orange"><strong>workflows à plusieurs étapes</strong></span> peuvent être spécifiés (<code>steps</code> ou <code>dag</code>)</li>
 </ul>
 <div class="fragment">
 <div class="sourceCode" id="cb14"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
@@ -1130,82 +1126,82 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb14-5"><a href="#cb14-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
 <span id="cb14-6"><a href="#cb14-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
 <span id="cb14-7"><a href="#cb14-7"></a></span>
-<span id="cb14-8"><a href="#cb14-8"></a><span class="co">  # This spec contains two templates: hello-hello-hello and whalesay</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co">  # Cette spécification contient deux modèles : hello-hello-hello et whalesay</span></span>
 <span id="cb14-9"><a href="#cb14-9"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
 <span id="cb14-10"><a href="#cb14-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
-<span id="cb14-11"><a href="#cb14-11"></a><span class="co">    # Instead of just running a container</span></span>
-<span id="cb14-12"><a href="#cb14-12"></a><span class="co">    # This template has a sequence of steps</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="co">    # Au lieu d'exécuter uniquement un conteneur</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="co">    # Ce modèle a une séquence d'étapes</span></span>
 <span id="cb14-13"><a href="#cb14-13"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb14-14"><a href="#cb14-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello1</span><span class="co">            # hello1 is run before the following steps</span></span>
+<span id="cb14-14"><a href="#cb14-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello1</span><span class="co">            # hello1 est exécuté avant les étapes suivantes</span></span>
 <span id="cb14-15"><a href="#cb14-15"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb14-16"><a href="#cb14-16"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2a</span><span class="co">           # double dash =&gt; run after previous step</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2a</span><span class="co">           # double tiret =&gt; exécuté après l'étape précédente</span></span>
 <span id="cb14-17"><a href="#cb14-17"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb14-18"><a href="#cb14-18"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2b</span><span class="co">           # single dash =&gt; run in parallel with previous step</span></span>
+<span id="cb14-18"><a href="#cb14-18"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2b</span><span class="co">           # tiret simple =&gt; exécuté en parallèle avec l'étape précédente</span></span>
 <span id="cb14-19"><a href="#cb14-19"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb14-20"><a href="#cb14-20"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">              # name of the template</span></span>
+<span id="cb14-20"><a href="#cb14-20"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">              # nom du modèle</span></span>
 <span id="cb14-21"><a href="#cb14-21"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
 <span id="cb14-22"><a href="#cb14-22"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
 <span id="cb14-23"><a href="#cb14-23"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
-<span id="cb14-24"><a href="#cb14-24"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"hello world"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-24"><a href="#cb14-24"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"bonjour le monde"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="what-is-going-on-3" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>What is going on ?</h2>
+<section id="que-se-passe-t-il-3" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/argo-0.png" height="500"></p>
+<p><img data-src="../img/argo-0.png" height="500"></p>
 </figure>
 </div>
 </div>
 </section>
-<section id="what-is-going-on-4" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>What is going on ?</h2>
+<section id="que-se-passe-t-il-4" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/argo-1b.png" height="500"></p>
+<p><img data-src="../img/argo-1b.png" height="500"></p>
 </figure>
 </div>
 </section>
-<section id="what-is-going-on-5" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>What is going on ?</h2>
+<section id="que-se-passe-t-il-5" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/argo-2b.png" height="500"></p>
+<p><img data-src="../img/argo-2b.png" height="500"></p>
 </figure>
 </div>
 </section>
-<section id="what-is-going-on-6" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>What is going on ?</h2>
+<section id="que-se-passe-t-il-6" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/argo-1b.png" height="500"></p>
+<p><img data-src="../img/argo-1b.png" height="500"></p>
 </figure>
 </div>
 </section>
-<section id="what-is-going-on-7" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>What is going on ?</h2>
+<section id="que-se-passe-t-il-7" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/argo-3b.png" height="500"></p>
+<p><img data-src="../img/argo-3b.png" height="500"></p>
 </figure>
 </div>
 </section>
-<section id="further-applications" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Further applications</h2>
+<section id="autres-applications" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Autres applications</h2>
 <ul>
-<li class="fragment">Workflow <span class="orange"><strong>to test</strong></span> registered models, or models pushed to staging / production</li>
-<li class="fragment">Workflows can be <span class="orange"><strong>triggered</strong></span> automatically (via Argo Events for example)</li>
-<li class="fragment"><span class="orange"><strong>Continuous training workflows</strong></span></li>
-<li class="fragment"><span class="orange"><strong>Distributed</strong></span> machine learning pipelines in general (data downloading, processing, etc.)</li>
+<li class="fragment">Workflow pour <span class="orange"><strong>tester</strong></span> des modèles enregistrés, ou des modèles poussés en pré-production / production.</li>
+<li class="fragment">Les workflows peuvent être <span class="orange"><strong>déclenchés</strong></span> automatiquement (via Argo Events, par exemple).</li>
+<li class="fragment">Workflows d’<span class="orange"><strong>entraînement continue</strong></span>.</li>
+<li class="fragment">Pipelines de <em>machine learning</em> <span class="orange"><strong>distribués</strong></span> en général (téléchargement de données, traitement, etc.).</li>
 </ul>
 </section>
-<section id="further-applications-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Further applications</h2>
+<section id="autres-applications-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Autres applications</h2>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/pokemon_workflow.png" height="450"></p>
+<p><img data-src="../img/pokemon_workflow.png" height="450"></p>
 </figure>
 </div>
 </div>
@@ -1213,10 +1209,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <section id="notes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Notes</h2>
 <ul>
-<li class="fragment"><span class="orange"><strong>Python SDK</strong></span> for Argo Workflows</li>
-<li class="fragment">Kubeflow pipelines</li>
-<li class="fragment"><span class="orange"><strong>Couler</strong></span> : unified interface for constructing and managing workflows on different workflow engines</li>
-<li class="fragment">Other Python-native orchestration tools : <span class="orange"><strong>Apache Airflow</strong></span>, <span class="orange"><strong>Metaflow</strong></span>, <span class="orange"><strong>Prefect</strong></span></li>
+<li class="fragment"><span class="orange"><strong>Python SDK</strong></span> pour Argo Workflows</li>
+<li class="fragment">Pipelines Kubeflow</li>
+<li class="fragment"><span class="orange"><strong>Couler</strong></span> : interface unifiée pour la construction et la gestion de workflows sur différents moteurs de workflows</li>
+<li class="fragment">Autres outils d’orchestration natifs de Python : <span class="orange"><strong>Apache Airflow</strong></span>, <span class="orange"><strong>Metaflow</strong></span>, <span class="orange"><strong>Prefect</strong></span></li>
 </ul>
 </section>
 <section id="application-4" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
@@ -1225,12 +1221,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Part 1 : introduction to <code>Argo Workflows</code></strong></p>
+<p><strong>Partie 1 : introduction à <code>Argo Workflows</code></strong></p>
 </div>
 <div class="callout-content">
 <ol type="1">
-<li>Launch an <code>Argo Workflows</code> service by clicking <a href="https://datalab.sspcloud.fr/launcher/automation/argo-workflows?autoLaunch=true">this URL</a>. Open the service and input the service password (either automatically copied or available in the <code>README</code> of the service)</li>
-<li>In <code>VSCode</code>, create a file <code>hello_world.yaml</code> at the root of the project with the following content:</li>
+<li>Lancez un service <code>Argo Workflows</code> en cliquant sur <a href="https://datalab.sspcloud.fr/launcher/automation/argo-workflows?autoLaunch=true">cette URL</a>. Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier <code>README</code> du service).</li>
+<li>Dans <code>VSCode</code>, créez un fichier <code>hello_world.yaml</code> à la racine du projet avec le contenu suivant :</li>
 </ol>
 <div class="sourceCode" id="cb15"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
@@ -1240,8 +1236,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb15-6"><a href="#cb15-6"></a><span class="at">    </span><span class="fu">workflows.argoproj.io/archive-strategy</span><span class="kw">:</span><span class="at"> </span><span class="st">"false"</span></span>
 <span id="cb15-7"><a href="#cb15-7"></a><span class="at">  </span><span class="fu">annotations</span><span class="kw">:</span></span>
 <span id="cb15-8"><a href="#cb15-8"></a><span class="fu">    workflows.argoproj.io/description</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a>      This is a simple hello world example.</span>
-<span id="cb15-10"><a href="#cb15-10"></a>      You can also run it in Python: https://couler-proj.github.io/couler/examples/#hello-world</span>
+<span id="cb15-9"><a href="#cb15-9"></a>      Ceci est un exemple simple de "Hello World".</span>
+<span id="cb15-10"><a href="#cb15-10"></a>      Vous pouvez également l'exécuter en Python : https://couler-proj.github.io/couler/examples/#hello-world</span>
 <span id="cb15-11"><a href="#cb15-11"></a><span class="fu">spec</span><span class="kw">:</span></span>
 <span id="cb15-12"><a href="#cb15-12"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span></span>
 <span id="cb15-13"><a href="#cb15-13"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
@@ -1249,13 +1245,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb15-15"><a href="#cb15-15"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
 <span id="cb15-16"><a href="#cb15-16"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay:latest</span></span>
 <span id="cb15-17"><a href="#cb15-17"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
-<span id="cb15-18"><a href="#cb15-18"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"hello world"</span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-18"><a href="#cb15-18"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"hello world"</span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
-<li>Submit the <code>Hello world</code> workflow via a terminal in <code>VSCode</code> :</li>
+<li>Soumettez le workflow “Hello World” via un terminal dans <code>VSCode</code> :</li>
 </ol>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb16-1"><a href="#cb16-1"></a>argo submit formation-mlops/hello_world.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb16-1"><a href="#cb16-1"></a>argo submit formation-mlops/hello_world.yaml</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="4" type="1">
-<li>Open the UI of <code>Argo Workflows</code>. Find the logs of the workflow you just launched. You should see the Docker logo <i class="fab fa-docker" style="color: #18a8fe;"></i>.</li>
+<li>Ouvrez l’interface utilisateur d’<code>Argo Workflows</code>. Trouvez les logs du workflow que vous venez de lancer. Vous devriez voir le logo Docker <i class="fab fa-docker" style="color: #18a8fe;"></i>.</li>
 </ol>
 </div>
 </div>
@@ -1268,31 +1264,31 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Part 2 : distributing the hyperparameters optimization</strong></p>
+<p><strong>Partie 2 : décentralisation de l’optimisation des hyperparamètres</strong></p>
 </div>
 <div class="callout-content">
 <ol type="1">
-<li>Take a look at the <code>argo_workflows/workflow.yml</code> file. What do you expect will happen when we submit this workflow ?</li>
-<li>Modify the highlighted line in the same manner as in application 3.</li>
+<li>Jetez un coup d’œil au fichier <code>argo_workflows/workflow.yml</code>. Que pensez-vous qu’il se passera lorsque nous soumettrons ce flux de travail ?</li>
+<li>Modifiez la ligne surlignée de la même manière que dans l’application 3.</li>
 </ol>
 <div class="sourceCode" id="cb17" data-code-line-numbers="4"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">parameters</span><span class="kw">:</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="co">    # The MLflow tracking server is responsable to log the hyper-parameter and model metrics.</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="co">    # Le serveur de suivi MLflow est responsable de l'enregistrement des hyper-paramètres et des métriques du modèle.</span></span>
 <span id="cb17-3"><a href="#cb17-3"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mlflow-tracking-uri</span></span>
 <span id="cb17-4"><a href="#cb17-4"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr</span></span>
 <span id="cb17-5"><a href="#cb17-5"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mlflow-experiment-name</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> nace-prediction</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> nace-prediction</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
-<li>Submit the workflow and look at the jobs completing live in the UI.</li>
+<li>Soumettez le flux de travail et observez les tâches s’exécuter en direct dans l’interface utilisateur.</li>
 </ol>
 <details>
 <summary>
-<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Click to see the command </b></font>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
 </summary>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb18-1"><a href="#cb18-1"></a>argo submit formation-mlops/argo_workflows/workflow.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb18-1"><a href="#cb18-1"></a>argo submit formation-mlops/argo_workflows/workflow.yml</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="4" type="1">
-<li>Once all jobs are completed, visualize the logs of the whole workflow.</li>
-<li>Finally, open the <code>MLflow</code> UI to check what has been done.</li>
+<li>Une fois que toutes les tâches sont terminées, visualisez les logs de l’ensemble du flux de travail.</li>
+<li>Enfin, ouvrez l’interface utilisateur de <code>MLflow</code> pour vérifier ce qui a été fait.</li>
 </ol>
 </div>
 </div>
@@ -1303,27 +1299,27 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <h1>Conclusion</h1>
 
 <div class="footer footer-default">
-<p>An introduction to MLOps with MLflow</p>
+<p>Une introduction au MLOps avec MLflow</p>
 </div>
 </section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -1525,9 +1521,9 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
     </script>
     <script type="module">
     if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-    window._ojs.paths.runtimeToDoc = "../../slides";
+    window._ojs.paths.runtimeToDoc = "../../slides/fr";
     window._ojs.paths.runtimeToRoot = "../..";
-    window._ojs.paths.docToRoot = "..";
+    window._ojs.paths.docToRoot = "../..";
     window._ojs.selfContained = false;
     window._ojs.runtime.interpretFromScriptTags();
     </script>
@@ -1582,12 +1578,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
         // flash "checked"
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
+        button.setAttribute("title", "Copié");
         let tooltip;
         if (window.bootstrap) {
           button.setAttribute("data-bs-toggle", "tooltip");
           button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
+          button.setAttribute("data-bs-title", "Copié");
           tooltip = new bootstrap.Tooltip(button, 
             { trigger: "manual", 
               customClass: "code-copy-button-tooltip",
