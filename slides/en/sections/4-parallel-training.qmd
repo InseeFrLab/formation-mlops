@@ -19,7 +19,7 @@
 
 . . .
 
-![](img/argo-logo.png){fig-align="center" height=200}
+![](../img/argo-logo.png){fig-align="center" height=200}
 
 ## Hello World
 
@@ -42,15 +42,15 @@ spec:
 
 . . .
 
-![](img/argo-0.png){fig-align="center" height=500}
+![](../img/argo-0.png){fig-align="center" height=500}
 
 ## What is going on ?
 
-![](img/argo-1a.png){fig-align="center" height=500}
+![](../img/argo-1a.png){fig-align="center" height=500}
 
 ## What is going on ?
 
-![](img/argo-2a.png){fig-align="center" height=500}
+![](../img/argo-2a.png){fig-align="center" height=500}
 
 ## Parameters
 
@@ -118,23 +118,23 @@ spec:
 
 . . .
 
-![](img/argo-0.png){fig-align="center" height=500}
+![](../img/argo-0.png){fig-align="center" height=500}
 
 ## What is going on ?
 
-![](img/argo-1b.png){fig-align="center" height=500}
+![](../img/argo-1b.png){fig-align="center" height=500}
 
 ## What is going on ?
 
-![](img/argo-2b.png){fig-align="center" height=500}
+![](../img/argo-2b.png){fig-align="center" height=500}
 
 ## What is going on ?
 
-![](img/argo-1b.png){fig-align="center" height=500}
+![](../img/argo-1b.png){fig-align="center" height=500}
 
 ## What is going on ?
 
-![](img/argo-3b.png){fig-align="center" height=500}
+![](../img/argo-3b.png){fig-align="center" height=500}
 
 ## Further applications
 
@@ -147,7 +147,7 @@ spec:
 
 . . .
 
-![](img/pokemon_workflow.png){fig-align="center" height=450}
+![](../img/pokemon_workflow.png){fig-align="center" height=450}
 
 ## Notes
 

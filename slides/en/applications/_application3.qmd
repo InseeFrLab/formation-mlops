@@ -39,7 +39,7 @@ kubectl apply -f formation-mlops/kubernetes/
 
 1. Run a model
 2. Register the model
-3. Adjust your MLFLOW_MODEL_NAME or MLFLOW_MODEL_VERSION (if you didn't modify the model name) environment variable in the `deployment.yml` file
+3. Adjust your `MLFLOW_MODEL_NAME` or `MLFLOW_MODEL_VERSION` (if you didn't modify the model name) environment variable in the `deployment.yml` file
 4. Apply the new `Kubernetes` contracts to update the API
 
 ```shell

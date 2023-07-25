@@ -1,0 +1,71 @@
+---
+title: Une introduction au MLOps avec MLflow
+subtitle: |
+  [**[Romain Avouac (Insee), Thomas Faria (Insee), Tom Seimandi (Insee)]{.orange}**]{.orange}
+slide-number: true
+footer: |
+  Une introduction au MLOps avec MLflow
+
+lang: fr-FR
+slide-tone: false
+chalkboard: # press the B key to toggle chalkboard
+  theme: whiteboard
+format:
+  # pick the light mode (onyxia-revealjs) or the dark mode (onyxia-dark-revealjs)
+  onyxia-revealjs:
+  #onyxia-dark-revealjs:
+    incremental: true 
+    output-file: index.html
+controls: true
+css: ../custom.css
+from: markdown+emoji
+---
+
+# Introduction
+
+{{< include sections/0-introduction.qmd >}}
+
+## Application 0
+
+{{< include applications/_application0.qmd >}}
+
+
+# :one: Introduction à MLFlow
+
+{{< include sections/1-mlflow-intro.qmd >}}
+
+## Application 1
+
+{{< include applications/_application1.qmd >}}
+
+
+# :two: Un exemple concret
+
+{{< include sections/2-mlflow-custom-class-example.qmd >}}
+
+## Application 2 {.scrollable}
+
+{{< include applications/_application2.qmd >}}
+
+
+# :three: Déployer un modèle ML via une API
+
+{{< include sections/3-deployment.qmd >}}
+
+## Application 3 {.scrollable}
+
+{{< include applications/_application3.qmd >}}
+
+
+# :four: Décentraliser l'optimisation des hyperparamètres
+
+{{< include sections/4-parallel-training.qmd >}}
+
+## Application 4 {.scrollable}
+
+{{< include applications/_application4.qmd >}}
+
+
+# Conclusion
+
+{{< include sections/6-conclusion.qmd >}}

@@ -27,7 +27,7 @@
 
 . . .
 
-![](img/devops.png){fig-align="center" height=300}
+![](../img/devops.png){fig-align="center" height=300}
 
 ## The MLOps approach
 
@@ -37,7 +37,7 @@
 
 . . .
 
-![](img/mlops.png){fig-align="center" height=400}
+![](../img/mlops.png){fig-align="center" height=400}
 
 ## MLOps : principles
 
