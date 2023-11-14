@@ -1,12 +1,49 @@
-:::{.callout-tip collapse="true" icon=false}
+::: {.panel-tabset}
+## Sans Git
+
+::::{.callout-tip collapse="true" icon=false}
 ## Préparation de l'environnement de travail
 
-:::{.incremental}
+
+:::::{.nonincremental}
 1. Créez un compte sur le [SSP Cloud](https://datalab.sspcloud.fr/home) en utilisant votre adresse e-mail professionnelle.
 2. Lancez un service `MLflow` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/automation/mlflow?autoLaunch=true).
 3. Lancez un service `Jupyter-python` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh%C2%BB).
-4. Ouvrez le service `Jupyter-python` et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier `README` du service).
+4. Ouvrez le service `Jupyter-python` et saisissez le mot de passe du service.
 5. Vous êtes prêt !
-:::
+:::::
+::::
+
+## Avec Git
+
+::::{.callout-tip collapse="true" icon=false}
+## Préparation de l'environnement de travail
+
+
+:::::{.nonincremental}
+1. On suppose que vous possédez un compte `Github` et que vous avez déjà créé un token. *Forkez* le repo de la formation en cliquant [ici](https://github.com/InseeFrLab/formation-mlops/fork).
+2. Créez un compte sur le [SSP Cloud](https://datalab.sspcloud.fr/home) en utilisant votre adresse e-mail professionnelle.
+3. Lancez un service `MLflow` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/automation/mlflow?autoLaunch=true).
+4. Lancez un service `Jupyter-python` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true).
+5. Ouvrez le service `Jupyter-python` et saisissez le mot de passe du service.
+6. *Clonez* votre dépôt que vous venez de fork (modifiez les deux premières lignes) :
+
+    ```{.sh code-line-numbers="1,2"}
+    GIT_REPO=formation-mlops
+    GIT_USERNAME=InseeFrLab
+
+    git clone https://github.com/$GIT_USERNAME/$GIT_REPO.git
+    cd $GIT_REPO
+    ```
+7. Installez les packages nécessaires pour la formation :
+
+    ```sh
+    pip install -r requirements.txt
+    python -m nltk.downloader stopwords
+    ```
+
+8. Vous êtes prêt !
+:::::
+::::
 
 :::
