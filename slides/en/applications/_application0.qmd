@@ -1,12 +1,51 @@
-:::{.callout-tip collapse="true" icon=false}
+::: {.panel-tabset}
+## Without Git
+
+::::{.callout-tip collapse="true" icon=false}
 ## Preparation of the working environment
 
-:::{.incremental}
+:::::{.nonincremental}
+
 1. Create an account on the [SSP Cloud](https://datalab.sspcloud.fr/home) using your professional mail address
 2. Launch a `MLflow` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/automation/mlflow?autoLaunch=true)
 3. Launch a `Jupyter-python` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»)
-4. Open the `Jupyter-python` service and input the service password (either automatically copied or available in the `README` of the service)
+4. Open the `Jupyter-python` service and input the service password
 5. You're all set !
-:::
+
+:::::
+::::
+
+## With Git
+
+::::{.callout-tip collapse="true" icon=false}
+## Preparation of the working environment
+
+:::::{.nonincremental}
+
+1. It is assumed that you have a `Github` account and have already created a token. Fork the training repository by clicking [here](https://github.com/InseeFrLab/formation-mlops/fork).
+2. Create an account on the [SSP Cloud](https://datalab.sspcloud.fr/home) using your professional mail address
+3. Launch a `MLflow` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/automation/mlflow?autoLaunch=true)
+4. Launch a `Jupyter-python` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true)
+5. Open the `Jupyter-python` service and input the service password
+6. In Jupyter, open a terminal and clone your forked repository (modify the first two lines):
+
+    ```{.sh code-line-numbers="1,2"}
+    GIT_REPO=formation-mlops
+    GIT_USERNAME=InseeFrLab
+
+    git clone https://github.com/$GIT_USERNAME/$GIT_REPO.git
+    cd $GIT_REPO
+    ```
+7. Install the necessary packages for the training:
+
+    ```sh
+    pip install -r requirements.txt
+    python -m nltk.downloader stopwords
+    ```
+
+8. You're all set !
+
+:::::
+::::
 
 :::
