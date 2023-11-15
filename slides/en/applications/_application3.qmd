@@ -1,6 +1,10 @@
-:::{.nonincremental}
-:::: {.callout-tip collapse="true" icon=false}
-## Deploying a machine-learning model as an API
+::: {.panel-tabset}
+## Manual deployment
+
+::::{.callout-tip collapse="true" icon=false}
+## Deploying manually a machine-learning model as an API
+
+:::::{.nonincremental}
 
 1. We constructed a very simplistic Rest API using FastAPI. All underlying files are in the `app` folder. Check them.
 2. Open the `Dockerfile` to see how the image is built. The image is automatically rebuilt and published via Github Actions, if interested have a look to `.github/workflows/build_image.yml`.
@@ -30,15 +34,15 @@ kubectl apply -f formation-mlops/kubernetes/
 6. Reach your API using the URL defined in your `ingress.yml` file
 7. Display the documentation of your API by adding `/docs` to your URL
 8. Try your API out!
-9. Re-run a new model and deploy this new model in your API
+9. Re-train a new model and deploy this new model in your API
 
 <details>
 <summary>
     <font size=\"3\" color=\"darkgreen\"><b>Click to see the steps </b></font>
 </summary>
 
-1. Run a model
-2. Register the model
+1. Train a model
+2. Register the model in MLflow
 3. Adjust your `MLFLOW_MODEL_NAME` or `MLFLOW_MODEL_VERSION` (if you didn't modify the model name) environment variable in the `deployment.yml` file
 4. Apply the new `Kubernetes` contracts to update the API
 
@@ -50,6 +54,55 @@ kubectl apply -f formation-mlops/kubernetes/
 
 </details>
 
+:::::
 ::::
 
+
+## Continuous deployment
+
+::::{.callout-tip collapse="true" icon=false}
+## Continuous deployment of a machine-learning model as an API
+
+:::::{.nonincremental}
+
+⚠️ The previous applications must have been created with the Git option to be able to follow this one.
+
+Previously, you deployed your model manually. Thanks to ArgoCD, it is possible to deploy a model continuously. This means that every modification of a file in the kubernetes/ folder will automatically trigger redeployment, synchronized with your GitHub repository. To convince yourself, follow the steps below:
+
+1. Resume the first 4 steps of the manual deployment.
+2. Launch an ArgoCD service by clicking on this [URL](https://datalab.sspcloud.fr/launcher/automation/argo-cd?version=0.5.3&autoLaunch=true). Open the service, enter the username (admin), and the service's password.
+3. Open the template `argocd/template-argocd.yml` and modify the highlighted lines:
+
+```{.yml code-line-numbers="4,9"}
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/<your-github-id>/formation-mlops.git
+    targetRevision: HEAD
+    path: kubernetes
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: <your-namespace>
+```
+
+4. In ArgoCD, click on `New App` and then `Edit as a YAML`. Copy and paste the content of `argocd/template-argocd.yml`, and click on `Create`.
+5. Reach your API using the URL defined in your `ingress.yml` file
+6. Display the documentation of your API by adding `/docs` to your URL
+7. Try your API out!
+8. Re-train a new model and deploy **automatically** this new model in your API
+
+<details>
+<summary>
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the steps </b></font>
+</summary>
+
+1. Train a model
+2. Register the model in MLflow
+3. Adjust your `MLFLOW_MODEL_NAME` or `MLFLOW_MODEL_VERSION` (if you didn't modify the model name) environment variable in the `deployment.yml` file
+4. Commit these changes and push them to your GitHub repository.
+5. Wait for 5 minutes for `ArgoCD` to automatically synchronize the changes from your GitHub repository, or force synchronization. Refresh your API and check on the homepage that it is now based on the new version of the model.
+
+</details>
+:::::
+::::
 :::

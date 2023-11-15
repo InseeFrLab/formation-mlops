@@ -71,7 +71,7 @@ kubectl apply -f formation-mlops/kubernetes/
 
 Précedement, vous avez déployé votre modèle manuellement. Grâce à `ArgoCD` il est possible de déployer un modèle de manière continu, ainsi chaque modification d'un fichier présent dans le dossier `kubernetes/` va entrainer le redéploiement automatique en se synchronisation avec votre dépôt Github. Pour vous en convaincre, suivez les étapes ci dessous :
 
-1. Reprenez les 4 premières étapes du déploiement continu. 
+1. Reprenez les 4 premières étapes du déploiement manuel. 
 2. Lancez un service `ArgoCD` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/automation/argo-cd?version=0.5.3&autoLaunch=true). Ouvrez le service, saisissez l'identifiant (`admin`) et le mot de passe du service.
 3. Ouvrez le template `argocd/template-argocd.yml` et modifiez les lignes surlignées :
 
