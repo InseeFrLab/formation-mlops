@@ -1,6 +1,6 @@
 :::{.nonincremental}
 :::: {.callout-tip collapse="true" icon=false}
-## Déploiement d'un modèle ML en tant qu'API
+## Déploiement manuel d'un modèle ML en tant qu'API
 
 1. Nous avons construit une API REST très simpliste à l'aide de FastAPI. Tous les fichiers sous-jacents se trouvent dans le dossier `app`. Consultez-les.
 2. Ouvrez le `Dockerfile` pour voir comment l'image est construite. L'image est automatiquement reconstruite et publiée via Github Actions, si vous êtes intéressé, jetez un coup d'œil à `.github/workflows/build_image.yml`.
