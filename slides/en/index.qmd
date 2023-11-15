@@ -16,9 +16,7 @@ chalkboard: # press the B key to toggle chalkboard
 # uncomment to use the multiplex mode:
 #multiplex: true
 format:
-  # pick the light mode (onyxia-revealjs) or the dark mode (onyxia-dark-revealjs)
   onyxia-revealjs:
-  #onyxia-dark-revealjs:
     incremental: true 
     output-file: index.html
 controls: true

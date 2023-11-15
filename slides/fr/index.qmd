@@ -11,9 +11,7 @@ slide-tone: false
 chalkboard: # press the B key to toggle chalkboard
   theme: whiteboard
 format:
-  # pick the light mode (onyxia-revealjs) or the dark mode (onyxia-dark-revealjs)
   onyxia-revealjs:
-  #onyxia-dark-revealjs:
     incremental: true 
     output-file: index.html
 controls: true
