@@ -1,7 +1,7 @@
 slides/index.html
 slides/index_files/
 slides/index.ipynb
-
+*.ipynb
 data/
 models/
 
