@@ -1,12 +1,16 @@
-:::{.nonincremental}
-:::: {.callout-tip collapse="true" icon=false}
+::: {.panel-tabset}
+## Sans Git
+
+::::{.callout-tip collapse="true" icon=false}
 ## Partie 1 : Des notebooks à un projet de type package
 
-0. Lancez un service `VSCode` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh%C2%BB&kubernetes.role=%C2%ABadmin%C2%BB). Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier `README` du service).
+:::::{.nonincremental}
 
-1. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. Regardez également le fichier `MLproject`.
+1. Lancez un service `VSCode` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh%C2%BB&kubernetes.role=%C2%ABadmin%C2%BB). Ouvrez le service et saisissez le mot de passe du service.
 
-2. Exécutez un entraînement du modèle à l'aide de MLflow. Pour ce faire, ouvrez un terminal (bouton en haut à gauche `-> Terminal -> Nouveau terminal`) et exécutez la commande suivante :
+2. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. Regardez également le fichier `MLproject`.
+
+3. Exécutez un entraînement du modèle à l'aide de MLflow. Pour ce faire, ouvrez un terminal ({{< bi bi-list >}} `-> Terminal -> New Terminal`) et exécutez la commande suivante :
 
    ```sh
    export MLFLOW_EXPERIMENT_NAME="nace-prediction"
@@ -15,11 +19,11 @@
        -P experiment_name=$MLFLOW_EXPERIMENT_NAME
    ```
 
-3. Dans l'interface de `MLflow`, examinez les résultats de votre exécution précédente :
+4. Dans l'interface de `MLflow`, examinez les résultats de votre exécution précédente :
 
-   * `Experiments -> nace-prediction -> <nom_de_l_execution>`
+   * `Experiments -> nace-prediction -> <nom_experience>`
 
-4. Vous avez entraîné le modèle avec certains paramètres par défaut. Dans `MLproject`, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, `dim = 25`).
+5. Vous avez entraîné le modèle avec certains paramètres par défaut. Dans le fichier `MLproject`, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, `dim = 25`).
 
 <details> 
 <summary> 
@@ -36,9 +40,62 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 </details>
 
 
-5. Dans `MLflow`, comparez les 2 modèles en traçant l'exactitude par rapport à un paramètre que vous avez modifié (par ex. `dim`)
-   * `Sélectionnez les 2 exécutions -> Comparer -> Diagramme de dispersion -> Sélectionnez votre axe X et Y` 
-:::: 
+6. Dans `MLflow`, comparez les 2 modèles en traçant l'exactitude par rapport à un paramètre que vous avez modifié (par exemple `dim`)
+   * `Sélectionnez les 2 expériences -> Compare -> Scatter Plot -> Select your X and Y axis` 
+   
+:::::
+::::
+
+
+## Avec Git
+
+::::{.callout-tip collapse="true" icon=false}
+## Partie 1 : Des notebooks à un projet de type package
+
+
+:::::{.nonincremental}
+
+1. Lancez un service `VSCode` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&kubernetes.role=«admin»). Ouvrez le service et saisissez le mot de passe du service.
+
+2. Dans VSCode, ouvrez un terminal ({{< bi bi-list >}} `-> Terminal -> New Terminal`) et réalisez les étapes 6 et 7 de [l'application 0](#app0) (clone et installation de packages)
+
+3. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. Regardez également le fichier `MLproject`.
+
+4. Exécutez un entraînement du modèle à l'aide de MLflow. Dans un terminal, exécutez la commande suivante :
+
+   ```sh
+   export MLFLOW_EXPERIMENT_NAME="nace-prediction"
+   mlflow run ~/work/formation-mlops/ --env-manager=local \
+       -P remote_server_uri=$MLFLOW_TRACKING_URI \
+       -P experiment_name=$MLFLOW_EXPERIMENT_NAME
+   ```
+
+5. Dans l'interface de `MLflow`, examinez les résultats de votre exécution précédente :
+
+   * `Experiments -> nace-prediction -> <nom_experience>`
+
+6. Vous avez entraîné le modèle avec certains paramètres par défaut. Dans le fichier `MLproject`, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, `dim = 25`).
+
+<details> 
+<summary> 
+    <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir la commande </b></font> 
+</summary>
+
+```sh
+mlflow run ~/work/formation-mlops/ --env-manager=local \
+    -P remote_server_uri=$MLFLOW_TRACKING_URI \
+    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \
+    -P dim=25
+```
+
+</details>
+
+
+7. Dans `MLflow`, comparez les 2 modèles en traçant l'exactitude par rapport à un paramètre que vous avez modifié (par exemple `dim`)
+   * `Sélectionnez les 2 expériences -> Compare -> Scatter Plot -> Select your X and Y axis` 
+   
+:::::
+::::
 :::
 
 ## Application 2 {.scrollable}
@@ -48,11 +105,13 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 ## Partie 2 : Distribution et interrogation d'un modèle personnalisé
 
 1. Explorez attentivement le fichier `src/train.py`. Quelles sont les principales différences avec l'application 1 ?
-2. Pourquoi pouvons-nous dire que le modèle `MLflow` intègre le prétraitement ?
+2. Pourquoi pouvons-nous dire que le modèle `MLflow` intègre le *preprocessing* ?
 3. Dans `MLflow`, enregistrez votre dernier modèle en tant que `fasttext` pour le rendre facilement interrogeable depuis l'API `Python`.
-4. Créez un script `predict.py` dans le dossier `src` du projet. Ce script devrait : a. Charger la version 1 du modèle `fasttext` b. Utiliser le modèle pour prédire les codes NACE d'une liste donnée de descriptions d'activité (par exemple, `["vendeur d'huitres", "boulanger"]`).
+4. Créez un script `predict.py` dans le dossier `src` du projet. Ce script doit : 
+    a. Charger la version 1 du modèle `fasttext` 
+    b. Utiliser le modèle pour prédire les codes NACE d'une liste donnée de descriptions d'activité (par exemple, `["vendeur d'huitres", "boulanger"]`).
 
-N'oubliez pas de lire la documentation de la fonction `predict()` de la classe personnalisée (`src/fasttext_wrapper.py`) pour comprendre le format attendu des entrées !
+💡 N'oubliez pas de lire la documentation de la fonction `predict()` de la classe personnalisée (`src/fasttext_wrapper.py`) pour comprendre le format attendu des entrées !
 
     
 <details> 
