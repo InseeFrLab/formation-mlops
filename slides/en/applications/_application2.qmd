@@ -8,7 +8,7 @@
 
 1. Launch a `VSCode` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»&kubernetes.role=«admin»). Open the service and input the service password.
 2. All scripts related to our custom model are stored in the `src` folder. Check them out. Have a look at the `MLproject` file as well.
-3. Run a training of the model using MLflow. To do so, open a terminal ({{< bi bi-list >}} `-> Terminal -> New Terminal`) and run the following command :
+3. Run a training of the model using MLflow. To do so, open a terminal ({{< iconify ph list-bold >}} `-> Terminal -> New Terminal`) and run the following command :
 
     ```sh
     export MLFLOW_EXPERIMENT_NAME="nace-prediction"
@@ -53,9 +53,9 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 
 
 1. Launch a `VSCode` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&kubernetes.role=«admin»). Open the service and input the service password.
-2. In VSCode, open a terminal ({{< bi bi-list >}} `-> Terminal -> New Terminal`) and redo steps 6 and 7 of [application 0](#app0) (clone and package installation)
+2. In VSCode, open a terminal ({{< iconify ph list-bold >}} `-> Terminal -> New Terminal`) and redo steps 6 and 7 of [application 0](#app0) (clone and package installation)
 2. All scripts related to our custom model are stored in the `src` folder. Check them out. Have a look at the `MLproject` file as well.
-3. Run a training of the model using MLflow. To do so, open a terminal ({{< bi bi-list >}} `-> Terminal -> New Terminal`) and run the following command :
+3. Run a training of the model using MLflow. To do so, open a terminal ({{< iconify ph list-bold >}} `-> Terminal -> New Terminal`) and run the following command :
 
     ```sh
     export MLFLOW_EXPERIMENT_NAME="nace-prediction"
@@ -89,7 +89,7 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 
 
 
-2. Dans VSCode, ouvrez un terminal ({{< bi bi-list >}} `-> Terminal -> New Terminal`) et réalisez les étapes 6 et 7 de [l'application 0](#app0) (clone et installation de packages)
+2. Dans VSCode, ouvrez un terminal ({{< iconify ph list-bold >}} `-> Terminal -> New Terminal`) et réalisez les étapes 6 et 7 de [l'application 0](#app0) (clone et installation de packages)
 
 3. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. Regardez également le fichier `MLproject`.
 

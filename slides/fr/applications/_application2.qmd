@@ -10,7 +10,7 @@
 
 2. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. Regardez également le fichier `MLproject`.
 
-3. Exécutez un entraînement du modèle à l'aide de MLflow. Pour ce faire, ouvrez un terminal ({{< bi bi-list >}} `-> Terminal -> New Terminal`) et exécutez la commande suivante :
+3. Exécutez un entraînement du modèle à l'aide de MLflow. Pour ce faire, ouvrez un terminal ({{< iconify ph list-bold >}} `-> Terminal -> New Terminal`) et exécutez la commande suivante :
 
    ```sh
    export MLFLOW_EXPERIMENT_NAME="nace-prediction"
@@ -57,7 +57,7 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 
 1. Lancez un service `VSCode` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&kubernetes.role=«admin»). Ouvrez le service et saisissez le mot de passe du service.
 
-2. Dans VSCode, ouvrez un terminal ({{< bi bi-list >}} `-> Terminal -> New Terminal`) et réalisez les étapes 6 et 7 de [l'application 0](#app0) (clone et installation de packages)
+2. Dans VSCode, ouvrez un terminal ({{< iconify ph list-bold >}} `-> Terminal -> New Terminal`) et réalisez les étapes 6 et 7 de [l'application 0](#app0) (clone et installation de packages)
 
 3. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. Regardez également le fichier `MLproject`.
 
