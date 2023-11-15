@@ -1,9 +1,14 @@
-:::{.nonincremental}
-:::: {.callout-tip collapse="true" icon=false}
+::: {.panel-tabset}
+## Déploiement manuel
+
+::::{.callout-tip collapse="true" icon=false}
 ## Déploiement manuel d'un modèle ML en tant qu'API
 
+:::::{.nonincremental}
+
+
 1. Nous avons construit une API REST très simpliste à l'aide de FastAPI. Tous les fichiers sous-jacents se trouvent dans le dossier `app`. Consultez-les.
-2. Ouvrez le `Dockerfile` pour voir comment l'image est construite. L'image est automatiquement reconstruite et publiée via Github Actions, si vous êtes intéressé, jetez un coup d'œil à `.github/workflows/build_image.yml`.
+2. Ouvrez le `Dockerfile` pour voir comment l'image est construite. L'image est automatiquement reconstruite et publiée via Github Actions, si vous êtes intéressé, jetez un coup d'œil à `.github/workflows/build_image.yml`. Dans le cadre de cette formation, nous allons tous utiliser cette même image.
 3. Ouvrez le fichier `kubernetes/deployment.yml` et modifiez les lignes surlignées comme suit :
 
 ```{.yml code-line-numbers="7,9,11"}
@@ -30,15 +35,15 @@ kubectl apply -f formation-mlops/kubernetes/
 6. Accédez à votre API en utilisant l'URL définie dans votre fichier `ingress.yml`.
 7. Affichez la documentation de votre API en ajoutant `/docs` à votre URL.
 8. Testez votre API !
-9. Réexécutez un nouveau modèle et déployez ce nouveau modèle dans votre API
+9. Réentrainez un nouveau modèle et déployez ce nouveau modèle dans votre API
 
 <details>
 <summary>
     <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir les étapes </b></font>
 </summary>
 
-1. Exécutez un modèle.
-2. Enregistrez le modèle.
+1. Entrainez un modèle.
+2. Enregistrez le modèle dans MLflow.
 3. Ajustez votre variable d'environnement `MLFLOW_MODEL_NAME` ou `MLFLOW_MODEL_VERSION` (si vous n'avez pas modifié le nom du modèle) dans le fichier `deployment.yml`.
 4. Appliquez les nouveaux contrats `Kubernetes` pour mettre à jour l'API
 
@@ -51,6 +56,55 @@ kubectl apply -f formation-mlops/kubernetes/
 
 </details>
 
+:::::
 ::::
 
+
+## Déploiement continu
+
+::::{.callout-tip collapse="true" icon=false}
+## Déploiement continu d'un modèle ML en tant qu'API
+
+:::::{.nonincremental}
+
+⚠️ Les précédentes applications doivent avoir été réalisées avec l'option Git pour pouvoir suivre celle-ci.
+
+Précedement, vous avez déployé votre modèle manuellement. Grâce à `ArgoCD` il est possible de déployer un modèle de manière continu, ainsi chaque modification d'un fichier présent dans le dossier `kubernetes/` va entrainer le redéploiement automatique en se synchronisation avec votre dépôt Github. Pour vous en convaincre, suivez les étapes ci dessous :
+
+1. Reprenez les 4 premières étapes du déploiement continu. 
+2. Lancez un service `ArgoCD` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/automation/argo-cd?version=0.5.3&autoLaunch=true). Ouvrez le service, saisissez l'identifiant (`admin`) et le mot de passe du service.
+3. Ouvrez le template `argocd/template-argocd.yml` et modifiez les lignes surlignées :
+
+```{.yml code-line-numbers="4,9"}
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/<your-github-id>/formation-mlops.git
+    targetRevision: HEAD
+    path: kubernetes
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: <your-namespace>
+```
+
+4. Dans ArgoCD, cliquez sur `New App` puis `Edit as a YAML`. Copiez-collez le contenu de `argocd/template-argocd.yml` et cliquez sur `Create`.
+5. Accédez à votre API en utilisant l'URL définie dans votre fichier `ingress.yml`.
+6. Affichez la documentation de votre API en ajoutant `/docs` à votre URL.
+7. Testez votre API !
+8. Réentrainez un nouveau modèle et déployez **automatiquement** ce nouveau modèle dans votre API
+
+<details>
+<summary>
+    <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir les étapes </b></font>
+</summary>
+
+1. Entrainez un modèle.
+2. Enregistrez le modèle dans MLflow.
+3. Ajustez votre variable d'environnement `MLFLOW_MODEL_NAME` ou `MLFLOW_MODEL_VERSION` (si vous n'avez pas modifié le nom du modèle) dans le fichier `deployment.yml`.
+4. Faite un commit de ces changements et poussez les sur votre dépôt Github.
+5. Patientez 5 minutes qu'`ArgoCD` synchronise automatiquement les changements depuis votre dépôt Github ou bien forcez la synchronisation. Rafraîchissez votre API et vérifiez sur la page d'accueil qu'elle est désormais basée sur la nouvelle version du modèle.
+</details>
+
+:::::
+::::
 :::
