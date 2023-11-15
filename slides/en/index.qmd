@@ -73,6 +73,9 @@ from: markdown+emoji
 {{< include applications/_application4.qmd >}}
 
 
+# :five: Observability of the model
+
+{{< include sections/5-observability.qmd >}}
 
 # Conclusion
 
