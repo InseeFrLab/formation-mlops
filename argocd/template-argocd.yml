@@ -5,7 +5,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/InseeFrLab/formation-mlops.git
+    repoURL: https://github.com/<your-github-id>/formation-mlops.git
     targetRevision: HEAD
     path: kubernetes
   destination:
