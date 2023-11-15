@@ -63,9 +63,15 @@ from: markdown+emoji
 
 {{< include applications/_application4.qmd >}}
 
+
 # :five: Observabilité du modèle
 
 {{< include sections/5-observability.qmd >}}
+
+## Application 5 {.scrollable}
+
+{{< include applications/_application5.qmd >}}
+
 
 # Conclusion
 
