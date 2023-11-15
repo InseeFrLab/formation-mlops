@@ -1,5 +1,5 @@
 ::: {.panel-tabset}
-## Sans Git
+## Without Git
 
 ::::{.callout-tip collapse="true" icon=false}
 ## Part 1 : From notebooks to a package-like project
@@ -43,7 +43,7 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 ::::
 
 
-## Avec Git
+## With Git
 
 ::::{.callout-tip collapse="true" icon=false}
 ## Part 1 : From notebooks to a package-like project
