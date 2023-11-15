@@ -1,10 +1,14 @@
-:::{.nonincremental}
-:::: {.callout-tip collapse="true" icon=false}
+::: {.panel-tabset}
+## Sans Git
+
+::::{.callout-tip collapse="true" icon=false}
 ## Part 1 : From notebooks to a package-like project
 
-0. Launch a `VSCode` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»&kubernetes.role=«admin»). Open the service and input the service password (either automatically copied or available in the `README` of the service)
-1. All scripts related to our custom model are stored in the `src` folder. Check them out. Have a look at the `MLproject` file as well.
-2. Run a training of the model using MLflow. To do so, open a terminal (top left button `-> Terminal -> New Terminal`) and run the following command :
+:::::{.nonincremental}
+
+1. Launch a `VSCode` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»&kubernetes.role=«admin»). Open the service and input the service password.
+2. All scripts related to our custom model are stored in the `src` folder. Check them out. Have a look at the `MLproject` file as well.
+3. Run a training of the model using MLflow. To do so, open a terminal ({{< bi bi-list >}} `-> Terminal -> New Terminal`) and run the following command :
 
     ```sh
     export MLFLOW_EXPERIMENT_NAME="nace-prediction"
@@ -13,9 +17,9 @@
         -P experiment_name=$MLFLOW_EXPERIMENT_NAME
     ```
 
-3. In the UI of `MLflow`, look at the results of your previous run:
+4. In the UI of `MLflow`, look at the results of your previous run:
     + `Experiments -> nace-prediction -> <run_name>`
-4. You have trained the model with some default parameters. In `MLproject` check the available parameters. Re-train a model with different parameters (e.g. `dim = 25`).
+5. You have trained the model with some default parameters. In `MLproject` check the available parameters. Re-train a model with different parameters (e.g. `dim = 25`).
 
 <details>
 <summary>
@@ -32,10 +36,111 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 </details>
 
 
-5. In `MLflow`, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. `dim`)
+6. In `MLflow`, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. `dim`)
     + `Select the 2 runs -> Compare -> Scatter Plot -> Select your X and Y axis`
+   
+:::::
 ::::
+
+
+## Avec Git
+
+::::{.callout-tip collapse="true" icon=false}
+## Partie 1 : Des notebooks à un projet de type package
+
+
+:::::{.nonincremental}
+
+
+1. Launch a `VSCode` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&kubernetes.role=«admin»). Open the service and input the service password.
+2. In VSCode, open a terminal ({{< bi bi-list >}} `-> Terminal -> New Terminal`) and redo steps 6 and 7 of [application 0](#app0) (clone and package installation)
+2. All scripts related to our custom model are stored in the `src` folder. Check them out. Have a look at the `MLproject` file as well.
+3. Run a training of the model using MLflow. To do so, open a terminal ({{< bi bi-list >}} `-> Terminal -> New Terminal`) and run the following command :
+
+    ```sh
+    export MLFLOW_EXPERIMENT_NAME="nace-prediction"
+    mlflow run ~/work/formation-mlops/ --env-manager=local \
+        -P remote_server_uri=$MLFLOW_TRACKING_URI \
+        -P experiment_name=$MLFLOW_EXPERIMENT_NAME
+    ```
+
+4. In the UI of `MLflow`, look at the results of your previous run:
+    + `Experiments -> nace-prediction -> <run_name>`
+5. You have trained the model with some default parameters. In `MLproject` check the available parameters. Re-train a model with different parameters (e.g. `dim = 25`).
+
+<details>
+<summary>
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the command </b></font>
+</summary>
+
+```sh
+mlflow run ~/work/formation-mlops/ --env-manager=local \
+    -P remote_server_uri=$MLFLOW_TRACKING_URI \
+    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \
+    -P dim=25
+```
+
+</details>
+
+
+6. In `MLflow`, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. `dim`)
+    + `Select the 2 runs -> Compare -> Scatter Plot -> Select your X and Y axis`
+
+
+
+
+2. Dans VSCode, ouvrez un terminal ({{< bi bi-list >}} `-> Terminal -> New Terminal`) et réalisez les étapes 6 et 7 de [l'application 0](#app0) (clone et installation de packages)
+
+3. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. Regardez également le fichier `MLproject`.
+
+4. Exécutez un entraînement du modèle à l'aide de MLflow. Dans un terminal, exécutez la commande suivante :
+
+   ```sh
+   export MLFLOW_EXPERIMENT_NAME="nace-prediction"
+   mlflow run ~/work/formation-mlops/ --env-manager=local \
+       -P remote_server_uri=$MLFLOW_TRACKING_URI \
+       -P experiment_name=$MLFLOW_EXPERIMENT_NAME
+   ```
+
+5. Dans l'interface de `MLflow`, examinez les résultats de votre exécution précédente :
+
+   * `Experiments -> nace-prediction -> <nom_experience>`
+
+6. Vous avez entraîné le modèle avec certains paramètres par défaut. Dans le fichier `MLproject`, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, `dim = 25`).
+
+<details> 
+<summary> 
+    <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir la commande </b></font> 
+</summary>
+
+```sh
+mlflow run ~/work/formation-mlops/ --env-manager=local \
+    -P remote_server_uri=$MLFLOW_TRACKING_URI \
+    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \
+    -P dim=25
+```
+
+</details>
+
+
+7. Dans `MLflow`, comparez les 2 modèles en traçant l'exactitude par rapport à un paramètre que vous avez modifié (par exemple `dim`)
+   * `Sélectionnez les 2 expériences -> Compare -> Scatter Plot -> Select your X and Y axis` 
+   
+:::::
+::::
+
 :::
+
+
+
+
+
+
+
+
+:::{.nonincremental}
+:::: {.callout-tip collapse="true" icon=false}
+
 
 
 ## Application 2 {.scrollable}
@@ -47,7 +152,7 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 1. Explore the `src/train.py` file carefully. What are the main differences with application 1?
 2. Why can we say that the `MLflow` model onboards the preprocessing?
 3. In `MLflow`, register your last model as `fasttext` to make it easily queryable from the `Python` API
-4. Create a script `predict.py` in the `src` folder of the project. This script should :
+4. Create a script `predict.py` in the `src` folder of the project. This script should:
     a. Load the version 1 of the `fasttext` model
     b. Use the model to predict the NACE codes of a given list of activity description (e.g. `["vendeur d'huitres", "boulanger"]`). 
     
