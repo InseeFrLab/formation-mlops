@@ -73,9 +73,9 @@ from: markdown+emoji
 {{< include applications/_application4.qmd >}}
 
 
-# :five: Observability of the model
+# :five: Machine learning in production
 
-{{< include sections/5-observability.qmd >}}
+{{< include sections/5-ml-in-production.qmd >}}
 
 ## Application 5 {.scrollable}
 
