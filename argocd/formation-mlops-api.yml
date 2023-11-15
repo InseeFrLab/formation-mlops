@@ -10,7 +10,7 @@ spec:
     path: kubernetes
   destination:
     server: https://kubernetes.default.svc
-    namespace: projet-formation
+    namespace: <your-namespace>
   syncPolicy:
     automated:
       selfHeal: true
