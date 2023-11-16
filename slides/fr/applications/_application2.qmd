@@ -106,7 +106,7 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 1. Explorez attentivement le fichier `src/train.py`. Quelles sont les principales différences avec l'application 1 ?
 2. Pourquoi pouvons-nous dire que le modèle `MLflow` intègre le *preprocessing* ?
 3. Dans `MLflow`, enregistrez votre dernier modèle en tant que `fasttext` pour le rendre facilement interrogeable depuis l'API `Python`.
-4. Créez un script `predict.py` dans le dossier `src` du projet. Ce script doit : 
+4. Créez un script `predict-mlflow.py` dans le dossier `src` du projet. Ce script doit : 
     a. Charger la version 1 du modèle `fasttext` 
     b. Utiliser le modèle pour prédire les codes NACE d'une liste donnée de descriptions d'activité (par exemple, `["vendeur d'huitres", "boulanger"]`).
 
@@ -140,7 +140,7 @@ print(results)
 ```
 </details>
 
-5. Exécutez votre script `predict.py`.
+5. Exécutez votre script `predict-mlflow.py`.
 
 <details> 
 <summary> 
@@ -148,7 +148,7 @@ print(results)
 </summary>
 
 ```shell
-python formation-mlops/src/predict.py
+python formation-mlops/src/predict-mlflow.py
 ```
 
 </details>
