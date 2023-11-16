@@ -28,7 +28,7 @@ from: markdown+emoji
 
 {{< include sections/0-introduction.qmd >}}
 
-## Application 0
+## Application 0 {.scrollable #app0}
 
 {{< include applications/_application0.qmd >}}
 
