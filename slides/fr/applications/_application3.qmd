@@ -71,9 +71,10 @@ kubectl apply -f formation-mlops/kubernetes/
 
 Précedement, vous avez déployé votre modèle manuellement. Grâce à `ArgoCD` il est possible de déployer un modèle de manière continu, ainsi chaque modification d'un fichier présent dans le dossier `kubernetes/` va entrainer le redéploiement automatique en se synchronisation avec votre dépôt Github. Pour vous en convaincre, suivez les étapes ci dessous :
 
-1. Reprenez les 4 premières étapes du déploiement manuel. 
-2. Lancez un service `ArgoCD` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/automation/argo-cd?version=0.5.3&autoLaunch=true). Ouvrez le service, saisissez l'identifiant (`admin`) et le mot de passe du service.
-3. Ouvrez le template `argocd/template-argocd.yml` et modifiez les lignes surlignées :
+1. Lancez un service `ArgoCD` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/automation/argo-cd?version=0.5.3&autoLaunch=true). Ouvrez le service, saisissez l'identifiant (`admin`) et le mot de passe du service.
+2. Reprenez les 4 premières étapes du déploiement manuel. 
+3. Faite un commit des changements effectués et pousser vers votre dépôt Github.
+4. Ouvrez le template `argocd/template-argocd.yml` et modifiez les lignes surlignées :
 
 ```{.yml code-line-numbers="4,9"}
 spec:
@@ -87,11 +88,11 @@ spec:
     namespace: <your-namespace>
 ```
 
-4. Dans ArgoCD, cliquez sur `New App` puis `Edit as a YAML`. Copiez-collez le contenu de `argocd/template-argocd.yml` et cliquez sur `Create`.
-5. Accédez à votre API en utilisant l'URL définie dans votre fichier `ingress.yml`.
-6. Affichez la documentation de votre API en ajoutant `/docs` à votre URL.
-7. Testez votre API !
-8. Réentrainez un nouveau modèle et déployez **automatiquement** ce nouveau modèle dans votre API
+5. Dans ArgoCD, cliquez sur `New App` puis `Edit as a YAML`. Copiez-collez le contenu de `argocd/template-argocd.yml` et cliquez sur `Create`.
+6. Accédez à votre API en utilisant l'URL définie dans votre fichier `ingress.yml`.
+7. Affichez la documentation de votre API en ajoutant `/docs` à votre URL.
+8. Testez votre API !
+9. Réentrainez un nouveau modèle et déployez **automatiquement** ce nouveau modèle dans votre API
 
 <details>
 <summary>
