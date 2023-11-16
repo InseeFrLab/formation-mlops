@@ -2,6 +2,24 @@
 :::: {.callout-tip collapse="true" icon=false}
 ## Logging
 
+ADD 
 ::::
 :::
 
+1. Créer un fichier predict-api.py
+2. importer un fichier de données pour batch l'api
+3. executez le script qui envoie le batch
+4. Allez voir les logs dans ArgoCD
+5. Que constatez vous ?
+
+1. Rajouter du logging
+2. Redéployer votre API (build image avec et sans log)
+2. Réexecuter le script predict-api.py
+3. Allez voir les logs dans ArgoCD
+
+Pour moi seulement : 
+- Créer un script qui fait un ETL maison
+- Enregistrer le fichier dans un parquet partitionné dans s3
+
+
+1. Dashboard qui récup le fichier dans s3
