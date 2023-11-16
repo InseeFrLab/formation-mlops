@@ -5,9 +5,9 @@ metadata:
 spec:
   tls:
     - hosts:
-        - <your_firstname>-<your_lastname>-api.lab.sspcloud.fr
+        - toto-api.lab.sspcloud.fr
   rules:
-    - host: <your_firstname>-<your_lastname>-api.lab.sspcloud.fr
+    - host: toto-api.lab.sspcloud.fr
       http:
         paths:
           - path: /
