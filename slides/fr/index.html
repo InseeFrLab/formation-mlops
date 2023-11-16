@@ -926,7 +926,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li>Explorez attentivement le fichier <code>src/train.py</code>. Quelles sont les principales différences avec l’application 1 ?</li>
 <li>Pourquoi pouvons-nous dire que le modèle <code>MLflow</code> intègre le <em>preprocessing</em> ?</li>
 <li>Dans <code>MLflow</code>, enregistrez votre dernier modèle en tant que <code>fasttext</code> pour le rendre facilement interrogeable depuis l’API <code>Python</code>.</li>
-<li>Créez un script <code>predict.py</code> dans le dossier <code>src</code> du projet. Ce script doit :
+<li>Créez un script <code>predict-mlflow.py</code> dans le dossier <code>src</code> du projet. Ce script doit :
 <ol type="a">
 <li>Charger la version 1 du modèle <code>fasttext</code></li>
 <li>Utiliser le modèle pour prédire les codes NACE d’une liste donnée de descriptions d’activité (par exemple, <code>["vendeur d'huitres", "boulanger"]</code>).</li>
@@ -957,13 +957,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb11-18"><a href="#cb11-18"></a><span class="bu">print</span>(results)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="5" type="1">
-<li>Exécutez votre script <code>predict.py</code>.</li>
+<li>Exécutez votre script <code>predict-mlflow.py</code>.</li>
 </ol>
 <details>
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
 </summary>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>python formation-mlops/src/predict.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>python formation-mlops/src/predict-mlflow.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="6" type="1">
 <li>Assurez-vous que les deux descriptions suivantes donnent la même prédiction principale : <code>"COIFFEUR"</code> et <code>"coiffeur, &amp; 98789"</code>.</li>
@@ -1110,8 +1110,9 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <p>⚠️ Les précédentes applications doivent avoir été réalisées avec l’option Git pour pouvoir suivre celle-ci.</p>
 <p>Précedement, vous avez déployé votre modèle manuellement. Grâce à <code>ArgoCD</code> il est possible de déployer un modèle de manière continu, ainsi chaque modification d’un fichier présent dans le dossier <code>kubernetes/</code> va entrainer le redéploiement automatique en se synchronisation avec votre dépôt Github. Pour vous en convaincre, suivez les étapes ci dessous :</p>
 <ol type="1">
-<li>Reprenez les 4 premières étapes du déploiement manuel.</li>
 <li>Lancez un service <code>ArgoCD</code> en cliquant sur <a href="https://datalab.sspcloud.fr/launcher/automation/argo-cd?version=0.5.3&amp;autoLaunch=true">cette URL</a>. Ouvrez le service, saisissez l’identifiant (<code>admin</code>) et le mot de passe du service.</li>
+<li>Reprenez les 4 premières étapes du déploiement manuel.</li>
+<li>Faite un commit des changements effectués et pousser vers votre dépôt Github.</li>
 <li>Ouvrez le template <code>argocd/template-argocd.yml</code> et modifiez les lignes surlignées :</li>
 </ol>
 <div class="sourceCode" id="cb16" data-code-line-numbers="4,9"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">spec</span><span class="kw">:</span></span>
@@ -1123,7 +1124,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb16-7"><a href="#cb16-7"></a><span class="at">  </span><span class="fu">destination</span><span class="kw">:</span></span>
 <span id="cb16-8"><a href="#cb16-8"></a><span class="at">    </span><span class="fu">server</span><span class="kw">:</span><span class="at"> https://kubernetes.default.svc</span></span>
 <span id="cb16-9"><a href="#cb16-9"></a><span class="at">    </span><span class="fu">namespace</span><span class="kw">:</span><span class="at"> &lt;your-namespace&gt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="4" type="1">
+<ol start="5" type="1">
 <li>Dans ArgoCD, cliquez sur <code>New App</code> puis <code>Edit as a YAML</code>. Copiez-collez le contenu de <code>argocd/template-argocd.yml</code> et cliquez sur <code>Create</code>.</li>
 <li>Accédez à votre API en utilisant l’URL définie dans votre fichier <code>ingress.yml</code>.</li>
 <li>Affichez la documentation de votre API en ajoutant <code>/docs</code> à votre URL.</li>
@@ -1459,11 +1460,26 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <p><strong>Logging</strong></p>
 </div>
 <div class="callout-content">
-
+<p>ADD</p>
 </div>
 </div>
 </div>
 </div>
+<ol type="1">
+<li class="fragment"><p>Créer un fichier predict-api.py</p></li>
+<li class="fragment"><p>importer un fichier de données pour batch l’api</p></li>
+<li class="fragment"><p>executez le script qui envoie le batch</p></li>
+<li class="fragment"><p>Allez voir les logs dans ArgoCD</p></li>
+<li class="fragment"><p>Que constatez vous ?</p></li>
+<li class="fragment"><p>Rajouter du logging</p></li>
+<li class="fragment"><p>Redéployer votre API (build image avec et sans log)</p></li>
+<li class="fragment"><p>Réexecuter le script predict-api.py</p></li>
+<li class="fragment"><p>Allez voir les logs dans ArgoCD</p></li>
+</ol>
+<p>Pour moi seulement : - Créer un script qui fait un ETL maison - Enregistrer le fichier dans un parquet partitionné dans s3</p>
+<ol type="1">
+<li class="fragment">Dashboard qui récup le fichier dans s3</li>
+</ol>
 </section></section>
 <section id="conclusion" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Conclusion</h1>

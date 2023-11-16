@@ -541,7 +541,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <p><span class="emoji" data-emoji="four">4️⃣</span> Distributing the hyperparameter optimization</p>
 </div>
 </section>
-<section id="application-0" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<section id="app0" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
 <h2>Application 0</h2>
 <div class="panel-tabset">
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Without Git</a></li><li><a href="#tabset-1-2">With Git</a></li></ul>
@@ -926,7 +926,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li>Explore the <code>src/train.py</code> file carefully. What are the main differences with application 1?</li>
 <li>Why can we say that the <code>MLflow</code> model onboards the preprocessing?</li>
 <li>In <code>MLflow</code>, register your last model as <code>fasttext</code> to make it easily queryable from the <code>Python</code> API</li>
-<li>Create a script <code>predict.py</code> in the <code>src</code> folder of the project. This script should:
+<li>Create a script <code>predict-mlflow.py</code> in the <code>src</code> folder of the project. This script should:
 <ol type="a">
 <li>Load the version 1 of the <code>fasttext</code> model</li>
 <li>Use the model to predict the NACE codes of a given list of activity description (e.g.&nbsp;<code>["vendeur d'huitres", "boulanger"]</code>).</li>
@@ -957,13 +957,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb11-18"><a href="#cb11-18"></a><span class="bu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="5" type="1">
-<li>Run your <code>predict.py</code> script.</li>
+<li>Run your <code>predict-mlflow.py</code> script.</li>
 </ol>
 <details>
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Click to see the command </b></font>
 </summary>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>python formation-mlops/src/predict.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>python formation-mlops/src/predict-mlflow.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="6" type="1">
 <li>Make sure that the two following descriptions give the same top prediction : <code>"COIFFEUR"</code> and <code>"coiffeur, &amp; 98789"</code>.</li>
@@ -1110,8 +1110,9 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <p>⚠️ The previous applications must have been created with the Git option to be able to follow this one.</p>
 <p>Previously, you deployed your model manually. Thanks to ArgoCD, it is possible to deploy a model continuously. This means that every modification of a file in the kubernetes/ folder will automatically trigger redeployment, synchronized with your GitHub repository. To convince yourself, follow the steps below:</p>
 <ol type="1">
-<li>Resume the first 4 steps of the manual deployment.</li>
 <li>Launch an <code>ArgoCD</code> service by clicking on this <a href="https://datalab.sspcloud.fr/launcher/automation/argo-cd?version=0.5.3&amp;autoLaunch=true">URL</a>. Open the service, enter the username (<code>admin</code>), and the service’s password.</li>
+<li>Resume the first 4 steps of the manual deployment.</li>
+<li>Commit the changes made and push them to your GitHub repository.</li>
 <li>Open the template <code>argocd/template-argocd.yml</code> and modify the highlighted lines:</li>
 </ol>
 <div class="sourceCode" id="cb16" data-code-line-numbers="4,9"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">spec</span><span class="kw">:</span></span>
@@ -1123,7 +1124,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb16-7"><a href="#cb16-7"></a><span class="at">  </span><span class="fu">destination</span><span class="kw">:</span></span>
 <span id="cb16-8"><a href="#cb16-8"></a><span class="at">    </span><span class="fu">server</span><span class="kw">:</span><span class="at"> https://kubernetes.default.svc</span></span>
 <span id="cb16-9"><a href="#cb16-9"></a><span class="at">    </span><span class="fu">namespace</span><span class="kw">:</span><span class="at"> &lt;your-namespace&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="4" type="1">
+<ol start="5" type="1">
 <li>In ArgoCD, click on <code>New App</code> and then <code>Edit as a YAML</code>. Copy and paste the content of <code>argocd/template-argocd.yml</code>, and click on <code>Create</code>.</li>
 <li>Reach your API using the URL defined in your <code>ingress.yml</code> file</li>
 <li>Display the documentation of your API by adding <code>/docs</code> to your URL</li>
