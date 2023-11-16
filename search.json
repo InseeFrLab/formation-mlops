@@ -343,6 +343,13 @@
     "text": "Observabilité"
   },
   {
+    "objectID": "slides/fr/index.html#application-5",
+    "href": "slides/fr/index.html#application-5",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Application 5",
+    "text": "Application 5\n\n\n\n\nLogging"
+  },
+  {
     "objectID": "slides/en/index.html#who-are-we",
     "href": "slides/en/index.html#who-are-we",
     "title": "An introduction to MLOps with MLflow",
@@ -684,5 +691,12 @@
     "title": "An introduction to MLOps with MLflow",
     "section": "Observability",
     "text": "Observability"
+  },
+  {
+    "objectID": "slides/en/index.html#application-5",
+    "href": "slides/en/index.html#application-5",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 5",
+    "text": "Application 5\n\n\n\n\nLogging"
   }
 ]
