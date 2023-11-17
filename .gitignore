@@ -4,6 +4,8 @@ slides/index.ipynb
 *.ipynb
 data/
 models/
+dashboard/index.html
+dashboard/index_files/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
