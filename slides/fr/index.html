@@ -1480,6 +1480,69 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <ol type="1">
 <li class="fragment">Dashboard qui récup le fichier dans s3</li>
 </ol>
+</section>
+<section id="application-6" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
+<h2>Application 6</h2>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Création d’un tableau de bord de monitoring</strong></p>
+</div>
+<div class="callout-content">
+<div>
+<ol type="1">
+<li><p>Nous allons utiliser <a href="https://quarto.org/docs/dashboards/"><code>Quarto Dashboards</code></a> qui fera partie de la version 1.4 de <code>Quarto</code>. Téléchargez et installez la pre-release.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">wget</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.489/quarto-1.4.489-linux-amd64.deb <span class="dt">\</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>    <span class="at">-O</span> quarto.deb</span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> quarto.deb</span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="ex">quarto</span> check install</span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="fu">rm</span> quarto.deb</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Ouvrez le fichier <code>dashboard/index.qmd</code> et inspectez le code. Pour récupérer les données nécessaires à la création du tableau de bord, on utilise un SGBD <em>serverless</em> : <code>DuckDB</code>. <code>DuckDB</code> nous permet de faire des requêtes <code>SQL</code> sur un fichier <code>.parquet</code> contenant des logs <em>parsés</em>. Ce fichier contient une ligne par prédiction, avec les variables <code>timestamp</code>, <code>text</code>, <code>prediction_1</code>, <code>proba_1</code>, <code>prediction_2</code> et <code>proba_2</code>.</p></li>
+<li><p>Pour visualiser le tableau de bord, entrez les commandes suivantes dans un <code>Terminal</code> depuis la racine du projet et cliquez sur le lien généré.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1"></a><span class="bu">cd</span> dashboard</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="ex">quarto</span> preview index.qmd</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Pour l’instant le pourcentage de prédictions avec une probabilité supérieure à 0.8 ne correspond pas à la réalité. Modifiez la requête SQL permettant d’obtenir la variable <code>pct_predictions</code> pour afficher la bonne valeur.</p></li>
+</ol>
+<details>
+<summary>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la réponse </b></font>
+</summary>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>pct_predictions <span class="op">=</span> duckdb.sql(</span>
+<span id="cb26-2"><a href="#cb26-2"></a>    <span class="st">"""</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="st">    SELECT 100 * COUNT(*) / COUNT(*)</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a><span class="st">    FROM data;</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a><span class="st">    """</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a>).fetchall()[<span class="dv">0</span>][<span class="dv">0</span>]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="5" type="1">
+<li>Les deux graphiques situés en bas du tableau de bord ne sont pas corrects non plus. Modifiez la requête SQL permettant d’obtenir la variable <code>daily_stats</code> pour afficher les bons graphiques.</li>
+</ol>
+<details>
+<summary>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la réponse </b></font>
+</summary>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>daily_stats <span class="op">=</span> duckdb.sql(</span>
+<span id="cb27-2"><a href="#cb27-2"></a>    <span class="st">"""</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="st">    SELECT</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="st">        CAST(timestamp AS DATE) AS date,</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a><span class="st">        COUNT(*) AS n_liasses,</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a><span class="st">        (</span></span>
+<span id="cb27-7"><a href="#cb27-7"></a><span class="st">            COUNT(</span></span>
+<span id="cb27-8"><a href="#cb27-8"></a><span class="st">                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a><span class="st">            ) * 100.0 / COUNT(*)</span></span>
+<span id="cb27-10"><a href="#cb27-10"></a><span class="st">        ) AS pct_high_proba</span></span>
+<span id="cb27-11"><a href="#cb27-11"></a><span class="st">    FROM data</span></span>
+<span id="cb27-12"><a href="#cb27-12"></a><span class="st">    GROUP BY CAST(timestamp AS DATE);</span></span>
+<span id="cb27-13"><a href="#cb27-13"></a><span class="st">    """</span></span>
+<span id="cb27-14"><a href="#cb27-14"></a>).to_df()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="6" type="1">
+<li>Constatez les changements apportés au tableau de bord.</li>
+</ol>
+</details>
+</div>
+</div>
+</div>
+</div>
 </section></section>
 <section id="conclusion" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Conclusion</h1>
