@@ -1,0 +1,139 @@
+---
+title: "Monitoring Dashboard"
+author: "ML Engineer"
+format: dashboard
+---
+
+# Number of predictions and confidence
+
+```{python}
+#| output: false
+import os
+import duckdb
+import pandas as pd
+import plotly.express as px
+
+duckdb.sql(
+    f"""
+    SET s3_endpoint='{os.getenv("AWS_S3_ENDPOINT")}';
+    """
+)
+
+path = "s3://projet-formation/diffusion/mlops/data/parsed_logs.parquet"
+duckdb.sql(
+    f"""
+    CREATE OR REPLACE VIEW data
+    AS SELECT * FROM read_parquet("{path}")
+    """
+)
+```
+
+## Row
+
+### Column {width=50%}
+
+```{python}
+#| component: valuebox
+#| title: "Number of predictions"
+
+n_liasses = duckdb.sql(
+    """
+    SELECT COUNT(*)
+    FROM data;
+    """
+).fetchall()[0][0]
+
+dict(
+    icon="folder2-open",
+    color="secondary",
+    value=n_liasses
+)
+```
+
+### Column {width=50%}
+
+```{python}
+#| component: valuebox
+#| title: "Percentage of predictions with a probability > 0.8"
+
+# To modify
+pct_predictions = duckdb.sql(
+    """
+    SELECT 100 * COUNT(*) / COUNT(*)
+    FROM data;
+    """
+).fetchall()[0][0]
+
+dict(
+    icon="file-check",
+    color="success",
+    value=f"{round(pct_predictions, 2)}%"
+)
+```
+
+## Row
+
+```{python}
+#| output: false
+
+# To modify
+daily_stats = duckdb.sql(
+    """
+    SELECT
+        CAST(timestamp AS DATE) AS date,
+        100 AS n_liasses,
+        50 AS pct_high_proba
+    FROM data
+    GROUP BY CAST(timestamp AS DATE);
+    """
+).to_df()
+```
+
+### Column {width=50%}
+
+```{python}
+#| output: false
+
+fig = px.bar(
+    daily_stats,
+    x="date",
+    y="n_liasses",
+    opacity=0.7
+)
+fig.update_traces(marker_color="#040548")
+fig.update_layout(
+    xaxis_title="Day",
+    yaxis_title="Number of predictions",
+)
+```
+
+```{python}
+#| title: "Number of predictions per day"
+#| padding: 0
+fig
+```
+
+### Column {width=50%}
+
+```{python}
+#| output: false
+
+fig = px.bar(
+    daily_stats,
+    x="date",
+    y="pct_high_proba",
+    opacity=0.7
+)
+fig.update_traces(marker_color="#040548")
+fig.update_layout(
+    xaxis_title="Day",
+    yaxis_title="Percentage of high confidence predictions",
+)
+```
+
+```{python}
+#| title: "Percentage of predictions with a probability > 0.8 per day"
+#| padding: 0
+
+fig
+```
