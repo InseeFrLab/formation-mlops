@@ -937,6 +937,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir le contenu du script </b></font>
 </summary>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>predict-mlflow.py</strong></pre>
+</div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> mlflow</span>
 <span id="cb11-2"><a href="#cb11-2"></a></span>
 <span id="cb11-3"><a href="#cb11-3"></a>model_name <span class="op">=</span> <span class="st">"fasttext"</span></span>
@@ -955,6 +959,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb11-16"><a href="#cb11-16"></a></span>
 <span id="cb11-17"><a href="#cb11-17"></a>results <span class="op">=</span> model.predict(test_data)</span>
 <span id="cb11-18"><a href="#cb11-18"></a><span class="bu">print</span>(results)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </details>
 <ol start="5" type="1">
 <li>Exécutez votre script <code>predict-mlflow.py</code>.</li>
@@ -1057,6 +1062,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li>Ouvrez le <code>Dockerfile</code> pour voir comment l’image est construite. L’image est automatiquement reconstruite et publiée via Github Actions, si vous êtes intéressé, jetez un coup d’œil à <code>.github/workflows/build_image.yml</code>. Dans le cadre de cette formation, nous allons tous utiliser cette même image.</li>
 <li>Ouvrez le fichier <code>kubernetes/deployment.yml</code> et modifiez les lignes surlignées comme suit :</li>
 </ol>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>deployment.yml</strong></pre>
+</div>
 <div class="sourceCode" id="cb13" data-code-line-numbers="7,9,11"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">containers</span><span class="kw">:</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> api</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> inseefrlab/formation-mlops-api:main</span></span>
@@ -1068,6 +1077,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb13-9"><a href="#cb13-9"></a><span class="at">        </span><span class="fu">value</span><span class="kw">:</span><span class="at"> fasttext</span></span>
 <span id="cb13-10"><a href="#cb13-10"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> MLFLOW_MODEL_VERSION</span></span>
 <span id="cb13-11"><a href="#cb13-11"></a><span class="at">        </span><span class="fu">value</span><span class="kw">:</span><span class="at"> </span><span class="st">"1"</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ol start="4" type="1">
 <li>Ouvrez le fichier <code>kubernetes/ingress.yml</code> et modifiez (deux fois) l’URL du point de terminaison de l’API pour qu’elle soit de la forme <code>&lt;votre_prénom&gt;-&lt;votre_nom&gt;-api.lab.sspcloud.fr</code>.</li>
 <li>Appliquez les trois contrats <code>Kubernetes</code> contenus dans le dossier <code>kubernetes/</code> dans un terminal pour déployer l’API</li>
@@ -1115,6 +1125,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li>Faite un commit des changements effectués et pousser vers votre dépôt Github.</li>
 <li>Ouvrez le template <code>argocd/template-argocd.yml</code> et modifiez les lignes surlignées :</li>
 </ol>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>template-argocd.yml</strong></pre>
+</div>
 <div class="sourceCode" id="cb16" data-code-line-numbers="4,9"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">spec</span><span class="kw">:</span></span>
 <span id="cb16-2"><a href="#cb16-2"></a><span class="at">  </span><span class="fu">project</span><span class="kw">:</span><span class="at"> default</span></span>
 <span id="cb16-3"><a href="#cb16-3"></a><span class="at">  </span><span class="fu">source</span><span class="kw">:</span></span>
@@ -1124,6 +1138,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb16-7"><a href="#cb16-7"></a><span class="at">  </span><span class="fu">destination</span><span class="kw">:</span></span>
 <span id="cb16-8"><a href="#cb16-8"></a><span class="at">    </span><span class="fu">server</span><span class="kw">:</span><span class="at"> https://kubernetes.default.svc</span></span>
 <span id="cb16-9"><a href="#cb16-9"></a><span class="at">    </span><span class="fu">namespace</span><span class="kw">:</span><span class="at"> &lt;your-namespace&gt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ol start="5" type="1">
 <li>Dans ArgoCD, cliquez sur <code>New App</code> puis <code>Edit as a YAML</code>. Copiez-collez le contenu de <code>argocd/template-argocd.yml</code> et cliquez sur <code>Create</code>.</li>
 <li>Accédez à votre API en utilisant l’URL définie dans votre fichier <code>ingress.yml</code>.</li>
@@ -1376,7 +1391,11 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li>Lancez un service <code>Argo Workflows</code> en cliquant sur <a href="https://datalab.sspcloud.fr/launcher/automation/argo-workflows?autoLaunch=true">cette URL</a>. Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier <code>README</code> du service).</li>
 <li>Dans <code>VSCode</code>, créez un fichier <code>hello_world.yaml</code> à la racine du projet avec le contenu suivant :</li>
 </ol>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>hello_world.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
 <span id="cb20-3"><a href="#cb20-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
 <span id="cb20-4"><a href="#cb20-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span></span>
@@ -1394,6 +1413,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb20-16"><a href="#cb20-16"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay:latest</span></span>
 <span id="cb20-17"><a href="#cb20-17"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
 <span id="cb20-18"><a href="#cb20-18"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"hello world"</span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ol start="3" type="1">
 <li>Soumettez le workflow “Hello World” via un terminal dans <code>VSCode</code> :</li>
 </ol>
@@ -1419,12 +1439,17 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li>Jetez un coup d’œil au fichier <code>argo_workflows/workflow.yml</code>. Que pensez-vous qu’il se passera lorsque nous soumettrons ce flux de travail ?</li>
 <li>Modifiez la ligne surlignée de la même manière que dans l’application 3.</li>
 </ol>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>workflow.yml</strong></pre>
+</div>
 <div class="sourceCode" id="cb22" data-code-line-numbers="4"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">parameters</span><span class="kw">:</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a><span class="co">    # Le serveur de suivi MLflow est responsable de l'enregistrement des hyper-paramètres et des métriques du modèle.</span></span>
 <span id="cb22-3"><a href="#cb22-3"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mlflow-tracking-uri</span></span>
 <span id="cb22-4"><a href="#cb22-4"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr</span></span>
 <span id="cb22-5"><a href="#cb22-5"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mlflow-experiment-name</span></span>
 <span id="cb22-6"><a href="#cb22-6"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> nace-prediction</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ol start="3" type="1">
 <li>Soumettez le flux de travail et observez les tâches s’exécuter en direct dans l’interface utilisateur.</li>
 </ol>
@@ -1475,6 +1500,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir le contenu du script </b></font>
 </summary>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>predict-api.py</strong></pre>
+</div>
 <div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb25-2"><a href="#cb25-2"></a><span class="im">import</span> requests</span>
 <span id="cb25-3"><a href="#cb25-3"></a></span>
@@ -1502,9 +1531,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb25-25"><a href="#cb25-25"></a><span class="bu">print</span>(pd.merge(df, pd.json_normalize(responses),</span>
 <span id="cb25-26"><a href="#cb25-26"></a>               left_index<span class="op">=</span><span class="va">True</span>,</span>
 <span id="cb25-27"><a href="#cb25-27"></a>               right_index<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </details>
 <ol start="2" type="1">
-<li>Executez votre script <code>predict-api.py</code>.</li>
+<li>Exécutez votre script <code>predict-api.py</code>.</li>
 </ol>
 <details>
 <summary>
@@ -1527,15 +1557,95 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <p><strong>Partie 2 : Logger des métriques métier</strong></p>
 </div>
 <div class="callout-content">
-
-</div>
-</div>
-</div>
-</div>
-<p>Pour moi seulement : - Créer un script qui fait un ETL maison - Enregistrer le fichier dans un parquet partitionné dans s3</p>
 <ol type="1">
-<li class="fragment">Dashboard qui récup le fichier dans s3</li>
+<li>Grâce au package <a href="https://docs.python.org/3/library/logging.html">logging</a>, rajoutez des logs à votre API. Pour chaque requête, affichez le libellé à coder ainsi que les réponses renvoyées par votre API. Pour cela, modifiez le fichier <code>app/main.py</code>.</li>
 </ol>
+<details>
+<summary>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir les étapes à réaliser </b></font>
+</summary>
+<ol type="1">
+<li>Importez le package logging :</li>
+</ol>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>main.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">import</span> logging</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Définissez la configuration de vos logs avant la définition de votre premier point d’entrée :</li>
+</ol>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>main.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>logging.basicConfig(</span>
+<span id="cb28-2"><a href="#cb28-2"></a>    level<span class="op">=</span>logging.INFO,</span>
+<span id="cb28-3"><a href="#cb28-3"></a>    <span class="bu">format</span><span class="op">=</span><span class="st">"</span><span class="sc">%(asctime)s</span><span class="st"> - </span><span class="sc">%(levelname)s</span><span class="st"> - </span><span class="sc">%(message)s</span><span class="st">"</span>,</span>
+<span id="cb28-4"><a href="#cb28-4"></a>    handlers<span class="op">=</span>[</span>
+<span id="cb28-5"><a href="#cb28-5"></a>        logging.FileHandler(<span class="st">"log_file.log"</span>),</span>
+<span id="cb28-6"><a href="#cb28-6"></a>        logging.StreamHandler(),</span>
+<span id="cb28-7"><a href="#cb28-7"></a>    ],</span>
+<span id="cb28-8"><a href="#cb28-8"></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>Ajoutez une le libellé et la réponse de l’API dans vos logs :</li>
+</ol>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>main.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Logging</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>logging.info(<span class="ss">f"</span><span class="ch">{{</span><span class="ss">'Query': </span><span class="sc">{</span>description<span class="sc">}</span><span class="ss">, 'Response': </span><span class="sc">{</span>predictions[<span class="dv">0</span>]<span class="sc">}</span><span class="ch">}}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+<ol start="2" type="1">
+<li><p>Faites un commit de vos changements et poussez les sur votre dépôt distant.</p></li>
+<li><p>Dès lors que vous réalisez un changement sur votre API, il est nécessaire de la redéployer pour que les changements soient effectifs. En théorie, il serait nécessaire de re-construire une nouvelle image pour notre API contenant les derniers ajustements. Pour simplifier, nous avons déjà construit les deux images avec et sans logs dans l’API. Jusqu’à présent vous avez utilisé l’image sans logs, redéployez votre API en utilisant l’image avec les logs dont le tag est <code>logs</code>.</p></li>
+</ol>
+<details>
+<summary>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir les étapes à réaliser </b></font>
+</summary>
+<ol type="1">
+<li>Dans le fichier <code>kubernetes/deployment.yml</code>, remplacer le tag <code>no-logs</code> par le tag <code>logs</code> :</li>
+</ol>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>deployment.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb30" data-code-line-numbers="8"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">template</span><span class="kw">:</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="at">  </span><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="at">    </span><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="at">      </span><span class="fu">app</span><span class="kw">:</span><span class="at"> codification-api</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="at">  </span><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb30-6"><a href="#cb30-6"></a><span class="at">    </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> api</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> inseefrlab/formation-mlops:logs</span></span>
+<span id="cb30-9"><a href="#cb30-9"></a><span class="at">        </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> Always</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li><p>Faites un commit de vos changements et poussez les sur votre dépôt distant.</p></li>
+<li><p>Patientez 5 minutes qu’<code>ArgoCD</code> synchronise automatiquement les changements depuis votre dépôt Github ou bien forcez la synchronisation.</p></li>
+</ol>
+</details>
+<ol start="4" type="1">
+<li>Exécutez votre script <code>predict-api.py</code>.</li>
+</ol>
+<details>
+<summary>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
+</summary>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb31-1"><a href="#cb31-1"></a>python formation-mlops/src/predict-api.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="5" type="1">
+<li>Dans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par <code>"codification-api-..."</code>. Observez les logs.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="création-dun-tableau-de-bord" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Création d’un tableau de bord</h2>
@@ -1574,27 +1684,27 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div>
 <ol type="1">
 <li><p>Nous allons utiliser <a href="https://quarto.org/docs/dashboards/"><code>Quarto Dashboards</code></a> qui fera partie de la version 1.4 de <code>Quarto</code>. Téléchargez et installez la pre-release.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">wget</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.489/quarto-1.4.489-linux-amd64.deb <span class="dt">\</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>    <span class="at">-O</span> quarto.deb</span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> quarto.deb</span>
-<span id="cb27-4"><a href="#cb27-4"></a><span class="ex">quarto</span> check install</span>
-<span id="cb27-5"><a href="#cb27-5"></a><span class="fu">rm</span> quarto.deb</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">wget</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.489/quarto-1.4.489-linux-amd64.deb <span class="dt">\</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>    <span class="at">-O</span> quarto.deb</span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> quarto.deb</span>
+<span id="cb32-4"><a href="#cb32-4"></a><span class="ex">quarto</span> check install</span>
+<span id="cb32-5"><a href="#cb32-5"></a><span class="fu">rm</span> quarto.deb</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Ouvrez le fichier <code>dashboard/index.qmd</code> et inspectez le code. Pour récupérer les données nécessaires à la création du tableau de bord, on utilise un SGBD <em>serverless</em> : <code>DuckDB</code>. <code>DuckDB</code> nous permet de faire des requêtes <code>SQL</code> sur un fichier <code>.parquet</code> contenant des logs <em>parsés</em>. Ce fichier contient une ligne par prédiction, avec les variables <code>timestamp</code>, <code>text</code>, <code>prediction_1</code>, <code>proba_1</code>, <code>prediction_2</code> et <code>proba_2</code>.</p></li>
 <li><p>Pour visualiser le tableau de bord, entrez les commandes suivantes dans un <code>Terminal</code> depuis la racine du projet et cliquez sur le lien généré.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1"></a><span class="bu">cd</span> dashboard</span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="ex">quarto</span> preview index.qmd</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1"></a><span class="bu">cd</span> dashboard</span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="ex">quarto</span> preview index.qmd</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Pour l’instant le pourcentage de prédictions avec une probabilité supérieure à 0.8 ne correspond pas à la réalité. Modifiez la requête SQL permettant d’obtenir la variable <code>pct_predictions</code> pour afficher la bonne valeur.</p></li>
 </ol>
 <details>
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la réponse </b></font>
 </summary>
-<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>pct_predictions <span class="op">=</span> duckdb.sql(</span>
-<span id="cb29-2"><a href="#cb29-2"></a>    <span class="st">"""</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="st">    SELECT 100 * COUNT(*) / COUNT(*)</span></span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="st">    FROM data;</span></span>
-<span id="cb29-5"><a href="#cb29-5"></a><span class="st">    """</span></span>
-<span id="cb29-6"><a href="#cb29-6"></a>).fetchall()[<span class="dv">0</span>][<span class="dv">0</span>]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>pct_predictions <span class="op">=</span> duckdb.sql(</span>
+<span id="cb34-2"><a href="#cb34-2"></a>    <span class="st">"""</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="st">    SELECT 100 * COUNT(*) / COUNT(*)</span></span>
+<span id="cb34-4"><a href="#cb34-4"></a><span class="st">    FROM data;</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a><span class="st">    """</span></span>
+<span id="cb34-6"><a href="#cb34-6"></a>).fetchall()[<span class="dv">0</span>][<span class="dv">0</span>]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="5" type="1">
 <li>Les deux graphiques situés en bas du tableau de bord ne sont pas corrects non plus. Modifiez la requête SQL permettant d’obtenir la variable <code>daily_stats</code> pour afficher les bons graphiques.</li>
@@ -1603,20 +1713,20 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la réponse </b></font>
 </summary>
-<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>daily_stats <span class="op">=</span> duckdb.sql(</span>
-<span id="cb30-2"><a href="#cb30-2"></a>    <span class="st">"""</span></span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="st">    SELECT</span></span>
-<span id="cb30-4"><a href="#cb30-4"></a><span class="st">        CAST(timestamp AS DATE) AS date,</span></span>
-<span id="cb30-5"><a href="#cb30-5"></a><span class="st">        COUNT(*) AS n_liasses,</span></span>
-<span id="cb30-6"><a href="#cb30-6"></a><span class="st">        (</span></span>
-<span id="cb30-7"><a href="#cb30-7"></a><span class="st">            COUNT(</span></span>
-<span id="cb30-8"><a href="#cb30-8"></a><span class="st">                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END</span></span>
-<span id="cb30-9"><a href="#cb30-9"></a><span class="st">            ) * 100.0 / COUNT(*)</span></span>
-<span id="cb30-10"><a href="#cb30-10"></a><span class="st">        ) AS pct_high_proba</span></span>
-<span id="cb30-11"><a href="#cb30-11"></a><span class="st">    FROM data</span></span>
-<span id="cb30-12"><a href="#cb30-12"></a><span class="st">    GROUP BY CAST(timestamp AS DATE);</span></span>
-<span id="cb30-13"><a href="#cb30-13"></a><span class="st">    """</span></span>
-<span id="cb30-14"><a href="#cb30-14"></a>).to_df()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>daily_stats <span class="op">=</span> duckdb.sql(</span>
+<span id="cb35-2"><a href="#cb35-2"></a>    <span class="st">"""</span></span>
+<span id="cb35-3"><a href="#cb35-3"></a><span class="st">    SELECT</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a><span class="st">        CAST(timestamp AS DATE) AS date,</span></span>
+<span id="cb35-5"><a href="#cb35-5"></a><span class="st">        COUNT(*) AS n_liasses,</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a><span class="st">        (</span></span>
+<span id="cb35-7"><a href="#cb35-7"></a><span class="st">            COUNT(</span></span>
+<span id="cb35-8"><a href="#cb35-8"></a><span class="st">                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END</span></span>
+<span id="cb35-9"><a href="#cb35-9"></a><span class="st">            ) * 100.0 / COUNT(*)</span></span>
+<span id="cb35-10"><a href="#cb35-10"></a><span class="st">        ) AS pct_high_proba</span></span>
+<span id="cb35-11"><a href="#cb35-11"></a><span class="st">    FROM data</span></span>
+<span id="cb35-12"><a href="#cb35-12"></a><span class="st">    GROUP BY CAST(timestamp AS DATE);</span></span>
+<span id="cb35-13"><a href="#cb35-13"></a><span class="st">    """</span></span>
+<span id="cb35-14"><a href="#cb35-14"></a>).to_df()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="6" type="1">
 <li>Constatez les changements apportés au tableau de bord.</li>
 </ol>
