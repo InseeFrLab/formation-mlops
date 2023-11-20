@@ -1519,7 +1519,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb25-16"><a href="#cb25-16"></a>df <span class="op">=</span> pd.read_parquet(data_path)</span>
 <span id="cb25-17"><a href="#cb25-17"></a></span>
 <span id="cb25-18"><a href="#cb25-18"></a><span class="co"># Votre API URL</span></span>
-<span id="cb25-19"><a href="#cb25-19"></a>api_url <span class="op">=</span> <span class="st">"&lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr/predict"</span></span>
+<span id="cb25-19"><a href="#cb25-19"></a>api_url <span class="op">=</span> <span class="st">"https://&lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr/predict"</span></span>
 <span id="cb25-20"><a href="#cb25-20"></a></span>
 <span id="cb25-21"><a href="#cb25-21"></a><span class="co"># Effectue les requêtes</span></span>
 <span id="cb25-22"><a href="#cb25-22"></a>responses <span class="op">=</span> df[<span class="st">"text"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: make_prediction(api_url, x))</span>
