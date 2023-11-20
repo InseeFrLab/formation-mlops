@@ -70,7 +70,9 @@ from: markdown+emoji
 
 ## Application 5 {.scrollable}
 
-{{< include applications/_application5.qmd >}}
+{{< include applications/_application5a.qmd >}}
+
+{{< include applications/_application5b.qmd >}}
 
 ## Application 6 {.scrollable}
 

@@ -1,0 +1,15 @@
+:::{.nonincremental}
+:::: {.callout-tip collapse="true" icon=false}
+## Partie 2 : Logger des métriques métier
+
+
+
+::::
+:::
+
+
+Pour moi seulement : 
+- Créer un script qui fait un ETL maison
+- Enregistrer le fichier dans un parquet partitionné dans s3
+
+1. Dashboard qui récup le fichier dans s3
