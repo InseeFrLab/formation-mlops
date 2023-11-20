@@ -1457,29 +1457,111 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Logging</strong></p>
+<p><strong>Partie 1 : Requêter votre modèle déployé</strong></p>
 </div>
 <div class="callout-content">
-<p>ADD</p>
-</div>
-</div>
-</div>
-</div>
 <ol type="1">
-<li class="fragment"><p>Créer un fichier predict-api.py</p></li>
-<li class="fragment"><p>importer un fichier de données pour batch l’api</p></li>
-<li class="fragment"><p>executez le script qui envoie le batch</p></li>
-<li class="fragment"><p>Allez voir les logs dans ArgoCD</p></li>
-<li class="fragment"><p>Que constatez vous ?</p></li>
-<li class="fragment"><p>Rajouter du logging</p></li>
-<li class="fragment"><p>Redéployer votre API (build image avec et sans log)</p></li>
-<li class="fragment"><p>Réexecuter le script predict-api.py</p></li>
-<li class="fragment"><p>Allez voir les logs dans ArgoCD</p></li>
+<li>Créez un fichier <code>predict-api.py</code>. Ce script doit :
+<ul>
+<li>Lire le fichier parquet disponible à l’adresse suivante :</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a>https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Effectuer des requêtes à votre API pour chaque libellé présent dans le fichier parquet.</li>
+<li>Afficher le résultats des prédictions</li>
+</ul></li>
 </ol>
+<details>
+<summary>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir le contenu du script </b></font>
+</summary>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="im">import</span> requests</span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="co"># Fonction pour effectuer la requête à l'API</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="kw">def</span> make_prediction(api_url: <span class="bu">str</span>, description: <span class="bu">str</span>):</span>
+<span id="cb25-7"><a href="#cb25-7"></a>    params <span class="op">=</span> {<span class="st">"description"</span>: description, <span class="st">"nb_echoes_max"</span>: <span class="dv">2</span>}</span>
+<span id="cb25-8"><a href="#cb25-8"></a>    response <span class="op">=</span> requests.get(api_url, params<span class="op">=</span>params)</span>
+<span id="cb25-9"><a href="#cb25-9"></a>    <span class="cf">return</span> response.json()</span>
+<span id="cb25-10"><a href="#cb25-10"></a></span>
+<span id="cb25-11"><a href="#cb25-11"></a></span>
+<span id="cb25-12"><a href="#cb25-12"></a><span class="co"># URL des données</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a>data_path <span class="op">=</span> <span class="st">"https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet"</span></span>
+<span id="cb25-14"><a href="#cb25-14"></a></span>
+<span id="cb25-15"><a href="#cb25-15"></a><span class="co"># Charge le fichier Parquet dans un DataFrame pandas</span></span>
+<span id="cb25-16"><a href="#cb25-16"></a>df <span class="op">=</span> pd.read_parquet(data_path)</span>
+<span id="cb25-17"><a href="#cb25-17"></a></span>
+<span id="cb25-18"><a href="#cb25-18"></a><span class="co"># Votre API URL</span></span>
+<span id="cb25-19"><a href="#cb25-19"></a>api_url <span class="op">=</span> <span class="st">"&lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr/predict"</span></span>
+<span id="cb25-20"><a href="#cb25-20"></a></span>
+<span id="cb25-21"><a href="#cb25-21"></a><span class="co"># Effectue les requêtes</span></span>
+<span id="cb25-22"><a href="#cb25-22"></a>responses <span class="op">=</span> df[<span class="st">"text"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: make_prediction(api_url, x))</span>
+<span id="cb25-23"><a href="#cb25-23"></a></span>
+<span id="cb25-24"><a href="#cb25-24"></a><span class="co"># Affiche le DataFrame avec les résultats des prédictions</span></span>
+<span id="cb25-25"><a href="#cb25-25"></a><span class="bu">print</span>(pd.merge(df, pd.json_normalize(responses),</span>
+<span id="cb25-26"><a href="#cb25-26"></a>               left_index<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb25-27"><a href="#cb25-27"></a>               right_index<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="2" type="1">
+<li>Executez votre script <code>predict-api.py</code>.</li>
+</ol>
+<details>
+<summary>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
+</summary>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb26-1"><a href="#cb26-1"></a>python formation-mlops/src/predict-api.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="3" type="1">
+<li><p>Dans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par <code>"codification-api-..."</code>. Observez les logs.</p></li>
+<li><p>Quelles informations détenez-vous ? Est-ce suffisant ?</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Partie 2 : Logger des métriques métier</strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+</div>
 <p>Pour moi seulement : - Créer un script qui fait un ETL maison - Enregistrer le fichier dans un parquet partitionné dans s3</p>
 <ol type="1">
 <li class="fragment">Dashboard qui récup le fichier dans s3</li>
 </ol>
+</section>
+<section id="création-dun-tableau-de-bord" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Création d’un tableau de bord</h2>
+<ul>
+<li class="fragment">Les logs de l’API contiennent maintenant des <span class="orange"><strong>informations métier</strong></span>.</li>
+<li class="fragment">Pour analyser le comportement du moteur de codification, création d’un <span class="orange"><strong>tableau de bord</strong></span>.</li>
+<li class="fragment">Pour le <span class="orange"><strong>traitement/stockage</strong></span> des logs :
+<ul>
+<li class="fragment"><a href="https://www.elastic.co/fr/observability/log-monitoring"><span class="blue2"><strong>Elastic</strong></span></a></li>
+<li class="fragment">Pipeline <span class="blue2"><strong>ETL</strong></span></li>
+</ul></li>
+<li class="fragment">Solutions multiples pour le <span class="orange"><strong>tableau de bord</strong></span> : <a href="https://grafana.com/"><span class="blue2"><strong>Grafana</strong></span></a>, <a href="https://quarto.org/docs/dashboards/"><span class="blue2"><strong>Quarto Dashboards</strong></span></a>, <a href="https://superset.apache.org/"><span class="blue2"><strong>Apache Superset</strong></span></a>, …</li>
+</ul>
+</section>
+<section id="un-exemple-de-stack" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Un exemple de stack</h2>
+<ul>
+<li class="fragment"><span class="orange"><strong>ETL</strong></span> sous forme d’un cron job qui parse les logs et les stocke au format <code>.parquet</code>.</li>
+<li class="fragment">Utilisation de <a href="https://duckdb.org/"><span class="orange"><strong>DuckDB</strong></span></a> pour requêter les fichiers <code>.parquet</code>…</li>
+<li class="fragment">… et créer les composants d’un <span class="orange"><strong>Quarto Dashboards</strong></span>.</li>
+<li class="fragment">Le tableau de bord est un site statique à actualiser tous les jours par exemple.</li>
+</ul>
+</section>
+<section id="un-exemple-de-stack-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Un exemple de stack</h2>
+<p>&nbsp; &nbsp; &nbsp; <img data-src="../img/dashboard-fr.png" data-fig-align="center"></p>
 </section>
 <section id="application-6" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
 <h2>Application 6</h2>
@@ -1492,27 +1574,27 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div>
 <ol type="1">
 <li><p>Nous allons utiliser <a href="https://quarto.org/docs/dashboards/"><code>Quarto Dashboards</code></a> qui fera partie de la version 1.4 de <code>Quarto</code>. Téléchargez et installez la pre-release.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">wget</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.489/quarto-1.4.489-linux-amd64.deb <span class="dt">\</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>    <span class="at">-O</span> quarto.deb</span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> quarto.deb</span>
-<span id="cb24-4"><a href="#cb24-4"></a><span class="ex">quarto</span> check install</span>
-<span id="cb24-5"><a href="#cb24-5"></a><span class="fu">rm</span> quarto.deb</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">wget</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.489/quarto-1.4.489-linux-amd64.deb <span class="dt">\</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>    <span class="at">-O</span> quarto.deb</span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> quarto.deb</span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="ex">quarto</span> check install</span>
+<span id="cb27-5"><a href="#cb27-5"></a><span class="fu">rm</span> quarto.deb</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Ouvrez le fichier <code>dashboard/index.qmd</code> et inspectez le code. Pour récupérer les données nécessaires à la création du tableau de bord, on utilise un SGBD <em>serverless</em> : <code>DuckDB</code>. <code>DuckDB</code> nous permet de faire des requêtes <code>SQL</code> sur un fichier <code>.parquet</code> contenant des logs <em>parsés</em>. Ce fichier contient une ligne par prédiction, avec les variables <code>timestamp</code>, <code>text</code>, <code>prediction_1</code>, <code>proba_1</code>, <code>prediction_2</code> et <code>proba_2</code>.</p></li>
 <li><p>Pour visualiser le tableau de bord, entrez les commandes suivantes dans un <code>Terminal</code> depuis la racine du projet et cliquez sur le lien généré.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1"></a><span class="bu">cd</span> dashboard</span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="ex">quarto</span> preview index.qmd</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1"></a><span class="bu">cd</span> dashboard</span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="ex">quarto</span> preview index.qmd</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Pour l’instant le pourcentage de prédictions avec une probabilité supérieure à 0.8 ne correspond pas à la réalité. Modifiez la requête SQL permettant d’obtenir la variable <code>pct_predictions</code> pour afficher la bonne valeur.</p></li>
 </ol>
 <details>
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la réponse </b></font>
 </summary>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>pct_predictions <span class="op">=</span> duckdb.sql(</span>
-<span id="cb26-2"><a href="#cb26-2"></a>    <span class="st">"""</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a><span class="st">    SELECT 100 * COUNT(*) / COUNT(*)</span></span>
-<span id="cb26-4"><a href="#cb26-4"></a><span class="st">    FROM data;</span></span>
-<span id="cb26-5"><a href="#cb26-5"></a><span class="st">    """</span></span>
-<span id="cb26-6"><a href="#cb26-6"></a>).fetchall()[<span class="dv">0</span>][<span class="dv">0</span>]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>pct_predictions <span class="op">=</span> duckdb.sql(</span>
+<span id="cb29-2"><a href="#cb29-2"></a>    <span class="st">"""</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="st">    SELECT 100 * COUNT(*) / COUNT(*)</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="st">    FROM data;</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="st">    """</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a>).fetchall()[<span class="dv">0</span>][<span class="dv">0</span>]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="5" type="1">
 <li>Les deux graphiques situés en bas du tableau de bord ne sont pas corrects non plus. Modifiez la requête SQL permettant d’obtenir la variable <code>daily_stats</code> pour afficher les bons graphiques.</li>
@@ -1521,20 +1603,20 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la réponse </b></font>
 </summary>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>daily_stats <span class="op">=</span> duckdb.sql(</span>
-<span id="cb27-2"><a href="#cb27-2"></a>    <span class="st">"""</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="st">    SELECT</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a><span class="st">        CAST(timestamp AS DATE) AS date,</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a><span class="st">        COUNT(*) AS n_liasses,</span></span>
-<span id="cb27-6"><a href="#cb27-6"></a><span class="st">        (</span></span>
-<span id="cb27-7"><a href="#cb27-7"></a><span class="st">            COUNT(</span></span>
-<span id="cb27-8"><a href="#cb27-8"></a><span class="st">                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END</span></span>
-<span id="cb27-9"><a href="#cb27-9"></a><span class="st">            ) * 100.0 / COUNT(*)</span></span>
-<span id="cb27-10"><a href="#cb27-10"></a><span class="st">        ) AS pct_high_proba</span></span>
-<span id="cb27-11"><a href="#cb27-11"></a><span class="st">    FROM data</span></span>
-<span id="cb27-12"><a href="#cb27-12"></a><span class="st">    GROUP BY CAST(timestamp AS DATE);</span></span>
-<span id="cb27-13"><a href="#cb27-13"></a><span class="st">    """</span></span>
-<span id="cb27-14"><a href="#cb27-14"></a>).to_df()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>daily_stats <span class="op">=</span> duckdb.sql(</span>
+<span id="cb30-2"><a href="#cb30-2"></a>    <span class="st">"""</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="st">    SELECT</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="st">        CAST(timestamp AS DATE) AS date,</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="st">        COUNT(*) AS n_liasses,</span></span>
+<span id="cb30-6"><a href="#cb30-6"></a><span class="st">        (</span></span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="st">            COUNT(</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a><span class="st">                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END</span></span>
+<span id="cb30-9"><a href="#cb30-9"></a><span class="st">            ) * 100.0 / COUNT(*)</span></span>
+<span id="cb30-10"><a href="#cb30-10"></a><span class="st">        ) AS pct_high_proba</span></span>
+<span id="cb30-11"><a href="#cb30-11"></a><span class="st">    FROM data</span></span>
+<span id="cb30-12"><a href="#cb30-12"></a><span class="st">    GROUP BY CAST(timestamp AS DATE);</span></span>
+<span id="cb30-13"><a href="#cb30-13"></a><span class="st">    """</span></span>
+<span id="cb30-14"><a href="#cb30-14"></a>).to_df()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="6" type="1">
 <li>Constatez les changements apportés au tableau de bord.</li>
 </ol>
