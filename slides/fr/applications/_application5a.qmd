@@ -17,7 +17,7 @@
     <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir le contenu du script </b></font> 
 </summary>
 
-```python
+```{.python filename="predict-api.py"}
 import pandas as pd
 import requests
 
@@ -49,7 +49,7 @@ print(pd.merge(df, pd.json_normalize(responses),
 ```
 </details>
 
-2. Executez votre script `predict-api.py`.
+2. Exécutez votre script `predict-api.py`.
 
 <details> 
 <summary> 

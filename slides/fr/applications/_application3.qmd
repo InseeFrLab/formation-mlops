@@ -11,7 +11,7 @@
 2. Ouvrez le `Dockerfile` pour voir comment l'image est construite. L'image est automatiquement reconstruite et publiée via Github Actions, si vous êtes intéressé, jetez un coup d'œil à `.github/workflows/build_image.yml`. Dans le cadre de cette formation, nous allons tous utiliser cette même image.
 3. Ouvrez le fichier `kubernetes/deployment.yml` et modifiez les lignes surlignées comme suit :
 
-```{.yml code-line-numbers="7,9,11"}
+```{.yml code-line-numbers="7,9,11" filename="deployment.yml"}
 containers:
 - name: api
     image: inseefrlab/formation-mlops-api:main
@@ -76,7 +76,7 @@ Précedement, vous avez déployé votre modèle manuellement. Grâce à `ArgoCD`
 3. Faite un commit des changements effectués et pousser vers votre dépôt Github.
 4. Ouvrez le template `argocd/template-argocd.yml` et modifiez les lignes surlignées :
 
-```{.yml code-line-numbers="4,9"}
+```{.yml code-line-numbers="4,9" filename="template-argocd.yml"}
 spec:
   project: default
   source:

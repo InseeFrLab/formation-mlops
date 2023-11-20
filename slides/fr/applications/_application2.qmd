@@ -118,7 +118,7 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
     <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir le contenu du script </b></font> 
 </summary>
 
-```python
+```{.python filename="predict-mlflow.py"}
 import mlflow
 
 model_name = "fasttext"

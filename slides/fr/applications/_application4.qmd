@@ -5,7 +5,7 @@
 1. Lancez un service `Argo Workflows` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/automation/argo-workflows?autoLaunch=true). Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier `README` du service).
 2. Dans `VSCode`, créez un fichier `hello_world.yaml` à la racine du projet avec le contenu suivant :
 
-```yaml
+```{.yml filename="hello_world.yml"}
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
@@ -49,7 +49,7 @@ argo submit formation-mlops/hello_world.yaml
 1. Jetez un coup d'œil au fichier `argo_workflows/workflow.yml`. Que pensez-vous qu'il se passera lorsque nous soumettrons ce flux de travail ?
 2. Modifiez la ligne surlignée de la même manière que dans l'application 3.
 
-```{.yml code-line-numbers="4"}
+```{.yml code-line-numbers="4" filename="workflow.yml"}
 parameters:
     # Le serveur de suivi MLflow est responsable de l'enregistrement des hyper-paramètres et des métriques du modèle.
     - name: mlflow-tracking-uri

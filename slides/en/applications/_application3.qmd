@@ -10,7 +10,7 @@
 2. Open the `Dockerfile` to see how the image is built. The image is automatically rebuilt and published via Github Actions, if interested have a look to `.github/workflows/build_image.yml`.
 3. Open the file `kubernetes/deployment.yml` and modify the highlighted lines accordingly:
 
-```{.yml code-line-numbers="7,9,11"}
+```{.yml code-line-numbers="7,9,11" filename="deployment.yml"}
 containers:
 - name: api
     image: inseefrlab/formation-mlops-api:main
@@ -74,7 +74,7 @@ Previously, you deployed your model manually. Thanks to ArgoCD, it is possible t
 3. Commit the changes made and push them to your GitHub repository.
 4. Open the template `argocd/template-argocd.yml` and modify the highlighted lines:
 
-```{.yml code-line-numbers="4,9"}
+```{.yml code-line-numbers="4,9" filename="template-argocd.yml"}
 spec:
   project: default
   source:
