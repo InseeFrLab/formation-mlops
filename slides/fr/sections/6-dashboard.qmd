@@ -1,0 +1,22 @@
+## Création d'un tableau de bord
+
+- Les logs de l'API contiennent maintenant des [**informations métier**]{.orange}.
+- Pour analyser le comportement du moteur de codification, création d'un [**tableau de bord**]{.orange}.
+- Pour le [**traitement/stockage**]{.orange} des logs :
+    - [[**Elastic**]{.blue2}](https://www.elastic.co/fr/observability/log-monitoring)
+    - Pipeline [**ETL**]{.blue2}
+- Solutions multiples pour le [**tableau de bord**]{.orange} : [[**Grafana**]{.blue2}](https://grafana.com/), [[**Quarto Dashboards**]{.blue2}](https://quarto.org/docs/dashboards/), [[**Apache Superset**]{.blue2}](https://superset.apache.org/), ...
+
+## Un exemple de stack
+
+- [**ETL**]{.orange} sous forme d'un cron job qui parse les logs et les stocke au format `.parquet`.
+- Utilisation de [[**DuckDB**]{.orange}](https://duckdb.org/) pour requêter les fichiers `.parquet`...
+- ... et créer les composants d'un [**Quarto Dashboards**]{.orange}.
+- Le tableau de bord est un site statique à actualiser tous les jours par exemple.
+
+## Un exemple de stack
+
+&nbsp;
+&nbsp;
+&nbsp;
+![](../img/dashboard-fr.png){fig-align="center"}

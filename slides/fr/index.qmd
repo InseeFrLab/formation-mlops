@@ -74,10 +74,13 @@ from: markdown+emoji
 
 {{< include applications/_application5b.qmd >}}
 
+{{< include sections/6-dashboard.qmd >}}
+
 ## Application 6 {.scrollable}
 
 {{< include applications/_application6.qmd >}}
 
+
 # Conclusion
 
-{{< include sections/6-conclusion.qmd >}}
+{{< include sections/7-conclusion.qmd >}}
