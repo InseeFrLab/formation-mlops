@@ -66,4 +66,11 @@ python formation-mlops/src/predict-api.py
 4. Quelles informations détenez-vous ? Est-ce suffisant ?
 
 ::::
+
+:::: {.callout-warning collapse="true" icon=false}
+
+Nous avons ici réalisé une succession de requêtes GET car nous avons un seul point d'entrée vers notre API. Pour réaliser des requêtes en `batch` il est préférable de réaliser des requêtes POST.
+
+::::
+
 :::
