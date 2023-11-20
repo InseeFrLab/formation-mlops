@@ -1,7 +1,6 @@
 """
 Main file for the API.
 """
-import logging
 import os
 from contextlib import asynccontextmanager
 from typing import List, Dict
@@ -63,14 +62,6 @@ app = FastAPI(
     version="0.0.1",
 )
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.FileHandler("log_file.log"),
-        logging.StreamHandler(),
-    ],
-)
 
 @app.get("/", tags=["Welcome"])
 def show_welcome_page():
@@ -89,7 +80,7 @@ def show_welcome_page():
 @app.get("/predict", tags=["Predict"])
 async def predict(
     description: str,
-    nb_echoes_max: int = 2,
+    nb_echoes_max: int = 5,
 ) -> Dict:
     """
     Predict NACE code.
@@ -113,8 +104,5 @@ async def predict(
     }
 
     predictions = model.predict(query)
-
-    # Logging
-    logging.info(f"{{'Query': {description}, 'Response': {predictions[0]}}}")
 
     return predictions[0]
