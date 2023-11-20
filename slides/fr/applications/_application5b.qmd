@@ -2,14 +2,84 @@
 :::: {.callout-tip collapse="true" icon=false}
 ## Partie 2 : Logger des métriques métier
 
+1. Grâce au package [logging](https://docs.python.org/3/library/logging.html), rajoutez des logs à votre API. Pour chaque requête, affichez le libellé à coder ainsi que les réponses renvoyées par votre API. Pour cela, modifiez le fichier `app/main.py`.
 
+
+<details> 
+<summary> 
+    <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir les étapes à réaliser </b></font> 
+</summary>
+
+1. Importez le package logging :
+
+```{.python filename="main.py"}
+import logging
+```
+
+2. Définissez la configuration de vos logs avant la définition de votre premier point d'entrée :
+
+```{.python filename="main.py"}
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("log_file.log"),
+        logging.StreamHandler(),
+    ],
+)
+```
+
+3. Ajoutez une le libellé et la réponse de l'API dans vos logs :
+
+```{.python filename="main.py"}
+# Logging
+logging.info(f"{{'Query': {description}, 'Response': {predictions[0]}}}")
+```
+
+</details>
+
+2. Faites un commit de vos changements et poussez les sur votre dépôt distant.
+
+3. Dès lors que vous réalisez un changement sur votre API, il est nécessaire de la redéployer pour que les changements soient effectifs. En théorie, il serait nécessaire de re-construire une nouvelle image pour notre API contenant les derniers ajustements. Pour simplifier, nous avons déjà construit les deux images avec et sans logs dans l'API. Jusqu'à présent vous avez utilisé l'image sans logs, redéployez votre API en utilisant l'image avec les logs dont le tag est `logs`.
+
+<details> 
+<summary> 
+    <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir les étapes à réaliser </b></font> 
+</summary>
+
+1. Dans le fichier `kubernetes/deployment.yml`, remplacer le tag `no-logs` par le tag `logs` :
+
+```{.yaml  code-line-numbers="8" filename="deployment.yml"}
+template:
+  metadata:
+    labels:
+      app: codification-api
+  spec:
+    containers:
+      - name: api
+        image: inseefrlab/formation-mlops:logs
+        imagePullPolicy: Always
+```
+
+2. Faites un commit de vos changements et poussez les sur votre dépôt distant.
+
+3. Patientez 5 minutes qu'`ArgoCD` synchronise automatiquement les changements depuis votre dépôt Github ou bien forcez la synchronisation.
+
+</details>
+
+4. Exécutez votre script `predict-api.py`.
+
+<details> 
+<summary> 
+    <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir la commande </b></font> 
+</summary>
+
+```shell
+python formation-mlops/src/predict-api.py
+```
+</details>
+
+5. Dans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par  `"codification-api-..."`. Observez les logs.
 
 ::::
 :::
-
-
-Pour moi seulement : 
-- Créer un script qui fait un ETL maison
-- Enregistrer le fichier dans un parquet partitionné dans s3
-
-1. Dashboard qui récup le fichier dans s3
