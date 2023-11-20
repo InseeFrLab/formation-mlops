@@ -66,20 +66,25 @@ from: markdown+emoji
 
 # :five: Machine learning en production
 
-{{< include sections/5-ml-in-production.qmd >}}
-
 ## Application 5 {.scrollable}
 
 {{< include applications/_application5a.qmd >}}
 
+{{< include sections/5a-ml-in-production.qmd >}}
+
+## Application 5 {.scrollable}
+
 {{< include applications/_application5b.qmd >}}
 
-{{< include sections/6-dashboard.qmd >}}
+{{< include sections/5b-ml-in-production.qmd >}}
 
-## Application 6 {.scrollable}
+{{< include sections/5c-ml-in-production.qmd >}}
 
-{{< include applications/_application6.qmd >}}
+## Application 5 {.scrollable}
 
+{{< include applications/_application5c.qmd >}}
+
+# :six: Défis organisationnels du MLOps
 
 # Conclusion
 

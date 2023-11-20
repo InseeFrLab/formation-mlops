@@ -1,5 +1,5 @@
 :::{.callout-tip collapse="true" icon=false}
-## Création d'un tableau de bord de monitoring
+## Partie 3 : Création d'un tableau de bord de monitoring
 
 :::::{.nonincremental}
 1. Nous allons utiliser [`Quarto Dashboards`](https://quarto.org/docs/dashboards/) qui fera partie de la version 1.4 de `Quarto`. Téléchargez et installez la pre-release.
