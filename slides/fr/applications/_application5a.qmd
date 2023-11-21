@@ -67,7 +67,7 @@ python formation-mlops/src/predict-api.py
 
 ::::
 
-:::: {.callout-warning collapse="true" icon=false}
+:::: {.callout-important collapse="true"}
 
 Nous avons ici réalisé une succession de requêtes GET car nous avons un seul point d'entrée vers notre API. Pour réaliser des requêtes en `batch` il est préférable de réaliser des requêtes POST.
 
