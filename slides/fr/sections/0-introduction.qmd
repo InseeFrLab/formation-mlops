@@ -43,7 +43,7 @@
 
 - [**Reproductibilité**]{.orange}
 
-- [**COntrôle de version**]{.orange}
+- [**Contrôle de version**]{.orange}
 
 - [**Automatisation**]{.orange}
 

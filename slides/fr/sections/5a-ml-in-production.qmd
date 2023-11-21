@@ -12,7 +12,7 @@
 
 - [**Expertises**]{.orange} et [**vocabulaire**]{.orange} différents entre ces parties prenantes
 
-➡️ [**Communication**]{.orange} indispensable entre les équipes pour [**contrôler**]{.orange} le modèle en production
+➡️ [**Communication**]{.orange} essentielle entre les équipes pour [**contrôler**]{.orange} le modèle en production
 
 ## Pourquoi surveiller un modèle en production ?
 
@@ -41,8 +41,7 @@
 
 ## Comment surveiller un modèle en production ?
 
-- Ajout de [**logs**]{.orange} dans l'API pour enregistrer les évènements de celle-ci
+- Intégration de [**logs**]{.orange} dans l'API pour enregistrer les évènements de celle-ci
 - Définir des [**métriques**]{.orange} de Machine Learning
 - Création d'un processus [**ETL**]{.orange} (Extract-Transform-Load) pour exploiter les logs
 - Mise en place d'un système d'[**alertes**]{.orange}
-

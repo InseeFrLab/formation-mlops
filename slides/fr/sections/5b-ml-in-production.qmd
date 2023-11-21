@@ -1,10 +1,4 @@
-## Monitoring towards observability
-
-Définition de métriques Machine Learning et métriques opérationnelles
-
-
-
-## Création d'un tableau de bord
+## Observabilité du modèle grâce à un tableau de bord
 
 - Les logs de l'API contiennent maintenant des [**informations métier**]{.orange}.
 - Pour analyser le comportement du moteur de codification, création d'un [**tableau de bord**]{.orange}.
