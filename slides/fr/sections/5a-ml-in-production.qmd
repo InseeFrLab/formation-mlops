@@ -1,1 +1,48 @@
-## Observabilité
+## Cycle de vie d'un modèle ML en production
+
+![Source: [martinfowler.com](martinfowler.com)](../img/ML-model-lifecycle.png){fig-align="center"}
+
+## Le défi de la responsabilité {.nonincremental}
+
+- Le cycle de vie d'un modèle ML est [**complexe**]{.orange}
+- Plusieurs [**parties prenantes**]{.orange} impliquées :
+    - [**Data scientist**]{.blue2}
+    - [**IT/DevOps**]{.blue2}
+    - [**Equipes métiers**]{.blue2}
+
+- [**Expertises**]{.orange} et [**vocabulaire**]{.orange} différents entre ces parties prenantes
+
+➡️ [**Communication**]{.orange} indispensable entre les équipes pour [**contrôler**]{.orange} le modèle en production
+
+## Pourquoi surveiller un modèle en production ?
+
+- Détecter des [**données biaisées**] : adéquation entre les données de production et données d'entrainement
+- Anticiper une [**instabilité du modèle**] : performance du modèle stable au fil du temps
+- [**Améliorer**] de manière continue le modèle : ré-entrainements réguliers
+
+⚠️ Le mot [**surveillance**]{.red2} d'une application/modèle a des définitions différentes en fonction de l'équipe où l'on se trouve.
+
+## Surveillance selon l'informaticien
+
+- Surveiller une application est partie intégrante de l'approche [**DevOps**]{.orange}
+- Contrôle [**technique**]{.orange} du modèle :
+    - Latence
+    - Mémoire
+    - Utilisation disque
+    - ...
+
+## Surveillance selon le data scientist
+
+- Surveiller un modèle ML est partie intégrante de l'approche [**MLOps**]{.orange}
+- Contrôle [**méthodologique**]{.orange} du modèle
+- Performance en [**temps réel**]{.orange} du modèle souvent impossible, utilisation de proxys :
+    - [**données d'entrées**] (distributions des variables, analyse des données manquantes...)
+    - [**prédictions**] du modèle (distributions et statistiques descriptives des valeurs prédites)
+
+## Comment surveiller un modèle en production ?
+
+- Ajout de [**logs**]{.orange} dans l'API pour enregistrer les évènements de celle-ci
+- Définir des [**métriques**]{.orange} de Machine Learning
+- Création d'un processus [**ETL**]{.orange} (Extract-Transform-Load) pour exploiter les logs
+- Mise en place d'un système d'[**alertes**]{.orange}
+
