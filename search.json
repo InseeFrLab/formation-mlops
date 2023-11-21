@@ -32,7 +32,7 @@
     "href": "slides/fr/index.html#mlops-principes",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "MLOps : principes",
-    "text": "MLOps : principes\n\nReproductibilité\nCOntrôle de version\nAutomatisation\nSurveillance\nCollaboration"
+    "text": "MLOps : principes\n\nReproductibilité\nContrôle de version\nAutomatisation\nSurveillance\nCollaboration"
   },
   {
     "objectID": "slides/fr/index.html#pourquoi-mlflow",
@@ -354,7 +354,7 @@
     "href": "slides/fr/index.html#le-défi-de-la-responsabilité",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Le défi de la responsabilité",
-    "text": "Le défi de la responsabilité\n\nLe cycle de vie d’un modèle ML est complexe\nPlusieurs parties prenantes impliquées :\n\nData scientist\nIT/DevOps\nEquipes métiers\n\nExpertises et vocabulaire différents entre ces parties prenantes\n\n➡️ Communication indispensable entre les équipes pour contrôler le modèle en production"
+    "text": "Le défi de la responsabilité\n\nLe cycle de vie d’un modèle ML est complexe\nPlusieurs parties prenantes impliquées :\n\nData scientist\nIT/DevOps\nEquipes métiers\n\nExpertises et vocabulaire différents entre ces parties prenantes\n\n➡️ Communication essentielle entre les équipes pour contrôler le modèle en production"
   },
   {
     "objectID": "slides/fr/index.html#pourquoi-surveiller-un-modèle-en-production",
@@ -382,7 +382,7 @@
     "href": "slides/fr/index.html#comment-surveiller-un-modèle-en-production",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Comment surveiller un modèle en production ?",
-    "text": "Comment surveiller un modèle en production ?\n\nAjout de logs dans l’API pour enregistrer les évènements de celle-ci\nDéfinir des métriques de Machine Learning\nCréation d’un processus ETL (Extract-Transform-Load) pour exploiter les logs\nMise en place d’un système d’alertes"
+    "text": "Comment surveiller un modèle en production ?\n\nIntégration de logs dans l’API pour enregistrer les évènements de celle-ci\nDéfinir des métriques de Machine Learning\nCréation d’un processus ETL (Extract-Transform-Load) pour exploiter les logs\nMise en place d’un système d’alertes"
   },
   {
     "objectID": "slides/fr/index.html#application-5-1",
@@ -392,18 +392,11 @@
     "text": "Application 5\n\n\n\n\nPartie 2 : Logger des métriques métier\n\n\n\nGrâce au package logging, rajoutez des logs à votre API. Pour chaque requête, affichez le libellé à coder ainsi que les réponses renvoyées par votre API. Pour cela, modifiez le fichier app/main.py.\n\n\n\nCliquez pour voir les étapes à réaliser \n\n\nImportez le package logging :\n\n\n\nmain.py\n\nimport logging\n\n\nDéfinissez la configuration de vos logs avant la définition de votre premier point d’entrée :\n\n\n\nmain.py\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s - %(levelname)s - %(message)s\",\n    handlers=[\n        logging.FileHandler(\"log_file.log\"),\n        logging.StreamHandler(),\n    ],\n)\n\n\nAjoutez une le libellé et la réponse de l’API dans vos logs :\n\n\n\nmain.py\n\n# Logging\nlogging.info(f\"{{'Query': {description}, 'Response': {predictions[0]}}}\")\n\n\n\nFaites un commit de vos changements et poussez les sur votre dépôt distant.\nDès lors que vous réalisez un changement sur votre API, il est nécessaire de la redéployer pour que les changements soient effectifs. En théorie, il serait nécessaire de re-construire une nouvelle image pour notre API contenant les derniers ajustements. Pour simplifier, nous avons déjà construit les deux images avec et sans logs dans l’API. Jusqu’à présent vous avez utilisé l’image sans logs, redéployez votre API en utilisant l’image avec les logs dont le tag est logs.\n\n\n\nCliquez pour voir les étapes à réaliser \n\n\nDans le fichier kubernetes/deployment.yml, remplacer le tag no-logs par le tag logs :\n\n\n\ndeployment.yml\n\ntemplate:\n  metadata:\n    labels:\n      app: codification-api\n  spec:\n    containers:\n      - name: api\n        image: inseefrlab/formation-mlops:logs\n        imagePullPolicy: Always\n\n\nFaites un commit de vos changements et poussez les sur votre dépôt distant.\nPatientez 5 minutes qu’ArgoCD synchronise automatiquement les changements depuis votre dépôt Github ou bien forcez la synchronisation.\n\n\n\nExécutez votre script predict-api.py.\n\n\n\nCliquez pour voir la commande \n\npython formation-mlops/src/predict-api.py\n\n\nDans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par \"codification-api-...\". Observez les logs."
   },
   {
-    "objectID": "slides/fr/index.html#monitoring-towards-observability",
-    "href": "slides/fr/index.html#monitoring-towards-observability",
+    "objectID": "slides/fr/index.html#observabilité-du-modèle-grâce-à-un-tableau-de-bord",
+    "href": "slides/fr/index.html#observabilité-du-modèle-grâce-à-un-tableau-de-bord",
     "title": "Une introduction au MLOps avec MLflow",
-    "section": "Monitoring towards observability",
-    "text": "Monitoring towards observability\nDéfinition de métriques Machine Learning et métriques opérationnelles"
-  },
-  {
-    "objectID": "slides/fr/index.html#création-dun-tableau-de-bord",
-    "href": "slides/fr/index.html#création-dun-tableau-de-bord",
-    "title": "Une introduction au MLOps avec MLflow",
-    "section": "Création d’un tableau de bord",
-    "text": "Création d’un tableau de bord\n\nLes logs de l’API contiennent maintenant des informations métier.\nPour analyser le comportement du moteur de codification, création d’un tableau de bord.\nPour le traitement/stockage des logs :\n\nElastic\nPipeline ETL\n\nSolutions multiples pour le tableau de bord : Grafana, Quarto Dashboards, Apache Superset, …"
+    "section": "Observabilité du modèle grâce à un tableau de bord",
+    "text": "Observabilité du modèle grâce à un tableau de bord\n\nLes logs de l’API contiennent maintenant des informations métier.\nPour analyser le comportement du moteur de codification, création d’un tableau de bord.\nPour le traitement/stockage des logs :\n\nElastic\nPipeline ETL\n\nSolutions multiples pour le tableau de bord : Grafana, Quarto Dashboards, Apache Superset, …"
   },
   {
     "objectID": "slides/fr/index.html#un-exemple-de-stack",
