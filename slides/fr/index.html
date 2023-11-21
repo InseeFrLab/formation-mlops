@@ -1546,10 +1546,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </div>
 </div>
-<div class="callout callout-warning no-icon callout-titled callout-style-default">
+<div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Avertissement</strong></p>
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
 </div>
 <div class="callout-content">
 <p>Nous avons ici réalisé une succession de requêtes GET car nous avons un seul point d’entrée vers notre API. Pour réaliser des requêtes en <code>batch</code> il est préférable de réaliser des requêtes POST.</p>
@@ -1558,8 +1561,66 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </div>
 </section>
-<section id="observabilité" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Observabilité</h2>
+<section id="cycle-de-vie-dun-modèle-ml-en-production" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Cycle de vie d’un modèle ML en production</h2>
+
+<img data-src="../img/ML-model-lifecycle.png" class="r-stretch quarto-figure-center"><p class="caption">Source: <a href="martinfowler.com">martinfowler.com</a></p></section>
+<section id="le-défi-de-la-responsabilité" class="slide level2 nonincremental" data-background-image="background.svg" data-background-size="contain">
+<h2>Le défi de la responsabilité</h2>
+<ul>
+<li class="fragment">Le cycle de vie d’un modèle ML est <span class="orange"><strong>complexe</strong></span></li>
+<li class="fragment">Plusieurs <span class="orange"><strong>parties prenantes</strong></span> impliquées :
+<ul>
+<li class="fragment"><span class="blue2"><strong>Data scientist</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>IT/DevOps</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>Equipes métiers</strong></span></li>
+</ul></li>
+<li class="fragment"><span class="orange"><strong>Expertises</strong></span> et <span class="orange"><strong>vocabulaire</strong></span> différents entre ces parties prenantes</li>
+</ul>
+<p>➡️ <span class="orange"><strong>Communication</strong></span> indispensable entre les équipes pour <span class="orange"><strong>contrôler</strong></span> le modèle en production</p>
+</section>
+<section id="pourquoi-surveiller-un-modèle-en-production" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Pourquoi surveiller un modèle en production ?</h2>
+<ul>
+<li class="fragment">Détecter des [<strong>données biaisées</strong>] : adéquation entre les données de production et données d’entrainement</li>
+<li class="fragment">Anticiper une [<strong>instabilité du modèle</strong>] : performance du modèle stable au fil du temps</li>
+<li class="fragment">[<strong>Améliorer</strong>] de manière continue le modèle : ré-entrainements réguliers</li>
+</ul>
+<p>⚠️ Le mot <span class="red2"><strong>surveillance</strong></span> d’une application/modèle a des définitions différentes en fonction de l’équipe où l’on se trouve.</p>
+</section>
+<section id="surveillance-selon-linformaticien" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Surveillance selon l’informaticien</h2>
+<ul>
+<li class="fragment">Surveiller une application est partie intégrante de l’approche <span class="orange"><strong>DevOps</strong></span></li>
+<li class="fragment">Contrôle <span class="orange"><strong>technique</strong></span> du modèle :
+<ul>
+<li class="fragment">Latence</li>
+<li class="fragment">Mémoire</li>
+<li class="fragment">Utilisation disque</li>
+<li class="fragment">…</li>
+</ul></li>
+</ul>
+</section>
+<section id="surveillance-selon-le-data-scientist" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Surveillance selon le data scientist</h2>
+<ul>
+<li class="fragment">Surveiller un modèle ML est partie intégrante de l’approche <span class="orange"><strong>MLOps</strong></span></li>
+<li class="fragment">Contrôle <span class="orange"><strong>méthodologique</strong></span> du modèle</li>
+<li class="fragment">Performance en <span class="orange"><strong>temps réel</strong></span> du modèle souvent impossible, utilisation de proxys :
+<ul>
+<li class="fragment">[<strong>données d’entrées</strong>] (distributions des variables, analyse des données manquantes…)</li>
+<li class="fragment">[<strong>prédictions</strong>] du modèle (distributions et statistiques descriptives des valeurs prédites)</li>
+</ul></li>
+</ul>
+</section>
+<section id="comment-surveiller-un-modèle-en-production" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Comment surveiller un modèle en production ?</h2>
+<ul>
+<li class="fragment">Ajout de <span class="orange"><strong>logs</strong></span> dans l’API pour enregistrer les évènements de celle-ci</li>
+<li class="fragment">Définir des <span class="orange"><strong>métriques</strong></span> de Machine Learning</li>
+<li class="fragment">Création d’un processus <span class="orange"><strong>ETL</strong></span> (Extract-Transform-Load) pour exploiter les logs</li>
+<li class="fragment">Mise en place d’un système d’<span class="orange"><strong>alertes</strong></span></li>
+</ul>
 </section>
 <section id="application-5-1" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
 <h2>Application 5</h2>
@@ -1659,6 +1720,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </div>
 </div>
+</section>
+<section id="monitoring-towards-observability" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Monitoring towards observability</h2>
+<p>Définition de métriques Machine Learning et métriques opérationnelles</p>
 </section>
 <section id="création-dun-tableau-de-bord" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Création d’un tableau de bord</h2>
