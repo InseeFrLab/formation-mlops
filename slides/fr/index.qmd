@@ -82,8 +82,6 @@ from: markdown+emoji
 
 {{< include applications/_application5c.qmd >}}
 
-# :six: Défis organisationnels du MLOps
-
 # Conclusion
 
-{{< include sections/7-conclusion.qmd >}}
+{{< include sections/6-conclusion.qmd >}}

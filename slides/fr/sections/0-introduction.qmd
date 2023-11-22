@@ -3,7 +3,7 @@
 
 - [**Data scientists**]{.orange} à l'Insee
   - Équipes d'innovation [**méthodologique**]{.blue2} et [**informatique**]{.blue2}
-  - Nous soutenons et accompagnons des projets de *datascience*
+  - Accompagnement des projets de *datascience*
 
 - [**Contactez-nous**]{.orange}
   - <romain.avouac@insee.fr>
@@ -16,7 +16,7 @@
 
 - Tirer parti des [**meilleures pratiques**]{.orange} en génie logiciel
   - Améliorer la [**reproductibilité**]{.blue2} des analyses
-  - [**Déployer**]{.blue2} des applications de manière [**extensible**]{.blue2}
+  - [**Déployer**]{.blue2} des applications de manière [**robuste**]{.blue2}
   - [**Surveiller**]{.blue2} les applications en cours d'exécution
 
 ## L'approche DevOps
@@ -58,15 +58,15 @@
 - Avantages de `MLflow` : 
   - [**Open-source**]{.blue2}
   - Couvre l'entièreté du [**cycle de vie**]{.blue2} d'un modèle ML
-  - [**Agnostic**]{.blue2} au package ML utilisé
-  - Nous avons de l'[**expérience**]{.blue2} avec lui
+  - [**Agnostique**]{.blue2} au package ML utilisé
+  - [**Expérience**]{.blue2} accumulée
 
 ## Plateforme de formation : le SSP Cloud
 
 - Un environnement [**d'innovation ouvert**]{.orange}
   - Cluster [**Kubernetes**]{.blue2}
   - [**Stockage d'objets**]{.blue2} compatible S3
-  - De grandes [**ressources**]{.blue2} de calcul (y compris des GPU)
+  - [**Ressources**]{.blue2} de calcul (y compris des GPU)
 
 - Basé sur le projet [Onyxia](https://github.com/InseeFrLab/onyxia-web)
   - Une [interface](https://datalab.sspcloud.fr/) conviviale pour les utilisateurs permettant de lancer des services de *datascience*
@@ -86,4 +86,8 @@
 
 . . .
 
-:four: Décentraliser l'optimisation des hyperparamètres
+:four: Distribuer l'optimisation des hyperparamètres
+
+. . .
+
+:five: Maintenance d'un modèle en production
