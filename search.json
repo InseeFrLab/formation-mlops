@@ -354,35 +354,35 @@
     "href": "slides/fr/index.html#le-défi-de-la-responsabilité",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Le défi de la responsabilité",
-    "text": "Le défi de la responsabilité\n\nLe cycle de vie d’un modèle ML est complexe\nPlusieurs parties prenantes impliquées :\n\nData scientist\nIT/DevOps\nEquipes métiers\n\nExpertises et vocabulaire différents entre ces parties prenantes\n\n➡️ Communication essentielle entre les équipes pour contrôler le modèle en production"
+    "text": "Le défi de la responsabilité\n\n\nLe cycle de vie d’un modèle ML est complexe\nPlusieurs parties prenantes impliquées :\n\nData scientist\nIT/DevOps\nEquipes métiers\n\nExpertises et vocabulaire différents entre ces parties prenantes\n\n➡️ Communication essentielle entre les équipes pour contrôler le modèle en production"
   },
   {
     "objectID": "slides/fr/index.html#pourquoi-surveiller-un-modèle-en-production",
     "href": "slides/fr/index.html#pourquoi-surveiller-un-modèle-en-production",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Pourquoi surveiller un modèle en production ?",
-    "text": "Pourquoi surveiller un modèle en production ?\n\nDétecter des [données biaisées] : adéquation entre les données de production et données d’entrainement\nAnticiper une [instabilité du modèle] : performance du modèle stable au fil du temps\n[Améliorer] de manière continue le modèle : ré-entrainements réguliers\n\n⚠️ Le mot surveillance d’une application/modèle a des définitions différentes en fonction de l’équipe où l’on se trouve."
+    "text": "Pourquoi surveiller un modèle en production ?\n\n\nDétecter des données biaisées : adéquation entre les données de production et données d’entrainement\nAnticiper une instabilité du modèle : performance du modèle stable au fil du temps\nAméliorer de manière continue le modèle : ré-entrainements réguliers\n\n⚠️ Le mot surveillance d’une application/modèle a des définitions différentes en fonction de l’équipe où l’on se trouve."
   },
   {
     "objectID": "slides/fr/index.html#surveillance-selon-linformaticien",
     "href": "slides/fr/index.html#surveillance-selon-linformaticien",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Surveillance selon l’informaticien",
-    "text": "Surveillance selon l’informaticien\n\nSurveiller une application est partie intégrante de l’approche DevOps\nContrôle technique du modèle :\n\nLatence\nMémoire\nUtilisation disque\n…"
+    "text": "Surveillance selon l’informaticien\n\n\nSurveiller une application est partie intégrante de l’approche DevOps\nContrôle technique du modèle :\n\nLatence\nMémoire\nUtilisation disque\n…"
   },
   {
     "objectID": "slides/fr/index.html#surveillance-selon-le-data-scientist",
     "href": "slides/fr/index.html#surveillance-selon-le-data-scientist",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Surveillance selon le data scientist",
-    "text": "Surveillance selon le data scientist\n\nSurveiller un modèle ML est partie intégrante de l’approche MLOps\nContrôle méthodologique du modèle\nPerformance en temps réel du modèle souvent impossible, utilisation de proxys :\n\n[données d’entrées] (distributions des variables, analyse des données manquantes…)\n[prédictions] du modèle (distributions et statistiques descriptives des valeurs prédites)"
+    "text": "Surveillance selon le data scientist\n\n\nSurveiller un modèle ML est partie intégrante de l’approche MLOps\nContrôle méthodologique du modèle\nPerformance en temps réel du modèle souvent impossible, utilisation de proxys :\n\ndonnées d’entrées (distributions des variables, analyse des données manquantes…)\nprédictions du modèle (distributions et statistiques descriptives des valeurs prédites)"
   },
   {
     "objectID": "slides/fr/index.html#comment-surveiller-un-modèle-en-production",
     "href": "slides/fr/index.html#comment-surveiller-un-modèle-en-production",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Comment surveiller un modèle en production ?",
-    "text": "Comment surveiller un modèle en production ?\n\nIntégration de logs dans l’API pour enregistrer les évènements de celle-ci\nDéfinir des métriques de Machine Learning\nCréation d’un processus ETL (Extract-Transform-Load) pour exploiter les logs\nMise en place d’un système d’alertes"
+    "text": "Comment surveiller un modèle en production ?\n\n\nIntégration de logs dans l’API pour enregistrer les évènements de celle-ci\nDéfinir des métriques de Machine Learning\nCréation d’un processus ETL (Extract-Transform-Load) pour exploiter les logs\nMise en place d’un système d’alertes"
   },
   {
     "objectID": "slides/fr/index.html#application-5-1",
