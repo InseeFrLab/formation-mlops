@@ -375,7 +375,7 @@
     "href": "slides/fr/index.html#surveillance-selon-le-data-scientist",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Surveillance selon le data scientist",
-    "text": "Surveillance selon le data scientist\n\n\nSurveiller un modèle ML est partie intégrante de l’approche MLOps\nContrôle méthodologique du modèle\nPerformance en temps réel du modèle souvent impossible, utilisation de proxys :\n\ndonnées d’entrées (distributions des variables, analyse des données manquantes…)\nprédictions du modèle (distributions et statistiques descriptives des valeurs prédites)"
+    "text": "Surveillance selon le data scientist\n\n\nSurveiller un modèle ML est partie intégrante de l’approche MLOps\nContrôle méthodologique du modèle\nPerformance en temps réel du modèle souvent impossible, utilisation de proxys :\n\nData drift : la distribution des données d’entrée change dans le temps\nConcept drift : la relation modélisée change dans le temps"
   },
   {
     "objectID": "slides/fr/index.html#comment-surveiller-un-modèle-en-production",
