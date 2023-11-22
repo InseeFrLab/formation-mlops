@@ -685,13 +685,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <section id="contexte-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Contexte</h2>
 <ul>
-<li class="fragment"><p><span class="orange"><strong>NACE</strong></span></p>
+<li class="fragment"><p>Code <span class="orange"><strong>APE</strong></span></p>
 <ul>
 <li class="fragment">Nomenclature statistique des <span class="blue2"><strong>Activités économiques</strong></span> dans la Communauté Européenne</li>
-<li class="fragment"><span class="blue2"><strong>Structure hierarchique</strong></span> avec 4 niveaux et 615 codes</li>
+<li class="fragment"><span class="blue2"><strong>Structure hierarchique</strong></span> (NACE) avec 5 niveaux et 732 codes</li>
 </ul></li>
 <li class="fragment"><p>A l’Insee, précédemment classifié par un algorithme basé sur des <span class="orange"><strong>règles de décisions</strong></span></p></li>
-<li class="fragment"><p><span class="orange"><strong>problématique commune</strong></span> à beaucoup d’Instituts nationaux de statistique</p></li>
+<li class="fragment"><p><span class="orange"><strong>Problématique commune</strong></span> à beaucoup d’Instituts nationaux de statistique</p></li>
 </ul>
 </section>
 <section id="le-modèle-fasttext" class="slide level2" data-background-image="../img/diag-fasttext.png" data-background-size="90%" data-background-position="50% 90%">
@@ -707,14 +707,14 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <section id="données-utilisées" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
 <h2>Données utilisées</h2>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Slide</a></li><li><a href="#tabset-2-2">Raw</a></li><li><a href="#tabset-2-3">Preprocessed</a></li></ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Données</a></li><li><a href="#tabset-2-2">Brutes</a></li><li><a href="#tabset-2-3">Pré-traitée</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <ul>
-<li class="fragment">Un cas d’utilisation simple avec seulement <span class="orange"><strong>2 variables</strong></span>:
+<li class="fragment">Un cas d’utilisation simple avec seulement <span class="orange"><strong>2 variables</strong></span> :
 <ul>
 <li class="fragment"><span class="blue2">Description textuelle</span> de l’activité - <span class="green2">text</span></li>
-<li class="fragment"><span class="blue2"><strong>Code NACE vrai</strong></span> labelisé par le moteur de règles – <span class="green2">nace</span> (732 modalités)</li>
+<li class="fragment"><span class="blue2"><strong>Code APE vrai</strong></span> labelisé par le moteur de règles – <span class="green2">nace</span> (732 modalités)</li>
 </ul></li>
 <li class="fragment"><span class="orange"><strong>Prétraitements</strong></span> standards :
 <ul>

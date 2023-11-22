@@ -102,7 +102,7 @@
     "href": "slides/fr/index.html#contexte-1",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Contexte",
-    "text": "Contexte\n\nNACE\n\nNomenclature statistique des Activités économiques dans la Communauté Européenne\nStructure hierarchique avec 4 niveaux et 615 codes\n\nA l’Insee, précédemment classifié par un algorithme basé sur des règles de décisions\nproblématique commune à beaucoup d’Instituts nationaux de statistique"
+    "text": "Contexte\n\nCode APE\n\nNomenclature statistique des Activités économiques dans la Communauté Européenne\nStructure hierarchique (NACE) avec 5 niveaux et 732 codes\n\nA l’Insee, précédemment classifié par un algorithme basé sur des règles de décisions\nProblématique commune à beaucoup d’Instituts nationaux de statistique"
   },
   {
     "objectID": "slides/fr/index.html#le-modèle-fasttext",
@@ -116,7 +116,7 @@
     "href": "slides/fr/index.html#données-utilisées",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Données utilisées",
-    "text": "Données utilisées\n\nSlideRawPreprocessed\n\n\n\nUn cas d’utilisation simple avec seulement 2 variables:\n\nDescription textuelle de l’activité - text\nCode NACE vrai labelisé par le moteur de règles – nace (732 modalités)\n\nPrétraitements standards :\n\nPassage en minuscules\nSuppression de la ponctuation\nSuppression des nombres\nSuppression des mots vide de sens\nRacinisation (stemming)\n…\n\n\n\n\n\nviewof table_data = Inputs.table(transpose(data_raw), {\n    rows: 22\n})\n\n\n\n\n\n\n\n\n\nviewof table_data_prepro = Inputs.table(transpose(data_prepro), {\n    rows: 22\n})"
+    "text": "Données utilisées\n\nDonnéesBrutesPré-traitée\n\n\n\nUn cas d’utilisation simple avec seulement 2 variables :\n\nDescription textuelle de l’activité - text\nCode APE vrai labelisé par le moteur de règles – nace (732 modalités)\n\nPrétraitements standards :\n\nPassage en minuscules\nSuppression de la ponctuation\nSuppression des nombres\nSuppression des mots vide de sens\nRacinisation (stemming)\n…\n\n\n\n\n\nviewof table_data = Inputs.table(transpose(data_raw), {\n    rows: 22\n})\n\n\n\n\n\n\n\n\n\nviewof table_data_prepro = Inputs.table(transpose(data_prepro), {\n    rows: 22\n})"
   },
   {
     "objectID": "slides/fr/index.html#mlflow-avec-framework-non-standard",
