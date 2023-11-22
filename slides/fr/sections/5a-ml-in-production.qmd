@@ -43,8 +43,8 @@
 - Surveiller un modèle ML est partie intégrante de l'approche [**MLOps**]{.orange}
 - Contrôle [**méthodologique**]{.orange} du modèle
 - Performance en [**temps réel**]{.orange} du modèle souvent impossible, utilisation de proxys :
-    - [**données d'entrées**]{.blue2} (distributions des variables, analyse des données manquantes...)
-    - [**prédictions**]{.blue2} du modèle (distributions et statistiques descriptives des valeurs prédites)
+    - [**Data drift**]{.blue2} : la distribution des données d'entrée change dans le temps
+    - [**Concept drift**]{.blue2} : la relation modélisée change dans le temps
 :::
 
 ## Comment surveiller un modèle en production ?
