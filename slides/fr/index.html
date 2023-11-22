@@ -418,7 +418,7 @@
 <li class="fragment"><span class="orange"><strong>Data scientists</strong></span> à l’Insee
 <ul>
 <li class="fragment">Équipes d’innovation <span class="blue2"><strong>méthodologique</strong></span> et <span class="blue2"><strong>informatique</strong></span></li>
-<li class="fragment">Nous soutenons et accompagnons des projets de <em>datascience</em></li>
+<li class="fragment">Accompagnement des projets de <em>datascience</em></li>
 </ul></li>
 <li class="fragment"><span class="orange"><strong>Contactez-nous</strong></span>
 <ul>
@@ -450,7 +450,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li class="fragment"><p>Tirer parti des <span class="orange"><strong>meilleures pratiques</strong></span> en génie logiciel</p>
 <ul>
 <li class="fragment">Améliorer la <span class="blue2"><strong>reproductibilité</strong></span> des analyses</li>
-<li class="fragment"><span class="blue2"><strong>Déployer</strong></span> des applications de manière <span class="blue2"><strong>extensible</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>Déployer</strong></span> des applications de manière <span class="blue2"><strong>robuste</strong></span></li>
 <li class="fragment"><span class="blue2"><strong>Surveiller</strong></span> les applications en cours d’exécution</li>
 </ul></li>
 </ul>
@@ -507,8 +507,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <ul>
 <li class="fragment"><span class="blue2"><strong>Open-source</strong></span></li>
 <li class="fragment">Couvre l’entièreté du <span class="blue2"><strong>cycle de vie</strong></span> d’un modèle ML</li>
-<li class="fragment"><span class="blue2"><strong>Agnostic</strong></span> au package ML utilisé</li>
-<li class="fragment">Nous avons de l’<span class="blue2"><strong>expérience</strong></span> avec lui</li>
+<li class="fragment"><span class="blue2"><strong>Agnostique</strong></span> au package ML utilisé</li>
+<li class="fragment"><span class="blue2"><strong>Expérience</strong></span> accumulée</li>
 </ul></li>
 </ul>
 </section>
@@ -519,7 +519,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <ul>
 <li class="fragment">Cluster <span class="blue2"><strong>Kubernetes</strong></span></li>
 <li class="fragment"><span class="blue2"><strong>Stockage d’objets</strong></span> compatible S3</li>
-<li class="fragment">De grandes <span class="blue2"><strong>ressources</strong></span> de calcul (y compris des GPU)</li>
+<li class="fragment"><span class="blue2"><strong>Ressources</strong></span> de calcul (y compris des GPU)</li>
 </ul></li>
 <li class="fragment">Basé sur le projet <a href="https://github.com/InseeFrLab/onyxia-web">Onyxia</a>
 <ul>
@@ -538,7 +538,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <p><span class="emoji" data-emoji="three">3️⃣</span> Déployer un modèle ML via une API</p>
 </div>
 <div class="fragment">
-<p><span class="emoji" data-emoji="four">4️⃣</span> Décentraliser l’optimisation des hyperparamètres</p>
+<p><span class="emoji" data-emoji="four">4️⃣</span> Distribuer l’optimisation des hyperparamètres</p>
+</div>
+<div class="fragment">
+<p><span class="emoji" data-emoji="five">5️⃣</span> Maintenance d’un modèle en production</p>
 </div>
 </section>
 <section id="app0" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
@@ -1578,6 +1581,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </ul></li>
 <li><span class="orange"><strong>Expertises</strong></span> et <span class="orange"><strong>vocabulaire</strong></span> différents entre ces parties prenantes</li>
 </ul>
+<p>. . .</p>
 <p>➡️ <span class="orange"><strong>Communication</strong></span> essentielle entre les équipes pour <span class="orange"><strong>contrôler</strong></span> le modèle en production</p>
 </div>
 </section>
@@ -1589,6 +1593,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li>Anticiper une <span class="orange"><strong>instabilité du modèle</strong></span> : performance du modèle stable au fil du temps</li>
 <li><span class="orange"><strong>Améliorer</strong></span> de manière continue le modèle : ré-entrainements réguliers</li>
 </ul>
+<p>. . .</p>
 <p>⚠️ Le mot <span class="red2"><strong>surveillance</strong></span> d’une application/modèle a des définitions différentes en fonction de l’équipe où l’on se trouve.</p>
 </div>
 </section>
@@ -1609,28 +1614,26 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </section>
 <section id="surveillance-selon-le-data-scientist" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Surveillance selon le data scientist</h2>
-<div>
+<p>::: {.nonincremental}</p>
 <ul>
-<li>Surveiller un modèle ML est partie intégrante de l’approche <span class="orange"><strong>MLOps</strong></span></li>
-<li>Contrôle <span class="orange"><strong>méthodologique</strong></span> du modèle</li>
-<li>Performance en <span class="orange"><strong>temps réel</strong></span> du modèle souvent impossible, utilisation de proxys :
+<li class="fragment">Surveiller un modèle ML est partie intégrante de l’approche <span class="orange"><strong>MLOps</strong></span></li>
+<li class="fragment">Contrôle <span class="orange"><strong>méthodologique</strong></span> du modèle</li>
+<li class="fragment">Performance en <span class="orange"><strong>temps réel</strong></span> du modèle souvent impossible, utilisation de proxys :
 <ul>
-<li><span class="blue2"><strong>données d’entrées</strong></span> (distributions des variables, analyse des données manquantes…)</li>
-<li><span class="blue2"><strong>prédictions</strong></span> du modèle (distributions et statistiques descriptives des valeurs prédites)</li>
+<li class="fragment"><span class="blue2"><strong>données d’entrées</strong></span> (distributions des variables, analyse des données manquantes…)</li>
+<li class="fragment"><span class="blue2"><strong>prédictions</strong></span> du modèle (distributions et statistiques descriptives des valeurs prédites)</li>
 </ul></li>
 </ul>
-</div>
 </section>
 <section id="comment-surveiller-un-modèle-en-production" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Comment surveiller un modèle en production ?</h2>
-<div>
+<p>::: {.nonincremental}</p>
 <ul>
-<li>Intégration de <span class="orange"><strong>logs</strong></span> dans l’API pour enregistrer les évènements de celle-ci</li>
-<li>Définir des <span class="orange"><strong>métriques</strong></span> de Machine Learning</li>
-<li>Création d’un processus <span class="orange"><strong>ETL</strong></span> (Extract-Transform-Load) pour exploiter les logs</li>
-<li>Mise en place d’un système d’<span class="orange"><strong>alertes</strong></span></li>
+<li class="fragment">Intégration de <span class="orange"><strong>logs</strong></span> dans l’API</li>
+<li class="fragment">Récupération et mise en forme des logs</li>
+<li class="fragment">Suivi de <span class="orange"><strong>métriques</strong></span> de ML</li>
+<li class="fragment">Mise en place d’un système d’<span class="orange"><strong>alertes</strong></span></li>
 </ul>
-</div>
 </section>
 <section id="application-5-1" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
 <h2>Application 5</h2>
@@ -1734,23 +1737,19 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <section id="observabilité-du-modèle-grâce-à-un-tableau-de-bord" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Observabilité du modèle grâce à un tableau de bord</h2>
 <ul>
-<li class="fragment">Les logs de l’API contiennent maintenant des <span class="orange"><strong>informations métier</strong></span>.</li>
-<li class="fragment">Pour analyser le comportement du moteur de codification, création d’un <span class="orange"><strong>tableau de bord</strong></span>.</li>
-<li class="fragment">Pour le <span class="orange"><strong>traitement/stockage</strong></span> des logs :
-<ul>
-<li class="fragment"><a href="https://www.elastic.co/fr/observability/log-monitoring"><span class="blue2"><strong>Elastic</strong></span></a></li>
-<li class="fragment">Pipeline <span class="blue2"><strong>ETL</strong></span></li>
-</ul></li>
+<li class="fragment">Les logs de l’API contiennent maintenant des <span class="orange"><strong>informations métier</strong></span></li>
+<li class="fragment">Pour le <span class="orange"><strong>traitement/stockage</strong></span> des logs : pipeline <span class="blue2"><strong>ETL</strong></span></li>
+<li class="fragment">Pour analyser le comportement du moteur de codification : création d’un <span class="orange"><strong>tableau de bord</strong></span></li>
 <li class="fragment">Solutions multiples pour le <span class="orange"><strong>tableau de bord</strong></span> : <a href="https://grafana.com/"><span class="blue2"><strong>Grafana</strong></span></a>, <a href="https://quarto.org/docs/dashboards/"><span class="blue2"><strong>Quarto Dashboards</strong></span></a>, <a href="https://superset.apache.org/"><span class="blue2"><strong>Apache Superset</strong></span></a>, …</li>
 </ul>
 </section>
 <section id="un-exemple-de-stack" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Un exemple de stack</h2>
 <ul>
-<li class="fragment"><span class="orange"><strong>ETL</strong></span> sous forme d’un cron job qui parse les logs et les stocke au format <code>.parquet</code>.</li>
-<li class="fragment">Utilisation de <a href="https://duckdb.org/"><span class="orange"><strong>DuckDB</strong></span></a> pour requêter les fichiers <code>.parquet</code>…</li>
-<li class="fragment">… et créer les composants d’un <span class="orange"><strong>Quarto Dashboards</strong></span>.</li>
-<li class="fragment">Le tableau de bord est un site statique à actualiser tous les jours par exemple.</li>
+<li class="fragment"><span class="orange"><strong>ETL</strong></span> sous forme d’un cron job qui parse les logs et les stocke au format <code>.parquet</code></li>
+<li class="fragment">Utilisation de <a href="https://duckdb.org/"><span class="orange"><strong>DuckDB</strong></span></a> pour requêter les fichiers <code>.parquet</code></li>
+<li class="fragment">… et créer les composants d’un <span class="orange"><strong>Quarto Dashboards</strong></span></li>
+<li class="fragment">Le tableau de bord est un site statique à actualiser tous les jours par exemple</li>
 </ul>
 </section>
 <section id="un-exemple-de-stack-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -1820,18 +1819,35 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </div>
 </section></section>
-<section id="défis-organisationnels-du-mlops" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1><span class="emoji" data-emoji="six">6️⃣</span> Défis organisationnels du MLOps</h1>
-
-</section>
-
+<section>
 <section id="conclusion" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Conclusion</h1>
+
+</section>
+<section id="lopportunité-dorganisations-plus-continues" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>L’opportunité d’organisations plus continues</h2>
+
+<img data-src="../img/mlops_lifecycle_complete.png" class="r-stretch quarto-figure-center"></section>
+<section id="des-transformations-requises" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Des transformations requises</h2>
+<ul>
+<li class="fragment">Des transformations à <span class="orange"><strong>différents niveaux</strong></span>
+<ul>
+<li class="fragment"><span class="blue2"><strong>Outils techniques</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>Méthodologiques</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>Organisationnels</strong></span></li>
+</ul></li>
+<li class="fragment">Stratégie : <span class="orange"><strong>changement incrémental</strong></span>
+<ul>
+<li class="fragment"><span class="blue2"><strong>Formation</strong></span></li>
+<li class="fragment">Application à des <span class="blue2"><strong>projets pilotes</strong></span></li>
+</ul></li>
+</ul>
 
 <div class="footer footer-default">
 <p>Une introduction au MLOps avec MLflow</p>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
