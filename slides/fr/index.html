@@ -846,7 +846,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">-P</span> experiment_name=<span class="va">$MLFLOW_EXPERIMENT_NAME</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Dans l’interface de <code>MLflow</code>, examinez les résultats de votre exécution précédente :</p>
 <ul>
-<li><code>Experiments -&gt; nace-prediction -&gt; &lt;nom_experience&gt;</code></li>
+<li><code>Experiments -&gt; nace-prediction -&gt; &lt;nom_run&gt;</code></li>
 </ul></li>
 <li><p>Vous avez entraîné le modèle avec certains paramètres par défaut. Dans le fichier <code>MLproject</code>, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, <code>dim = 25</code>).</p></li>
 </ol>
@@ -929,7 +929,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li>Explorez attentivement le fichier <code>src/train.py</code>. Quelles sont les principales différences avec l’application 1 ?</li>
 <li>Pourquoi pouvons-nous dire que le modèle <code>MLflow</code> intègre le <em>preprocessing</em> ?</li>
 <li>Dans <code>MLflow</code>, enregistrez votre dernier modèle en tant que <code>fasttext</code> pour le rendre facilement interrogeable depuis l’API <code>Python</code>.</li>
-<li>Créez un script <code>predict-mlflow.py</code> dans le dossier <code>src</code> du projet. Ce script doit :
+<li>Créez un script <code>predict_mlflow.py</code> dans le dossier <code>src</code> du projet. Ce script doit :
 <ol type="a">
 <li>Charger la version 1 du modèle <code>fasttext</code></li>
 <li>Utiliser le modèle pour prédire les codes NACE d’une liste donnée de descriptions d’activité (par exemple, <code>["vendeur d'huitres", "boulanger"]</code>).</li>
@@ -942,7 +942,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </summary>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>predict-mlflow.py</strong></pre>
+<pre><strong>predict_mlflow.py</strong></pre>
 </div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> mlflow</span>
 <span id="cb11-2"><a href="#cb11-2"></a></span>
@@ -965,13 +965,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </details>
 <ol start="5" type="1">
-<li>Exécutez votre script <code>predict-mlflow.py</code>.</li>
+<li>Exécutez votre script <code>predict_mlflow.py</code>.</li>
 </ol>
 <details>
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
 </summary>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>python formation-mlops/src/predict-mlflow.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>python formation-mlops/src/predict_mlflow.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="6" type="1">
 <li>Assurez-vous que les deux descriptions suivantes donnent la même prédiction principale : <code>"COIFFEUR"</code> et <code>"coiffeur, &amp; 98789"</code>.</li>
@@ -1486,7 +1486,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 <div class="callout-content">
 <ol type="1">
-<li>Créez un fichier <code>predict-api.py</code>. Ce script doit :
+<li>Créez un fichier <code>predict_api.py</code>. Ce script doit :
 <ul>
 <li>Lire le fichier parquet disponible à l’adresse suivante :</li>
 </ul>
@@ -1502,7 +1502,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </summary>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>predict-api.py</strong></pre>
+<pre><strong>predict_api.py</strong></pre>
 </div>
 <div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb25-2"><a href="#cb25-2"></a><span class="im">import</span> requests</span>
@@ -1534,13 +1534,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </details>
 <ol start="2" type="1">
-<li>Exécutez votre script <code>predict-api.py</code>.</li>
+<li>Exécutez votre script <code>predict_api.py</code>.</li>
 </ol>
 <details>
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
 </summary>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb26-1"><a href="#cb26-1"></a>python formation-mlops/src/predict-api.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb26-1"><a href="#cb26-1"></a>python formation-mlops/src/predict_api.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="3" type="1">
 <li><p>Dans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par <code>"codification-api-..."</code>. Observez les logs.</p></li>
