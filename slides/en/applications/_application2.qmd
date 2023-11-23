@@ -120,12 +120,7 @@ model = mlflow.pyfunc.load_model(
 
 list_libs = ["vendeur d'huitres", "boulanger"]
 
-test_data = {
-    "query": list_libs,
-    "k": 1
-}
-
-results = model.predict(test_data)
+results = model.predict(list_libs, params={"k": 1})
 print(results)
 ```
 

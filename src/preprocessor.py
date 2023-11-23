@@ -33,7 +33,7 @@ class Preprocessor():
             df (pd.DataFrame): Clean DataFrame.
         """
         df = df.copy()
-        
+
         # Fix encoding
         df[text_feature] = df[text_feature].map(unidecode.unidecode)
 
