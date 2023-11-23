@@ -955,13 +955,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb11-9"><a href="#cb11-9"></a></span>
 <span id="cb11-10"><a href="#cb11-10"></a>list_libs <span class="op">=</span> [<span class="st">"vendeur d'huitres"</span>, <span class="st">"boulanger"</span>]</span>
 <span id="cb11-11"><a href="#cb11-11"></a></span>
-<span id="cb11-12"><a href="#cb11-12"></a>test_data <span class="op">=</span> {</span>
-<span id="cb11-13"><a href="#cb11-13"></a>    <span class="st">"query"</span>: list_libs,</span>
-<span id="cb11-14"><a href="#cb11-14"></a>    <span class="st">"k"</span>: <span class="dv">1</span></span>
-<span id="cb11-15"><a href="#cb11-15"></a>}</span>
-<span id="cb11-16"><a href="#cb11-16"></a></span>
-<span id="cb11-17"><a href="#cb11-17"></a>results <span class="op">=</span> model.predict(test_data)</span>
-<span id="cb11-18"><a href="#cb11-18"></a><span class="bu">print</span>(results)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-12"><a href="#cb11-12"></a>results <span class="op">=</span> model.predict(list_libs, params<span class="op">=</span>{<span class="st">"k"</span>: <span class="dv">1</span>})</span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="bu">print</span>(results)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </details>
 <ol start="5" type="1">
