@@ -1,7 +1,7 @@
 """
 FastText wrapper for MLflow.
 """
-from typing import Tuple, Dict
+from typing import Tuple, Optional, Dict, Any, List
 import fasttext
 import mlflow
 import pandas as pd
@@ -39,31 +39,35 @@ class FastTextWrapper(mlflow.pyfunc.PythonModel):
         self.model = fasttext.load_model(context.artifacts["model_path"])
 
     def predict(
-        self, context: mlflow.pyfunc.PythonModelContext, model_input: Dict
+        self,
+        context: mlflow.pyfunc.PythonModelContext,
+        model_input: List,
+        params: Optional[Dict[str, Any]] = None
     ) -> Tuple:
         """
-        Predicts the k most likely codes to a query.
+        Predicts the most likely codes for a list of texts.
 
         Args:
             context (mlflow.pyfunc.PythonModelContext): The MLflow model
                 context.
-            model_input (dict): A dictionary containing the input data for the
-                model. It should have the following keys:
-                - 'query': A dictionary containing the query features.
-                - 'k': An integer representing the number of predicted codes to
-                return.
+            model_input (List): A list of text observations.
+            params (Optional[Dict[str, Any]]): Additional parameters to
+                pass to the model for inference.
 
         Returns:
             A tuple containing the k most likely codes to the query.
         """
         df = self.preprocessor.clean_text(
-            pd.DataFrame(model_input["query"], columns=[TEXT_FEATURE]),
+            pd.DataFrame(model_input, columns=[TEXT_FEATURE]),
             text_feature=TEXT_FEATURE,
         )
 
         texts = df.apply(self._format_item, axis=1).to_list()
 
-        predictions = self.model.predict(texts, k=model_input["k"])
+        predictions = self.model.predict(
+            texts,
+            **params
+        )
 
         predictions_formatted = {
             i: {
@@ -72,7 +76,7 @@ class FastTextWrapper(mlflow.pyfunc.PythonModel):
                     "nace": predictions[0][i][rank_pred].replace(LABEL_PREFIX, ""),
                     "probability": float(predictions[1][i][rank_pred]),
                 }
-                for rank_pred in range(model_input["k"])
+                for rank_pred in range(params["k"])
             }
             for i in range(len(predictions[0]))
         }

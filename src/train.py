@@ -98,6 +98,14 @@ def train(
             "train_data": training_data_path,
         }
 
+        inference_params = {
+            "k": 1,
+        }
+        # Infer the signature including parameters
+        signature = mlflow.models.infer_signature(
+            params=inference_params,
+        )
+
         mlflow.pyfunc.log_model(
             artifact_path=run_name,
             python_model=FastTextWrapper(),
@@ -107,6 +115,7 @@ def train(
                 "src/constants.py",
             ],
             artifacts=artifacts,
+            signature=signature
         )
 
         # Log parameters
