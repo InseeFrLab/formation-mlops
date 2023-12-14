@@ -46,7 +46,7 @@ from: markdown+emoji
 {{< include applications/_application2.qmd >}}
 
 
-# :three: Déployer un modèle ML via une API
+# :three: Déployer un modèle de ML via une API
 
 {{< include sections/3-deployment.qmd >}}
 
@@ -55,7 +55,7 @@ from: markdown+emoji
 {{< include applications/_application3.qmd >}}
 
 
-# :four: Décentraliser l'optimisation des hyperparamètres
+# :four: Distribuer l'optimisation des hyperparamètres
 
 {{< include sections/4-parallel-training.qmd >}}
 

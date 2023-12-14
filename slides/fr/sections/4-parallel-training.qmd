@@ -1,4 +1,4 @@
-## Entraînement parallèle
+## Entraînement distribué
 
 - Avec notre configuration, nous pouvons entraîner des modèles [**un par un**]{.orange} et enregistrer toutes les informations pertinentes sur le serveur MLflow Tracking.
 - Et si nous voulions entraîner [**plusieurs modèles en même temps**]{.orange}, par exemple pour optimiser les hyperparamètres ?
