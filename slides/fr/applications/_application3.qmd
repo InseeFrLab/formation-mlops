@@ -22,7 +22,7 @@ uvicorn app.main:app
 
 
 
-
+## Application 3 {.scrollable}
 
 ::::{.callout-tip collapse="true" icon=false}
 ## Déploiement manuel d'un modèle de ML en tant qu'API
@@ -82,7 +82,7 @@ kubectl apply -f formation-mlops/kubernetes/
 
 
 
-
+## Application 3 {.scrollable}
 
 ::::{.callout-tip collapse="true" icon=false}
 ## Déploiement continu d'un modèle de ML en tant qu'API
