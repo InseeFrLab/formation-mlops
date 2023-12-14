@@ -2,8 +2,9 @@
 ## Introduction aux concepts de MLflow
 
 :::{.incremental}
-1. Dans `JupyterLab`, ouvrez le notebook situé à l'emplacement `formation-mlops/notebooks/mlflow-introduction.ipynb`.
-2. Exécutez le notebook cellule par cellule. Si vous avez terminé plus tôt, explorez l'interface utilisateur de `MLflow` et essayez de créer vos propres expériences à partir du code d'exemple fourni dans le notebook.
+1. Dans `VSCode`, ouvrez le notebook situé à l'emplacement `formation-mlops/notebooks/mlflow-introduction.ipynb`.
+2. Exécutez le notebook cellule par cellule.
+3. Si vous avez terminé plus tôt, explorez l'interface utilisateur de `MLflow` et essayez de créer vos propres expérimentations à partir du code d'exemple fourni dans le notebook. Par exemple, essayez d'ajouter d'autres hyperparamètres à la procédure de *grid-search*.
 :::
 
 :::

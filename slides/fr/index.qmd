@@ -21,47 +21,571 @@ from: markdown+emoji
 
 # Introduction
 
-{{< include sections/0-introduction.qmd >}}
+
+## Qui sommes-nous ?
+
+- [**Data scientists**]{.orange} à l'Insee
+  - Équipes d'innovation [**méthodologique**]{.blue2} et [**informatique**]{.blue2}
+  - Accompagnement des projets de *datascience*
+
+- [**Contactez-nous**]{.orange}
+  - <romain.avouac@insee.fr>
+  - <thomas.faria@insee.fr>
+  - <tom.seimandi@insee.fr>
+
+## Contexte
+
+- Difficulté de passer des expérimentations à la mise en [**production**]{.orange} de modèle de *machine learning*
+
+- Tirer parti des [**meilleures pratiques**]{.orange} en génie logiciel
+  - Améliorer la [**reproductibilité**]{.blue2} des analyses
+  - [**Déployer**]{.blue2} des applications de manière [**robuste**]{.blue2}
+  - [**Surveiller**]{.blue2} les applications en cours d'exécution
+
+## L'approche DevOps
+
+- [**Unifier**]{.orange} le développement (*dev*) et l'administration système (*ops*)
+  - [**Réduire**]{.blue2} le temps de développement
+  - Maintenir la [**qualité**]{.blue2} logicielle
+
+. . .
+
+![](../img/devops.png){fig-align="center" height=300}
+
+## L'approche MLOps
+
+- Intégrer les [**spécificités**]{.orange} des projets de *machine learning*
+  - [**Expérimentation**]{.blue2}
+  - [**Amélioration continue**]{.blue2}
+
+. . .
+
+![](../img/mlops.png){fig-align="center" height=400}
+
+## MLOps : principes
+
+- [**Reproductibilité**]{.orange}
+
+- [**Contrôle de version**]{.orange}
+
+- [**Automatisation**]{.orange}
+
+- [**Surveillance**]{.orange}
+
+- [**Collaboration**]{.orange}
+
+## Pourquoi MLflow ?
+
+- De nombreux [**frameworks**]{.orange} implémentent les principes du MLOps
+
+- Avantages de `MLflow` : 
+  - [**Open-source**]{.blue2}
+  - Couvre l'entièreté du [**cycle de vie**]{.blue2} d'un modèle ML
+  - [**Agnostique**]{.blue2} au package ML utilisé
+  - [**Expérience**]{.blue2} accumulée
+
+## Plateforme de formation : le SSP Cloud
+
+- Un environnement [**d'innovation ouvert**]{.orange}
+  - Cluster [**Kubernetes**]{.blue2}
+  - [**Stockage d'objets**]{.blue2} compatible S3
+  - [**Ressources**]{.blue2} de calcul (y compris des GPU)
+
+- Basé sur le projet [Onyxia](https://github.com/InseeFrLab/onyxia-web)
+  - Une [interface](https://datalab.sspcloud.fr/) conviviale pour les utilisateurs permettant de lancer des services de *datascience*
+  - Un [catalogue de services](https://datalab.sspcloud.fr/catalog/ide) couvrant l'ensemble du cycle de vie des projets de *datascience*
+
+## Plan
+
+:one: Introduction à MLFlow
+
+. . .
+
+:two: Un exemple concret: Prédiction du code APE pour les entreprises
+
+. . .
+
+:three: Déployer un modèle ML via une API
+
+. . .
+
+:four: Distribuer l'optimisation des hyperparamètres
+
+. . .
+
+:five: Maintenance d'un modèle en production
+
 
 ## Application 0 {.scrollable #app0}
 
 {{< include applications/_application0.qmd >}}
 
 
+
+
+
+
+
+
+
 # :one: Introduction à MLFlow
 
-{{< include sections/1-mlflow-intro.qmd >}}
+## Tracking server
+
+- "Une [**API**]{.orange} et une [**interface utilisateur**]{.orange} pour [**enregistrer**]{.orange} les paramètres, les versions du code, les métriques et les artefacts"
+
+. . .
+
+![](../img/mlflow-tracking.png){fig-align="center" height=400}
+
+## Projects
+- "Un format standard pour [**'packager'**]{.orange} du code réutilisable en *datascience*"
+
+. . .
+
+![](../img/mlflow-projects.png){fig-align="center" height=400}
+
+## Models
+
+- "Une convention pour [**'packager'**]{.orange} des [**modèles**]{.orange} de *machine learning* sous plusieurs [**formes**]{.orange}"
+
+. . .
+
+![](../img/mlflow-models.png){fig-align="center" height=400}
+
+## Model registry
+
+- "Un [**entrepôt centralisé de modèles**]{.orange}, un ensemble d'API et une interface utilisateur pour gérer [**collaborativement**]{.orange}  le cycle de vie complet d'un modèle MLflow"
+
+. . .
+
+![](../img/mlflow-model-registry.png){fig-align="center" height=400}
+
 
 ## Application 1
 
 {{< include applications/_application1.qmd >}}
 
+## Bilan
+
+- `MLflow` simplifie le [**suivi**]{.orange} de l'entraînement de modèles
+    - Garde [**trace**]{.blue2} des expérimentations et de leurs *outputs*
+    - [**Intégration**]{.blue2} simple avec les principaux *frameworks* de ML
+
+- [**Limites**]{.orange}
+    - Comment utiliser des frameworks [***custom***]{.blue2} (non-nativement intégrés) ?
+    - Comment passer de l'expérimentation à la [**mise en production**]{.blue2} ?
+
+
+
+
+
+
+
 
 # :two: Un exemple concret
 
-{{< include sections/2-mlflow-custom-class-example.qmd >}}
+## Contexte
+
+- Code [**APE**]{.orange}
+  - Nomenclature statistique des [**Activités économiques**]{.blue2} dans la Communauté Européenne
+  - [**Structure hierarchique**]{.blue2} (NACE) avec 5 niveaux et  732 codes
+
+- A l'Insee, précédemment classifié par un algorithme basé sur des [**règles de décisions**]{.orange} 
+
+- [**Problématique commune**]{.orange} à beaucoup d'Instituts nationaux de statistique
+
+## Le modèle FastText {background-image="../img/diag-fasttext.png" background-size="90%" background-position="50% 90%"}
+
+::: {.nonincremental}
+
+- [**Modèle "sac de n-gram"**]{.orange} : plongements lexicaux pour les mots mais aussi pour les n-gram de mots et de caractères
+
+- Un modèle très [**simple**]{.orange} et [**rapide**]{.orange}
+
+:::
+
+[OVA: One vs. All]{.absolute bottom=20 left=-200 }
+
+## Données utilisées {.scrollable}
+
+::: {.panel-tabset}
+
+### Données 
+
+- Un cas d'utilisation simple avec seulement [**2 variables**]{.orange} :
+  - [Description textuelle]{.blue2} de l'activité - [text]{.green2}
+  - [**Code APE vrai**]{.blue2} labelisé par le moteur de règles – [nace]{.green2} (732 modalités)
+
+- [**Prétraitements**]{.orange} standards :
+  - Passage en minuscules
+  - Suppression de la ponctuation
+  - Suppression des nombres
+  - Suppression des *stop words*
+  - Racinisation (*stemming*)
+  - ...
+
+
+### Brutes
+
+```{ojs}
+viewof table_data = Inputs.table(transpose(data_raw), {
+    rows: 22
+})
+```
+
+### Pré-traitée
+
+```{ojs}
+viewof table_data_prepro = Inputs.table(transpose(data_prepro), {
+    rows: 22
+})
+```
+
+:::
+
+## MLflow avec framework non standard
+
+::: {.nonincremental}
+
+:::: {.fragment fragment-index=1}
+- [**Facile d'utilisation**]{.orange} avec une grande variété de *framework de machine learning* (scikit-learn, Keras, Pytorch...) 
+::::
+
+:::: {.fragment fragment-index=2}
+```python
+mlflow.sklearn.log_model(pipe_rf, "model")
+
+mlflow.pyfunc.load_model(model_uri=f"models:/{model_name}/{version}")
+y_train_pred = model.predict(X_train)
+
+```
+::::
+
+:::: {.fragment fragment-index=3}
+- Que se passe-t-il si nous avons besoin d'une plus grande [**flexibilité**]{.orange}, par exemple, pour utiliser un [**framework personnalisé**]{.orange}?
+::::
+
+:::: {.fragment fragment-index=4}
+- Possibilité de [**suivre**]{.orange}, [**enregistrer**]{.orange} et [**déployer**]{.orange} son propre modèle
+::::
+
+:::
+
+## MLflow avec framework non standard
+
+::: {.nonincremental}
+
+:::: {.fragment fragment-index=1}
+- il y a [**2 principales différences**]{.orange} lorsque vous utilisez votre propre framework:
+  - [**L'enregistrement**]{.blue2} des paramètres, des métriques et des artefacts
+  - [**L'encapsulation**]{.blue2} de votre modèle personalisé afin que MLflow puisse le servir
+::::
+
+:::: {.fragment fragment-index=2}
+```python
+# Define a custom model
+class MyModel(mlflow.pyfunc.PythonModel):
+
+    def load_context(self, context):
+        self.my_model.load_model(context.artifacts["my_model"])
+
+    def predict(self, context, model_input):
+        return self.my_model.predict(model_input)
+```
+::::
+
+:::
+
+## De l'expérimentation à la production
+
+- Les notebooks ne sont pas adaptés pour une [**mise en production**]{.orange} de modèles *ML* :
+  - Potentiel limité d'[**automatisation**]{.blue2} des pipelines *ML*.
+  - Workflows peu clairs et peu [**reproductible**]{.blue2}.
+  - Limite la [**collaboration**]{.blue2} et le [**contrôle de version**]{.blue2} entre les membres de l'équipe.
+  - [**Modularité**]{.blue2} insuffisante pour gérer des composants *ML* complexe.
+
+
+```{python}
+#| cache: false
+import sys
+sys.path.append("../../src/")
+
+import pandas as pd
+import s3fs
+import pyarrow.parquet as pq
+from constants import TEXT_FEATURE, DATA_PATH
+from preprocessor import Preprocessor
+
+preprocessor = Preprocessor()
+fs = s3fs.S3FileSystem(
+    client_kwargs={"endpoint_url": "https://minio.lab.sspcloud.fr"}
+)
+df = pq.ParquetDataset(DATA_PATH, filesystem=fs).read_pandas().to_pandas()
+df = df.sample(frac=0.001, random_state=0)
+
+df_prepro = preprocessor.clean_text(df, TEXT_FEATURE)
+
+ojs_define(data_raw = df, data_prepro = df_prepro)
+```
+
 
 ## Application 2 {.scrollable}
 
 {{< include applications/_application2.qmd >}}
 
+## Bilan
 
-# :three: Déployer un modèle ML via une API
+- `MLflow` est [**polyvalent**]{.orange}
+    - Utilisation dee [**frameworks custom**]{.blue2} (modulo une [**classe "interface"**]{.blue2})
+    - [**Industrialisation**]{.blue2} de l'entraînement (fichier `MLproject`)
+    - [**Requêtage simple**]{.blue2} des modèles entraînés et stockés
 
-{{< include sections/3-deployment.qmd >}}
+- [**Limite**]{.orange} : le modèle entraîné n'est pas [**accessible**]{.blue2}
+    - Requêtage simplifié... mais [**format non-pertinent**]{.blue2} pour tous les utilisateurs
+    - Le modèle n'est [**pas déployé**]{.blue2}
+
+
+
+
+
+
+
+
+
+# :three: Servir un modèle de ML à des utilisateurs
+
+## Mise en service du modèle
+
+- Une fois qu'un modèle de machine learning a été développé, il doit [**servir**]{.orange} ses utilisateurs finaux.
+  - Quel [**format pertinent**]{.blue2} pour rendre accessible aux [**utilisateurs finaux**]{.blue2} ?
+  - [**Traitement par lots**]{.blue2} (*batch*) par rapport au [**traitement en ligne**]{.blue2} (*online*)
+  - Quelle infrastructure pour le de [**déploiement**]{.blue2} ?
+
+## Configuration envisagée
+
+- Le modèle peut servir [**diverses applications**]{.orange}
+  - Rendre le modèle accessible via une [**API**]{.blue2}
+
+- [**Traitement en ligne**]{.orange} (*online serving*)
+  - Les applications [**client**]{.blue2} envoient une [**requête**]{.blue2} à l'API et reçoivent une [**réponse**]{.blue2} rapide
+
+- Infrastructure de déploiement : cluster [**Kubernetes**]{.orange}
+
+## Exposer un modèle via une API
+
+![](../img/API.png){fig-align="center"}
+
+## Pourquoi exposer un modèle via une API REST ?
+
+- [**Simplicité**]{.orange} : porte d'entrée unique qui cache la complexité sous-jacente du modèle
+
+- [**Standardisation**]{.orange} : requêtes HTTP, agnostiques au langage de programmation utilisé
+
+- [**Passage à l'échelle**]{.orange} : adaptation à la charge de requêtes concurrentes
+
+- [**Modularité**]{.orange} : séparation de la gestion du modèle et de sa mise à disposition
+
+## Exposer un modèle via une API
+
+![](../img/API.png){fig-align="center"}
+
+## Exécuter une API dans un conteneur
+
+- [**Conteneur**]{.orange} : environnement [**autonome**]{.blue2} et [**isolé**]{.blue2} qui encapsule le modèle, ses dépendances et le code de l'API
+
+- [**Avantages**]{.orange} :  [**portabilité**]{.orange} et [**scalabilité**]{.orange} pour distribuer le modèle de manière efficace
+
+## Déploiement d'une API sur `Kubernetes`
+
+![](../img/ci-cd.png){fig-align="center"}
+
 
 ## Application 3 {.scrollable}
 
 {{< include applications/_application3.qmd >}}
 
 
-# :four: Décentraliser l'optimisation des hyperparamètres
 
-{{< include sections/4-parallel-training.qmd >}}
+
+
+
+
+
+
+
+# :four: Distribuer l'optimisation des hyperparamètres
+
+## Entraînement distribué
+
+- Avec notre configuration, nous pouvons entraîner des modèles [**un par un**]{.orange} et enregistrer toutes les informations pertinentes sur le serveur MLflow Tracking.
+- Et si nous voulions entraîner [**plusieurs modèles en même temps**]{.orange}, par exemple pour optimiser les hyperparamètres ?
+
+## Automatisation du workflow
+
+- [**Principes généraux**]{.orange} :
+  - Définir des workflows où chaque étape du processus est un [**conteneur**]{.blue2} (reproductibilité).
+  - Modéliser les workflows à plusieurs étapes comme une [**séquence**]{.blue2} de tâches ou comme un [**graphe acyclique orienté**]{.blue2}.
+  - Cela permet d'[**exécuter facilement en parallèle des tâches intensives**]{.blue2} en calcul pour l'entraînement du modèle ou le traitement des données.
+
+## Argo workflows
+
+- Un moteur de [**workflow**]{.orange} populaire pour orchestrer des tâches parallèles sur `Kubernetes`.
+  - [**Open-source**]{.blue2}
+  - [**Container-native**]{.blue2}
+  - Disponible sur le [**SSP Cloud**]{.orange}
+
+. . .
+
+![](../img/argo-logo.png){fig-align="center" height=200}
+
+## Bonjour le monde
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow                  # nouveau type de spécification k8s
+metadata:
+  generateName: hello-world-    # nom de la spécification du workflow
+spec:
+  entrypoint: whalesay          # invoque le modèle whalesay
+  templates:
+    - name: whalesay            # nom du modèle
+      container:
+        image: docker/whalesay
+        command: [ cowsay ]
+        args: [ "bonjour le monde" ]
+```
+
+## Que se passe-t-il ?
+
+. . .
+
+![](../img/argo-0.png){fig-align="center" height=500}
+
+## Que se passe-t-il ?
+
+![](../img/argo-1a.png){fig-align="center" height=500}
+
+## Que se passe-t-il ?
+
+![](../img/argo-2a.png){fig-align="center" height=500}
+
+## Paramètres
+
+- Les modèles peuvent prendre des [**paramètres d'entrée**]{.orange}
+
+. . .
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-world-parameters-
+spec:
+  entrypoint: whalesay
+  arguments:
+    parameters:
+    - name: message
+      value: bonjour le monde
+
+  templates:
+  - name: whalesay
+    inputs:
+      parameters:
+      - name: message       # déclaration du paramètre
+    container:
+      image: docker/whalesay
+      command: [cowsay]
+      args: ["{{inputs.parameters.message}}"]
+```
+
+## Workflows à plusieurs étapes
+
+- Les [**workflows à plusieurs étapes**]{.orange} peuvent être spécifiés (`steps` ou `dag`)
+
+. . .
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: steps-
+spec:
+  entrypoint: hello-hello-hello
+
+  # Cette spécification contient deux modèles : hello-hello-hello et whalesay
+  templates:
+  - name: hello-hello-hello
+    # Au lieu d'exécuter uniquement un conteneur
+    # Ce modèle a une séquence d'étapes
+    steps:
+    - - name: hello1            # hello1 est exécuté avant les étapes suivantes
+        template: whalesay
+    - - name: hello2a           # double tiret => exécuté après l'étape précédente
+        template: whalesay
+      - name: hello2b           # tiret simple => exécuté en parallèle avec l'étape précédente
+        template: whalesay
+  - name: whalesay              # nom du modèle
+    container:
+      image: docker/whalesay
+      command: [ cowsay ]
+      args: [ "bonjour le monde" ]
+```
+
+## Que se passe-t-il ?
+
+. . .
+
+![](../img/argo-0.png){fig-align="center" height=500}
+
+## Que se passe-t-il ?
+
+![](../img/argo-1b.png){fig-align="center" height=500}
+
+## Que se passe-t-il ?
+
+![](../img/argo-2b.png){fig-align="center" height=500}
+
+## Que se passe-t-il ?
+
+![](../img/argo-1b.png){fig-align="center" height=500}
+
+## Que se passe-t-il ?
+
+![](../img/argo-3b.png){fig-align="center" height=500}
+
+## Autres applications
+
+- Workflow pour [**tester**]{.orange} des modèles enregistrés, ou des modèles poussés en pré-production / production.
+- Les workflows peuvent être [**déclenchés**]{.orange} automatiquement (via Argo Events, par exemple).
+- Workflows d'[**entraînement continue**]{.orange}.
+- Pipelines de *machine learning* [**distribués**]{.orange} en général (téléchargement de données, traitement, etc.).
+
+## Autres applications
+
+. . .
+
+![](../img/pokemon_workflow.png){fig-align="center" height=450}
+
+## Notes
+
+- [**Python SDK**]{.orange} pour Argo Workflows
+- Pipelines Kubeflow
+- [**Couler**]{.orange} : interface unifiée pour la construction et la gestion de workflows sur différents moteurs de workflows
+- Autres outils d'orchestration natifs de Python : [**Apache Airflow**]{.orange}, [**Metaflow**]{.orange}, [**Prefect**]{.orange}
+
 
 ## Application 4 {.scrollable}
 
 {{< include applications/_application4.qmd >}}
+
+
+
+
+
+
+
+
 
 
 # :five: Machine learning en production
@@ -70,13 +594,89 @@ from: markdown+emoji
 
 {{< include applications/_application5a.qmd >}}
 
-{{< include sections/5a-ml-in-production.qmd >}}
+## Cycle de vie d'un modèle ML en production
+
+![Source: [martinfowler.com](martinfowler.com)](../img/ML-model-lifecycle.png){fig-align="center"}
+
+## Le défi de la responsabilité 
+::: {.nonincremental}
+
+- Le cycle de vie d'un modèle ML est [**complexe**]{.orange}
+- Plusieurs [**parties prenantes**]{.orange} impliquées :
+    - [**Data scientist**]{.blue2}
+    - [**IT/DevOps**]{.blue2}
+    - [**Equipes métiers**]{.blue2}
+
+- [**Expertises**]{.orange} et [**vocabulaire**]{.orange} différents entre ces parties prenantes
+
+➡️ [**Communication**]{.orange} essentielle entre les équipes pour [**contrôler**]{.orange} le modèle en production
+:::
+
+## Pourquoi surveiller un modèle en production ?
+::: {.nonincremental}
+
+- Détecter des [**données biaisées**]{.orange} : adéquation entre les données de production et données d'entrainement
+- Anticiper une [**instabilité du modèle**]{.orange} : performance du modèle stable au fil du temps
+- [**Améliorer**]{.orange} de manière continue le modèle : ré-entrainements réguliers
+
+⚠️ Le mot [**surveillance**]{.red2} d'une application/modèle a des définitions différentes en fonction de l'équipe où l'on se trouve.
+:::
+
+## Surveillance selon l'informaticien
+::: {.nonincremental}
+
+- Surveiller une application est partie intégrante de l'approche [**DevOps**]{.orange}
+- Contrôle [**technique**]{.orange} du modèle :
+    - Latence
+    - Mémoire
+    - Utilisation disque
+    - ...
+:::
+
+## Surveillance selon le data scientist
+::: {.nonincremental}
+
+- Surveiller un modèle ML est partie intégrante de l'approche [**MLOps**]{.orange}
+- Contrôle [**méthodologique**]{.orange} du modèle
+- Performance en [**temps réel**]{.orange} du modèle souvent impossible, utilisation de proxys :
+    - [**Data drift**]{.blue2} : la distribution des données d'entrée change dans le temps
+    - [**Concept drift**]{.blue2} : la relation modélisée change dans le temps
+:::
+
+## Comment surveiller un modèle en production ?
+::: {.nonincremental}
+
+- Intégration de [**logs**]{.orange} dans l'API
+- Récupération et mise en forme des logs
+- Suivi de [**métriques**]{.orange} de ML
+- Mise en place d'un système d'[**alertes**]{.orange}
+:::
 
 ## Application 5 {.scrollable}
 
 {{< include applications/_application5b.qmd >}}
 
-{{< include sections/5b-ml-in-production.qmd >}}
+## Observabilité du modèle grâce à un tableau de bord
+
+- Les logs de l'API contiennent maintenant des [**informations métier**]{.orange}
+- Pour le [**traitement/stockage**]{.orange} des logs : pipeline [**ETL**]{.blue2}
+- Pour analyser le comportement du moteur de codification : création d'un [**tableau de bord**]{.orange}
+- Solutions multiples pour le [**tableau de bord**]{.orange} : [[**Grafana**]{.blue2}](https://grafana.com/), [[**Quarto Dashboards**]{.blue2}](https://quarto.org/docs/dashboards/), [[**Apache Superset**]{.blue2}](https://superset.apache.org/), ...
+
+## Un exemple de stack
+
+- [**ETL**]{.orange} sous forme d'un cron job qui parse les logs et les stocke au format `.parquet`
+- Utilisation de [[**DuckDB**]{.orange}](https://duckdb.org/) pour requêter les fichiers `.parquet`
+- ... et créer les composants d'un [**Quarto Dashboards**]{.orange}
+- Le tableau de bord est un site statique à actualiser tous les jours par exemple
+
+## Un exemple de stack
+
+&nbsp;
+&nbsp;
+&nbsp;
+![](../img/dashboard-fr.png){fig-align="center"}
+
 
 ## Application 5 {.scrollable}
 
@@ -84,4 +684,18 @@ from: markdown+emoji
 
 # Conclusion
 
-{{< include sections/6-conclusion.qmd >}}
+## L'opportunité d'organisations plus continues
+
+![](../img/mlops_lifecycle_complete.png){fig-align="center"}
+
+## Des transformations requises
+
+- Des transformations à [**différents niveaux**]{.orange}
+    - [**Outils techniques**]{.blue2}
+    - [**Méthodologiques**]{.blue2}
+    - [**Organisationnels**]{.blue2}
+
+- Stratégie : [**changement incrémental**]{.orange}
+    - [**Formation**]{.blue2}
+    - Application à des [**projets pilotes**]{.blue2}
+
