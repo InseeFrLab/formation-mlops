@@ -342,7 +342,7 @@ ojs_define(data_raw = df, data_prepro = df_prepro)
     - [**Requêtage simple**]{.blue2} des modèles entraînés et stockés
 
 - [**Limite**]{.orange} : le modèle entraîné n'est pas [**accessible**]{.blue2}
-    - Requêtage simplifié... mais [**format non-adapté**]{.blue2} à tous les utilisateurs
+    - Requêtage simplifié... mais [**format non-pertinent**]{.blue2} pour tous les utilisateurs
     - Le modèle n'est [**pas déployé**]{.blue2}
 
 
@@ -353,18 +353,16 @@ ojs_define(data_raw = df, data_prepro = df_prepro)
 
 
 
-# :three: Déployer un modèle de ML via une API
+# :three: Servir un modèle de ML à des utilisateurs
 
 ## Mise en service du modèle
 
-- Une fois qu'un modèle de machine learning a été développé, il doit être [**déployé**]{.orange} pour [**servir**]{.orange} ses utilisateurs finaux.
-  - Quelle est l'infrastructure de [**production**]{.blue2} ?
+- Une fois qu'un modèle de machine learning a été développé, il doit [**servir**]{.orange} ses utilisateurs finaux.
   - Quel [**format pertinent**]{.blue2} pour rendre accessible aux [**utilisateurs finaux**]{.blue2} ?
   - [**Traitement par lots**]{.blue2} (*batch*) par rapport au [**traitement en ligne**]{.blue2} (*online*)
+  - Quelle infrastructure pour le de [**déploiement**]{.blue2} ?
 
-## Configuration standard
-
-- Infrastructure de production : cluster [**Kubernetes**]{.orange}
+## Configuration envisagée
 
 - Le modèle peut servir [**diverses applications**]{.orange}
   - Rendre le modèle accessible via une [**API**]{.blue2}
@@ -372,11 +370,23 @@ ojs_define(data_raw = df, data_prepro = df_prepro)
 - [**Traitement en ligne**]{.orange} (*online serving*)
   - Les applications [**client**]{.blue2} envoient une [**requête**]{.blue2} à l'API et reçoivent une [**réponse**]{.blue2} rapide
 
+- Infrastructure de déploiement : cluster [**Kubernetes**]{.orange}
+
 ## Exposer un modèle via une API
 
+![](../img/API.png){fig-align="center"}
 
+## Pourquoi exposer un modèle via une API REST ?
 
-## Architecture cible
+- [**Simplicité**]{.orange} : porte d'entrée unique qui cache la complexité sous-jacente du modèle
+
+- [**Standardisation**]{.orange} : requêtes HTTP, agnostiques au langage de programmation utilisé
+
+- [**Passage à l'échelle**]{.orange} : adaptation à la charge de requêtes concurrentes
+
+- [**Modularité**]{.orange} : séparation de la gestion du modèle et de sa mise à disposition
+
+## Exposer un modèle via une API
 
 ![](../img/API.png){fig-align="center"}
 
@@ -384,23 +394,11 @@ ojs_define(data_raw = df, data_prepro = df_prepro)
 
 - [**Conteneur**]{.orange} : environnement [**autonome**]{.blue2} et [**isolé**]{.blue2} qui encapsule le modèle, ses dépendances et le code de l'API
 
-- Les conteneurs offrent une grande [**portabilité**]{.orange} et [**scalabilité**]{.orange} pour distribuer le modèle de manière efficace.
-
-- Le fichier `Dockerfile` est utilisé pour configurer et construire le conteneur Docker.
-
-## Développement avec l'architecture Docker
-
-![](../img/docker-workflow.png){fig-align="center" width="87%"}
-
-::: aside
-Source: [R. Krispin](https://github.com/RamiKrispin/vscode-python)
-:::
+- [**Avantages**]{.orange} :  [**portabilité**]{.orange} et [**scalabilité**]{.orange} pour distribuer le modèle de manière efficace
 
 ## Déploiement d'une API sur `Kubernetes`
-- [**3 fichiers principaux**]{.orange} sont nécessaires pour déployer une API :
-  - `deployment.yaml` : définit le fonctionnement de l'API (image du conteneur, ressources et variables d'environnement)
-  - `service.yaml` : établit un point de terminaison réseau [**interne**]{.blue2} stable pour l'API.
-  - `ingress.yaml` : fournit un point d'entrée pour les clients [**externes**]{.blue2} afin d'accéder à l'API.
+
+![](../img/ci-cd.png){fig-align="center"}
 
 
 ## Application 3 {.scrollable}
