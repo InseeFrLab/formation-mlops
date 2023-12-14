@@ -1,9 +1,23 @@
+
+:::{.nonincremental}
+:::: {.callout-tip collapse="true" icon=false}
+## Partie 1 : Utilisation d'un modèle personnalisé
+
+1. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. En particulier, le script `train.py` est responsable de l'entraînement du modèle. Quelles sont les principales différences avec l'application 1 ?
+2. Pourquoi pouvons-nous dire que le modèle `MLflow` intègre le *preprocessing* ?
+::::
+:::
+
+
+
+
+## Application 2 {.scrollable}
+
+:::{.nonincremental}
 ::::{.callout-tip collapse="true" icon=false}
-## Partie 1 : Des notebooks à un projet de type package
+## Partie 2 : Des notebooks à un projet de type package
 
-:::::{.nonincremental}
-
-1. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. En particulier, le script `train.py` est responsable de l'entraînement du modèle et du *logging* des expérimentations dans `MLFlow`. Notez la manière dont les paramètres de chaque expérimentation vont être passés à la fonction d'entraînement à l'appel du script.
+1. Le script `train.py` est également responsable du *logging* des expérimentations dans `MLFlow`. Notez la manière dont les paramètres de chaque expérimentation vont être passés à la fonction d'entraînement à l'appel du script.
 
 2. Afin de rendre la procédure d'entraînement d'un modèle plus reproductible, `MLFlow` met à disposition la commande `mlflow run`. Le fichier `MLproject` spécifie la commande et les paramètres qui vont lui être passées. Inspectez ce fichier.
 
@@ -39,20 +53,22 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 
 6. Dans `MLflow`, comparez les 2 modèles en traçant la métrique *accuracy* par rapport à un paramètre que vous avez modifié (par exemple `dim`)
    * `Sélectionnez les 2 expériences -> Compare -> Scatter Plot -> Select your X and Y axis` 
-   
-:::::
+
+7. Enregistrez le modèle avec la meilleure *accuracy* en tant que `fasttext` pour le rendre facilement interrogeable depuis `Python`.
+
 ::::
+:::
+
+
+
 
 ## Application 2 {.scrollable}
 
 :::{.nonincremental}
-:::: {.callout-tip collapse="true" icon=false}
-## Partie 2 : Entraînement d'un modèle personnalisé
+::::{.callout-tip collapse="true" icon=false}
+## Partie 3 : Requêtage du modèle entraîné en local
 
-1. Explorez attentivement le fichier `src/train.py`. Quelles sont les principales différences avec l'application 1 ?
-2. Pourquoi pouvons-nous dire que le modèle `MLflow` intègre le *preprocessing* ?
-3. Dans `MLflow`, enregistrez votre dernier modèle en tant que `fasttext` pour le rendre facilement interrogeable depuis `Python`.
-4. Créez un script `predict_mlflow.py` dans le dossier `src` du projet. Ce script doit : 
+1. Créez un script `predict_mlflow.py` dans le dossier `src` du projet. Ce script doit : 
     a. Charger la version 1 du modèle `fasttext` 
     b. Utiliser le modèle pour prédire les codes NACE d'une liste donnée de descriptions d'activité (par exemple, `["vendeur d'huitres", "boulanger"]`).
 
@@ -81,7 +97,7 @@ print(results)
 ```
 </details>
 
-5. Exécutez votre script `predict_mlflow.py`.
+3. Exécutez votre script `predict_mlflow.py`.
 
 <details> 
 <summary> 
@@ -94,7 +110,21 @@ python formation-mlops/src/predict_mlflow.py
 
 </details>
 
-6. Assurez-vous que les deux descriptions suivantes donnent la même prédiction principale : `"COIFFEUR"` et `"coiffeur, & 98789"`.
-7. Modifiez la valeur du paramètre `k` et essayez de comprendre comment la structure de la sortie a changé en conséquence.
+4. Assurez-vous que les deux descriptions suivantes donnent la même prédiction principale : `"COIFFEUR"` et `"coiffeur, & 98789"`.
+5. Modifiez la valeur du paramètre `k` et essayez de comprendre comment la structure de la sortie a changé en conséquence.
 ::::
 :::
+
+
+
+
+## Bilan de l'application
+
+- `MLflow` est [**polyvalent**]{.orange}
+    - Utilisation dee [**frameworks custom**]{.blue2} (modulo une [**classe "interface"**]{.blue2})
+    - [**Industrialisation**]{.blue2} de l'entraînement (fichier `MLproject`)
+    - [**Requêtage simple**]{.blue2} des modèles entraînés et stockés
+
+- [**Limite**]{.orange} : le modèle entraîné n'est pas [**accessible**]{.blue2}
+    - Requêtage simplifié... mais [**format non-adapté**]{.blue2} à tous les utilisateurs
+    - Le modèle n'est [**pas déployé**]{.blue2}

@@ -9,9 +9,9 @@
 
 :::
 
-## Bilan
+## Bilan de l'application
 
-- `MLflow` permet d'[**industrialiser**]{.orange} l'entraînement de modèles
+- `MLflow` simplifie le [**suivi**]{.orange} de l'entraînement de modèles
     - Garde [**trace**]{.blue2} des expérimentations et de leurs *outputs*
     - [**Intégration**]{.blue2} simple avec les principaux *frameworks* de ML
 
