@@ -1,6 +1,6 @@
 
 ::::{.callout-tip collapse="true" icon=false}
-## Exposer localement un modèle de ML en tant qu'API
+## Partie 1 : exposer localement un modèle de ML en tant qu'API
 
 :::::{.nonincremental}
 
@@ -25,7 +25,7 @@ uvicorn app.main:app
 ## Application 3 {.scrollable}
 
 ::::{.callout-tip collapse="true" icon=false}
-## Déploiement manuel d'un modèle de ML en tant qu'API
+## Partie 2 : déploiement manuel d'un modèle de ML en tant qu'API
 
 :::::{.nonincremental}
 
@@ -85,7 +85,7 @@ kubectl apply -f formation-mlops/kubernetes/
 ## Application 3 {.scrollable}
 
 ::::{.callout-tip collapse="true" icon=false}
-## Déploiement continu d'un modèle de ML en tant qu'API
+## Partie 3 : déploiement continu d'un modèle de ML en tant qu'API
 
 :::::{.nonincremental}
 
@@ -135,3 +135,86 @@ spec:
 
 :::::
 ::::
+
+
+
+
+
+## Application 3 {.scrollable}
+
+::::{.callout-tip collapse="true" icon=false}
+## Partie 4 : requêter votre modèle déployé
+
+:::::{.nonincremental}
+
+1. Créez un fichier `predict_api.py`. Ce script doit : 
+    - Lire le fichier parquet disponible à l'adresse suivante :
+
+    ```shell
+    https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet
+    ``` 
+
+    - Effectuer des requêtes à votre API pour chaque libellé présent dans le fichier parquet.
+    - Afficher le résultats des prédictions
+
+<details> 
+<summary> 
+    <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir le contenu du script </b></font> 
+</summary>
+
+```{.python filename="predict_api.py"}
+import pandas as pd
+import requests
+
+
+# Fonction pour effectuer la requête à l'API
+def make_prediction(api_url: str, description: str):
+    params = {"description": description, "nb_echoes_max": 2}
+    response = requests.get(api_url, params=params)
+    return response.json()
+
+
+# URL des données
+data_path = "https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet"
+
+# Charge le fichier Parquet dans un DataFrame pandas
+df = pd.read_parquet(data_path)
+
+# Votre API URL
+api_url = "https://<your_firstname>-<your_lastname>-api.lab.sspcloud.fr/predict"
+
+# Effectue les requêtes
+responses = df["text"].apply(lambda x: make_prediction(api_url, x))
+
+# Affiche le DataFrame avec les résultats des prédictions
+print(pd.merge(df, pd.json_normalize(responses),
+               left_index=True,
+               right_index=True))
+
+```
+</details>
+
+2. Exécutez votre script `predict_api.py`.
+
+<details> 
+<summary> 
+    <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir la commande </b></font> 
+</summary>
+
+```shell
+python formation-mlops/src/predict_api.py
+```
+</details>
+
+3. Dans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par  `"codification-api-..."`. Observez les logs.
+
+4. Quelles informations détenez-vous ? Est-ce suffisant ?
+
+::::
+
+:::: {.callout-important collapse="true"}
+
+Nous avons ici réalisé une succession de requêtes GET car nous avons un seul point d'entrée vers notre API. Pour réaliser des requêtes en `batch` il est préférable de réaliser des requêtes POST.
+
+::::
+:::

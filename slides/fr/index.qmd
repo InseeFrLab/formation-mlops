@@ -590,10 +590,6 @@ spec:
 
 # :five: Machine learning en production
 
-## Application 5 {.scrollable}
-
-{{< include applications/_application5a.qmd >}}
-
 ## Cycle de vie d'un modèle ML en production
 
 ![Source: [martinfowler.com](martinfowler.com)](../img/ML-model-lifecycle.png){fig-align="center"}
@@ -654,7 +650,7 @@ spec:
 
 ## Application 5 {.scrollable}
 
-{{< include applications/_application5b.qmd >}}
+{{< include applications/_application5a.qmd >}}
 
 ## Observabilité du modèle grâce à un tableau de bord
 
@@ -680,7 +676,7 @@ spec:
 
 ## Application 5 {.scrollable}
 
-{{< include applications/_application5c.qmd >}}
+{{< include applications/_application5b.qmd >}}
 
 # Conclusion
 
