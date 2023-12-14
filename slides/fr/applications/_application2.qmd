@@ -6,11 +6,9 @@
 
 :::::{.nonincremental}
 
-1. Lancez un service `VSCode` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh%C2%BB&kubernetes.role=%C2%ABadmin%C2%BB). Ouvrez le service et saisissez le mot de passe du service.
+1. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. Regardez également le fichier `MLproject`.
 
-2. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. Regardez également le fichier `MLproject`.
-
-3. Exécutez un entraînement du modèle à l'aide de MLflow. Pour ce faire, ouvrez un terminal ({{< iconify ph list-bold >}} `-> Terminal -> New Terminal`) et exécutez la commande suivante :
+2. Exécutez un entraînement du modèle à l'aide de MLflow. Pour ce faire, ouvrez un terminal ({{< iconify ph list-bold >}} `-> Terminal -> New Terminal`) et exécutez la commande suivante :
 
    ```sh
    export MLFLOW_EXPERIMENT_NAME="nace-prediction"
@@ -19,11 +17,11 @@
        -P experiment_name=$MLFLOW_EXPERIMENT_NAME
    ```
 
-4. Dans l'interface de `MLflow`, examinez les résultats de votre exécution précédente :
+3. Dans l'interface de `MLflow`, examinez les résultats de votre exécution précédente :
 
    * `Experiments -> nace-prediction -> <nom_run>`
 
-5. Vous avez entraîné le modèle avec certains paramètres par défaut. Dans le fichier `MLproject`, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, `dim = 25`).
+4. Vous avez entraîné le modèle avec certains paramètres par défaut. Dans le fichier `MLproject`, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, `dim = 25`).
 
 <details> 
 <summary> 
@@ -40,7 +38,7 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 </details>
 
 
-6. Dans `MLflow`, comparez les 2 modèles en traçant l'exactitude par rapport à un paramètre que vous avez modifié (par exemple `dim`)
+5. Dans `MLflow`, comparez les 2 modèles en traçant la métrique *accuracy* par rapport à un paramètre que vous avez modifié (par exemple `dim`)
    * `Sélectionnez les 2 expériences -> Compare -> Scatter Plot -> Select your X and Y axis` 
    
 :::::
@@ -54,13 +52,9 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 
 :::::{.nonincremental}
 
-1. Lancez un service `VSCode` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&kubernetes.role=«admin»). Ouvrez le service et saisissez le mot de passe du service.
+1. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. Regardez également le fichier `MLproject`.
 
-2. Dans VSCode, ouvrez un terminal ({{< iconify ph list-bold >}} `-> Terminal -> New Terminal`) et réalisez les étapes 6 et 7 de [l'application 0](#app0) (clone et installation de packages).
-
-3. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. Regardez également le fichier `MLproject`.
-
-4. Exécutez un entraînement du modèle à l'aide de MLflow. Dans un terminal, exécutez la commande suivante :
+2. Exécutez un entraînement du modèle à l'aide de MLflow. Dans un terminal, exécutez la commande suivante :
 
    ```sh
    export MLFLOW_EXPERIMENT_NAME="nace-prediction"
@@ -69,11 +63,11 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
        -P experiment_name=$MLFLOW_EXPERIMENT_NAME
    ```
 
-5. Dans l'interface de `MLflow`, examinez les résultats de votre exécution précédente :
+3. Dans l'interface de `MLflow`, examinez les résultats de votre exécution précédente :
 
    * `Experiments -> nace-prediction -> <nom_experience>`
 
-6. Vous avez entraîné le modèle avec certains paramètres par défaut. Dans le fichier `MLproject`, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, `dim = 25`).
+4. Vous avez entraîné le modèle avec certains paramètres par défaut. Dans le fichier `MLproject`, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, `dim = 25`).
 
 <details> 
 <summary> 
@@ -90,7 +84,7 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 </details>
 
 
-7. Dans `MLflow`, comparez les 2 modèles en traçant l'exactitude par rapport à un paramètre que vous avez modifié (par exemple `dim`)
+5. Dans `MLflow`, comparez les 2 modèles en traçant l'exactitude par rapport à un paramètre que vous avez modifié (par exemple `dim`)
    * `Sélectionnez les 2 expériences -> Compare -> Scatter Plot -> Select your X and Y axis` 
    
 :::::
