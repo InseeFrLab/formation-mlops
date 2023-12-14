@@ -114,17 +114,3 @@ python formation-mlops/src/predict_mlflow.py
 5. Modifiez la valeur du paramètre `k` et essayez de comprendre comment la structure de la sortie a changé en conséquence.
 ::::
 :::
-
-
-
-
-## Bilan de l'application
-
-- `MLflow` est [**polyvalent**]{.orange}
-    - Utilisation dee [**frameworks custom**]{.blue2} (modulo une [**classe "interface"**]{.blue2})
-    - [**Industrialisation**]{.blue2} de l'entraînement (fichier `MLproject`)
-    - [**Requêtage simple**]{.blue2} des modèles entraînés et stockés
-
-- [**Limite**]{.orange} : le modèle entraîné n'est pas [**accessible**]{.blue2}
-    - Requêtage simplifié... mais [**format non-adapté**]{.blue2} à tous les utilisateurs
-    - Le modèle n'est [**pas déployé**]{.blue2}
