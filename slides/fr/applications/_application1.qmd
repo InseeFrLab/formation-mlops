@@ -8,3 +8,13 @@
 :::
 
 :::
+
+## Bilan
+
+- `MLflow` permet d'[**industrialiser**]{.orange} l'entraînement de modèles
+    - Garde [**trace**]{.blue2} des expérimentations et de leurs *outputs*
+    - [**Intégration**]{.blue2} simple avec les principaux *frameworks* de ML
+
+- [**Limites**]{.orange}
+    - Comment utiliser des frameworks [***custom***]{.blue2} (non-nativement intégrés) ?
+    - Comment passer de l'expérimentation à la [**mise en production**]{.blue2}  ?

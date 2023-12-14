@@ -1,14 +1,13 @@
-::: {.panel-tabset}
-## Sans Git
-
 ::::{.callout-tip collapse="true" icon=false}
 ## Partie 1 : Des notebooks à un projet de type package
 
 :::::{.nonincremental}
 
-1. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. Regardez également le fichier `MLproject`.
+1. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. En particulier, le script `train.py` est responsable de l'entraînement du modèle et du *logging* des expérimentations dans `MLFlow`. Notez la manière dont les paramètres de chaque expérimentation vont être passés à la fonction d'entraînement à l'appel du script.
 
-2. Exécutez un entraînement du modèle à l'aide de MLflow. Pour ce faire, ouvrez un terminal ({{< iconify ph list-bold >}} `-> Terminal -> New Terminal`) et exécutez la commande suivante :
+2. Afin de rendre la procédure d'entraînement d'un modèle plus reproductible, `MLFlow` met à disposition la commande `mlflow run`. Le fichier `MLproject` spécifie la commande et les paramètres qui vont lui être passées. Inspectez ce fichier.
+
+3. Exécutez un entraînement du modèle à l'aide de `MLFlow`. Pour ce faire, ouvrez un terminal ({{< iconify ph list-bold >}} `-> Terminal -> New Terminal`) et exécutez la commande suivante :
 
    ```sh
    export MLFLOW_EXPERIMENT_NAME="nace-prediction"
@@ -17,11 +16,11 @@
        -P experiment_name=$MLFLOW_EXPERIMENT_NAME
    ```
 
-3. Dans l'interface de `MLflow`, examinez les résultats de votre exécution précédente :
+4. Dans l'interface de `MLflow`, examinez les résultats de votre exécution précédente :
 
    * `Experiments -> nace-prediction -> <nom_run>`
 
-4. Vous avez entraîné le modèle avec certains paramètres par défaut. Dans le fichier `MLproject`, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, `dim = 25`).
+5. Vous avez entraîné le modèle avec certains paramètres par défaut. Dans le fichier `MLproject`, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, `dim = 25`).
 
 <details> 
 <summary> 
@@ -38,68 +37,21 @@ mlflow run ~/work/formation-mlops/ --env-manager=local \
 </details>
 
 
-5. Dans `MLflow`, comparez les 2 modèles en traçant la métrique *accuracy* par rapport à un paramètre que vous avez modifié (par exemple `dim`)
+6. Dans `MLflow`, comparez les 2 modèles en traçant la métrique *accuracy* par rapport à un paramètre que vous avez modifié (par exemple `dim`)
    * `Sélectionnez les 2 expériences -> Compare -> Scatter Plot -> Select your X and Y axis` 
    
 :::::
 ::::
-
-
-## Avec Git
-
-::::{.callout-tip collapse="true" icon=false}
-## Partie 1 : Des notebooks à un projet de type package
-
-:::::{.nonincremental}
-
-1. Tous les scripts liés à notre modèle personnalisé sont stockés dans le dossier `src`. Consultez-les. Regardez également le fichier `MLproject`.
-
-2. Exécutez un entraînement du modèle à l'aide de MLflow. Dans un terminal, exécutez la commande suivante :
-
-   ```sh
-   export MLFLOW_EXPERIMENT_NAME="nace-prediction"
-   mlflow run ~/work/formation-mlops/ --env-manager=local \
-       -P remote_server_uri=$MLFLOW_TRACKING_URI \
-       -P experiment_name=$MLFLOW_EXPERIMENT_NAME
-   ```
-
-3. Dans l'interface de `MLflow`, examinez les résultats de votre exécution précédente :
-
-   * `Experiments -> nace-prediction -> <nom_experience>`
-
-4. Vous avez entraîné le modèle avec certains paramètres par défaut. Dans le fichier `MLproject`, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, `dim = 25`).
-
-<details> 
-<summary> 
-    <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir la commande </b></font> 
-</summary>
-
-```sh
-mlflow run ~/work/formation-mlops/ --env-manager=local \
-    -P remote_server_uri=$MLFLOW_TRACKING_URI \
-    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \
-    -P dim=25
-```
-
-</details>
-
-
-5. Dans `MLflow`, comparez les 2 modèles en traçant l'exactitude par rapport à un paramètre que vous avez modifié (par exemple `dim`)
-   * `Sélectionnez les 2 expériences -> Compare -> Scatter Plot -> Select your X and Y axis` 
-   
-:::::
-::::
-:::
 
 ## Application 2 {.scrollable}
 
 :::{.nonincremental}
 :::: {.callout-tip collapse="true" icon=false}
-## Partie 2 : Distribution et interrogation d'un modèle personnalisé
+## Partie 2 : Entraînement d'un modèle personnalisé
 
 1. Explorez attentivement le fichier `src/train.py`. Quelles sont les principales différences avec l'application 1 ?
 2. Pourquoi pouvons-nous dire que le modèle `MLflow` intègre le *preprocessing* ?
-3. Dans `MLflow`, enregistrez votre dernier modèle en tant que `fasttext` pour le rendre facilement interrogeable depuis l'API `Python`.
+3. Dans `MLflow`, enregistrez votre dernier modèle en tant que `fasttext` pour le rendre facilement interrogeable depuis `Python`.
 4. Créez un script `predict_mlflow.py` dans le dossier `src` du projet. Ce script doit : 
     a. Charger la version 1 du modèle `fasttext` 
     b. Utiliser le modèle pour prédire les codes NACE d'une liste donnée de descriptions d'activité (par exemple, `["vendeur d'huitres", "boulanger"]`).

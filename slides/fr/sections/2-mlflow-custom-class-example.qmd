@@ -34,8 +34,8 @@
   - Passage en minuscules
   - Suppression de la ponctuation
   - Suppression des nombres
-  - Suppression des mots vide de sens
-  - Racinisation (stemming)
+  - Suppression des *stop words*
+  - Racinisation (*stemming*)
   - ...
 
 
@@ -109,8 +109,6 @@ class MyModel(mlflow.pyfunc.PythonModel):
 ::::
 
 :::
-
-<!-- By creating a class that inherits from mlflow.pyfunc.PythonModel, you are essentially creating a wrapper around your custom model that allows it to be used with the MLflow platform. The mlflow.pyfunc.PythonModel class provides a standardized interface that makes it easy to integrate your custom model with the rest of the MLflow platform. -->
 
 ## De l'expérimentation à la production
 
