@@ -1045,7 +1045,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li>Nous avons construit une API REST très simpliste à l’aide de FastAPI. Tous les fichiers sous-jacents se trouvent dans le dossier <code>app</code>. Consultez-les.</li>
 <li>Déployez l’API localement en lançant les commandes suivantes dans un terminal :</li>
 </ol>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>export MLFLOW_EXPERIMENT_NAME="nace-prediction"</span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>export MLFLOW_MODEL_NAME="fasttext"</span>
 <span id="cb11-2"><a href="#cb11-2"></a>export MLFLOW_MODEL_VERSION=1</span>
 <span id="cb11-3"><a href="#cb11-3"></a>uvicorn app.main:app</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
@@ -1127,9 +1127,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div>
 <p>⚠️ Les précédentes applications doivent avoir été réalisées avec l’option Git pour pouvoir suivre celle-ci.</p>
 <p>Précedement, vous avez déployé votre modèle manuellement. Grâce à <code>ArgoCD</code> il est possible de déployer un modèle de manière continu, ainsi chaque modification d’un fichier présent dans le dossier <code>kubernetes/</code> va entrainer le redéploiement automatique en se synchronisation avec votre dépôt Github. Pour vous en convaincre, suivez les étapes ci dessous :</p>
+<ol start="0" type="1">
+<li>Supprimez le déploiement manuel de l’application précédente pour éviter que les ressources <code>Kubernetes</code> ne se superposent :</li>
+</ol>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb15-1"><a href="#cb15-1"></a>kubectl apply -f formation-mlops/kubernetes/</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol type="1">
 <li>Lancez un service <code>ArgoCD</code> en cliquant sur <a href="https://datalab.sspcloud.fr/launcher/automation/argo-cd?version=0.5.3&amp;autoLaunch=true">cette URL</a>. Ouvrez le service, saisissez l’identifiant (<code>admin</code>) et le mot de passe du service.</li>
-<li>Reprenez les 4 premières étapes du déploiement manuel.</li>
 <li>Faite un commit des changements effectués et pousser vers votre dépôt Github.</li>
 <li>Ouvrez le template <code>argocd/template-argocd.yml</code> et modifiez les lignes surlignées :</li>
 </ol>
@@ -1137,17 +1140,17 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="code-with-filename-file">
 <pre><strong>template-argocd.yml</strong></pre>
 </div>
-<div class="sourceCode" id="cb15" data-code-line-numbers="4,9"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="at">  </span><span class="fu">project</span><span class="kw">:</span><span class="at"> default</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="at">  </span><span class="fu">source</span><span class="kw">:</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="at">    </span><span class="fu">repoURL</span><span class="kw">:</span><span class="at"> https://github.com/&lt;your-github-id&gt;/formation-mlops.git</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="at">    </span><span class="fu">targetRevision</span><span class="kw">:</span><span class="at"> HEAD</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="at">    </span><span class="fu">path</span><span class="kw">:</span><span class="at"> kubernetes</span></span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="at">  </span><span class="fu">destination</span><span class="kw">:</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a><span class="at">    </span><span class="fu">server</span><span class="kw">:</span><span class="at"> https://kubernetes.default.svc</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a><span class="at">    </span><span class="fu">namespace</span><span class="kw">:</span><span class="at"> &lt;your-namespace&gt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16" data-code-line-numbers="4,9"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="at">  </span><span class="fu">project</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="at">  </span><span class="fu">source</span><span class="kw">:</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="at">    </span><span class="fu">repoURL</span><span class="kw">:</span><span class="at"> https://github.com/&lt;your-github-id&gt;/formation-mlops.git</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="at">    </span><span class="fu">targetRevision</span><span class="kw">:</span><span class="at"> HEAD</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="at">    </span><span class="fu">path</span><span class="kw">:</span><span class="at"> kubernetes</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="at">  </span><span class="fu">destination</span><span class="kw">:</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="at">    </span><span class="fu">server</span><span class="kw">:</span><span class="at"> https://kubernetes.default.svc</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="at">    </span><span class="fu">namespace</span><span class="kw">:</span><span class="at"> &lt;your-namespace&gt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="5" type="1">
+<ol start="4" type="1">
 <li>Dans ArgoCD, cliquez sur <code>New App</code> puis <code>Edit as a YAML</code>. Copiez-collez le contenu de <code>argocd/template-argocd.yml</code> et cliquez sur <code>Create</code>.</li>
 <li>Accédez à votre API en utilisant l’URL définie dans votre fichier <code>ingress.yml</code>.</li>
 <li>Affichez la documentation de votre API en ajoutant <code>/docs</code> à votre URL.</li>
@@ -1214,18 +1217,18 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </section>
 <section id="bonjour-le-monde" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Bonjour le monde</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span><span class="co">                  # nouveau type de spécification k8s</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span><span class="co">    # nom de la spécification du workflow</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb16-6"><a href="#cb16-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">          # invoque le modèle whalesay</span></span>
-<span id="cb16-7"><a href="#cb16-7"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
-<span id="cb16-8"><a href="#cb16-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">            # nom du modèle</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a><span class="at">      </span><span class="fu">container</span><span class="kw">:</span></span>
-<span id="cb16-10"><a href="#cb16-10"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
-<span id="cb16-11"><a href="#cb16-11"></a><span class="at">        </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
-<span id="cb16-12"><a href="#cb16-12"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"bonjour le monde"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span><span class="co">                  # nouveau type de spécification k8s</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span><span class="co">    # nom de la spécification du workflow</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">          # invoque le modèle whalesay</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">            # nom du modèle</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="at">      </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="at">        </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"bonjour le monde"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="que-se-passe-t-il" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Que se passe-t-il ?</h2>
@@ -1259,26 +1262,26 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li class="fragment">Les modèles peuvent prendre des <span class="orange"><strong>paramètres d’entrée</strong></span></li>
 </ul>
 <div class="fragment">
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-parameters-</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb17-7"><a href="#cb17-7"></a><span class="at">  </span><span class="fu">arguments</span><span class="kw">:</span></span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="at">    </span><span class="fu">parameters</span><span class="kw">:</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a><span class="at">      </span><span class="fu">value</span><span class="kw">:</span><span class="at"> bonjour le monde</span></span>
-<span id="cb17-11"><a href="#cb17-11"></a></span>
-<span id="cb17-12"><a href="#cb17-12"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
-<span id="cb17-13"><a href="#cb17-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb17-14"><a href="#cb17-14"></a><span class="at">    </span><span class="fu">inputs</span><span class="kw">:</span></span>
-<span id="cb17-15"><a href="#cb17-15"></a><span class="at">      </span><span class="fu">parameters</span><span class="kw">:</span></span>
-<span id="cb17-16"><a href="#cb17-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span><span class="co">       # déclaration du paramètre</span></span>
-<span id="cb17-17"><a href="#cb17-17"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
-<span id="cb17-18"><a href="#cb17-18"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
-<span id="cb17-19"><a href="#cb17-19"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
-<span id="cb17-20"><a href="#cb17-20"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"{{inputs.parameters.message}}"</span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-parameters-</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="at">  </span><span class="fu">arguments</span><span class="kw">:</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="at">    </span><span class="fu">parameters</span><span class="kw">:</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a><span class="at">      </span><span class="fu">value</span><span class="kw">:</span><span class="at"> bonjour le monde</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a></span>
+<span id="cb18-12"><a href="#cb18-12"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb18-13"><a href="#cb18-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb18-14"><a href="#cb18-14"></a><span class="at">    </span><span class="fu">inputs</span><span class="kw">:</span></span>
+<span id="cb18-15"><a href="#cb18-15"></a><span class="at">      </span><span class="fu">parameters</span><span class="kw">:</span></span>
+<span id="cb18-16"><a href="#cb18-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span><span class="co">       # déclaration du paramètre</span></span>
+<span id="cb18-17"><a href="#cb18-17"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb18-18"><a href="#cb18-18"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
+<span id="cb18-19"><a href="#cb18-19"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
+<span id="cb18-20"><a href="#cb18-20"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"{{inputs.parameters.message}}"</span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="workflows-à-plusieurs-étapes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -1287,30 +1290,30 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <li class="fragment">Les <span class="orange"><strong>workflows à plusieurs étapes</strong></span> peuvent être spécifiés (<code>steps</code> ou <code>dag</code>)</li>
 </ul>
 <div class="fragment">
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> steps-</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
-<span id="cb18-7"><a href="#cb18-7"></a></span>
-<span id="cb18-8"><a href="#cb18-8"></a><span class="co">  # Cette spécification contient deux modèles : hello-hello-hello et whalesay</span></span>
-<span id="cb18-9"><a href="#cb18-9"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
-<span id="cb18-10"><a href="#cb18-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
-<span id="cb18-11"><a href="#cb18-11"></a><span class="co">    # Au lieu d'exécuter uniquement un conteneur</span></span>
-<span id="cb18-12"><a href="#cb18-12"></a><span class="co">    # Ce modèle a une séquence d'étapes</span></span>
-<span id="cb18-13"><a href="#cb18-13"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb18-14"><a href="#cb18-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello1</span><span class="co">            # hello1 est exécuté avant les étapes suivantes</span></span>
-<span id="cb18-15"><a href="#cb18-15"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb18-16"><a href="#cb18-16"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2a</span><span class="co">           # double tiret =&gt; exécuté après l'étape précédente</span></span>
-<span id="cb18-17"><a href="#cb18-17"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb18-18"><a href="#cb18-18"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2b</span><span class="co">           # tiret simple =&gt; exécuté en parallèle avec l'étape précédente</span></span>
-<span id="cb18-19"><a href="#cb18-19"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb18-20"><a href="#cb18-20"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">              # nom du modèle</span></span>
-<span id="cb18-21"><a href="#cb18-21"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
-<span id="cb18-22"><a href="#cb18-22"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
-<span id="cb18-23"><a href="#cb18-23"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
-<span id="cb18-24"><a href="#cb18-24"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"bonjour le monde"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> steps-</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a></span>
+<span id="cb19-8"><a href="#cb19-8"></a><span class="co">  # Cette spécification contient deux modèles : hello-hello-hello et whalesay</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
+<span id="cb19-11"><a href="#cb19-11"></a><span class="co">    # Au lieu d'exécuter uniquement un conteneur</span></span>
+<span id="cb19-12"><a href="#cb19-12"></a><span class="co">    # Ce modèle a une séquence d'étapes</span></span>
+<span id="cb19-13"><a href="#cb19-13"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb19-14"><a href="#cb19-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello1</span><span class="co">            # hello1 est exécuté avant les étapes suivantes</span></span>
+<span id="cb19-15"><a href="#cb19-15"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb19-16"><a href="#cb19-16"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2a</span><span class="co">           # double tiret =&gt; exécuté après l'étape précédente</span></span>
+<span id="cb19-17"><a href="#cb19-17"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb19-18"><a href="#cb19-18"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2b</span><span class="co">           # tiret simple =&gt; exécuté en parallèle avec l'étape précédente</span></span>
+<span id="cb19-19"><a href="#cb19-19"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb19-20"><a href="#cb19-20"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">              # nom du modèle</span></span>
+<span id="cb19-21"><a href="#cb19-21"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb19-22"><a href="#cb19-22"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
+<span id="cb19-23"><a href="#cb19-23"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
+<span id="cb19-24"><a href="#cb19-24"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"bonjour le monde"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="que-se-passe-t-il-3" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -1400,29 +1403,29 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="code-with-filename-file">
 <pre><strong>hello_world.yml</strong></pre>
 </div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a><span class="at">  </span><span class="fu">labels</span><span class="kw">:</span></span>
-<span id="cb19-6"><a href="#cb19-6"></a><span class="at">    </span><span class="fu">workflows.argoproj.io/archive-strategy</span><span class="kw">:</span><span class="at"> </span><span class="st">"false"</span></span>
-<span id="cb19-7"><a href="#cb19-7"></a><span class="at">  </span><span class="fu">annotations</span><span class="kw">:</span></span>
-<span id="cb19-8"><a href="#cb19-8"></a><span class="fu">    workflows.argoproj.io/description</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb19-9"><a href="#cb19-9"></a>      Ceci est un exemple simple de "Hello World".</span>
-<span id="cb19-10"><a href="#cb19-10"></a>      Vous pouvez également l'exécuter en Python : https://couler-proj.github.io/couler/examples/#hello-world</span>
-<span id="cb19-11"><a href="#cb19-11"></a><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb19-12"><a href="#cb19-12"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb19-13"><a href="#cb19-13"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
-<span id="cb19-14"><a href="#cb19-14"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb19-15"><a href="#cb19-15"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
-<span id="cb19-16"><a href="#cb19-16"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay:latest</span></span>
-<span id="cb19-17"><a href="#cb19-17"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
-<span id="cb19-18"><a href="#cb19-18"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"hello world"</span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="at">  </span><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="at">    </span><span class="fu">workflows.argoproj.io/archive-strategy</span><span class="kw">:</span><span class="at"> </span><span class="st">"false"</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="at">  </span><span class="fu">annotations</span><span class="kw">:</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="fu">    workflows.argoproj.io/description</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>      Ceci est un exemple simple de "Hello World".</span>
+<span id="cb20-10"><a href="#cb20-10"></a>      Vous pouvez également l'exécuter en Python : https://couler-proj.github.io/couler/examples/#hello-world</span>
+<span id="cb20-11"><a href="#cb20-11"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb20-12"><a href="#cb20-12"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb20-13"><a href="#cb20-13"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb20-14"><a href="#cb20-14"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb20-15"><a href="#cb20-15"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb20-16"><a href="#cb20-16"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay:latest</span></span>
+<span id="cb20-17"><a href="#cb20-17"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
+<span id="cb20-18"><a href="#cb20-18"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"hello world"</span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
 <li>Soumettez le workflow “Hello World” via un terminal dans <code>VSCode</code> :</li>
 </ol>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb20-1"><a href="#cb20-1"></a>argo submit formation-mlops/hello_world.yaml</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb21-1"><a href="#cb21-1"></a>argo submit formation-mlops/hello_world.yaml</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="4" type="1">
 <li>Ouvrez l’interface utilisateur d’<code>Argo Workflows</code>. Trouvez les logs du workflow que vous venez de lancer. Vous devriez voir le logo Docker <i class="fab fa-docker" style="color: #18a8fe;"></i>.</li>
 </ol>
@@ -1448,12 +1451,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="code-with-filename-file">
 <pre><strong>workflow.yml</strong></pre>
 </div>
-<div class="sourceCode" id="cb21" data-code-line-numbers="4"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">parameters</span><span class="kw">:</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="co">    # Le serveur de suivi MLflow est responsable de l'enregistrement des hyper-paramètres et des métriques du modèle.</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mlflow-tracking-uri</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mlflow-experiment-name</span></span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> nace-prediction</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22" data-code-line-numbers="4"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">parameters</span><span class="kw">:</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="co">    # Le serveur de suivi MLflow est responsable de l'enregistrement des hyper-paramètres et des métriques du modèle.</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mlflow-tracking-uri</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mlflow-experiment-name</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> nace-prediction</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
 <li>Soumettez le flux de travail et observez les tâches s’exécuter en direct dans l’interface utilisateur.</li>
@@ -1462,7 +1465,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
 </summary>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb22-1"><a href="#cb22-1"></a>argo submit formation-mlops/argo_workflows/workflow.yml</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb23-1"><a href="#cb23-1"></a>argo submit formation-mlops/argo_workflows/workflow.yml</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="4" type="1">
 <li>Une fois que toutes les tâches sont terminées, visualisez les logs de l’ensemble du flux de travail.</li>
@@ -1492,7 +1495,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <ul>
 <li>Lire le fichier parquet disponible à l’adresse suivante :</li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb23-1"><a href="#cb23-1"></a>https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a>https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Effectuer des requêtes à votre API pour chaque libellé présent dans le fichier parquet.</li>
 <li>Afficher le résultats des prédictions</li>
@@ -1506,33 +1509,33 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="code-with-filename-file">
 <pre><strong>predict_api.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="im">import</span> requests</span>
-<span id="cb24-3"><a href="#cb24-3"></a></span>
-<span id="cb24-4"><a href="#cb24-4"></a></span>
-<span id="cb24-5"><a href="#cb24-5"></a><span class="co"># Fonction pour effectuer la requête à l'API</span></span>
-<span id="cb24-6"><a href="#cb24-6"></a><span class="kw">def</span> make_prediction(api_url: <span class="bu">str</span>, description: <span class="bu">str</span>):</span>
-<span id="cb24-7"><a href="#cb24-7"></a>    params <span class="op">=</span> {<span class="st">"description"</span>: description, <span class="st">"nb_echoes_max"</span>: <span class="dv">2</span>}</span>
-<span id="cb24-8"><a href="#cb24-8"></a>    response <span class="op">=</span> requests.get(api_url, params<span class="op">=</span>params)</span>
-<span id="cb24-9"><a href="#cb24-9"></a>    <span class="cf">return</span> response.json()</span>
-<span id="cb24-10"><a href="#cb24-10"></a></span>
-<span id="cb24-11"><a href="#cb24-11"></a></span>
-<span id="cb24-12"><a href="#cb24-12"></a><span class="co"># URL des données</span></span>
-<span id="cb24-13"><a href="#cb24-13"></a>data_path <span class="op">=</span> <span class="st">"https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet"</span></span>
-<span id="cb24-14"><a href="#cb24-14"></a></span>
-<span id="cb24-15"><a href="#cb24-15"></a><span class="co"># Charge le fichier Parquet dans un DataFrame pandas</span></span>
-<span id="cb24-16"><a href="#cb24-16"></a>df <span class="op">=</span> pd.read_parquet(data_path)</span>
-<span id="cb24-17"><a href="#cb24-17"></a></span>
-<span id="cb24-18"><a href="#cb24-18"></a><span class="co"># Votre API URL</span></span>
-<span id="cb24-19"><a href="#cb24-19"></a>api_url <span class="op">=</span> <span class="st">"https://&lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr/predict"</span></span>
-<span id="cb24-20"><a href="#cb24-20"></a></span>
-<span id="cb24-21"><a href="#cb24-21"></a><span class="co"># Effectue les requêtes</span></span>
-<span id="cb24-22"><a href="#cb24-22"></a>responses <span class="op">=</span> df[<span class="st">"text"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: make_prediction(api_url, x))</span>
-<span id="cb24-23"><a href="#cb24-23"></a></span>
-<span id="cb24-24"><a href="#cb24-24"></a><span class="co"># Affiche le DataFrame avec les résultats des prédictions</span></span>
-<span id="cb24-25"><a href="#cb24-25"></a><span class="bu">print</span>(pd.merge(df, pd.json_normalize(responses),</span>
-<span id="cb24-26"><a href="#cb24-26"></a>               left_index<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb24-27"><a href="#cb24-27"></a>               right_index<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="im">import</span> requests</span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="co"># Fonction pour effectuer la requête à l'API</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="kw">def</span> make_prediction(api_url: <span class="bu">str</span>, description: <span class="bu">str</span>):</span>
+<span id="cb25-7"><a href="#cb25-7"></a>    params <span class="op">=</span> {<span class="st">"description"</span>: description, <span class="st">"nb_echoes_max"</span>: <span class="dv">2</span>}</span>
+<span id="cb25-8"><a href="#cb25-8"></a>    response <span class="op">=</span> requests.get(api_url, params<span class="op">=</span>params)</span>
+<span id="cb25-9"><a href="#cb25-9"></a>    <span class="cf">return</span> response.json()</span>
+<span id="cb25-10"><a href="#cb25-10"></a></span>
+<span id="cb25-11"><a href="#cb25-11"></a></span>
+<span id="cb25-12"><a href="#cb25-12"></a><span class="co"># URL des données</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a>data_path <span class="op">=</span> <span class="st">"https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet"</span></span>
+<span id="cb25-14"><a href="#cb25-14"></a></span>
+<span id="cb25-15"><a href="#cb25-15"></a><span class="co"># Charge le fichier Parquet dans un DataFrame pandas</span></span>
+<span id="cb25-16"><a href="#cb25-16"></a>df <span class="op">=</span> pd.read_parquet(data_path)</span>
+<span id="cb25-17"><a href="#cb25-17"></a></span>
+<span id="cb25-18"><a href="#cb25-18"></a><span class="co"># Votre API URL</span></span>
+<span id="cb25-19"><a href="#cb25-19"></a>api_url <span class="op">=</span> <span class="st">"https://&lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr/predict"</span></span>
+<span id="cb25-20"><a href="#cb25-20"></a></span>
+<span id="cb25-21"><a href="#cb25-21"></a><span class="co"># Effectue les requêtes</span></span>
+<span id="cb25-22"><a href="#cb25-22"></a>responses <span class="op">=</span> df[<span class="st">"text"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: make_prediction(api_url, x))</span>
+<span id="cb25-23"><a href="#cb25-23"></a></span>
+<span id="cb25-24"><a href="#cb25-24"></a><span class="co"># Affiche le DataFrame avec les résultats des prédictions</span></span>
+<span id="cb25-25"><a href="#cb25-25"></a><span class="bu">print</span>(pd.merge(df, pd.json_normalize(responses),</span>
+<span id="cb25-26"><a href="#cb25-26"></a>               left_index<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb25-27"><a href="#cb25-27"></a>               right_index<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </details>
 <ol start="2" type="1">
@@ -1542,7 +1545,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
 </summary>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb25-1"><a href="#cb25-1"></a>python formation-mlops/src/predict_api.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb26-1"><a href="#cb26-1"></a>python formation-mlops/src/predict_api.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="3" type="1">
 <li><p>Dans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par <code>"codification-api-..."</code>. Observez les logs.</p></li>
@@ -1660,7 +1663,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="code-with-filename-file">
 <pre><strong>main.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="im">import</span> logging</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">import</span> logging</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Définissez la configuration de vos logs avant la définition de votre premier point d’entrée :</li>
@@ -1669,14 +1672,14 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="code-with-filename-file">
 <pre><strong>main.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>logging.basicConfig(</span>
-<span id="cb27-2"><a href="#cb27-2"></a>    level<span class="op">=</span>logging.INFO,</span>
-<span id="cb27-3"><a href="#cb27-3"></a>    <span class="bu">format</span><span class="op">=</span><span class="st">"</span><span class="sc">%(asctime)s</span><span class="st"> - </span><span class="sc">%(levelname)s</span><span class="st"> - </span><span class="sc">%(message)s</span><span class="st">"</span>,</span>
-<span id="cb27-4"><a href="#cb27-4"></a>    handlers<span class="op">=</span>[</span>
-<span id="cb27-5"><a href="#cb27-5"></a>        logging.FileHandler(<span class="st">"log_file.log"</span>),</span>
-<span id="cb27-6"><a href="#cb27-6"></a>        logging.StreamHandler(),</span>
-<span id="cb27-7"><a href="#cb27-7"></a>    ],</span>
-<span id="cb27-8"><a href="#cb27-8"></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>logging.basicConfig(</span>
+<span id="cb28-2"><a href="#cb28-2"></a>    level<span class="op">=</span>logging.INFO,</span>
+<span id="cb28-3"><a href="#cb28-3"></a>    <span class="bu">format</span><span class="op">=</span><span class="st">"</span><span class="sc">%(asctime)s</span><span class="st"> - </span><span class="sc">%(levelname)s</span><span class="st"> - </span><span class="sc">%(message)s</span><span class="st">"</span>,</span>
+<span id="cb28-4"><a href="#cb28-4"></a>    handlers<span class="op">=</span>[</span>
+<span id="cb28-5"><a href="#cb28-5"></a>        logging.FileHandler(<span class="st">"log_file.log"</span>),</span>
+<span id="cb28-6"><a href="#cb28-6"></a>        logging.StreamHandler(),</span>
+<span id="cb28-7"><a href="#cb28-7"></a>    ],</span>
+<span id="cb28-8"><a href="#cb28-8"></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
 <li>Ajoutez une le libellé et la réponse de l’API dans vos logs :</li>
@@ -1685,8 +1688,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="code-with-filename-file">
 <pre><strong>main.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Logging</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>logging.info(<span class="ss">f"</span><span class="ch">{{</span><span class="ss">'Query': </span><span class="sc">{</span>description<span class="sc">}</span><span class="ss">, 'Response': </span><span class="sc">{</span>predictions[<span class="dv">0</span>]<span class="sc">}</span><span class="ch">}}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Logging</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>logging.info(<span class="ss">f"</span><span class="ch">{{</span><span class="ss">'Query': </span><span class="sc">{</span>description<span class="sc">}</span><span class="ss">, 'Response': </span><span class="sc">{</span>predictions[<span class="dv">0</span>]<span class="sc">}</span><span class="ch">}}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </details>
 <ol start="2" type="1">
@@ -1704,15 +1707,15 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="code-with-filename-file">
 <pre><strong>deployment.yml</strong></pre>
 </div>
-<div class="sourceCode" id="cb29" data-code-line-numbers="8"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">template</span><span class="kw">:</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="at">  </span><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="at">    </span><span class="fu">labels</span><span class="kw">:</span></span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="at">      </span><span class="fu">app</span><span class="kw">:</span><span class="at"> codification-api</span></span>
-<span id="cb29-5"><a href="#cb29-5"></a><span class="at">  </span><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb29-6"><a href="#cb29-6"></a><span class="at">    </span><span class="fu">containers</span><span class="kw">:</span></span>
-<span id="cb29-7"><a href="#cb29-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> api</span></span>
-<span id="cb29-8"><a href="#cb29-8"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> inseefrlab/formation-mlops:logs</span></span>
-<span id="cb29-9"><a href="#cb29-9"></a><span class="at">        </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> Always</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30" data-code-line-numbers="8"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">template</span><span class="kw">:</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="at">  </span><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="at">    </span><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="at">      </span><span class="fu">app</span><span class="kw">:</span><span class="at"> codification-api</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="at">  </span><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb30-6"><a href="#cb30-6"></a><span class="at">    </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> api</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> inseefrlab/formation-mlops:logs</span></span>
+<span id="cb30-9"><a href="#cb30-9"></a><span class="at">        </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> Always</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li><p>Faites un commit de vos changements et poussez les sur votre dépôt distant.</p></li>
@@ -1726,7 +1729,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
 </summary>
-<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb30-1"><a href="#cb30-1"></a>python formation-mlops/src/predict-api.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb31-1"><a href="#cb31-1"></a>python formation-mlops/src/predict-api.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="5" type="1">
 <li>Dans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par <code>"codification-api-..."</code>. Observez les logs.</li>
@@ -1769,27 +1772,27 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div>
 <ol type="1">
 <li><p>Nous allons utiliser <a href="https://quarto.org/docs/dashboards/"><code>Quarto Dashboards</code></a> qui fera partie de la version 1.4 de <code>Quarto</code>. Téléchargez et installez la pre-release.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">wget</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.489/quarto-1.4.489-linux-amd64.deb <span class="dt">\</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>    <span class="at">-O</span> quarto.deb</span>
-<span id="cb31-3"><a href="#cb31-3"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> quarto.deb</span>
-<span id="cb31-4"><a href="#cb31-4"></a><span class="ex">quarto</span> check install</span>
-<span id="cb31-5"><a href="#cb31-5"></a><span class="fu">rm</span> quarto.deb</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">wget</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.489/quarto-1.4.489-linux-amd64.deb <span class="dt">\</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>    <span class="at">-O</span> quarto.deb</span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> quarto.deb</span>
+<span id="cb32-4"><a href="#cb32-4"></a><span class="ex">quarto</span> check install</span>
+<span id="cb32-5"><a href="#cb32-5"></a><span class="fu">rm</span> quarto.deb</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Ouvrez le fichier <code>dashboard/index.qmd</code> et inspectez le code. Pour récupérer les données nécessaires à la création du tableau de bord, on utilise un SGBD <em>serverless</em> : <code>DuckDB</code>. <code>DuckDB</code> nous permet de faire des requêtes <code>SQL</code> sur un fichier <code>.parquet</code> contenant des logs <em>parsés</em>. Ce fichier contient une ligne par prédiction, avec les variables <code>timestamp</code>, <code>text</code>, <code>prediction_1</code>, <code>proba_1</code>, <code>prediction_2</code> et <code>proba_2</code>.</p></li>
 <li><p>Pour visualiser le tableau de bord, entrez les commandes suivantes dans un <code>Terminal</code> depuis la racine du projet et cliquez sur le lien généré.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1"></a><span class="bu">cd</span> dashboard</span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="ex">quarto</span> preview index.qmd</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1"></a><span class="bu">cd</span> dashboard</span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="ex">quarto</span> preview index.qmd</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Pour l’instant le pourcentage de prédictions avec une probabilité supérieure à 0.8 ne correspond pas à la réalité. Modifiez la requête SQL permettant d’obtenir la variable <code>pct_predictions</code> pour afficher la bonne valeur.</p></li>
 </ol>
 <details>
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la réponse </b></font>
 </summary>
-<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>pct_predictions <span class="op">=</span> duckdb.sql(</span>
-<span id="cb33-2"><a href="#cb33-2"></a>    <span class="st">"""</span></span>
-<span id="cb33-3"><a href="#cb33-3"></a><span class="st">    SELECT 100 * COUNT(*) / COUNT(*)</span></span>
-<span id="cb33-4"><a href="#cb33-4"></a><span class="st">    FROM data;</span></span>
-<span id="cb33-5"><a href="#cb33-5"></a><span class="st">    """</span></span>
-<span id="cb33-6"><a href="#cb33-6"></a>).fetchall()[<span class="dv">0</span>][<span class="dv">0</span>]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>pct_predictions <span class="op">=</span> duckdb.sql(</span>
+<span id="cb34-2"><a href="#cb34-2"></a>    <span class="st">"""</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="st">    SELECT 100 * COUNT(*) / COUNT(*)</span></span>
+<span id="cb34-4"><a href="#cb34-4"></a><span class="st">    FROM data;</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a><span class="st">    """</span></span>
+<span id="cb34-6"><a href="#cb34-6"></a>).fetchall()[<span class="dv">0</span>][<span class="dv">0</span>]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="5" type="1">
 <li>Les deux graphiques situés en bas du tableau de bord ne sont pas corrects non plus. Modifiez la requête SQL permettant d’obtenir la variable <code>daily_stats</code> pour afficher les bons graphiques.</li>
@@ -1798,20 +1801,20 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la réponse </b></font>
 </summary>
-<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>daily_stats <span class="op">=</span> duckdb.sql(</span>
-<span id="cb34-2"><a href="#cb34-2"></a>    <span class="st">"""</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="st">    SELECT</span></span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="st">        CAST(timestamp AS DATE) AS date,</span></span>
-<span id="cb34-5"><a href="#cb34-5"></a><span class="st">        COUNT(*) AS n_liasses,</span></span>
-<span id="cb34-6"><a href="#cb34-6"></a><span class="st">        (</span></span>
-<span id="cb34-7"><a href="#cb34-7"></a><span class="st">            COUNT(</span></span>
-<span id="cb34-8"><a href="#cb34-8"></a><span class="st">                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END</span></span>
-<span id="cb34-9"><a href="#cb34-9"></a><span class="st">            ) * 100.0 / COUNT(*)</span></span>
-<span id="cb34-10"><a href="#cb34-10"></a><span class="st">        ) AS pct_high_proba</span></span>
-<span id="cb34-11"><a href="#cb34-11"></a><span class="st">    FROM data</span></span>
-<span id="cb34-12"><a href="#cb34-12"></a><span class="st">    GROUP BY CAST(timestamp AS DATE);</span></span>
-<span id="cb34-13"><a href="#cb34-13"></a><span class="st">    """</span></span>
-<span id="cb34-14"><a href="#cb34-14"></a>).to_df()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>daily_stats <span class="op">=</span> duckdb.sql(</span>
+<span id="cb35-2"><a href="#cb35-2"></a>    <span class="st">"""</span></span>
+<span id="cb35-3"><a href="#cb35-3"></a><span class="st">    SELECT</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a><span class="st">        CAST(timestamp AS DATE) AS date,</span></span>
+<span id="cb35-5"><a href="#cb35-5"></a><span class="st">        COUNT(*) AS n_liasses,</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a><span class="st">        (</span></span>
+<span id="cb35-7"><a href="#cb35-7"></a><span class="st">            COUNT(</span></span>
+<span id="cb35-8"><a href="#cb35-8"></a><span class="st">                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END</span></span>
+<span id="cb35-9"><a href="#cb35-9"></a><span class="st">            ) * 100.0 / COUNT(*)</span></span>
+<span id="cb35-10"><a href="#cb35-10"></a><span class="st">        ) AS pct_high_proba</span></span>
+<span id="cb35-11"><a href="#cb35-11"></a><span class="st">    FROM data</span></span>
+<span id="cb35-12"><a href="#cb35-12"></a><span class="st">    GROUP BY CAST(timestamp AS DATE);</span></span>
+<span id="cb35-13"><a href="#cb35-13"></a><span class="st">    """</span></span>
+<span id="cb35-14"><a href="#cb35-14"></a>).to_df()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="6" type="1">
 <li>Constatez les changements apportés au tableau de bord.</li>
 </ol>
