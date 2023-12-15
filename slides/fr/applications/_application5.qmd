@@ -40,11 +40,11 @@ argo submit formation-mlops/hello_world.yaml
 
 
 
-## Application 4
+## Application 5
 
 :::{.nonincremental}
 :::: {.callout-tip collapse="true" icon=false}
-## Partie 2 : décentralisation de l'optimisation des hyperparamètres
+## Partie 2 : distriubtion de l'optimisation des hyperparamètres
 
 1. Jetez un coup d'œil au fichier `argo_workflows/workflow.yml`. Que pensez-vous qu'il se passera lorsque nous soumettrons ce flux de travail ?
 2. Modifiez la ligne surlignée de la même manière que dans l'application 3.

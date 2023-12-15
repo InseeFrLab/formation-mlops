@@ -180,7 +180,7 @@ data_path = "https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data
 # Charge le fichier Parquet dans un DataFrame pandas
 df = pd.read_parquet(data_path)
 
-# Votre API URL
+# URL de l'API
 api_url = "https://<your_firstname>-<your_lastname>-api.lab.sspcloud.fr/predict"
 
 # Effectue les requêtes
