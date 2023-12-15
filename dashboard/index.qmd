@@ -15,11 +15,13 @@ import plotly.express as px
 
 duckdb.sql(
     f"""
+    INSTALL httpfs;
+    LOAD httpfs;
     SET s3_endpoint='{os.getenv("AWS_S3_ENDPOINT")}';
     """
 )
 
-path = "s3://projet-formation/diffusion/mlops/data/parsed_logs.parquet"
+path = "https://projet-formation.minio.lab.sspcloud.fr/diffusion/mlops/data/parsed_logs.parquet"
 duckdb.sql(
     f"""
     CREATE OR REPLACE VIEW data
