@@ -560,8 +560,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <ol type="1">
 <li>Créez un compte sur le <a href="https://datalab.sspcloud.fr/home">SSP Cloud</a> en utilisant votre adresse e-mail professionnelle.</li>
 <li>Lancez un service <code>MLflow</code> en cliquant sur <a href="https://datalab.sspcloud.fr/launcher/automation/mlflow?autoLaunch=true">cette URL</a>.</li>
-<li>Lancez un service <code>VSCode-python</code> en cliquant sur <a href="https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&amp;init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh%C2%BB">cette URL</a>.</li>
-<li>Ouvrez le service <code>VSCode-python</code> et saisissez le mot de passe du service.</li>
+<li>Lancez un service <code>vscode-python</code> en cliquant sur <a href="https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&amp;init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»&amp;networking.user.enabled=true">cette URL</a>.</li>
+<li>Ouvrez le service <code>vscode-python</code> et saisissez le mot de passe du service.</li>
 <li>Vous êtes prêt !</li>
 </ol>
 </div>
@@ -979,14 +979,14 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <h1><span class="emoji" data-emoji="three">3️⃣</span> Servir un modèle de ML à des utilisateurs</h1>
 
 </section>
-<section id="mise-en-service-du-modèle" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Mise en service du modèle</h2>
+<section id="questions-essentielles" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Questions essentielles</h2>
 <ul>
 <li class="fragment">Une fois qu’un modèle de machine learning a été développé, il doit <span class="orange"><strong>servir</strong></span> ses utilisateurs finaux.
 <ul>
 <li class="fragment">Quel <span class="blue2"><strong>format pertinent</strong></span> pour rendre accessible aux <span class="blue2"><strong>utilisateurs finaux</strong></span> ?</li>
 <li class="fragment"><span class="blue2"><strong>Traitement par lots</strong></span> (<em>batch</em>) par rapport au <span class="blue2"><strong>traitement en ligne</strong></span> (<em>online</em>)</li>
-<li class="fragment">Quelle infrastructure pour le de <span class="blue2"><strong>déploiement</strong></span> ?</li>
+<li class="fragment">Quelle infrastructure pour le <span class="blue2"><strong>déploiement</strong></span> ?</li>
 </ul></li>
 </ul>
 </section>
@@ -1012,7 +1012,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <h2>Pourquoi exposer un modèle via une API REST ?</h2>
 <ul>
 <li class="fragment"><p><span class="orange"><strong>Simplicité</strong></span> : porte d’entrée unique qui cache la complexité sous-jacente du modèle</p></li>
-<li class="fragment"><p><span class="orange"><strong>Standardisation</strong></span> : requêtes HTTP, agnostiques au langage de programmation utilisé</p></li>
+<li class="fragment"><p><span class="orange"><strong>Standardisation</strong></span> : requêtes HTTP -&gt; agnostique au langage de programmation utilisé</p></li>
 <li class="fragment"><p><span class="orange"><strong>Passage à l’échelle</strong></span> : adaptation à la charge de requêtes concurrentes</p></li>
 <li class="fragment"><p><span class="orange"><strong>Modularité</strong></span> : séparation de la gestion du modèle et de sa mise à disposition</p></li>
 </ul>
@@ -1024,8 +1024,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <section id="exécuter-une-api-dans-un-conteneur" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Exécuter une API dans un conteneur</h2>
 <ul>
-<li class="fragment"><p><span class="orange"><strong>Conteneur</strong></span> : environnement <span class="blue2"><strong>autonome</strong></span> et <span class="blue2"><strong>isolé</strong></span> qui encapsule le modèle, ses dépendances et le code de l’API</p></li>
-<li class="fragment"><p><span class="orange"><strong>Avantages</strong></span> : <span class="orange"><strong>portabilité</strong></span> et <span class="orange"><strong>scalabilité</strong></span> pour distribuer le modèle de manière efficace</p></li>
+<li class="fragment"><p><span class="orange"><strong>Conteneur</strong></span> : environnement <span class="blue2"><strong>autonome</strong></span> et <span class="blue2"><strong>isolé</strong></span> qui encapsule le modèle, l’API et leurs dépendances</p></li>
+<li class="fragment"><p><span class="orange"><strong>Avantages</strong></span> :</p>
+<ul>
+<li class="fragment"><span class="blue2"><strong>Portabilité</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>Scalabilité</strong></span> pour distribuer le modèle de manière efficace</li>
+</ul></li>
+<li class="fragment"><p><span class="orange"><strong>Pré-requis technique</strong></span> pour déployer sur <code>Kubernetes</code></p></li>
 </ul>
 </section>
 <section id="déploiement-dune-api-sur-kubernetes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -1047,7 +1052,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </ol>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>export MLFLOW_MODEL_NAME="fasttext"</span>
 <span id="cb11-2"><a href="#cb11-2"></a>export MLFLOW_MODEL_VERSION=1</span>
-<span id="cb11-3"><a href="#cb11-3"></a>uvicorn app.main:app</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-3"><a href="#cb11-3"></a>uvicorn app.main:app --root-path /proxy/8000</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
 <li>Ouvrez la page de l’API à l’aide du bouton proposé par <code>VSCode</code>.</li>
 <li>Affichez la documentation de votre API en ajoutant <code>/docs</code> à votre URL.</li>

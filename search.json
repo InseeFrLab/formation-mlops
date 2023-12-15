@@ -60,7 +60,7 @@
     "href": "slides/fr/index.html#app0",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 0",
-    "text": "Application 0\n\nSans GitAvec Git\n\n\n\n\n\nPréparation de l’environnement de travail\n\n\n\n\nCréez un compte sur le SSP Cloud en utilisant votre adresse e-mail professionnelle.\nLancez un service MLflow en cliquant sur cette URL.\nLancez un service VSCode-python en cliquant sur cette URL.\nOuvrez le service VSCode-python et saisissez le mot de passe du service.\nVous êtes prêt !\n\n\n\n\n\n\n\n\n\n\nPréparation de l’environnement de travail\n\n\n\n\nSi ce n’est pas déjà fait, créez un compte Github. Créez une copie du dépôt de la formation dans votre espace personnel en forkant le dépôt.\nSi ce n’est pas déjà fait, créez un compte sur le SSP Cloud en utilisant votre adresse e-mail professionnelle.\nLancez un service MLflow en cliquant sur cette URL.\nLancez un service VSCode-python en cliquant sur cette URL.\nOuvrez le service VSCode-python et saisissez le mot de passe du service.\nDans VSCode, ouvrez un terminal et clonez le dépôt que vous venez de fork (modifiez les deux premières lignes) :\nGIT_REPO=formation-mlops\nGIT_USERNAME=InseeFrLab\n\ngit clone https://github.com/$GIT_USERNAME/$GIT_REPO.git\ncd $GIT_REPO\nInstallez les packages nécessaires pour la formation :\npip install -r requirements.txt\npython -m nltk.downloader stopwords\nVous êtes prêt !"
+    "text": "Application 0\n\nSans GitAvec Git\n\n\n\n\n\nPréparation de l’environnement de travail\n\n\n\n\nCréez un compte sur le SSP Cloud en utilisant votre adresse e-mail professionnelle.\nLancez un service MLflow en cliquant sur cette URL.\nLancez un service vscode-python en cliquant sur cette URL.\nOuvrez le service vscode-python et saisissez le mot de passe du service.\nVous êtes prêt !\n\n\n\n\n\n\n\n\n\n\nPréparation de l’environnement de travail\n\n\n\n\nSi ce n’est pas déjà fait, créez un compte Github. Créez une copie du dépôt de la formation dans votre espace personnel en forkant le dépôt.\nSi ce n’est pas déjà fait, créez un compte sur le SSP Cloud en utilisant votre adresse e-mail professionnelle.\nLancez un service MLflow en cliquant sur cette URL.\nLancez un service VSCode-python en cliquant sur cette URL.\nOuvrez le service VSCode-python et saisissez le mot de passe du service.\nDans VSCode, ouvrez un terminal et clonez le dépôt que vous venez de fork (modifiez les deux premières lignes) :\nGIT_REPO=formation-mlops\nGIT_USERNAME=InseeFrLab\n\ngit clone https://github.com/$GIT_USERNAME/$GIT_REPO.git\ncd $GIT_REPO\nInstallez les packages nécessaires pour la formation :\npip install -r requirements.txt\npython -m nltk.downloader stopwords\nVous êtes prêt !"
   },
   {
     "objectID": "slides/fr/index.html#tracking-server",
@@ -175,11 +175,11 @@
     "text": "Bilan\n\nMLflow est polyvalent\n\nUtilisation dee frameworks custom (modulo une classe “interface”)\nIndustrialisation de l’entraînement (fichier MLproject)\nRequêtage simple des modèles entraînés et stockés\n\nLimite : le modèle entraîné n’est pas accessible\n\nRequêtage simplifié… mais format non-pertinent pour tous les utilisateurs\nLe modèle n’est pas déployé"
   },
   {
-    "objectID": "slides/fr/index.html#mise-en-service-du-modèle",
-    "href": "slides/fr/index.html#mise-en-service-du-modèle",
+    "objectID": "slides/fr/index.html#questions-essentielles",
+    "href": "slides/fr/index.html#questions-essentielles",
     "title": "Une introduction au MLOps avec MLflow",
-    "section": "Mise en service du modèle",
-    "text": "Mise en service du modèle\n\nUne fois qu’un modèle de machine learning a été développé, il doit servir ses utilisateurs finaux.\n\nQuel format pertinent pour rendre accessible aux utilisateurs finaux ?\nTraitement par lots (batch) par rapport au traitement en ligne (online)\nQuelle infrastructure pour le de déploiement ?"
+    "section": "Questions essentielles",
+    "text": "Questions essentielles\n\nUne fois qu’un modèle de machine learning a été développé, il doit servir ses utilisateurs finaux.\n\nQuel format pertinent pour rendre accessible aux utilisateurs finaux ?\nTraitement par lots (batch) par rapport au traitement en ligne (online)\nQuelle infrastructure pour le déploiement ?"
   },
   {
     "objectID": "slides/fr/index.html#configuration-envisagée",
@@ -200,7 +200,7 @@
     "href": "slides/fr/index.html#pourquoi-exposer-un-modèle-via-une-api-rest",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Pourquoi exposer un modèle via une API REST ?",
-    "text": "Pourquoi exposer un modèle via une API REST ?\n\nSimplicité : porte d’entrée unique qui cache la complexité sous-jacente du modèle\nStandardisation : requêtes HTTP, agnostiques au langage de programmation utilisé\nPassage à l’échelle : adaptation à la charge de requêtes concurrentes\nModularité : séparation de la gestion du modèle et de sa mise à disposition"
+    "text": "Pourquoi exposer un modèle via une API REST ?\n\nSimplicité : porte d’entrée unique qui cache la complexité sous-jacente du modèle\nStandardisation : requêtes HTTP -&gt; agnostique au langage de programmation utilisé\nPassage à l’échelle : adaptation à la charge de requêtes concurrentes\nModularité : séparation de la gestion du modèle et de sa mise à disposition"
   },
   {
     "objectID": "slides/fr/index.html#exposer-un-modèle-via-une-api-1",
@@ -214,7 +214,7 @@
     "href": "slides/fr/index.html#exécuter-une-api-dans-un-conteneur",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Exécuter une API dans un conteneur",
-    "text": "Exécuter une API dans un conteneur\n\nConteneur : environnement autonome et isolé qui encapsule le modèle, ses dépendances et le code de l’API\nAvantages : portabilité et scalabilité pour distribuer le modèle de manière efficace"
+    "text": "Exécuter une API dans un conteneur\n\nConteneur : environnement autonome et isolé qui encapsule le modèle, l’API et leurs dépendances\nAvantages :\n\nPortabilité\nScalabilité pour distribuer le modèle de manière efficace\n\nPré-requis technique pour déployer sur Kubernetes"
   },
   {
     "objectID": "slides/fr/index.html#déploiement-dune-api-sur-kubernetes",
@@ -228,7 +228,7 @@
     "href": "slides/fr/index.html#application-3",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 3",
-    "text": "Application 3\n\n\n\nPartie 1 : exposer localement un modèle de ML en tant qu’API\n\n\n\n\nNous avons construit une API REST très simpliste à l’aide de FastAPI. Tous les fichiers sous-jacents se trouvent dans le dossier app. Consultez-les.\nDéployez l’API localement en lançant les commandes suivantes dans un terminal :\n\nexport MLFLOW_MODEL_NAME=\"fasttext\"\nexport MLFLOW_MODEL_VERSION=1\nuvicorn app.main:app\n\nOuvrez la page de l’API à l’aide du bouton proposé par VSCode.\nAffichez la documentation de votre API en ajoutant /docs à votre URL.\nTestez votre API !"
+    "text": "Application 3\n\n\n\nPartie 1 : exposer localement un modèle de ML en tant qu’API\n\n\n\n\nNous avons construit une API REST très simpliste à l’aide de FastAPI. Tous les fichiers sous-jacents se trouvent dans le dossier app. Consultez-les.\nDéployez l’API localement en lançant les commandes suivantes dans un terminal :\n\nexport MLFLOW_MODEL_NAME=\"fasttext\"\nexport MLFLOW_MODEL_VERSION=1\nuvicorn app.main:app --root-path /proxy/8000\n\nOuvrez la page de l’API à l’aide du bouton proposé par VSCode.\nAffichez la documentation de votre API en ajoutant /docs à votre URL.\nTestez votre API !"
   },
   {
     "objectID": "slides/fr/index.html#application-3-1",
