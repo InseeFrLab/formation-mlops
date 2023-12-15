@@ -532,16 +532,16 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <h2>Plan</h2>
 <p><span class="emoji" data-emoji="one">1️⃣</span> Introduction à MLFlow</p>
 <div class="fragment">
-<p><span class="emoji" data-emoji="two">2️⃣</span> Un exemple concret: Prédiction du code APE pour les entreprises</p>
+<p><span class="emoji" data-emoji="two">2️⃣</span> Un exemple concret: prédiction du code APE pour les entreprises</p>
 </div>
 <div class="fragment">
-<p><span class="emoji" data-emoji="three">3️⃣</span> Déployer un modèle ML via une API</p>
+<p><span class="emoji" data-emoji="three">3️⃣</span> Servir un modèle de ML à des utilisateurs</p>
 </div>
 <div class="fragment">
-<p><span class="emoji" data-emoji="four">4️⃣</span> Distribuer l’optimisation des hyperparamètres</p>
+<p><span class="emoji" data-emoji="four">4️⃣</span> Maintenance d’un modèle en production</p>
 </div>
 <div class="fragment">
-<p><span class="emoji" data-emoji="five">5️⃣</span> Maintenance d’un modèle en production</p>
+<p><span class="emoji" data-emoji="five">5️⃣</span> Distribuer l’optimisation des hyperparamètres</p>
 </div>
 </section>
 <section id="app0" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
@@ -1224,7 +1224,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <span id="cb18-15"><a href="#cb18-15"></a><span class="co"># Charge le fichier Parquet dans un DataFrame pandas</span></span>
 <span id="cb18-16"><a href="#cb18-16"></a>df <span class="op">=</span> pd.read_parquet(data_path)</span>
 <span id="cb18-17"><a href="#cb18-17"></a></span>
-<span id="cb18-18"><a href="#cb18-18"></a><span class="co"># Votre API URL</span></span>
+<span id="cb18-18"><a href="#cb18-18"></a><span class="co"># URL de l'API</span></span>
 <span id="cb18-19"><a href="#cb18-19"></a>api_url <span class="op">=</span> <span class="st">"https://&lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr/predict"</span></span>
 <span id="cb18-20"><a href="#cb18-20"></a></span>
 <span id="cb18-21"><a href="#cb18-21"></a><span class="co"># Effectue les requêtes</span></span>
@@ -1266,312 +1266,26 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="distribuer-loptimisation-des-hyperparamètres" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1><span class="emoji" data-emoji="four">4️⃣</span> Distribuer l’optimisation des hyperparamètres</h1>
-
 </section>
-<section id="entraînement-distribué" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Entraînement distribué</h2>
+<section id="bilan-2" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Bilan</h2>
 <ul>
-<li class="fragment">Avec notre configuration, nous pouvons entraîner des modèles <span class="orange"><strong>un par un</strong></span> et enregistrer toutes les informations pertinentes sur le serveur MLflow Tracking.</li>
-<li class="fragment">Et si nous voulions entraîner <span class="orange"><strong>plusieurs modèles en même temps</strong></span>, par exemple pour optimiser les hyperparamètres ?</li>
-</ul>
-</section>
-<section id="automatisation-du-workflow" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Automatisation du workflow</h2>
+<li class="fragment"><code>MLflow</code> est <span class="orange"><strong>polyvalent</strong></span>
 <ul>
-<li class="fragment"><span class="orange"><strong>Principes généraux</strong></span> :
+<li class="fragment">Utilisation dee <span class="blue2"><strong>frameworks custom</strong></span> (modulo une <span class="blue2"><strong>classe “interface”</strong></span>)</li>
+<li class="fragment"><span class="blue2"><strong>Industrialisation</strong></span> de l’entraînement (fichier <code>MLproject</code>)</li>
+<li class="fragment"><span class="blue2"><strong>Requêtage simple</strong></span> des modèles entraînés et stockés</li>
+</ul></li>
+<li class="fragment"><span class="orange"><strong>Limite</strong></span> : le modèle entraîné n’est pas <span class="blue2"><strong>accessible</strong></span>
 <ul>
-<li class="fragment">Définir des workflows où chaque étape du processus est un <span class="blue2"><strong>conteneur</strong></span> (reproductibilité).</li>
-<li class="fragment">Modéliser les workflows à plusieurs étapes comme une <span class="blue2"><strong>séquence</strong></span> de tâches ou comme un <span class="blue2"><strong>graphe acyclique orienté</strong></span>.</li>
-<li class="fragment">Cela permet d’<span class="blue2"><strong>exécuter facilement en parallèle des tâches intensives</strong></span> en calcul pour l’entraînement du modèle ou le traitement des données.</li>
+<li class="fragment">Requêtage simplifié… mais <span class="blue2"><strong>format non-pertinent</strong></span> pour tous les utilisateurs</li>
+<li class="fragment">Le modèle n’est <span class="blue2"><strong>pas déployé</strong></span></li>
 </ul></li>
 </ul>
-</section>
-<section id="argo-workflows" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Argo workflows</h2>
-<ul>
-<li class="fragment">Un moteur de <span class="orange"><strong>workflow</strong></span> populaire pour orchestrer des tâches parallèles sur <code>Kubernetes</code>.
-<ul>
-<li class="fragment"><span class="blue2"><strong>Open-source</strong></span></li>
-<li class="fragment"><span class="blue2"><strong>Container-native</strong></span></li>
-<li class="fragment">Disponible sur le <span class="orange"><strong>SSP Cloud</strong></span></li>
-</ul></li>
-</ul>
-<div class="fragment">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="../img/argo-logo.png" height="200"></p>
-</figure>
-</div>
-</div>
-</section>
-<section id="bonjour-le-monde" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Bonjour le monde</h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span><span class="co">                  # nouveau type de spécification k8s</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span><span class="co">    # nom de la spécification du workflow</span></span>
-<span id="cb20-5"><a href="#cb20-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb20-6"><a href="#cb20-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">          # invoque le modèle whalesay</span></span>
-<span id="cb20-7"><a href="#cb20-7"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
-<span id="cb20-8"><a href="#cb20-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">            # nom du modèle</span></span>
-<span id="cb20-9"><a href="#cb20-9"></a><span class="at">      </span><span class="fu">container</span><span class="kw">:</span></span>
-<span id="cb20-10"><a href="#cb20-10"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
-<span id="cb20-11"><a href="#cb20-11"></a><span class="at">        </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
-<span id="cb20-12"><a href="#cb20-12"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"bonjour le monde"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="que-se-passe-t-il" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Que se passe-t-il ?</h2>
-<div class="fragment">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="../img/argo-0.png" height="500"></p>
-</figure>
-</div>
-</div>
-</section>
-<section id="que-se-passe-t-il-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Que se passe-t-il ?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="../img/argo-1a.png" height="500"></p>
-</figure>
-</div>
-</section>
-<section id="que-se-passe-t-il-2" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Que se passe-t-il ?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="../img/argo-2a.png" height="500"></p>
-</figure>
-</div>
-</section>
-<section id="paramètres" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Paramètres</h2>
-<ul>
-<li class="fragment">Les modèles peuvent prendre des <span class="orange"><strong>paramètres d’entrée</strong></span></li>
-</ul>
-<div class="fragment">
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-parameters-</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb21-7"><a href="#cb21-7"></a><span class="at">  </span><span class="fu">arguments</span><span class="kw">:</span></span>
-<span id="cb21-8"><a href="#cb21-8"></a><span class="at">    </span><span class="fu">parameters</span><span class="kw">:</span></span>
-<span id="cb21-9"><a href="#cb21-9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span></span>
-<span id="cb21-10"><a href="#cb21-10"></a><span class="at">      </span><span class="fu">value</span><span class="kw">:</span><span class="at"> bonjour le monde</span></span>
-<span id="cb21-11"><a href="#cb21-11"></a></span>
-<span id="cb21-12"><a href="#cb21-12"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
-<span id="cb21-13"><a href="#cb21-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb21-14"><a href="#cb21-14"></a><span class="at">    </span><span class="fu">inputs</span><span class="kw">:</span></span>
-<span id="cb21-15"><a href="#cb21-15"></a><span class="at">      </span><span class="fu">parameters</span><span class="kw">:</span></span>
-<span id="cb21-16"><a href="#cb21-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span><span class="co">       # déclaration du paramètre</span></span>
-<span id="cb21-17"><a href="#cb21-17"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
-<span id="cb21-18"><a href="#cb21-18"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
-<span id="cb21-19"><a href="#cb21-19"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
-<span id="cb21-20"><a href="#cb21-20"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"{{inputs.parameters.message}}"</span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="workflows-à-plusieurs-étapes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Workflows à plusieurs étapes</h2>
-<ul>
-<li class="fragment">Les <span class="orange"><strong>workflows à plusieurs étapes</strong></span> peuvent être spécifiés (<code>steps</code> ou <code>dag</code>)</li>
-</ul>
-<div class="fragment">
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> steps-</span></span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb22-6"><a href="#cb22-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a></span>
-<span id="cb22-8"><a href="#cb22-8"></a><span class="co">  # Cette spécification contient deux modèles : hello-hello-hello et whalesay</span></span>
-<span id="cb22-9"><a href="#cb22-9"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
-<span id="cb22-10"><a href="#cb22-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
-<span id="cb22-11"><a href="#cb22-11"></a><span class="co">    # Au lieu d'exécuter uniquement un conteneur</span></span>
-<span id="cb22-12"><a href="#cb22-12"></a><span class="co">    # Ce modèle a une séquence d'étapes</span></span>
-<span id="cb22-13"><a href="#cb22-13"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb22-14"><a href="#cb22-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello1</span><span class="co">            # hello1 est exécuté avant les étapes suivantes</span></span>
-<span id="cb22-15"><a href="#cb22-15"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb22-16"><a href="#cb22-16"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2a</span><span class="co">           # double tiret =&gt; exécuté après l'étape précédente</span></span>
-<span id="cb22-17"><a href="#cb22-17"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb22-18"><a href="#cb22-18"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2b</span><span class="co">           # tiret simple =&gt; exécuté en parallèle avec l'étape précédente</span></span>
-<span id="cb22-19"><a href="#cb22-19"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb22-20"><a href="#cb22-20"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">              # nom du modèle</span></span>
-<span id="cb22-21"><a href="#cb22-21"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
-<span id="cb22-22"><a href="#cb22-22"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
-<span id="cb22-23"><a href="#cb22-23"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
-<span id="cb22-24"><a href="#cb22-24"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"bonjour le monde"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="que-se-passe-t-il-3" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Que se passe-t-il ?</h2>
-<div class="fragment">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="../img/argo-0.png" height="500"></p>
-</figure>
-</div>
-</div>
-</section>
-<section id="que-se-passe-t-il-4" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Que se passe-t-il ?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="../img/argo-1b.png" height="500"></p>
-</figure>
-</div>
-</section>
-<section id="que-se-passe-t-il-5" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Que se passe-t-il ?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="../img/argo-2b.png" height="500"></p>
-</figure>
-</div>
-</section>
-<section id="que-se-passe-t-il-6" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Que se passe-t-il ?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="../img/argo-1b.png" height="500"></p>
-</figure>
-</div>
-</section>
-<section id="que-se-passe-t-il-7" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Que se passe-t-il ?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="../img/argo-3b.png" height="500"></p>
-</figure>
-</div>
-</section>
-<section id="autres-applications" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Autres applications</h2>
-<ul>
-<li class="fragment">Workflow pour <span class="orange"><strong>tester</strong></span> des modèles enregistrés, ou des modèles poussés en pré-production / production.</li>
-<li class="fragment">Les workflows peuvent être <span class="orange"><strong>déclenchés</strong></span> automatiquement (via Argo Events, par exemple).</li>
-<li class="fragment">Workflows d’<span class="orange"><strong>entraînement continue</strong></span>.</li>
-<li class="fragment">Pipelines de <em>machine learning</em> <span class="orange"><strong>distribués</strong></span> en général (téléchargement de données, traitement, etc.).</li>
-</ul>
-</section>
-<section id="autres-applications-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Autres applications</h2>
-<div class="fragment">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="../img/pokemon_workflow.png" height="450"></p>
-</figure>
-</div>
-</div>
-</section>
-<section id="notes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Notes</h2>
-<ul>
-<li class="fragment"><span class="orange"><strong>Python SDK</strong></span> pour Argo Workflows</li>
-<li class="fragment">Pipelines Kubeflow</li>
-<li class="fragment"><span class="orange"><strong>Couler</strong></span> : interface unifiée pour la construction et la gestion de workflows sur différents moteurs de workflows</li>
-<li class="fragment">Autres outils d’orchestration natifs de Python : <span class="orange"><strong>Apache Airflow</strong></span>, <span class="orange"><strong>Metaflow</strong></span>, <span class="orange"><strong>Prefect</strong></span></li>
-</ul>
-</section>
-<section id="application-4" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
-<h2>Application 4</h2>
-<div>
-<div class="callout callout-tip no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Partie 1 : introduction à <code>Argo Workflows</code></strong></p>
-</div>
-<div class="callout-content">
-<ol type="1">
-<li>Lancez un service <code>Argo Workflows</code> en cliquant sur <a href="https://datalab.sspcloud.fr/launcher/automation/argo-workflows?autoLaunch=true">cette URL</a>. Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier <code>README</code> du service).</li>
-<li>Dans <code>VSCode</code>, créez un fichier <code>hello_world.yaml</code> à la racine du projet avec le contenu suivant :</li>
-</ol>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>hello_world.yml</strong></pre>
-</div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a><span class="at">  </span><span class="fu">labels</span><span class="kw">:</span></span>
-<span id="cb23-6"><a href="#cb23-6"></a><span class="at">    </span><span class="fu">workflows.argoproj.io/archive-strategy</span><span class="kw">:</span><span class="at"> </span><span class="st">"false"</span></span>
-<span id="cb23-7"><a href="#cb23-7"></a><span class="at">  </span><span class="fu">annotations</span><span class="kw">:</span></span>
-<span id="cb23-8"><a href="#cb23-8"></a><span class="fu">    workflows.argoproj.io/description</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb23-9"><a href="#cb23-9"></a>      Ceci est un exemple simple de "Hello World".</span>
-<span id="cb23-10"><a href="#cb23-10"></a>      Vous pouvez également l'exécuter en Python : https://couler-proj.github.io/couler/examples/#hello-world</span>
-<span id="cb23-11"><a href="#cb23-11"></a><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb23-12"><a href="#cb23-12"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb23-13"><a href="#cb23-13"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
-<span id="cb23-14"><a href="#cb23-14"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span></span>
-<span id="cb23-15"><a href="#cb23-15"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
-<span id="cb23-16"><a href="#cb23-16"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay:latest</span></span>
-<span id="cb23-17"><a href="#cb23-17"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
-<span id="cb23-18"><a href="#cb23-18"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"hello world"</span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="1">
-<li>Soumettez le workflow “Hello World” via un terminal dans <code>VSCode</code> :</li>
-</ol>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a>argo submit formation-mlops/hello_world.yaml</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="4" type="1">
-<li>Ouvrez l’interface utilisateur d’<code>Argo Workflows</code>. Trouvez les logs du workflow que vous venez de lancer. Vous devriez voir le logo Docker <i class="fab fa-docker" style="color: #18a8fe;"></i>.</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="application-4-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Application 4</h2>
-<div>
-<div class="callout callout-tip no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Partie 2 : décentralisation de l’optimisation des hyperparamètres</strong></p>
-</div>
-<div class="callout-content">
-<ol type="1">
-<li>Jetez un coup d’œil au fichier <code>argo_workflows/workflow.yml</code>. Que pensez-vous qu’il se passera lorsque nous soumettrons ce flux de travail ?</li>
-<li>Modifiez la ligne surlignée de la même manière que dans l’application 3.</li>
-</ol>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>workflow.yml</strong></pre>
-</div>
-<div class="sourceCode" id="cb25" data-code-line-numbers="4"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">parameters</span><span class="kw">:</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="co">    # Le serveur de suivi MLflow est responsable de l'enregistrement des hyper-paramètres et des métriques du modèle.</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mlflow-tracking-uri</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr</span></span>
-<span id="cb25-5"><a href="#cb25-5"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mlflow-experiment-name</span></span>
-<span id="cb25-6"><a href="#cb25-6"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> nace-prediction</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="1">
-<li>Soumettez le flux de travail et observez les tâches s’exécuter en direct dans l’interface utilisateur.</li>
-</ol>
-<details>
-<summary>
-<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
-</summary>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb26-1"><a href="#cb26-1"></a>argo submit formation-mlops/argo_workflows/workflow.yml</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<ol start="4" type="1">
-<li>Une fois que toutes les tâches sont terminées, visualisez les logs de l’ensemble du flux de travail.</li>
-<li>Enfin, ouvrez l’interface utilisateur de <code>MLflow</code> pour vérifier ce qui a été fait.</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
 </section></section>
 <section>
 <section id="machine-learning-en-production" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1><span class="emoji" data-emoji="five">5️⃣</span> Machine learning en production</h1>
+<h1><span class="emoji" data-emoji="four">4️⃣</span> Machine learning en production</h1>
 
 </section>
 <section id="cycle-de-vie-dun-modèle-ml-en-production" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -1645,8 +1359,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 </ul>
 </div>
 </section>
-<section id="application-5" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
-<h2>Application 5</h2>
+<section id="application-4" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
+<h2>Application 4</h2>
 <div>
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
@@ -1668,7 +1382,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="code-with-filename-file">
 <pre><strong>main.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">import</span> logging</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">import</span> logging</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Définissez la configuration de vos logs avant la définition de votre premier point d’entrée :</li>
@@ -1677,14 +1391,14 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="code-with-filename-file">
 <pre><strong>main.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>logging.basicConfig(</span>
-<span id="cb28-2"><a href="#cb28-2"></a>    level<span class="op">=</span>logging.INFO,</span>
-<span id="cb28-3"><a href="#cb28-3"></a>    <span class="bu">format</span><span class="op">=</span><span class="st">"</span><span class="sc">%(asctime)s</span><span class="st"> - </span><span class="sc">%(levelname)s</span><span class="st"> - </span><span class="sc">%(message)s</span><span class="st">"</span>,</span>
-<span id="cb28-4"><a href="#cb28-4"></a>    handlers<span class="op">=</span>[</span>
-<span id="cb28-5"><a href="#cb28-5"></a>        logging.FileHandler(<span class="st">"log_file.log"</span>),</span>
-<span id="cb28-6"><a href="#cb28-6"></a>        logging.StreamHandler(),</span>
-<span id="cb28-7"><a href="#cb28-7"></a>    ],</span>
-<span id="cb28-8"><a href="#cb28-8"></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>logging.basicConfig(</span>
+<span id="cb21-2"><a href="#cb21-2"></a>    level<span class="op">=</span>logging.INFO,</span>
+<span id="cb21-3"><a href="#cb21-3"></a>    <span class="bu">format</span><span class="op">=</span><span class="st">"</span><span class="sc">%(asctime)s</span><span class="st"> - </span><span class="sc">%(levelname)s</span><span class="st"> - </span><span class="sc">%(message)s</span><span class="st">"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4"></a>    handlers<span class="op">=</span>[</span>
+<span id="cb21-5"><a href="#cb21-5"></a>        logging.FileHandler(<span class="st">"log_file.log"</span>),</span>
+<span id="cb21-6"><a href="#cb21-6"></a>        logging.StreamHandler(),</span>
+<span id="cb21-7"><a href="#cb21-7"></a>    ],</span>
+<span id="cb21-8"><a href="#cb21-8"></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
 <li>Ajoutez une le libellé et la réponse de l’API dans vos logs :</li>
@@ -1693,8 +1407,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="code-with-filename-file">
 <pre><strong>main.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Logging</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a>logging.info(<span class="ss">f"</span><span class="ch">{{</span><span class="ss">'Query': </span><span class="sc">{</span>description<span class="sc">}</span><span class="ss">, 'Response': </span><span class="sc">{</span>predictions[<span class="dv">0</span>]<span class="sc">}</span><span class="ch">}}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Logging</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>logging.info(<span class="ss">f"</span><span class="ch">{{</span><span class="ss">'Query': </span><span class="sc">{</span>description<span class="sc">}</span><span class="ss">, 'Response': </span><span class="sc">{</span>predictions[<span class="dv">0</span>]<span class="sc">}</span><span class="ch">}}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </details>
 <ol start="2" type="1">
@@ -1712,15 +1426,15 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div class="code-with-filename-file">
 <pre><strong>deployment.yml</strong></pre>
 </div>
-<div class="sourceCode" id="cb30" data-code-line-numbers="8"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">template</span><span class="kw">:</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="at">  </span><span class="fu">metadata</span><span class="kw">:</span></span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="at">    </span><span class="fu">labels</span><span class="kw">:</span></span>
-<span id="cb30-4"><a href="#cb30-4"></a><span class="at">      </span><span class="fu">app</span><span class="kw">:</span><span class="at"> codification-api</span></span>
-<span id="cb30-5"><a href="#cb30-5"></a><span class="at">  </span><span class="fu">spec</span><span class="kw">:</span></span>
-<span id="cb30-6"><a href="#cb30-6"></a><span class="at">    </span><span class="fu">containers</span><span class="kw">:</span></span>
-<span id="cb30-7"><a href="#cb30-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> api</span></span>
-<span id="cb30-8"><a href="#cb30-8"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> inseefrlab/formation-mlops:logs</span></span>
-<span id="cb30-9"><a href="#cb30-9"></a><span class="at">        </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> Always</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23" data-code-line-numbers="8"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">template</span><span class="kw">:</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="at">  </span><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="at">    </span><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="at">      </span><span class="fu">app</span><span class="kw">:</span><span class="at"> codification-api</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="at">  </span><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="at">    </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> api</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> inseefrlab/formation-mlops:logs</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a><span class="at">        </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> Always</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li><p>Faites un commit de vos changements et poussez les sur votre dépôt distant.</p></li>
@@ -1734,7 +1448,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
 </summary>
-<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb31-1"><a href="#cb31-1"></a>python formation-mlops/src/predict-api.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a>python formation-mlops/src/predict-api.py</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="5" type="1">
 <li>Dans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par <code>"codification-api-..."</code>. Observez les logs.</li>
@@ -1766,8 +1480,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <h2>Un exemple de stack</h2>
 <p>&nbsp; &nbsp; &nbsp; <img data-src="../img/dashboard-fr.png" data-fig-align="center"></p>
 </section>
-<section id="application-5-1" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
-<h2>Application 5</h2>
+<section id="application-4-1" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
+<h2>Application 4</h2>
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1777,27 +1491,27 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <div>
 <ol type="1">
 <li><p>Nous allons utiliser <a href="https://quarto.org/docs/dashboards/"><code>Quarto Dashboards</code></a> qui fera partie de la version 1.4 de <code>Quarto</code>. Téléchargez et installez la pre-release.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">wget</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.489/quarto-1.4.489-linux-amd64.deb <span class="dt">\</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a>    <span class="at">-O</span> quarto.deb</span>
-<span id="cb32-3"><a href="#cb32-3"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> quarto.deb</span>
-<span id="cb32-4"><a href="#cb32-4"></a><span class="ex">quarto</span> check install</span>
-<span id="cb32-5"><a href="#cb32-5"></a><span class="fu">rm</span> quarto.deb</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">wget</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.489/quarto-1.4.489-linux-amd64.deb <span class="dt">\</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>    <span class="at">-O</span> quarto.deb</span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> quarto.deb</span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="ex">quarto</span> check install</span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="fu">rm</span> quarto.deb</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Ouvrez le fichier <code>dashboard/index.qmd</code> et inspectez le code. Pour récupérer les données nécessaires à la création du tableau de bord, on utilise un SGBD <em>serverless</em> : <code>DuckDB</code>. <code>DuckDB</code> nous permet de faire des requêtes <code>SQL</code> sur un fichier <code>.parquet</code> contenant des logs <em>parsés</em>. Ce fichier contient une ligne par prédiction, avec les variables <code>timestamp</code>, <code>text</code>, <code>prediction_1</code>, <code>proba_1</code>, <code>prediction_2</code> et <code>proba_2</code>.</p></li>
 <li><p>Pour visualiser le tableau de bord, entrez les commandes suivantes dans un <code>Terminal</code> depuis la racine du projet et cliquez sur le lien généré.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1"></a><span class="bu">cd</span> dashboard</span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="ex">quarto</span> preview index.qmd</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1"></a><span class="bu">cd</span> dashboard</span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="ex">quarto</span> preview index.qmd</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Pour l’instant le pourcentage de prédictions avec une probabilité supérieure à 0.8 ne correspond pas à la réalité. Modifiez la requête SQL permettant d’obtenir la variable <code>pct_predictions</code> pour afficher la bonne valeur.</p></li>
 </ol>
 <details>
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la réponse </b></font>
 </summary>
-<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>pct_predictions <span class="op">=</span> duckdb.sql(</span>
-<span id="cb34-2"><a href="#cb34-2"></a>    <span class="st">"""</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="st">    SELECT 100 * COUNT(*) / COUNT(*)</span></span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="st">    FROM data;</span></span>
-<span id="cb34-5"><a href="#cb34-5"></a><span class="st">    """</span></span>
-<span id="cb34-6"><a href="#cb34-6"></a>).fetchall()[<span class="dv">0</span>][<span class="dv">0</span>]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>pct_predictions <span class="op">=</span> duckdb.sql(</span>
+<span id="cb27-2"><a href="#cb27-2"></a>    <span class="st">"""</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="st">    SELECT 100 * COUNT(*) / COUNT(*)</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="st">    FROM data;</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a><span class="st">    """</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a>).fetchall()[<span class="dv">0</span>][<span class="dv">0</span>]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="5" type="1">
 <li>Les deux graphiques situés en bas du tableau de bord ne sont pas corrects non plus. Modifiez la requête SQL permettant d’obtenir la variable <code>daily_stats</code> pour afficher les bons graphiques.</li>
@@ -1806,24 +1520,342 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail email">'
 <summary>
 <font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la réponse </b></font>
 </summary>
-<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>daily_stats <span class="op">=</span> duckdb.sql(</span>
-<span id="cb35-2"><a href="#cb35-2"></a>    <span class="st">"""</span></span>
-<span id="cb35-3"><a href="#cb35-3"></a><span class="st">    SELECT</span></span>
-<span id="cb35-4"><a href="#cb35-4"></a><span class="st">        CAST(timestamp AS DATE) AS date,</span></span>
-<span id="cb35-5"><a href="#cb35-5"></a><span class="st">        COUNT(*) AS n_liasses,</span></span>
-<span id="cb35-6"><a href="#cb35-6"></a><span class="st">        (</span></span>
-<span id="cb35-7"><a href="#cb35-7"></a><span class="st">            COUNT(</span></span>
-<span id="cb35-8"><a href="#cb35-8"></a><span class="st">                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END</span></span>
-<span id="cb35-9"><a href="#cb35-9"></a><span class="st">            ) * 100.0 / COUNT(*)</span></span>
-<span id="cb35-10"><a href="#cb35-10"></a><span class="st">        ) AS pct_high_proba</span></span>
-<span id="cb35-11"><a href="#cb35-11"></a><span class="st">    FROM data</span></span>
-<span id="cb35-12"><a href="#cb35-12"></a><span class="st">    GROUP BY CAST(timestamp AS DATE);</span></span>
-<span id="cb35-13"><a href="#cb35-13"></a><span class="st">    """</span></span>
-<span id="cb35-14"><a href="#cb35-14"></a>).to_df()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>daily_stats <span class="op">=</span> duckdb.sql(</span>
+<span id="cb28-2"><a href="#cb28-2"></a>    <span class="st">"""</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="st">    SELECT</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="st">        CAST(timestamp AS DATE) AS date,</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="st">        COUNT(*) AS n_liasses,</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="st">        (</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a><span class="st">            COUNT(</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a><span class="st">                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END</span></span>
+<span id="cb28-9"><a href="#cb28-9"></a><span class="st">            ) * 100.0 / COUNT(*)</span></span>
+<span id="cb28-10"><a href="#cb28-10"></a><span class="st">        ) AS pct_high_proba</span></span>
+<span id="cb28-11"><a href="#cb28-11"></a><span class="st">    FROM data</span></span>
+<span id="cb28-12"><a href="#cb28-12"></a><span class="st">    GROUP BY CAST(timestamp AS DATE);</span></span>
+<span id="cb28-13"><a href="#cb28-13"></a><span class="st">    """</span></span>
+<span id="cb28-14"><a href="#cb28-14"></a>).to_df()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="6" type="1">
 <li>Constatez les changements apportés au tableau de bord.</li>
 </ol>
 </details>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="bilan-3" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Bilan</h2>
+<ul>
+<li class="fragment"><code>MLflow</code> est <span class="orange"><strong>polyvalent</strong></span>
+<ul>
+<li class="fragment">Utilisation dee <span class="blue2"><strong>frameworks custom</strong></span> (modulo une <span class="blue2"><strong>classe “interface”</strong></span>)</li>
+<li class="fragment"><span class="blue2"><strong>Industrialisation</strong></span> de l’entraînement (fichier <code>MLproject</code>)</li>
+<li class="fragment"><span class="blue2"><strong>Requêtage simple</strong></span> des modèles entraînés et stockés</li>
+</ul></li>
+<li class="fragment"><span class="orange"><strong>Limite</strong></span> : le modèle entraîné n’est pas <span class="blue2"><strong>accessible</strong></span>
+<ul>
+<li class="fragment">Requêtage simplifié… mais <span class="blue2"><strong>format non-pertinent</strong></span> pour tous les utilisateurs</li>
+<li class="fragment">Le modèle n’est <span class="blue2"><strong>pas déployé</strong></span></li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="distribuer-loptimisation-des-hyperparamètres" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1><span class="emoji" data-emoji="five">5️⃣</span> Distribuer l’optimisation des hyperparamètres</h1>
+
+</section>
+<section id="entraînement-distribué" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Entraînement distribué</h2>
+<ul>
+<li class="fragment">Avec notre configuration, nous pouvons entraîner des modèles <span class="orange"><strong>un par un</strong></span> et enregistrer toutes les informations pertinentes sur le serveur MLflow Tracking.</li>
+<li class="fragment">Et si nous voulions entraîner <span class="orange"><strong>plusieurs modèles en même temps</strong></span>, par exemple pour optimiser les hyperparamètres ?</li>
+</ul>
+</section>
+<section id="automatisation-du-workflow" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Automatisation du workflow</h2>
+<ul>
+<li class="fragment"><span class="orange"><strong>Principes généraux</strong></span> :
+<ul>
+<li class="fragment">Définir des workflows où chaque étape du processus est un <span class="blue2"><strong>conteneur</strong></span> (reproductibilité).</li>
+<li class="fragment">Modéliser les workflows à plusieurs étapes comme une <span class="blue2"><strong>séquence</strong></span> de tâches ou comme un <span class="blue2"><strong>graphe acyclique orienté</strong></span>.</li>
+<li class="fragment">Cela permet d’<span class="blue2"><strong>exécuter facilement en parallèle des tâches intensives</strong></span> en calcul pour l’entraînement du modèle ou le traitement des données.</li>
+</ul></li>
+</ul>
+</section>
+<section id="argo-workflows" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Argo workflows</h2>
+<ul>
+<li class="fragment">Un moteur de <span class="orange"><strong>workflow</strong></span> populaire pour orchestrer des tâches parallèles sur <code>Kubernetes</code>.
+<ul>
+<li class="fragment"><span class="blue2"><strong>Open-source</strong></span></li>
+<li class="fragment"><span class="blue2"><strong>Container-native</strong></span></li>
+<li class="fragment">Disponible sur le <span class="orange"><strong>SSP Cloud</strong></span></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/argo-logo.png" height="200"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="bonjour-le-monde" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Bonjour le monde</h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span><span class="co">                  # nouveau type de spécification k8s</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span><span class="co">    # nom de la spécification du workflow</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">          # invoque le modèle whalesay</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">            # nom du modèle</span></span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="at">      </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb29-10"><a href="#cb29-10"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
+<span id="cb29-11"><a href="#cb29-11"></a><span class="at">        </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
+<span id="cb29-12"><a href="#cb29-12"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"bonjour le monde"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="que-se-passe-t-il" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/argo-0.png" height="500"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="que-se-passe-t-il-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/argo-1a.png" height="500"></p>
+</figure>
+</div>
+</section>
+<section id="que-se-passe-t-il-2" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/argo-2a.png" height="500"></p>
+</figure>
+</div>
+</section>
+<section id="paramètres" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Paramètres</h2>
+<ul>
+<li class="fragment">Les modèles peuvent prendre des <span class="orange"><strong>paramètres d’entrée</strong></span></li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-parameters-</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb30-6"><a href="#cb30-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="at">  </span><span class="fu">arguments</span><span class="kw">:</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a><span class="at">    </span><span class="fu">parameters</span><span class="kw">:</span></span>
+<span id="cb30-9"><a href="#cb30-9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span></span>
+<span id="cb30-10"><a href="#cb30-10"></a><span class="at">      </span><span class="fu">value</span><span class="kw">:</span><span class="at"> bonjour le monde</span></span>
+<span id="cb30-11"><a href="#cb30-11"></a></span>
+<span id="cb30-12"><a href="#cb30-12"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb30-13"><a href="#cb30-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb30-14"><a href="#cb30-14"></a><span class="at">    </span><span class="fu">inputs</span><span class="kw">:</span></span>
+<span id="cb30-15"><a href="#cb30-15"></a><span class="at">      </span><span class="fu">parameters</span><span class="kw">:</span></span>
+<span id="cb30-16"><a href="#cb30-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> message</span><span class="co">       # déclaration du paramètre</span></span>
+<span id="cb30-17"><a href="#cb30-17"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb30-18"><a href="#cb30-18"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
+<span id="cb30-19"><a href="#cb30-19"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
+<span id="cb30-20"><a href="#cb30-20"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"{{inputs.parameters.message}}"</span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="workflows-à-plusieurs-étapes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Workflows à plusieurs étapes</h2>
+<ul>
+<li class="fragment">Les <span class="orange"><strong>workflows à plusieurs étapes</strong></span> peuvent être spécifiés (<code>steps</code> ou <code>dag</code>)</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> steps-</span></span>
+<span id="cb31-5"><a href="#cb31-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb31-6"><a href="#cb31-6"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
+<span id="cb31-7"><a href="#cb31-7"></a></span>
+<span id="cb31-8"><a href="#cb31-8"></a><span class="co">  # Cette spécification contient deux modèles : hello-hello-hello et whalesay</span></span>
+<span id="cb31-9"><a href="#cb31-9"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb31-10"><a href="#cb31-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello-hello-hello</span></span>
+<span id="cb31-11"><a href="#cb31-11"></a><span class="co">    # Au lieu d'exécuter uniquement un conteneur</span></span>
+<span id="cb31-12"><a href="#cb31-12"></a><span class="co">    # Ce modèle a une séquence d'étapes</span></span>
+<span id="cb31-13"><a href="#cb31-13"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb31-14"><a href="#cb31-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello1</span><span class="co">            # hello1 est exécuté avant les étapes suivantes</span></span>
+<span id="cb31-15"><a href="#cb31-15"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb31-16"><a href="#cb31-16"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2a</span><span class="co">           # double tiret =&gt; exécuté après l'étape précédente</span></span>
+<span id="cb31-17"><a href="#cb31-17"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb31-18"><a href="#cb31-18"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello2b</span><span class="co">           # tiret simple =&gt; exécuté en parallèle avec l'étape précédente</span></span>
+<span id="cb31-19"><a href="#cb31-19"></a><span class="at">        </span><span class="fu">template</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb31-20"><a href="#cb31-20"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span><span class="co">              # nom du modèle</span></span>
+<span id="cb31-21"><a href="#cb31-21"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb31-22"><a href="#cb31-22"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay</span></span>
+<span id="cb31-23"><a href="#cb31-23"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> cowsay </span><span class="kw">]</span></span>
+<span id="cb31-24"><a href="#cb31-24"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"bonjour le monde"</span><span class="at"> </span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="que-se-passe-t-il-3" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/argo-0.png" height="500"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="que-se-passe-t-il-4" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/argo-1b.png" height="500"></p>
+</figure>
+</div>
+</section>
+<section id="que-se-passe-t-il-5" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/argo-2b.png" height="500"></p>
+</figure>
+</div>
+</section>
+<section id="que-se-passe-t-il-6" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/argo-1b.png" height="500"></p>
+</figure>
+</div>
+</section>
+<section id="que-se-passe-t-il-7" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Que se passe-t-il ?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/argo-3b.png" height="500"></p>
+</figure>
+</div>
+</section>
+<section id="autres-applications" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Autres applications</h2>
+<ul>
+<li class="fragment">Workflow pour <span class="orange"><strong>tester</strong></span> des modèles enregistrés, ou des modèles poussés en pré-production / production.</li>
+<li class="fragment">Les workflows peuvent être <span class="orange"><strong>déclenchés</strong></span> automatiquement (via Argo Events, par exemple).</li>
+<li class="fragment">Workflows d’<span class="orange"><strong>entraînement continue</strong></span>.</li>
+<li class="fragment">Pipelines de <em>machine learning</em> <span class="orange"><strong>distribués</strong></span> en général (téléchargement de données, traitement, etc.).</li>
+</ul>
+</section>
+<section id="autres-applications-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Autres applications</h2>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/pokemon_workflow.png" height="450"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="notes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Notes</h2>
+<ul>
+<li class="fragment"><span class="orange"><strong>Python SDK</strong></span> pour Argo Workflows</li>
+<li class="fragment">Pipelines Kubeflow</li>
+<li class="fragment"><span class="orange"><strong>Couler</strong></span> : interface unifiée pour la construction et la gestion de workflows sur différents moteurs de workflows</li>
+<li class="fragment">Autres outils d’orchestration natifs de Python : <span class="orange"><strong>Apache Airflow</strong></span>, <span class="orange"><strong>Metaflow</strong></span>, <span class="orange"><strong>Prefect</strong></span></li>
+</ul>
+</section>
+<section id="application-5" class="slide level2 scrollable" data-background-image="background.svg" data-background-size="contain">
+<h2>Application 5</h2>
+<div>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Partie 1 : introduction à <code>Argo Workflows</code></strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li>Lancez un service <code>Argo Workflows</code> en cliquant sur <a href="https://datalab.sspcloud.fr/launcher/automation/argo-workflows?autoLaunch=true">cette URL</a>. Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier <code>README</code> du service).</li>
+<li>Dans <code>VSCode</code>, créez un fichier <code>hello_world.yaml</code> à la racine du projet avec le contenu suivant :</li>
+</ol>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>hello_world.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> argoproj.io/v1alpha1</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Workflow</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a><span class="at">  </span><span class="fu">generateName</span><span class="kw">:</span><span class="at"> hello-world-</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a><span class="at">  </span><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="cb32-6"><a href="#cb32-6"></a><span class="at">    </span><span class="fu">workflows.argoproj.io/archive-strategy</span><span class="kw">:</span><span class="at"> </span><span class="st">"false"</span></span>
+<span id="cb32-7"><a href="#cb32-7"></a><span class="at">  </span><span class="fu">annotations</span><span class="kw">:</span></span>
+<span id="cb32-8"><a href="#cb32-8"></a><span class="fu">    workflows.argoproj.io/description</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb32-9"><a href="#cb32-9"></a>      Ceci est un exemple simple de "Hello World".</span>
+<span id="cb32-10"><a href="#cb32-10"></a>      Vous pouvez également l'exécuter en Python : https://couler-proj.github.io/couler/examples/#hello-world</span>
+<span id="cb32-11"><a href="#cb32-11"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb32-12"><a href="#cb32-12"></a><span class="at">  </span><span class="fu">entrypoint</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb32-13"><a href="#cb32-13"></a><span class="at">  </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb32-14"><a href="#cb32-14"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> whalesay</span></span>
+<span id="cb32-15"><a href="#cb32-15"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb32-16"><a href="#cb32-16"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> docker/whalesay:latest</span></span>
+<span id="cb32-17"><a href="#cb32-17"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cowsay</span><span class="kw">]</span></span>
+<span id="cb32-18"><a href="#cb32-18"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"hello world"</span><span class="kw">]</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>Soumettez le workflow “Hello World” via un terminal dans <code>VSCode</code> :</li>
+</ol>
+<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb33-1"><a href="#cb33-1"></a>argo submit formation-mlops/hello_world.yaml</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Ouvrez l’interface utilisateur d’<code>Argo Workflows</code>. Trouvez les logs du workflow que vous venez de lancer. Vous devriez voir le logo Docker <i class="fab fa-docker" style="color: #18a8fe;"></i>.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="application-5-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Application 5</h2>
+<div>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Partie 2 : distriubtion de l’optimisation des hyperparamètres</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li>Jetez un coup d’œil au fichier <code>argo_workflows/workflow.yml</code>. Que pensez-vous qu’il se passera lorsque nous soumettrons ce flux de travail ?</li>
+<li>Modifiez la ligne surlignée de la même manière que dans l’application 3.</li>
+</ol>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>workflow.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb34" data-code-line-numbers="4"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">parameters</span><span class="kw">:</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="co">    # Le serveur de suivi MLflow est responsable de l'enregistrement des hyper-paramètres et des métriques du modèle.</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mlflow-tracking-uri</span></span>
+<span id="cb34-4"><a href="#cb34-4"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mlflow-experiment-name</span></span>
+<span id="cb34-6"><a href="#cb34-6"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> nace-prediction</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>Soumettez le flux de travail et observez les tâches s’exécuter en direct dans l’interface utilisateur.</li>
+</ol>
+<details>
+<summary>
+<font size="\&quot;3\&quot;" color="\&quot;darkgreen\&quot;"><b>Cliquez pour voir la commande </b></font>
+</summary>
+<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource shell number-lines code-with-copy"><code class="sourceCode"><span id="cb35-1"><a href="#cb35-1"></a>argo submit formation-mlops/argo_workflows/workflow.yml</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="4" type="1">
+<li>Une fois que toutes les tâches sont terminées, visualisez les logs de l’ensemble du flux de travail.</li>
+<li>Enfin, ouvrez l’interface utilisateur de <code>MLflow</code> pour vérifier ce qui a été fait.</li>
+</ol>
 </div>
 </div>
 </div>

@@ -53,7 +53,7 @@
     "href": "slides/fr/index.html#plan",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Plan",
-    "text": "Plan\n1️⃣ Introduction à MLFlow\n\n2️⃣ Un exemple concret: Prédiction du code APE pour les entreprises\n\n\n3️⃣ Déployer un modèle ML via une API\n\n\n4️⃣ Distribuer l’optimisation des hyperparamètres\n\n\n5️⃣ Maintenance d’un modèle en production"
+    "text": "Plan\n1️⃣ Introduction à MLFlow\n\n2️⃣ Un exemple concret: prédiction du code APE pour les entreprises\n\n\n3️⃣ Servir un modèle de ML à des utilisateurs\n\n\n4️⃣ Maintenance d’un modèle en production\n\n\n5️⃣ Distribuer l’optimisation des hyperparamètres"
   },
   {
     "objectID": "slides/fr/index.html#app0",
@@ -249,7 +249,98 @@
     "href": "slides/fr/index.html#application-3-3",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 3",
-    "text": "Application 3\n\n\n\nPartie 4 : requêter votre modèle déployé\n\n\n\n\nCréez un fichier predict_api.py. Ce script doit :\n\nLire le fichier parquet disponible à l’adresse suivante :\n\nhttps://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet\n\nEffectuer des requêtes à votre API pour chaque libellé présent dans le fichier parquet.\nAfficher le résultats des prédictions\n\n\n\n\nCliquez pour voir le contenu du script \n\n\n\npredict_api.py\n\nimport pandas as pd\nimport requests\n\n\n# Fonction pour effectuer la requête à l'API\ndef make_prediction(api_url: str, description: str):\n    params = {\"description\": description, \"nb_echoes_max\": 2}\n    response = requests.get(api_url, params=params)\n    return response.json()\n\n\n# URL des données\ndata_path = \"https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet\"\n\n# Charge le fichier Parquet dans un DataFrame pandas\ndf = pd.read_parquet(data_path)\n\n# Votre API URL\napi_url = \"https://&lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr/predict\"\n\n# Effectue les requêtes\nresponses = df[\"text\"].apply(lambda x: make_prediction(api_url, x))\n\n# Affiche le DataFrame avec les résultats des prédictions\nprint(pd.merge(df, pd.json_normalize(responses),\n               left_index=True,\n               right_index=True))\n\n\n\nExécutez votre script predict_api.py.\n\n\n\nCliquez pour voir la commande \n\npython formation-mlops/src/predict_api.py\n\n\nDans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par \"codification-api-...\". Observez les logs.\nQuelles informations détenez-vous ? Est-ce suffisant ?\n\n\n\n\n\n\n\n\nImportant\n\n\nNous avons ici réalisé une succession de requêtes GET car nous avons un seul point d’entrée vers notre API. Pour réaliser des requêtes en batch il est préférable de réaliser des requêtes POST."
+    "text": "Application 3\n\n\n\nPartie 4 : requêter votre modèle déployé\n\n\n\n\nCréez un fichier predict_api.py. Ce script doit :\n\nLire le fichier parquet disponible à l’adresse suivante :\n\nhttps://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet\n\nEffectuer des requêtes à votre API pour chaque libellé présent dans le fichier parquet.\nAfficher le résultats des prédictions\n\n\n\n\nCliquez pour voir le contenu du script \n\n\n\npredict_api.py\n\nimport pandas as pd\nimport requests\n\n\n# Fonction pour effectuer la requête à l'API\ndef make_prediction(api_url: str, description: str):\n    params = {\"description\": description, \"nb_echoes_max\": 2}\n    response = requests.get(api_url, params=params)\n    return response.json()\n\n\n# URL des données\ndata_path = \"https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet\"\n\n# Charge le fichier Parquet dans un DataFrame pandas\ndf = pd.read_parquet(data_path)\n\n# URL de l'API\napi_url = \"https://&lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr/predict\"\n\n# Effectue les requêtes\nresponses = df[\"text\"].apply(lambda x: make_prediction(api_url, x))\n\n# Affiche le DataFrame avec les résultats des prédictions\nprint(pd.merge(df, pd.json_normalize(responses),\n               left_index=True,\n               right_index=True))\n\n\n\nExécutez votre script predict_api.py.\n\n\n\nCliquez pour voir la commande \n\npython formation-mlops/src/predict_api.py\n\n\nDans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par \"codification-api-...\". Observez les logs.\nQuelles informations détenez-vous ? Est-ce suffisant ?\n\n\n\n\n\n\n\n\nImportant\n\n\nNous avons ici réalisé une succession de requêtes GET car nous avons un seul point d’entrée vers notre API. Pour réaliser des requêtes en batch il est préférable de réaliser des requêtes POST."
+  },
+  {
+    "objectID": "slides/fr/index.html#bilan-2",
+    "href": "slides/fr/index.html#bilan-2",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Bilan",
+    "text": "Bilan\n\nMLflow est polyvalent\n\nUtilisation dee frameworks custom (modulo une classe “interface”)\nIndustrialisation de l’entraînement (fichier MLproject)\nRequêtage simple des modèles entraînés et stockés\n\nLimite : le modèle entraîné n’est pas accessible\n\nRequêtage simplifié… mais format non-pertinent pour tous les utilisateurs\nLe modèle n’est pas déployé"
+  },
+  {
+    "objectID": "slides/fr/index.html#cycle-de-vie-dun-modèle-ml-en-production",
+    "href": "slides/fr/index.html#cycle-de-vie-dun-modèle-ml-en-production",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Cycle de vie d’un modèle ML en production",
+    "text": "Cycle de vie d’un modèle ML en production\n\nSource: martinfowler.com"
+  },
+  {
+    "objectID": "slides/fr/index.html#le-défi-de-la-responsabilité",
+    "href": "slides/fr/index.html#le-défi-de-la-responsabilité",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Le défi de la responsabilité",
+    "text": "Le défi de la responsabilité\n\n\nLe cycle de vie d’un modèle ML est complexe\nPlusieurs parties prenantes impliquées :\n\nData scientist\nIT/DevOps\nEquipes métiers\n\nExpertises et vocabulaire différents entre ces parties prenantes\n\n➡️ Communication essentielle entre les équipes pour contrôler le modèle en production"
+  },
+  {
+    "objectID": "slides/fr/index.html#pourquoi-surveiller-un-modèle-en-production",
+    "href": "slides/fr/index.html#pourquoi-surveiller-un-modèle-en-production",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Pourquoi surveiller un modèle en production ?",
+    "text": "Pourquoi surveiller un modèle en production ?\n\n\nDétecter des données biaisées : adéquation entre les données de production et données d’entrainement\nAnticiper une instabilité du modèle : performance du modèle stable au fil du temps\nAméliorer de manière continue le modèle : ré-entrainements réguliers\n\n⚠️ Le mot surveillance d’une application/modèle a des définitions différentes en fonction de l’équipe où l’on se trouve."
+  },
+  {
+    "objectID": "slides/fr/index.html#surveillance-selon-linformaticien",
+    "href": "slides/fr/index.html#surveillance-selon-linformaticien",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Surveillance selon l’informaticien",
+    "text": "Surveillance selon l’informaticien\n\n\nSurveiller une application est partie intégrante de l’approche DevOps\nContrôle technique du modèle :\n\nLatence\nMémoire\nUtilisation disque\n…"
+  },
+  {
+    "objectID": "slides/fr/index.html#surveillance-selon-le-data-scientist",
+    "href": "slides/fr/index.html#surveillance-selon-le-data-scientist",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Surveillance selon le data scientist",
+    "text": "Surveillance selon le data scientist\n\n\nSurveiller un modèle ML est partie intégrante de l’approche MLOps\nContrôle méthodologique du modèle\nPerformance en temps réel du modèle souvent impossible, utilisation de proxys :\n\nData drift : la distribution des données d’entrée change dans le temps\nConcept drift : la relation modélisée change dans le temps"
+  },
+  {
+    "objectID": "slides/fr/index.html#comment-surveiller-un-modèle-en-production",
+    "href": "slides/fr/index.html#comment-surveiller-un-modèle-en-production",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Comment surveiller un modèle en production ?",
+    "text": "Comment surveiller un modèle en production ?\n\n\nIntégration de logs dans l’API\nRécupération et mise en forme des logs\nSuivi de métriques de ML\nMise en place d’un système d’alertes"
+  },
+  {
+    "objectID": "slides/fr/index.html#application-4",
+    "href": "slides/fr/index.html#application-4",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Application 4",
+    "text": "Application 4\n\n\n\n\nPartie 1 : Logger des métriques métier\n\n\n\nGrâce au package logging, rajoutez des logs à votre API. Pour chaque requête, affichez le libellé à coder ainsi que les réponses renvoyées par votre API. Pour cela, modifiez le fichier app/main.py.\n\n\n\nCliquez pour voir les étapes à réaliser \n\n\nImportez le package logging :\n\n\n\nmain.py\n\nimport logging\n\n\nDéfinissez la configuration de vos logs avant la définition de votre premier point d’entrée :\n\n\n\nmain.py\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s - %(levelname)s - %(message)s\",\n    handlers=[\n        logging.FileHandler(\"log_file.log\"),\n        logging.StreamHandler(),\n    ],\n)\n\n\nAjoutez une le libellé et la réponse de l’API dans vos logs :\n\n\n\nmain.py\n\n# Logging\nlogging.info(f\"{{'Query': {description}, 'Response': {predictions[0]}}}\")\n\n\n\nFaites un commit de vos changements et poussez les sur votre dépôt distant.\nDès lors que vous réalisez un changement sur votre API, il est nécessaire de la redéployer pour que les changements soient effectifs. En théorie, il serait nécessaire de re-construire une nouvelle image pour notre API contenant les derniers ajustements. Pour simplifier, nous avons déjà construit les deux images avec et sans logs dans l’API. Jusqu’à présent vous avez utilisé l’image sans logs, redéployez votre API en utilisant l’image avec les logs dont le tag est logs.\n\n\n\nCliquez pour voir les étapes à réaliser \n\n\nDans le fichier kubernetes/deployment.yml, remplacer le tag no-logs par le tag logs :\n\n\n\ndeployment.yml\n\ntemplate:\n  metadata:\n    labels:\n      app: codification-api\n  spec:\n    containers:\n      - name: api\n        image: inseefrlab/formation-mlops:logs\n        imagePullPolicy: Always\n\n\nFaites un commit de vos changements et poussez les sur votre dépôt distant.\nPatientez 5 minutes qu’ArgoCD synchronise automatiquement les changements depuis votre dépôt Github ou bien forcez la synchronisation.\n\n\n\nExécutez votre script predict-api.py.\n\n\n\nCliquez pour voir la commande \n\npython formation-mlops/src/predict-api.py\n\n\nDans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par \"codification-api-...\". Observez les logs."
+  },
+  {
+    "objectID": "slides/fr/index.html#observabilité-du-modèle-grâce-à-un-tableau-de-bord",
+    "href": "slides/fr/index.html#observabilité-du-modèle-grâce-à-un-tableau-de-bord",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Observabilité du modèle grâce à un tableau de bord",
+    "text": "Observabilité du modèle grâce à un tableau de bord\n\nLes logs de l’API contiennent maintenant des informations métier\nPour le traitement/stockage des logs : pipeline ETL\nPour analyser le comportement du moteur de codification : création d’un tableau de bord\nSolutions multiples pour le tableau de bord : Grafana, Quarto Dashboards, Apache Superset, …"
+  },
+  {
+    "objectID": "slides/fr/index.html#un-exemple-de-stack",
+    "href": "slides/fr/index.html#un-exemple-de-stack",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Un exemple de stack",
+    "text": "Un exemple de stack\n\nETL sous forme d’un cron job qui parse les logs et les stocke au format .parquet\nUtilisation de DuckDB pour requêter les fichiers .parquet\n… et créer les composants d’un Quarto Dashboards\nLe tableau de bord est un site statique à actualiser tous les jours par exemple"
+  },
+  {
+    "objectID": "slides/fr/index.html#un-exemple-de-stack-1",
+    "href": "slides/fr/index.html#un-exemple-de-stack-1",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Un exemple de stack",
+    "text": "Un exemple de stack"
+  },
+  {
+    "objectID": "slides/fr/index.html#application-4-1",
+    "href": "slides/fr/index.html#application-4-1",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Application 4",
+    "text": "Application 4\n\n\n\nPartie 2 : Création d’un tableau de bord de monitoring\n\n\n\n\nNous allons utiliser Quarto Dashboards qui fera partie de la version 1.4 de Quarto. Téléchargez et installez la pre-release.\nwget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.489/quarto-1.4.489-linux-amd64.deb \\\n    -O quarto.deb\nsudo dpkg -i quarto.deb\nquarto check install\nrm quarto.deb\nOuvrez le fichier dashboard/index.qmd et inspectez le code. Pour récupérer les données nécessaires à la création du tableau de bord, on utilise un SGBD serverless : DuckDB. DuckDB nous permet de faire des requêtes SQL sur un fichier .parquet contenant des logs parsés. Ce fichier contient une ligne par prédiction, avec les variables timestamp, text, prediction_1, proba_1, prediction_2 et proba_2.\nPour visualiser le tableau de bord, entrez les commandes suivantes dans un Terminal depuis la racine du projet et cliquez sur le lien généré.\ncd dashboard\nquarto preview index.qmd\nPour l’instant le pourcentage de prédictions avec une probabilité supérieure à 0.8 ne correspond pas à la réalité. Modifiez la requête SQL permettant d’obtenir la variable pct_predictions pour afficher la bonne valeur.\n\n\n\nCliquez pour voir la réponse \n\npct_predictions = duckdb.sql(\n    \"\"\"\n    SELECT 100 * COUNT(*) / COUNT(*)\n    FROM data;\n    \"\"\"\n).fetchall()[0][0]\n\n\nLes deux graphiques situés en bas du tableau de bord ne sont pas corrects non plus. Modifiez la requête SQL permettant d’obtenir la variable daily_stats pour afficher les bons graphiques.\n\n\n\nCliquez pour voir la réponse \n\ndaily_stats = duckdb.sql(\n    \"\"\"\n    SELECT\n        CAST(timestamp AS DATE) AS date,\n        COUNT(*) AS n_liasses,\n        (\n            COUNT(\n                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END\n            ) * 100.0 / COUNT(*)\n        ) AS pct_high_proba\n    FROM data\n    GROUP BY CAST(timestamp AS DATE);\n    \"\"\"\n).to_df()\n\nConstatez les changements apportés au tableau de bord."
+  },
+  {
+    "objectID": "slides/fr/index.html#bilan-3",
+    "href": "slides/fr/index.html#bilan-3",
+    "title": "Une introduction au MLOps avec MLflow",
+    "section": "Bilan",
+    "text": "Bilan\n\nMLflow est polyvalent\n\nUtilisation dee frameworks custom (modulo une classe “interface”)\nIndustrialisation de l’entraînement (fichier MLproject)\nRequêtage simple des modèles entraînés et stockés\n\nLimite : le modèle entraîné n’est pas accessible\n\nRequêtage simplifié… mais format non-pertinent pour tous les utilisateurs\nLe modèle n’est pas déployé"
   },
   {
     "objectID": "slides/fr/index.html#entraînement-distribué",
@@ -371,95 +462,18 @@
     "text": "Notes\n\nPython SDK pour Argo Workflows\nPipelines Kubeflow\nCouler : interface unifiée pour la construction et la gestion de workflows sur différents moteurs de workflows\nAutres outils d’orchestration natifs de Python : Apache Airflow, Metaflow, Prefect"
   },
   {
-    "objectID": "slides/fr/index.html#application-4",
-    "href": "slides/fr/index.html#application-4",
-    "title": "Une introduction au MLOps avec MLflow",
-    "section": "Application 4",
-    "text": "Application 4\n\n\n\n\nPartie 1 : introduction à Argo Workflows\n\n\n\nLancez un service Argo Workflows en cliquant sur cette URL. Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier README du service).\nDans VSCode, créez un fichier hello_world.yaml à la racine du projet avec le contenu suivant :\n\n\n\nhello_world.yml\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: hello-world-\n  labels:\n    workflows.argoproj.io/archive-strategy: \"false\"\n  annotations:\n    workflows.argoproj.io/description: |\n      Ceci est un exemple simple de \"Hello World\".\n      Vous pouvez également l'exécuter en Python : https://couler-proj.github.io/couler/examples/#hello-world\nspec:\n  entrypoint: whalesay\n  templates:\n  - name: whalesay\n    container:\n      image: docker/whalesay:latest\n      command: [cowsay]\n      args: [\"hello world\"]\n\n\nSoumettez le workflow “Hello World” via un terminal dans VSCode :\n\nargo submit formation-mlops/hello_world.yaml\n\nOuvrez l’interface utilisateur d’Argo Workflows. Trouvez les logs du workflow que vous venez de lancer. Vous devriez voir le logo Docker ."
-  },
-  {
-    "objectID": "slides/fr/index.html#application-4-1",
-    "href": "slides/fr/index.html#application-4-1",
-    "title": "Une introduction au MLOps avec MLflow",
-    "section": "Application 4",
-    "text": "Application 4\n\n\n\n\nPartie 2 : décentralisation de l’optimisation des hyperparamètres\n\n\n\nJetez un coup d’œil au fichier argo_workflows/workflow.yml. Que pensez-vous qu’il se passera lorsque nous soumettrons ce flux de travail ?\nModifiez la ligne surlignée de la même manière que dans l’application 3.\n\n\n\nworkflow.yml\n\nparameters:\n    # Le serveur de suivi MLflow est responsable de l'enregistrement des hyper-paramètres et des métriques du modèle.\n    - name: mlflow-tracking-uri\n    value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: mlflow-experiment-name\n    value: nace-prediction\n\n\nSoumettez le flux de travail et observez les tâches s’exécuter en direct dans l’interface utilisateur.\n\n\n\nCliquez pour voir la commande \n\nargo submit formation-mlops/argo_workflows/workflow.yml\n\n\nUne fois que toutes les tâches sont terminées, visualisez les logs de l’ensemble du flux de travail.\nEnfin, ouvrez l’interface utilisateur de MLflow pour vérifier ce qui a été fait."
-  },
-  {
-    "objectID": "slides/fr/index.html#cycle-de-vie-dun-modèle-ml-en-production",
-    "href": "slides/fr/index.html#cycle-de-vie-dun-modèle-ml-en-production",
-    "title": "Une introduction au MLOps avec MLflow",
-    "section": "Cycle de vie d’un modèle ML en production",
-    "text": "Cycle de vie d’un modèle ML en production\n\nSource: martinfowler.com"
-  },
-  {
-    "objectID": "slides/fr/index.html#le-défi-de-la-responsabilité",
-    "href": "slides/fr/index.html#le-défi-de-la-responsabilité",
-    "title": "Une introduction au MLOps avec MLflow",
-    "section": "Le défi de la responsabilité",
-    "text": "Le défi de la responsabilité\n\n\nLe cycle de vie d’un modèle ML est complexe\nPlusieurs parties prenantes impliquées :\n\nData scientist\nIT/DevOps\nEquipes métiers\n\nExpertises et vocabulaire différents entre ces parties prenantes\n\n➡️ Communication essentielle entre les équipes pour contrôler le modèle en production"
-  },
-  {
-    "objectID": "slides/fr/index.html#pourquoi-surveiller-un-modèle-en-production",
-    "href": "slides/fr/index.html#pourquoi-surveiller-un-modèle-en-production",
-    "title": "Une introduction au MLOps avec MLflow",
-    "section": "Pourquoi surveiller un modèle en production ?",
-    "text": "Pourquoi surveiller un modèle en production ?\n\n\nDétecter des données biaisées : adéquation entre les données de production et données d’entrainement\nAnticiper une instabilité du modèle : performance du modèle stable au fil du temps\nAméliorer de manière continue le modèle : ré-entrainements réguliers\n\n⚠️ Le mot surveillance d’une application/modèle a des définitions différentes en fonction de l’équipe où l’on se trouve."
-  },
-  {
-    "objectID": "slides/fr/index.html#surveillance-selon-linformaticien",
-    "href": "slides/fr/index.html#surveillance-selon-linformaticien",
-    "title": "Une introduction au MLOps avec MLflow",
-    "section": "Surveillance selon l’informaticien",
-    "text": "Surveillance selon l’informaticien\n\n\nSurveiller une application est partie intégrante de l’approche DevOps\nContrôle technique du modèle :\n\nLatence\nMémoire\nUtilisation disque\n…"
-  },
-  {
-    "objectID": "slides/fr/index.html#surveillance-selon-le-data-scientist",
-    "href": "slides/fr/index.html#surveillance-selon-le-data-scientist",
-    "title": "Une introduction au MLOps avec MLflow",
-    "section": "Surveillance selon le data scientist",
-    "text": "Surveillance selon le data scientist\n\n\nSurveiller un modèle ML est partie intégrante de l’approche MLOps\nContrôle méthodologique du modèle\nPerformance en temps réel du modèle souvent impossible, utilisation de proxys :\n\nData drift : la distribution des données d’entrée change dans le temps\nConcept drift : la relation modélisée change dans le temps"
-  },
-  {
-    "objectID": "slides/fr/index.html#comment-surveiller-un-modèle-en-production",
-    "href": "slides/fr/index.html#comment-surveiller-un-modèle-en-production",
-    "title": "Une introduction au MLOps avec MLflow",
-    "section": "Comment surveiller un modèle en production ?",
-    "text": "Comment surveiller un modèle en production ?\n\n\nIntégration de logs dans l’API\nRécupération et mise en forme des logs\nSuivi de métriques de ML\nMise en place d’un système d’alertes"
-  },
-  {
     "objectID": "slides/fr/index.html#application-5",
     "href": "slides/fr/index.html#application-5",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 5",
-    "text": "Application 5\n\n\n\n\nPartie 1 : Logger des métriques métier\n\n\n\nGrâce au package logging, rajoutez des logs à votre API. Pour chaque requête, affichez le libellé à coder ainsi que les réponses renvoyées par votre API. Pour cela, modifiez le fichier app/main.py.\n\n\n\nCliquez pour voir les étapes à réaliser \n\n\nImportez le package logging :\n\n\n\nmain.py\n\nimport logging\n\n\nDéfinissez la configuration de vos logs avant la définition de votre premier point d’entrée :\n\n\n\nmain.py\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s - %(levelname)s - %(message)s\",\n    handlers=[\n        logging.FileHandler(\"log_file.log\"),\n        logging.StreamHandler(),\n    ],\n)\n\n\nAjoutez une le libellé et la réponse de l’API dans vos logs :\n\n\n\nmain.py\n\n# Logging\nlogging.info(f\"{{'Query': {description}, 'Response': {predictions[0]}}}\")\n\n\n\nFaites un commit de vos changements et poussez les sur votre dépôt distant.\nDès lors que vous réalisez un changement sur votre API, il est nécessaire de la redéployer pour que les changements soient effectifs. En théorie, il serait nécessaire de re-construire une nouvelle image pour notre API contenant les derniers ajustements. Pour simplifier, nous avons déjà construit les deux images avec et sans logs dans l’API. Jusqu’à présent vous avez utilisé l’image sans logs, redéployez votre API en utilisant l’image avec les logs dont le tag est logs.\n\n\n\nCliquez pour voir les étapes à réaliser \n\n\nDans le fichier kubernetes/deployment.yml, remplacer le tag no-logs par le tag logs :\n\n\n\ndeployment.yml\n\ntemplate:\n  metadata:\n    labels:\n      app: codification-api\n  spec:\n    containers:\n      - name: api\n        image: inseefrlab/formation-mlops:logs\n        imagePullPolicy: Always\n\n\nFaites un commit de vos changements et poussez les sur votre dépôt distant.\nPatientez 5 minutes qu’ArgoCD synchronise automatiquement les changements depuis votre dépôt Github ou bien forcez la synchronisation.\n\n\n\nExécutez votre script predict-api.py.\n\n\n\nCliquez pour voir la commande \n\npython formation-mlops/src/predict-api.py\n\n\nDans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par \"codification-api-...\". Observez les logs."
-  },
-  {
-    "objectID": "slides/fr/index.html#observabilité-du-modèle-grâce-à-un-tableau-de-bord",
-    "href": "slides/fr/index.html#observabilité-du-modèle-grâce-à-un-tableau-de-bord",
-    "title": "Une introduction au MLOps avec MLflow",
-    "section": "Observabilité du modèle grâce à un tableau de bord",
-    "text": "Observabilité du modèle grâce à un tableau de bord\n\nLes logs de l’API contiennent maintenant des informations métier\nPour le traitement/stockage des logs : pipeline ETL\nPour analyser le comportement du moteur de codification : création d’un tableau de bord\nSolutions multiples pour le tableau de bord : Grafana, Quarto Dashboards, Apache Superset, …"
-  },
-  {
-    "objectID": "slides/fr/index.html#un-exemple-de-stack",
-    "href": "slides/fr/index.html#un-exemple-de-stack",
-    "title": "Une introduction au MLOps avec MLflow",
-    "section": "Un exemple de stack",
-    "text": "Un exemple de stack\n\nETL sous forme d’un cron job qui parse les logs et les stocke au format .parquet\nUtilisation de DuckDB pour requêter les fichiers .parquet\n… et créer les composants d’un Quarto Dashboards\nLe tableau de bord est un site statique à actualiser tous les jours par exemple"
-  },
-  {
-    "objectID": "slides/fr/index.html#un-exemple-de-stack-1",
-    "href": "slides/fr/index.html#un-exemple-de-stack-1",
-    "title": "Une introduction au MLOps avec MLflow",
-    "section": "Un exemple de stack",
-    "text": "Un exemple de stack"
+    "text": "Application 5\n\n\n\n\nPartie 1 : introduction à Argo Workflows\n\n\n\nLancez un service Argo Workflows en cliquant sur cette URL. Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier README du service).\nDans VSCode, créez un fichier hello_world.yaml à la racine du projet avec le contenu suivant :\n\n\n\nhello_world.yml\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: hello-world-\n  labels:\n    workflows.argoproj.io/archive-strategy: \"false\"\n  annotations:\n    workflows.argoproj.io/description: |\n      Ceci est un exemple simple de \"Hello World\".\n      Vous pouvez également l'exécuter en Python : https://couler-proj.github.io/couler/examples/#hello-world\nspec:\n  entrypoint: whalesay\n  templates:\n  - name: whalesay\n    container:\n      image: docker/whalesay:latest\n      command: [cowsay]\n      args: [\"hello world\"]\n\n\nSoumettez le workflow “Hello World” via un terminal dans VSCode :\n\nargo submit formation-mlops/hello_world.yaml\n\nOuvrez l’interface utilisateur d’Argo Workflows. Trouvez les logs du workflow que vous venez de lancer. Vous devriez voir le logo Docker ."
   },
   {
     "objectID": "slides/fr/index.html#application-5-1",
     "href": "slides/fr/index.html#application-5-1",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 5",
-    "text": "Application 5\n\n\n\nPartie 2 : Création d’un tableau de bord de monitoring\n\n\n\n\nNous allons utiliser Quarto Dashboards qui fera partie de la version 1.4 de Quarto. Téléchargez et installez la pre-release.\nwget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.489/quarto-1.4.489-linux-amd64.deb \\\n    -O quarto.deb\nsudo dpkg -i quarto.deb\nquarto check install\nrm quarto.deb\nOuvrez le fichier dashboard/index.qmd et inspectez le code. Pour récupérer les données nécessaires à la création du tableau de bord, on utilise un SGBD serverless : DuckDB. DuckDB nous permet de faire des requêtes SQL sur un fichier .parquet contenant des logs parsés. Ce fichier contient une ligne par prédiction, avec les variables timestamp, text, prediction_1, proba_1, prediction_2 et proba_2.\nPour visualiser le tableau de bord, entrez les commandes suivantes dans un Terminal depuis la racine du projet et cliquez sur le lien généré.\ncd dashboard\nquarto preview index.qmd\nPour l’instant le pourcentage de prédictions avec une probabilité supérieure à 0.8 ne correspond pas à la réalité. Modifiez la requête SQL permettant d’obtenir la variable pct_predictions pour afficher la bonne valeur.\n\n\n\nCliquez pour voir la réponse \n\npct_predictions = duckdb.sql(\n    \"\"\"\n    SELECT 100 * COUNT(*) / COUNT(*)\n    FROM data;\n    \"\"\"\n).fetchall()[0][0]\n\n\nLes deux graphiques situés en bas du tableau de bord ne sont pas corrects non plus. Modifiez la requête SQL permettant d’obtenir la variable daily_stats pour afficher les bons graphiques.\n\n\n\nCliquez pour voir la réponse \n\ndaily_stats = duckdb.sql(\n    \"\"\"\n    SELECT\n        CAST(timestamp AS DATE) AS date,\n        COUNT(*) AS n_liasses,\n        (\n            COUNT(\n                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END\n            ) * 100.0 / COUNT(*)\n        ) AS pct_high_proba\n    FROM data\n    GROUP BY CAST(timestamp AS DATE);\n    \"\"\"\n).to_df()\n\nConstatez les changements apportés au tableau de bord."
+    "text": "Application 5\n\n\n\n\nPartie 2 : distriubtion de l’optimisation des hyperparamètres\n\n\n\nJetez un coup d’œil au fichier argo_workflows/workflow.yml. Que pensez-vous qu’il se passera lorsque nous soumettrons ce flux de travail ?\nModifiez la ligne surlignée de la même manière que dans l’application 3.\n\n\n\nworkflow.yml\n\nparameters:\n    # Le serveur de suivi MLflow est responsable de l'enregistrement des hyper-paramètres et des métriques du modèle.\n    - name: mlflow-tracking-uri\n    value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: mlflow-experiment-name\n    value: nace-prediction\n\n\nSoumettez le flux de travail et observez les tâches s’exécuter en direct dans l’interface utilisateur.\n\n\n\nCliquez pour voir la commande \n\nargo submit formation-mlops/argo_workflows/workflow.yml\n\n\nUne fois que toutes les tâches sont terminées, visualisez les logs de l’ensemble du flux de travail.\nEnfin, ouvrez l’interface utilisateur de MLflow pour vérifier ce qui a été fait."
   },
   {
     "objectID": "slides/fr/index.html#lopportunité-dorganisations-plus-continues",
