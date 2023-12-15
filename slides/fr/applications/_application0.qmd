@@ -8,8 +8,8 @@
 :::::{.nonincremental}
 1. Créez un compte sur le [SSP Cloud](https://datalab.sspcloud.fr/home) en utilisant votre adresse e-mail professionnelle.
 2. Lancez un service `MLflow` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/automation/mlflow?autoLaunch=true).
-3. Lancez un service `VSCode-python` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh%C2%BB).
-4. Ouvrez le service `VSCode-python` et saisissez le mot de passe du service.
+3. Lancez un service `vscode-python` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»&networking.user.enabled=true).
+4. Ouvrez le service `vscode-python` et saisissez le mot de passe du service.
 5. Vous êtes prêt !
 :::::
 ::::

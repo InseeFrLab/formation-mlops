@@ -355,12 +355,12 @@ ojs_define(data_raw = df, data_prepro = df_prepro)
 
 # :three: Servir un modèle de ML à des utilisateurs
 
-## Mise en service du modèle
+## Questions essentielles
 
 - Une fois qu'un modèle de machine learning a été développé, il doit [**servir**]{.orange} ses utilisateurs finaux.
   - Quel [**format pertinent**]{.blue2} pour rendre accessible aux [**utilisateurs finaux**]{.blue2} ?
   - [**Traitement par lots**]{.blue2} (*batch*) par rapport au [**traitement en ligne**]{.blue2} (*online*)
-  - Quelle infrastructure pour le de [**déploiement**]{.blue2} ?
+  - Quelle infrastructure pour le [**déploiement**]{.blue2} ?
 
 ## Configuration envisagée
 
@@ -380,7 +380,7 @@ ojs_define(data_raw = df, data_prepro = df_prepro)
 
 - [**Simplicité**]{.orange} : porte d'entrée unique qui cache la complexité sous-jacente du modèle
 
-- [**Standardisation**]{.orange} : requêtes HTTP, agnostiques au langage de programmation utilisé
+- [**Standardisation**]{.orange} : requêtes HTTP -> agnostique au langage de programmation utilisé
 
 - [**Passage à l'échelle**]{.orange} : adaptation à la charge de requêtes concurrentes
 
@@ -392,9 +392,13 @@ ojs_define(data_raw = df, data_prepro = df_prepro)
 
 ## Exécuter une API dans un conteneur
 
-- [**Conteneur**]{.orange} : environnement [**autonome**]{.blue2} et [**isolé**]{.blue2} qui encapsule le modèle, ses dépendances et le code de l'API
+- [**Conteneur**]{.orange} : environnement [**autonome**]{.blue2} et [**isolé**]{.blue2} qui encapsule le modèle, l'API et leurs dépendances
 
-- [**Avantages**]{.orange} :  [**portabilité**]{.orange} et [**scalabilité**]{.orange} pour distribuer le modèle de manière efficace
+- [**Avantages**]{.orange} :  
+  - [**Portabilité**]{.blue2}
+  - [**Scalabilité**]{.blue2} pour distribuer le modèle de manière efficace
+
+- [**Pré-requis technique**]{.orange} pour déployer sur `Kubernetes`
 
 ## Déploiement d'une API sur `Kubernetes`
 

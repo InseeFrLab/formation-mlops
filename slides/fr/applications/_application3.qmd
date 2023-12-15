@@ -10,7 +10,7 @@
 ```shell
 export MLFLOW_MODEL_NAME="fasttext"
 export MLFLOW_MODEL_VERSION=1
-uvicorn app.main:app
+uvicorn app.main:app --root-path /proxy/8000
 ```
 
 3. Ouvrez la page de l'API à l'aide du bouton proposé par `VSCode`.
