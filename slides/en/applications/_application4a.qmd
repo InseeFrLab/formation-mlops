@@ -1,9 +1,86 @@
-:::{.callout-tip collapse="true" icon=false}
-## Introduction to MLflow concepts
 
-:::{.incremental}
-1. In `JupyterLab`, open the notebook located at `formation-mlops/notebooks/mlflow-introduction.ipynb`
-2. Execute the notebook cell by cell. If you are finished early, explore the `MLflow` UI and try to build your own experiments from the example code provided in the notebook.
+:::{.nonincremental}
+:::: {.callout-tip collapse="true" icon=false}
+## Part 1: Logging business metrics
+
+1. Using the [logging](https://docs.python.org/3/library/logging.html) package, add logs to your API. For each request, display the label to be coded as well as the responses returned by your API. To do this, modify the `app/main.py` file.
+
+<details> 
+<summary>
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the steps to complete </b></font> 
+</summary>
+
+1. Import the logging package:
+
+```{.python filename="main.py"}
+import logging
+```
+
+2. Set up your logging configuration before defining your first entry point:
+
+```{.python filename="main.py"}
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("log_file.log"),
+        logging.StreamHandler(),
+    ],
+)
+```
+
+3. Add the label and the API response to your logs:
+
+```{.python filename="main.py"}
+# Logging
+logging.info(f"{{'Query': {description}, 'Response': {predictions[0]}}}")
+```
+
+</details>
+
+2. Commit your changes and push them to your remote repository.
+
+3. Whenever you make a change to your API, it needs to be redeployed for the changes to take effect. In theory, it would be necessary to rebuild a new image for our API containing the latest adjustments. To simplify, we have already built the two images with and without logs in the API. Until now you have used the image without logs, redeploy your API using the image with logs tagged as `logs`.
+
+<details> 
+<summary> 
+    <font size="3" color="darkgreen"><b>Click to see the steps to complete </b></font> 
+</summary>
+
+1. In the `kubernetes/deployment.yml` file, replace the `no-logs` tag with the `logs` tag:
+
+---{yaml code-line-numbers="8" filename="deployment.yml"}
+template:
+  metadata:
+    labels:
+      app: codification-api
+  spec:
+    containers:
+      - name: api
+        image: inseefrlab/formation-mlops:logs
+        imagePullPolicy: Always
+---
+
+2. Commit your changes and push them to your remote repository.
+
+3. Wait 5 minutes for `ArgoCD` to automatically synchronize the changes from your Github repository or force synchronization.
+
+</details>
+
+4. Run your `predict-api.py` script.
+
+<details> 
+<summary> 
+    <font size="3" color="darkgreen"><b>Click to see the command </b></font> 
+</summary>
+
+```shell
+python formation-mlops/src/predict-api.py
+```
+</details>
+
+5. In ArgoCD, open your application and click on your pod that should start with `"codification-api-..."`. Observe the logs.
+
+::::
 :::
 
-:::

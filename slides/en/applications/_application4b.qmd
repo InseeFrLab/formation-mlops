@@ -1,9 +1,63 @@
 :::{.callout-tip collapse="true" icon=false}
-## Introduction to MLflow concepts
+## Part 2: Creating a monitoring dashboard
 
-:::{.incremental}
-1. In `JupyterLab`, open the notebook located at `formation-mlops/notebooks/mlflow-introduction.ipynb`
-2. Execute the notebook cell by cell. If you are finished early, explore the `MLflow` UI and try to build your own experiments from the example code provided in the notebook.
+:::::{.nonincremental}
+
+1. We will use [`Quarto Dashboards`](https://quarto.org/docs/dashboards/). Open the `dashboard/index.qmd` file and inspect the code. To retrieve the data needed to create the dashboard, we use a *serverless* DBMS: `DuckDB`. `DuckDB` allows us to run `SQL` queries on a `.parquet` file containing parsed logs. This file contains one row per prediction, with the variables `timestamp`, `text`, `prediction_1`, `proba_1`, `prediction_2`, and `proba_2`.
+
+2. To visualize the dashboard, enter the following commands in a `Terminal` from the project root and click on the generated link.
+
+    ```sh
+    cd dashboard
+    quarto preview index.qmd
+    ```
+
+3. Currently, the percentage of predictions with a probability greater than 0.8 does not correspond to reality. Modify the SQL query to obtain the `pct_predictions` variable to display the correct value.
+
+<details> 
+<summary> 
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the answer </b></font> 
+</summary>
+
+```python
+pct_predictions = duckdb.sql(
+    """
+    SELECT 100 * COUNT(*) / COUNT(*)
+    FROM data;
+    """
+).fetchall()[0][0]
+```
+
+</details>
+
+4. The two charts at the bottom of the dashboard are also incorrect. Modify the SQL query to obtain the `daily_stats` variable to display the correct charts.
+
+<details> 
+<summary> 
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the answer </b></font> 
+</summary>
+
+```python
+daily_stats = duckdb.sql(
+    """
+    SELECT
+        CAST(timestamp AS DATE) AS date,
+        COUNT(*) AS n_liasses,
+        (
+            COUNT(
+                CASE WHEN data.proba_1 > 0.8 THEN 1 END
+            ) * 100.0 / COUNT(*)
+        ) AS pct_high_proba
+    FROM data
+    GROUP BY CAST(timestamp AS DATE);
+    """
+).to_df()
+```
+
+5. Notice the changes made to the dashboard.
+
+</details>
+
 :::
 
 :::
