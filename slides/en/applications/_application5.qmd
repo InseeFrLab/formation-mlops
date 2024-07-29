@@ -1,7 +1,78 @@
 :::{.nonincremental}
 :::: {.callout-tip collapse="true" icon=false}
-## Logging
+## Part 1 : introduction to `Argo Workflows`
+
+
+1. Launch an `Argo Workflows` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/automation/argo-workflows?autoLaunch=true). Open the service and input the service password (either automatically copied or available in the `README` of the service)
+2. In `VSCode`, create a file `hello_world.yaml` at the root of the project with the following content:
+
+```{.yml filename="hello_world.yml"}
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-world-
+  labels:
+    workflows.argoproj.io/archive-strategy: "false"
+  annotations:
+    workflows.argoproj.io/description: |
+      This is a simple hello world example.
+      You can also run it in Python: https://couler-proj.github.io/couler/examples/#hello-world
+spec:
+  entrypoint: whalesay
+  templates:
+  - name: whalesay
+    container:
+      image: docker/whalesay:latest
+      command: [cowsay]
+      args: ["hello world"]
+
+```
+
+3. Submit the `Hello world` workflow via a terminal in `VSCode` : 
+
+```shell
+argo submit formation-mlops/hello_world.yaml
+```
+4. Open the UI of `Argo Workflows`. Find the logs of the workflow you just launched. You should see the Docker logo <i class="fab fa-docker" style="color: #18a8fe;"></i>.
 
 ::::
 :::
 
+
+
+## Application 4
+
+:::{.nonincremental}
+:::: {.callout-tip collapse="true" icon=false}
+## Part 2 : distributing the hyperparameters optimization
+
+1. Take a look at the `argo_workflows/workflow.yml` file. What do you expect will happen when we submit this workflow ?
+2. Modify the highlighted line in the same manner as in application 3.
+
+```{.yml code-line-numbers="4" filename="workflow.yml"}
+parameters:
+    # The MLflow tracking server is responsable to log the hyper-parameter and model metrics.
+    - name: mlflow-tracking-uri
+    value: https://user-<namespace>-<pod_id>.user.lab.sspcloud.fr
+    - name: mlflow-experiment-name
+    value: nace-prediction
+```
+
+3. Submit the workflow and look at the jobs completing live in the UI.
+
+<details>
+<summary>
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the command </b></font>
+</summary>
+
+```shell
+argo submit formation-mlops/argo_workflows/workflow.yml
+```
+
+</details>
+
+4. Once all jobs are completed, visualize the logs of the whole workflow. 
+5. Finally, open the `MLflow` UI to check what has been done.
+::::
+
+:::
