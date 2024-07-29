@@ -1,0 +1,50 @@
+
+## Questions essentielles
+
+- Une fois qu'un modèle de machine learning a été développé, il doit [**servir**]{.orange} ses utilisateurs finaux.
+  - Quel [**format pertinent**]{.blue2} pour rendre accessible aux [**utilisateurs finaux**]{.blue2} ?
+  - [**Traitement par lots**]{.blue2} (*batch*) par rapport au [**traitement en ligne**]{.blue2} (*online*)
+  - Quelle infrastructure pour le [**déploiement**]{.blue2} ?
+
+## Configuration envisagée
+
+- Le modèle peut servir [**diverses applications**]{.orange}
+  - Rendre le modèle accessible via une [**API**]{.blue2}
+
+- [**Traitement en ligne**]{.orange} (*online serving*)
+  - Les applications [**client**]{.blue2} envoient une [**requête**]{.blue2} à l'API et reçoivent une [**réponse**]{.blue2} rapide
+
+- Infrastructure de déploiement : cluster [**Kubernetes**]{.orange}
+
+## Exposer un modèle via une API
+
+![](../img/API.png){fig-align="center"}
+
+## Pourquoi exposer un modèle via une API REST ?
+
+- [**Simplicité**]{.orange} : porte d'entrée unique qui cache la complexité sous-jacente du modèle
+
+- [**Standardisation**]{.orange} : requêtes HTTP -> agnostique au langage de programmation utilisé
+
+- [**Passage à l'échelle**]{.orange} : adaptation à la charge de requêtes concurrentes
+
+- [**Modularité**]{.orange} : séparation de la gestion du modèle et de sa mise à disposition
+
+## Exposer un modèle via une API
+
+![](../img/API.png){fig-align="center"}
+
+## Exécuter une API dans un conteneur
+
+- [**Conteneur**]{.orange} : environnement [**autonome**]{.blue2} et [**isolé**]{.blue2} qui encapsule le modèle, l'API et leurs dépendances
+
+- [**Avantages**]{.orange} :  
+  - [**Portabilité**]{.blue2}
+  - [**Scalabilité**]{.blue2} pour distribuer le modèle de manière efficace
+
+- [**Pré-requis technique**]{.orange} pour déployer sur `Kubernetes`
+
+## Déploiement d'une API sur `Kubernetes`
+
+![](../img/ci-cd.png){fig-align="center"}
+

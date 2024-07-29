@@ -98,6 +98,7 @@ from: markdown+emoji
 ## Summary
 
 
+
 # :five: Distributing the hyperparameter optimization
 
 {{< include sections/5-parallel-training.qmd >}}
@@ -109,18 +110,4 @@ from: markdown+emoji
 
 # Conclusion
 
-## The opportunity for more continuous organizations
-
-![](../img/mlops_lifecycle_complete.png){fig-align="center"}
-
-## Required transformations
-
-- Transformations at [**different levels**]{.orange}
-    - [**Technical tools**]{.blue2}
-    - [**Methodological**]{.blue2}
-    - [**Organizational**]{.blue2}
-
-- Strategy: [**incremental change**]{.orange}
-    - [**Training**]{.blue2}
-    - Application to [**pilot projects**]{.blue2}
-
+{{< include sections/6-conclusion.qmd >}}
