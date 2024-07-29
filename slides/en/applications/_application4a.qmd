@@ -49,7 +49,7 @@ logging.info(f"{{'Query': {description}, 'Response': {predictions[0]}}}")
 
 1. In the `kubernetes/deployment.yml` file, replace the `no-logs` tag with the `logs` tag:
 
-```{yaml code-line-numbers="8" filename="deployment.yml"}
+```{.yaml  code-line-numbers="8" filename="deployment.yml"}
 template:
   metadata:
     labels:

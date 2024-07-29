@@ -511,20 +511,6 @@ ojs_define(data_raw = df, data_prepro = df_prepro)
 
 ## Bilan
 
-- `MLflow` est [**polyvalent**]{.orange}
-    - Utilisation dee [**frameworks custom**]{.blue2} (modulo une [**classe "interface"**]{.blue2})
-    - [**Industrialisation**]{.blue2} de l'entraînement (fichier `MLproject`)
-    - [**Requêtage simple**]{.blue2} des modèles entraînés et stockés
-
-- [**Limite**]{.orange} : le modèle entraîné n'est pas [**accessible**]{.blue2}
-    - Requêtage simplifié... mais [**format non-pertinent**]{.blue2} pour tous les utilisateurs
-    - Le modèle n'est [**pas déployé**]{.blue2}
-
-
-
-
-
-
 
 
 
