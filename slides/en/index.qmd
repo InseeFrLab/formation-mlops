@@ -62,8 +62,19 @@ from: markdown+emoji
 
 {{< include applications/_application2.qmd >}}
 
+## Summary
 
-# :three: Deploying a ML model as an API
+- `MLflow` is [**versatile**]{.orange}
+    - Use of [**custom frameworks**]{.blue2} (with a [**"interface" class**]{.blue2})
+    - [**Industrialization**]{.blue2} of training (file `MLproject`)
+    - [**Simple querying**]{.blue2} of trained and stored models
+
+- [**Limitation**]{.orange}: the trained model is not [**accessible**]{.blue2}
+    - Simplified querying... but [**irrelevant format**]{.blue2} for all users
+    - The model is [**not deployed**]{.blue2}
+
+
+# :three: Serving a ML model to users
 
 {{< include sections/3-deployment.qmd >}}
 
