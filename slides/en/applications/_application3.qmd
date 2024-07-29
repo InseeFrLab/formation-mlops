@@ -151,7 +151,7 @@ spec:
 
 <details> 
 <summary> 
-    <font size="3" color="darkgreen"><b>Click to see the script content </b></font> 
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the script content </b></font>
 </summary>
 
 ```{.python filename="predict_api.py"}

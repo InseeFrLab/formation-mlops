@@ -83,20 +83,26 @@ from: markdown+emoji
 
 {{< include applications/_application3.qmd >}}
 
+## Summary
 
 
-# :four: Distributing the hyperparameter optimization
+# :four: Machine learning in production
 
-{{< include sections/4-parallel-training.qmd >}}
+{{< include sections/5-ml-in-production.qmd >}}
+
 
 ## Application 4 {.scrollable}
 
 {{< include applications/_application4.qmd >}}
+## Application 4 {.scrollable}
+
+{{< include applications/_application4.qmd >}}
+## Summary
 
 
-# :five: Machine learning in production
+# :five: Distributing the hyperparameter optimization
 
-{{< include sections/5-ml-in-production.qmd >}}
+{{< include sections/4-parallel-training.qmd >}}
 
 ## Application 5 {.scrollable}
 

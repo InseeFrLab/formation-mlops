@@ -1,1 +1,81 @@
-## Observability
+## Lifecycle of a ML model in production
+
+![](../img/mlops.png){fig-align="center"}
+
+## The challenge of responsibility
+::: {.nonincremental}
+
+- The lifecycle of a ML model is [**complex**]{.orange}
+- Several [**stakeholders**]{.orange} involved:
+    - [**Data scientist**]{.blue2}
+    - [**IT/DevOps**]{.blue2}
+    - [**Business teams**]{.blue2}
+
+- Different [**expertise**]{.orange} and [**vocabulary**]{.orange} between these stakeholders
+
+➡️ [**Communication**]{.orange} essential between teams to [**monitor**]{.orange} the model in production
+:::
+
+## Why monitor a model in production?
+::: {.nonincremental}
+
+- Detect [**biased data**]{.orange}: unalignment between production and training data
+- Anticipate [**model instability**]{.orange}: stable model performance over time
+- [**Continuously improve**]{.orange} the model: regular retraining
+
+⚠️ The term [**monitoring**]{.red2} of an application/model has different definitions depending on the team.
+:::
+
+## Monitoring according to the IT specialist
+::: {.nonincremental}
+
+- Monitoring an application is part of the [**DevOps**]{.orange} approach
+- [**Technical**]{.orange} control of the model:
+    - Latency
+    - Memory
+    - Disk usage
+    - ...
+:::
+
+## Monitoring according to the data scientist
+::: {.nonincremental}
+
+- Monitoring a ML model is part of the [**MLOps**]{.orange} approach
+- [**Methodological**]{.orange} control of the model
+- [**Real-time**]{.orange} performance monitoring of the model often impossible, use of proxies:
+    - [**Data drift**]{.blue2}: the input data distribution changes over time
+    - [**Concept drift**]{.blue2}: the modeled relationship changes over time
+:::
+
+## How to monitor a model in production?
+::: {.nonincremental}
+
+- Integration of [**logs**]{.orange} in the API
+- Collection and formatting of logs
+- Monitoring of ML [**metrics**]{.orange}
+- Implementation of an [**alert**]{.orange} system
+:::
+
+## Application 4 {.scrollable}
+
+{{< include applications/_application.qmd >}}
+
+## Model observability through a dashboard
+
+- API logs now contain [**business information**]{.orange}
+- For [**processing/storage**]{.orange} of logs: [**ETL pipeline**]{.blue2}
+- To analyze the behavior of the coding engine: creation of a [**dashboard**]{.orange}
+- Multiple solutions for the [**dashboard**]{.orange}: [[**Grafana**]{.blue2}](https://grafana.com/), [[**Quarto Dashboards**]{.blue2}](https://quarto.org/docs/dashboards/), [[**Apache Superset**]{.blue2}](https://superset.apache.org/), ...
+
+## An example stack
+
+- [**ETL**]{.orange} in the form of a cron job that parses logs and stores them in `.parquet` format
+- Using [[**DuckDB**]{.orange}](https://duckdb.org/) to query the `.parquet` files
+- ... and create the components of a [**Quarto Dashboard**]{.orange}
+- The dashboard is a static site to be updated daily, for example
+
+## An example stack
+
+![](../img/monitoring-datalab.png){fig-align="center"}
+
+
