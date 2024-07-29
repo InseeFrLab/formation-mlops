@@ -277,7 +277,7 @@ y_train_pred = model.predict(X_train)
 ::: {.nonincremental}
 
 :::: {.fragment fragment-index=1}
-- il y a [**2 principales différences**]{.orange} lorsque vous utilisez votre propre framework:
+- Il y a [**2 principales différences**]{.orange} lorsque vous utilisez votre propre framework:
   - [**L'enregistrement**]{.blue2} des paramètres, des métriques et des artefacts
   - [**L'encapsulation**]{.blue2} de votre modèle personalisé afin que MLflow puisse le servir
 ::::

@@ -42,6 +42,16 @@ from: markdown+emoji
 
 {{< include applications/_application1.qmd >}}
 
+## Summary
+
+- `MLflow` simplifies the [**tracking**]{.orange} of model training
+    - Keeps [**record**]{.blue2} of experiments and their outputs
+    - Simple [**integration**]{.blue2} with main ML frameworks
+
+- [**Limitations**]{.orange}
+    - How to use [**custom**]{.blue2} frameworks (non-natively integrated)?
+    - How to move from experimentation to [**production**]{.blue2}?
+
 
 
 # :two: A Practical Example
@@ -82,6 +92,3 @@ from: markdown+emoji
 {{< include applications/_application5.qmd >}}
 
 
-# Conclusion
-
-{{< include sections/6-conclusion.qmd >}}
