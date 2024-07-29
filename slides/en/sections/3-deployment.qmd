@@ -1,19 +1,33 @@
-## Model serving
+## Essential questions
 
 - Once a ML model has been developed, it must be [**deployed**]{.orange} to [**serve**]{.orange} its end users
     - Which [**production**]{.blue2} infrastructure ?
     - Who are the [**end users**]{.blue2} ?
     - [**Batch**]{.blue2} serving vs. [**online**]{.blue2} serving
 
-## A standard setup
-
-- Production infrastructure : [**Kubernetes**]{.orange} cluster
+## Envisioned configuration
 
 - The model might serve [**various applications**]{.orange}
     - Make the model accessible via an [**API**]{.blue2}
 
 - [**Online serving**]{.orange}
     - [**Client**]{.blue2} applications send a [**request**]{.blue2} to the API and get a fast [**response**]{.blue2}
+
+- Production infrastructure : [**Kubernetes**]{.orange} cluster
+
+## Exposing a model through an API
+
+![](../img/API.png){fig-align="center"}
+
+## Why expose a model via a REST API?
+
+- [**Simplicity**]{.orange}: single entry point that hides the underlying complexity of the model
+
+- [**Standardization**]{.orange}: HTTP requests -> agnostic to the programming language used
+
+- [**Scalability**]{.orange}: adapts to the load of concurrent requests
+
+- [**Modularity**]{.orange}: separation of model management and its availability
 
 ## Exposing a model through an API
 
@@ -23,23 +37,12 @@
 
 - [**Container**]{.orange}: [**self-contained**]{.blue2} and [**isolated**]{.blue2} environment that encapsulates the model, its dependencies and the API code
 
-- Containers provide high [**portability**]{.orange} and [**scalability**]{.orange} for distributing the model efficiently.
+- [**Advantages**]{.orange}:  
+  - [**Portability**]{.blue2}
+  - [**Scalability**]{.blue2} to efficiently distribute the model
 
-- The `Dockerfile` is used to configure and build the Docker container.
-
-## Development with Docker architecture
-
-![](../img/docker-workflow.png){fig-align="center" width="87%"}
-
-::: aside
-Source: [R. Krispin](https://github.com/RamiKrispin/vscode-python)
-:::
-
+- [**Technical prerequisites**]{.orange} for deploying on `Kubernetes`
 
 ## Deploying an API on `Kubernetes`
 
-<!-- - Need a [**container orchestration tool**]{.orange} such as kubernetes -->
-- [**3 main files**]{.orange} are needed to deploy an API:
-    - `deployment.yaml` : defines how the API should [**run**]{.blue2} (container image, resources, and environment variables)
-    - `service.yaml` : establishes a stable [**internal**]{.blue2} network endpoint for the API.
-    - `ingress.yaml` : provides an entry point for [**external**]{.blue2} clients to access the API.
+![](../img/ci-cd.png){fig-align="center"}
