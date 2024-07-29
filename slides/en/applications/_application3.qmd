@@ -130,3 +130,83 @@ spec:
 
 :::::
 ::::
+
+
+## Application 3 {.scrollable}
+
+::::{.callout-tip collapse="true" icon=false}
+## Part 4: Querying your deployed model
+
+:::::{.nonincremental}
+
+1. Create a file `predict_api.py`. This script should:
+    - Read the parquet file available at the following address:
+
+    ```shell
+    https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet
+    ``` 
+
+    - Make queries to your API for each label present in the parquet file.
+    - Display the prediction results.
+
+<details> 
+<summary> 
+    <font size="3" color="darkgreen"><b>Click to see the script content </b></font> 
+</summary>
+
+```{.python filename="predict_api.py"}
+import pandas as pd
+import requests
+
+
+# Function to make a request to the API
+def make_prediction(api_url: str, description: str):
+    params = {"description": description, "nb_echoes_max": 2}
+    response = requests.get(api_url, params=params)
+    return response.json()
+
+
+# Data URL
+data_path = "https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet"
+
+# Load the Parquet file into a pandas DataFrame
+df = pd.read_parquet(data_path)
+
+# API URL
+api_url = "https://<your_firstname>-<your_lastname>-api.lab.sspcloud.fr/predict"
+
+# Make the requests
+responses = df["text"].apply(lambda x: make_prediction(api_url, x))
+
+# Display the DataFrame with prediction results
+print(pd.merge(df, pd.json_normalize(responses),
+               left_index=True,
+               right_index=True))
+
+```
+</details>
+
+2. Run your `predict_api.py` script.
+
+<details> 
+<summary> 
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the command </b></font> 
+</summary>
+
+```shell
+python formation-mlops/src/predict_api.py
+```
+</details>
+
+3. In ArgoCD, open your application and click on your pod that should start with `"codification-api-..."`.  Observe the logs.
+
+4. What information do you have? Is it sufficient?
+
+::::
+
+:::: {.callout-important collapse="true"}
+
+We performed a series of GET requests here as we have a single entry point to our API. To perform batch queries, it is preferable to use POST requests.
+
+::::
+:::
