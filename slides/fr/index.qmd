@@ -430,7 +430,7 @@ ojs_define(data_raw = df, data_prepro = df_prepro)
 
 - Le cycle de vie d'un modèle ML est [**complexe**]{.orange}
 - Plusieurs [**parties prenantes**]{.orange} impliquées :
-    - [**Data scientist**]{.blue2}
+    - [**Data scientists**]{.blue2}
     - [**IT/DevOps**]{.blue2}
     - [**Equipes métiers**]{.blue2}
 

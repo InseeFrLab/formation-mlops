@@ -44,12 +44,12 @@ logging.info(f"{{'Query': {description}, 'Response': {predictions[0]}}}")
 
 <details> 
 <summary> 
-    <font size="3" color="darkgreen"><b>Click to see the steps to complete </b></font> 
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the steps to complete </b></font> 
 </summary>
 
 1. In the `kubernetes/deployment.yml` file, replace the `no-logs` tag with the `logs` tag:
 
----{yaml code-line-numbers="8" filename="deployment.yml"}
+```{yaml code-line-numbers="8" filename="deployment.yml"}
 template:
   metadata:
     labels:
@@ -59,7 +59,7 @@ template:
       - name: api
         image: inseefrlab/formation-mlops:logs
         imagePullPolicy: Always
----
+```
 
 2. Commit your changes and push them to your remote repository.
 
@@ -71,7 +71,7 @@ template:
 
 <details> 
 <summary> 
-    <font size="3" color="darkgreen"><b>Click to see the command </b></font> 
+    <font size=\"3\" color=\"darkgreen\"><b>Click to see the command </b></font> 
 </summary>
 
 ```shell

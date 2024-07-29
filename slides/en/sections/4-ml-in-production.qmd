@@ -7,7 +7,7 @@
 
 - The lifecycle of a ML model is [**complex**]{.orange}
 - Several [**stakeholders**]{.orange} involved:
-    - [**Data scientist**]{.blue2}
+    - [**Data scientists**]{.blue2}
     - [**IT/DevOps**]{.blue2}
     - [**Business teams**]{.blue2}
 
@@ -58,7 +58,7 @@
 
 ## Application 4 {.scrollable}
 
-{{< include applications/_application4.qmd >}}
+{{< include applications/_application4a.qmd >}}
 
 ## Model observability through a dashboard
 
