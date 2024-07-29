@@ -96,7 +96,7 @@ Précedement, vous avez déployé votre modèle manuellement. Grâce à `ArgoCD`
 0. Supprimez le déploiement manuel de l'application précédente pour éviter que les ressources `Kubernetes` ne se superposent : 
 
 ```shell
-kubectl apply -f formation-mlops/kubernetes/
+kubectl delete -f formation-mlops/kubernetes/
 ```
 
 1. Lancez un service `ArgoCD` en cliquant sur [cette URL](https://datalab.sspcloud.fr/launcher/automation/argo-cd?version=0.5.3&autoLaunch=true). Ouvrez le service, saisissez l'identifiant (`admin`) et le mot de passe du service.

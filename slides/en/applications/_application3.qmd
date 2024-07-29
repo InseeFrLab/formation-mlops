@@ -1,14 +1,34 @@
-::: {.panel-tabset}
-## Manual deployment
 
 ::::{.callout-tip collapse="true" icon=false}
-## Deploying manually a machine-learning model as an API
+## Part 1: Exposing a ML model locally as an API
 
 :::::{.nonincremental}
 
 1. We constructed a very simplistic Rest API using FastAPI. All underlying files are in the `app` folder. Check them.
-2. Open the `Dockerfile` to see how the image is built. The image is automatically rebuilt and published via Github Actions, if interested have a look to `.github/workflows/build_image.yml`.
-3. Open the file `kubernetes/deployment.yml` and modify the highlighted lines accordingly:
+2. Deploy the API locally by running the following commands in a terminal:
+
+```shell
+export MLFLOW_MODEL_NAME="fasttext"
+export MLFLOW_MODEL_VERSION=1
+uvicorn app.main:app --root-path /proxy/8000
+```
+
+3. Open the API page using the button provided by `VSCode`.
+4. Display your API documentation by adding `/docs` to your URL.
+5. Test your API!
+
+:::::
+::::
+
+## Application 3 {.scrollable}
+
+::::{.callout-tip collapse="true" icon=false}
+## Part 2 : Deploying manually a machine-learning model as an API
+
+:::::{.nonincremental}
+
+0. Open the `Dockerfile` to see how the image is built. The image is automatically rebuilt and published via Github Actions, if interested have a look to `.github/workflows/build_image.yml`. Dans le cadre de cette formation, nous allons tous utiliser cette même image.
+1. Open the file `kubernetes/deployment.yml` and modify the highlighted lines accordingly:
 
 ```{.yml code-line-numbers="7,9,11" filename="deployment.yml"}
 containers:
@@ -24,21 +44,20 @@ containers:
         value: "1"
 ```
 
-4. Open the file `kubernetes/ingress.yml` and modify (two times) the URL of the API endpoint to be of the form `<your_firstname>-<your_lastname>-api.lab.sspcloud.fr`
-5. Apply the three `Kubernetes` contracts contained in the `kubernetes/` folder in a terminal to deploy the API
+
+2. Open the file `kubernetes/ingress.yml` and modify (two times) the URL of the API endpoint to be of the form `<your_firstname>-<your_lastname>-api.lab.sspcloud.fr`
+3. Apply the three `Kubernetes` contracts contained in the `kubernetes/` folder in a terminal to deploy the API
 
 ```shell
 kubectl apply -f formation-mlops/kubernetes/
 ```
 
-6. Reach your API using the URL defined in your `ingress.yml` file
-7. Display the documentation of your API by adding `/docs` to your URL
-8. Try your API out!
-9. Re-train a new model and deploy this new model in your API
+4. Reach your API using the URL defined in your `ingress.yml` file
+5. Re-train a new model and deploy this new model in your API
 
 <details>
 <summary>
-    <font size=\"3\" color=\"darkgreen\"><b>Click to see the steps </b></font>
+    <font size=\"3\" color=\"darkgreen\"><b>Cliquez pour voir les étapes </b></font>
 </summary>
 
 1. Train a model
@@ -50,29 +69,33 @@ kubectl apply -f formation-mlops/kubernetes/
 kubectl apply -f formation-mlops/kubernetes/
 ```
 
-5. Refresh your API, and verify on the home page that it is now based on the new version of the model
+6. Refresh your API, and verify on the home page that it is now based on the new version of the model
 
 </details>
 
 :::::
 ::::
 
-
-## Continuous deployment
+## Application 3 {.scrollable}
 
 ::::{.callout-tip collapse="true" icon=false}
-## Continuous deployment of a machine-learning model as an API
+## Part 3 : déploiement continu d'un modèle de ML en tant qu'API
 
 :::::{.nonincremental}
 
 ⚠️ The previous applications must have been created with the Git option to be able to follow this one.
 
-Previously, you deployed your model manually. Thanks to ArgoCD, it is possible to deploy a model continuously. This means that every modification of a file in the kubernetes/ folder will automatically trigger redeployment, synchronized with your GitHub repository. To convince yourself, follow the steps below:
+Previously, you deployed your model manually. Thanks to `ArgoCD`, it is possible to deploy a model continuously. This means that every modification of a file in the `kubernetes/` folder will automatically trigger redeployment, synchronized with your GitHub repository. To convince yourself, follow the steps below:
+
+0. Delete the manual deployment of the previous application to prevent Kubernetes resources from overlapping:
+
+```shell
+kubectl delete -f formation-mlops/kubernetes/
+```
 
 1. Launch an `ArgoCD` service by clicking on this [URL](https://datalab.sspcloud.fr/launcher/automation/argo-cd?version=0.5.3&autoLaunch=true). Open the service, enter the username (`admin`), and the service's password.
-2. Resume the first 4 steps of the manual deployment.
-3. Commit the changes made and push them to your GitHub repository.
-4. Open the template `argocd/template-argocd.yml` and modify the highlighted lines:
+2. Commit the changes made and push them to your GitHub repository.
+3. Open the template `argocd/template-argocd.yml` and modify the highlighted lines:
 
 ```{.yml code-line-numbers="4,9" filename="template-argocd.yml"}
 spec:
@@ -86,11 +109,11 @@ spec:
     namespace: <your-namespace>
 ```
 
-5. In ArgoCD, click on `New App` and then `Edit as a YAML`. Copy and paste the content of `argocd/template-argocd.yml`, and click on `Create`.
-6. Reach your API using the URL defined in your `ingress.yml` file
-7. Display the documentation of your API by adding `/docs` to your URL
-8. Try your API out!
-9. Re-train a new model and deploy **automatically** this new model in your API
+4. In ArgoCD, click on `New App` and then `Edit as a YAML`. Copy and paste the content of `argocd/template-argocd.yml`, and click on `Create`.
+5. Reach your API using the URL defined in your `ingress.yml` file
+6. Display the documentation of your API by adding `/docs` to your URL
+7. Try your API out!
+8. Re-train a new model and deploy **automatically** this new model in your API
 
 <details>
 <summary>
@@ -104,6 +127,6 @@ spec:
 5. Wait for 5 minutes for `ArgoCD` to automatically synchronize the changes from your GitHub repository, or force synchronization. Refresh your API and check on the homepage that it is now based on the new version of the model.
 
 </details>
+
 :::::
 ::::
-:::
