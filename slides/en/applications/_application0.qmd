@@ -8,8 +8,8 @@
 
 1. Create an account on the [SSP Cloud](https://datalab.sspcloud.fr/home) using your professional mail address
 2. Launch a `MLflow` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/automation/mlflow?autoLaunch=true)
-3. Launch a `Jupyter-python` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»)
-4. Open the `Jupyter-python` service and input the service password
+3. Launch a `VSCode-python` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-mlops%2Fmain%2Finit.sh»&networking.user.enabled=true)
+4. Open the `VSCode-python` service and input the service password
 5. You're all set !
 
 :::::
@@ -25,9 +25,9 @@
 1. It is assumed that you have a `Github` account and have already created a token. Fork the training repository by clicking [here](https://github.com/InseeFrLab/formation-mlops/fork).
 2. Create an account on the [SSP Cloud](https://datalab.sspcloud.fr/home) using your professional mail address
 3. Launch a `MLflow` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/automation/mlflow?autoLaunch=true)
-4. Launch a `Jupyter-python` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true)
-5. Open the `Jupyter-python` service and input the service password
-6. In Jupyter, open a terminal and clone your forked repository (modify the first two lines):
+4. Launch a `VSCode-python` service by clicking [this URL](https://datalab.sspcloud.fr/launcher/ide/vscode-python?autoLaunch=true&git.cache=«172800»)
+5. Open the `VSCode-python` service and input the service password
+6. In `VSCode`, open a terminal and clone your forked repository (modify the first two lines):
 
     ```{.sh code-line-numbers="1,2"}
     GIT_REPO=formation-mlops

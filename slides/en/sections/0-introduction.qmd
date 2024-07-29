@@ -2,7 +2,7 @@
 ## Who are we ?
 
 - [**Data scientists**]{.orange} at Insee
-    - methodological and IT innovation teams
+    - [**methodological**]{.blue} and [**IT**]{.blue} innovation teams
     - support data science projects
 
 - [**Contact us**]{.orange}
