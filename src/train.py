@@ -6,7 +6,6 @@ import sys
 import fasttext
 import mlflow
 import pandas as pd
-import pyarrow.parquet as pq
 from sklearn.model_selection import train_test_split
 from preprocessor import Preprocessor
 from constants import TEXT_FEATURE, Y, DATA_PATH, LABEL_PREFIX
@@ -18,11 +17,7 @@ def load_data():
     """
     Load data for training and test.
     """
-    fs = s3fs.S3FileSystem(
-        client_kwargs={"endpoint_url": "https://minio.lab.sspcloud.fr"},
-        anon=True
-    )
-    df = pq.ParquetDataset(DATA_PATH, filesystem=fs).read_pandas().to_pandas()
+    df = pd.read_parquet(f"https://minio.lab.sspcloud.fr/{DATA_PATH}")
     return df.sample(frac=0.1)
 
 
