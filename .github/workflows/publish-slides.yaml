@@ -18,19 +18,18 @@ jobs:
       - name: Set up quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Install python
-        uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: '3.10'
-          cache: 'pip' # caching pip dependencies
+          # Install a specific version of uv.
+          version: "0.8.24" 
 
       - name: Install python Dependencies
         run: | 
-          pip install pybind11
-          pip install -r requirements.txt
+          uv sync --frozen
         
       - name: Download nltk corpus
-        run: python -m nltk.downloader stopwords
+        run: uv run python -m nltk.downloader stopwords
 
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
