@@ -31,6 +31,9 @@ jobs:
       - name: Download nltk corpus
         run: uv run python -m nltk.downloader stopwords
 
+      - name: Activate venv
+        run: source .venv/bin/activate
+
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
