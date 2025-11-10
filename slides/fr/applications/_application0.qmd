@@ -35,12 +35,14 @@
     git clone https://github.com/$GIT_USERNAME/$GIT_REPO.git
     cd $GIT_REPO
     ```
-7. Installez les packages nécessaires pour la formation :
+7. Installez les packages nécessaires pour la formation (avec [`uv`](https://docs.astral.sh/uv/getting-started/installation/#installation-methods)):
 
     ```sh
-    pip install -r requirements.txt
-    python -m nltk.downloader stopwords
+    uv sync
+    uv run python -m nltk.downloader stopwords
     ```
+
+
 
 8. Vous êtes prêt !
 :::::
