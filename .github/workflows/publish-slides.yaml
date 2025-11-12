@@ -22,7 +22,7 @@ jobs:
         uses: astral-sh/setup-uv@v7
         with:
           # Install a specific version of uv.
-          version: "0.8.24" 
+          version: "0.9.8" 
 
       - name: Install python Dependencies
         run: | 
