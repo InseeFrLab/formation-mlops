@@ -60,7 +60,7 @@
     "href": "slides/fr/index.html#app0",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 0",
-    "text": "Application 0\n\nSans GitAvec Git\n\n\n\n\n\nPréparation de l’environnement de travail\n\n\n\n\nCréez un compte sur le SSP Cloud en utilisant votre adresse e-mail professionnelle.\nLancez un service MLflow en cliquant sur cette URL.\nLancez un service vscode-python en cliquant sur cette URL.\nOuvrez le service vscode-python et saisissez le mot de passe du service.\nVous êtes prêt !\n\n\n\n\n\n\n\n\n\n\nPréparation de l’environnement de travail\n\n\n\n\nSi ce n’est pas déjà fait, créez un compte Github. Créez une copie du dépôt de la formation dans votre espace personnel en forkant le dépôt.\nSi ce n’est pas déjà fait, créez un compte sur le SSP Cloud en utilisant votre adresse e-mail professionnelle.\nLancez un service MLflow en cliquant sur cette URL.\nLancez un service VSCode-python en cliquant sur cette URL.\nOuvrez le service VSCode-python et saisissez le mot de passe du service.\nDans VSCode, ouvrez un terminal et clonez le dépôt que vous venez de fork (modifiez les deux premières lignes) :\nGIT_REPO=formation-mlops\nGIT_USERNAME=InseeFrLab\n\ngit clone https://github.com/$GIT_USERNAME/$GIT_REPO.git\ncd $GIT_REPO\nInstallez les packages nécessaires pour la formation :\npip install -r requirements.txt\npython -m nltk.downloader stopwords\nVous êtes prêt !"
+    "text": "Application 0\n\nSans GitAvec Git\n\n\n\n\n\nPréparation de l’environnement de travail\n\n\n\nCréez un compte sur le SSP Cloud en utilisant votre adresse e-mail professionnelle.\nLancez un service MLflow en cliquant sur cette URL.\nLancez un service VSCode-python en cliquant sur cette URL.\nOuvrez le service VSCode-python et saisissez le mot de passe du service.\nVous êtes prêt !\n\n\n\n\n\n\n\n\n\nPréparation de l’environnement de travail\n\n\n\nSi ce n’est pas déjà fait, créez un compte Github. Créez une copie du dépôt de la formation dans votre espace personnel en forkant le dépôt.\nSi ce n’est pas déjà fait, créez un compte sur le SSP Cloud en utilisant votre adresse e-mail professionnelle.\nLancez un service MLflow en cliquant sur cette URL.\nLancez un service VSCode-python en cliquant sur cette URL.\nOuvrez le service VSCode-python et saisissez le mot de passe du service.\nDans VSCode, ouvrez un terminal et clonez le dépôt que vous venez de fork (modifiez les deux premières lignes) :\nGIT_REPO=formation-mlops\nGIT_USERNAME=InseeFrLab\n\ngit clone https://github.com/$GIT_USERNAME/$GIT_REPO.git\ncd $GIT_REPO\nInstallez les packages nécessaires pour la formation (avec uv):\nuv sync\nuv run python -m nltk.downloader stopwords\nVous êtes prêt !"
   },
   {
     "objectID": "slides/fr/index.html#tracking-server",
@@ -95,7 +95,7 @@
     "href": "slides/fr/index.html#application-1",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 1",
-    "text": "Application 1\n\n\n\nIntroduction aux concepts de MLflow\n\n\n\n\nDans VSCode, ouvrez le notebook situé à l’emplacement formation-mlops/notebooks/mlflow-introduction.ipynb.\nExécutez le notebook cellule par cellule.\nSi vous avez terminé plus tôt, explorez l’interface utilisateur de MLflow et essayez de créer vos propres expérimentations à partir du code d’exemple fourni dans le notebook. Par exemple, essayez d’ajouter d’autres hyperparamètres à la procédure de grid-search."
+    "text": "Application 1\n\n\n\nIntroduction aux concepts de MLflow\n\n\n\nDans VSCode, ouvrez le notebook situé à l’emplacement formation-mlops/notebooks/mlflow-introduction.ipynb.\nExécutez le notebook cellule par cellule.\nSi vous avez terminé plus tôt, explorez l’interface utilisateur de MLflow et essayez de créer vos propres expérimentations à partir du code d’exemple fourni dans le notebook. Par exemple, essayez d’ajouter d’autres hyperparamètres à la procédure de grid-search."
   },
   {
     "objectID": "slides/fr/index.html#bilan",
@@ -116,7 +116,7 @@
     "href": "slides/fr/index.html#le-modèle-fasttext",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Le modèle FastText",
-    "text": "Le modèle FastText\n\n\nModèle “sac de n-gram” : plongements lexicaux pour les mots mais aussi pour les n-gram de mots et de caractères\nUn modèle très simple et rapide\n\n\nOVA: One vs. All"
+    "text": "Le modèle FastText\n\nModèle “sac de n-gram” : plongements lexicaux pour les mots mais aussi pour les n-gram de mots et de caractères\nUn modèle très simple et rapide\n\nOVA: One vs. All"
   },
   {
     "objectID": "slides/fr/index.html#données-utilisées",
@@ -130,14 +130,14 @@
     "href": "slides/fr/index.html#mlflow-avec-framework-non-standard",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "MLflow avec framework non standard",
-    "text": "MLflow avec framework non standard\n\n\n\nFacile d’utilisation avec une grande variété de framework de machine learning (scikit-learn, Keras, Pytorch…)\n\n\n\nmlflow.sklearn.log_model(pipe_rf, \"model\")\n\nmlflow.pyfunc.load_model(model_uri=f\"models:/{model_name}/{version}\")\ny_train_pred = model.predict(X_train)\n\n\n\nQue se passe-t-il si nous avons besoin d’une plus grande flexibilité, par exemple, pour utiliser un framework personnalisé?\n\n\n\n\nPossibilité de suivre, enregistrer et déployer son propre modèle"
+    "text": "MLflow avec framework non standard\n\n\nFacile d’utilisation avec une grande variété de framework de machine learning (scikit-learn, Keras, Pytorch…)\n\n\n\nmlflow.sklearn.log_model(pipe_rf, \"model\")\n\nmlflow.pyfunc.load_model(model_uri=f\"models:/{model_name}/{version}\")\ny_train_pred = model.predict(X_train)\n\n\n\nQue se passe-t-il si nous avons besoin d’une plus grande flexibilité, par exemple, pour utiliser un framework personnalisé?\n\n\n\n\nPossibilité de suivre, enregistrer et déployer son propre modèle"
   },
   {
     "objectID": "slides/fr/index.html#mlflow-avec-framework-non-standard-1",
     "href": "slides/fr/index.html#mlflow-avec-framework-non-standard-1",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "MLflow avec framework non standard",
-    "text": "MLflow avec framework non standard\n\n\n\nil y a 2 principales différences lorsque vous utilisez votre propre framework:\n\nL’enregistrement des paramètres, des métriques et des artefacts\nL’encapsulation de votre modèle personalisé afin que MLflow puisse le servir\n\n\n\n\n# Define a custom model\nclass MyModel(mlflow.pyfunc.PythonModel):\n\n    def load_context(self, context):\n        self.my_model.load_model(context.artifacts[\"my_model\"])\n\n    def predict(self, context, model_input):\n        return self.my_model.predict(model_input)"
+    "text": "MLflow avec framework non standard\n\n\nIl y a 2 principales différences lorsque vous utilisez votre propre framework:\n\nL’enregistrement des paramètres, des métriques et des artefacts\nL’encapsulation de votre modèle personalisé afin que MLflow puisse le servir\n\n\n\n\n# Define a custom model\nclass MyModel(mlflow.pyfunc.PythonModel):\n\n    def load_context(self, context):\n        self.my_model.load_model(context.artifacts[\"my_model\"])\n\n    def predict(self, context, model_input):\n        return self.my_model.predict(model_input)"
   },
   {
     "objectID": "slides/fr/index.html#de-lexpérimentation-à-la-production",
@@ -151,21 +151,21 @@
     "href": "slides/fr/index.html#application-2",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 2",
-    "text": "Application 2\n\n\n\n\nPartie 1 : Utilisation d’un modèle personnalisé\n\n\n\nTous les scripts liés à notre modèle personnalisé sont stockés dans le dossier src. Consultez-les. En particulier, le script train.py est responsable de l’entraînement du modèle. Quelles sont les principales différences avec l’application 1 ?\nPourquoi pouvons-nous dire que le modèle MLflow intègre le preprocessing ?"
+    "text": "Application 2\n\n\n\nPartie 1 : Utilisation d’un modèle personnalisé\n\n\n\nTous les scripts liés à notre modèle personnalisé sont stockés dans le dossier src. Consultez-les. En particulier, le script train.py est responsable de l’entraînement du modèle. Quelles sont les principales différences avec l’application 1 ?\nPourquoi pouvons-nous dire que le modèle MLflow intègre le preprocessing ?"
   },
   {
     "objectID": "slides/fr/index.html#application-2-1",
     "href": "slides/fr/index.html#application-2-1",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 2",
-    "text": "Application 2\n\n\n\n\nPartie 2 : Des notebooks à un projet de type package\n\n\n\nLe script train.py est également responsable du logging des expérimentations dans MLFlow. Notez la manière dont les paramètres de chaque expérimentation vont être passés à la fonction d’entraînement à l’appel du script.\nAfin de rendre la procédure d’entraînement d’un modèle plus reproductible, MLFlow met à disposition la commande mlflow run. Le fichier MLproject spécifie la commande et les paramètres qui vont lui être passées. Inspectez ce fichier.\nExécutez un entraînement du modèle à l’aide de MLFlow. Pour ce faire, ouvrez un terminal ( -&gt; Terminal -&gt; New Terminal) et exécutez la commande suivante :\nexport MLFLOW_EXPERIMENT_NAME=\"nace-prediction\"\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME\nDans l’interface de MLflow, examinez les résultats de votre exécution précédente :\n\nExperiments -&gt; nace-prediction -&gt; &lt;nom_run&gt;\n\nVous avez entraîné le modèle avec certains paramètres par défaut. Dans le fichier MLproject, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, dim = 25).\n\n\n\nCliquez pour voir la commande \n\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \\\n    -P dim=25\n\n\nDans MLflow, comparez les 2 modèles en traçant la métrique accuracy par rapport à un paramètre que vous avez modifié (par exemple dim)\n\nSélectionnez les 2 expériences -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis\n\nEnregistrez le modèle avec la meilleure accuracy en tant que fasttext pour le rendre facilement interrogeable depuis Python."
+    "text": "Application 2\n\n\n\nPartie 2 : Des notebooks à un projet de type package\n\n\n\nLe script train.py est également responsable du logging des expérimentations dans MLFlow. Notez la manière dont les paramètres de chaque expérimentation vont être passés à la fonction d’entraînement à l’appel du script.\nAfin de rendre la procédure d’entraînement d’un modèle plus reproductible, MLFlow met à disposition la commande mlflow run. Le fichier MLproject spécifie la commande et les paramètres qui vont lui être passées. Inspectez ce fichier.\nExécutez un entraînement du modèle à l’aide de MLFlow. Pour ce faire, ouvrez un terminal ( -&gt; Terminal -&gt; New Terminal) et exécutez la commande suivante :\nexport MLFLOW_EXPERIMENT_NAME=\"nace-prediction\"\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME\nDans l’interface de MLflow, examinez les résultats de votre exécution précédente :\n\nExperiments -&gt; nace-prediction -&gt; &lt;nom_run&gt;\n\nVous avez entraîné le modèle avec certains paramètres par défaut. Dans le fichier MLproject, vérifiez les paramètres disponibles. Ré-entraînez un modèle avec différents paramètres (par exemple, dim = 25).\n\n\n\nCliquez pour voir la commande \n\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \\\n    -P dim=25\n\n\nDans MLflow, comparez les 2 modèles en traçant la métrique accuracy par rapport à un paramètre que vous avez modifié (par exemple dim)\n\nSélectionnez les 2 expériences -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis\n\nEnregistrez le modèle avec la meilleure accuracy en tant que fasttext pour le rendre facilement interrogeable depuis Python."
   },
   {
     "objectID": "slides/fr/index.html#application-2-2",
     "href": "slides/fr/index.html#application-2-2",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 2",
-    "text": "Application 2\n\n\n\n\nPartie 3 : Requêtage du modèle entraîné en local\n\n\n\nCréez un script predict_mlflow.py dans le dossier src du projet. Ce script doit :\n\nCharger la version 1 du modèle fasttext\nUtiliser le modèle pour prédire les codes NACE d’une liste donnée de descriptions d’activité (par exemple, [\"vendeur d'huitres\", \"boulanger\"]).\n\n\n💡 N’oubliez pas de lire la documentation de la fonction predict() de la classe personnalisée (src/fasttext_wrapper.py) pour comprendre le format attendu des entrées !\n\n\nCliquez pour voir le contenu du script \n\n\n\npredict_mlflow.py\n\nimport mlflow\n\nmodel_name = \"fasttext\"\nversion = 1\n\nmodel = mlflow.pyfunc.load_model(\n    model_uri=f\"models:/{model_name}/{version}\"\n)\n\nlist_libs = [\"vendeur d'huitres\", \"boulanger\"]\n\nresults = model.predict(list_libs, params={\"k\": 1})\nprint(results)\n\n\n\nExécutez votre script predict_mlflow.py.\n\n\n\nCliquez pour voir la commande \n\npython formation-mlops/src/predict_mlflow.py\n\n\nAssurez-vous que les deux descriptions suivantes donnent la même prédiction principale : \"COIFFEUR\" et \"coiffeur, & 98789\".\nModifiez la valeur du paramètre k et essayez de comprendre comment la structure de la sortie a changé en conséquence."
+    "text": "Application 2\n\n\n\nPartie 3 : Requêtage du modèle entraîné en local\n\n\n\nCréez un script predict_mlflow.py dans le dossier src du projet. Ce script doit :\n\nCharger la version 1 du modèle fasttext\nUtiliser le modèle pour prédire les codes NACE d’une liste donnée de descriptions d’activité (par exemple, [\"vendeur d'huitres\", \"boulanger\"]).\n\n\n💡 N’oubliez pas de lire la documentation de la fonction predict() de la classe personnalisée (src/fasttext_wrapper.py) pour comprendre le format attendu des entrées !\n\n\nCliquez pour voir le contenu du script \n\n\n\npredict_mlflow.py\n\nimport mlflow\n\nmodel_name = \"fasttext\"\nversion = 1\n\nmodel = mlflow.pyfunc.load_model(\n    model_uri=f\"models:/{model_name}/{version}\"\n)\n\nlist_libs = [\"vendeur d'huitres\", \"boulanger\"]\n\nresults = model.predict(list_libs, params={\"k\": 1})\nprint(results)\n\n\n\nExécutez votre script predict_mlflow.py.\n\n\n\nCliquez pour voir la commande \n\npython formation-mlops/src/predict_mlflow.py\n\n\nAssurez-vous que les deux descriptions suivantes donnent la même prédiction principale : \"COIFFEUR\" et \"coiffeur, & 98789\".\nModifiez la valeur du paramètre k et essayez de comprendre comment la structure de la sortie a changé en conséquence."
   },
   {
     "objectID": "slides/fr/index.html#bilan-1",
@@ -228,84 +228,84 @@
     "href": "slides/fr/index.html#application-3",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 3",
-    "text": "Application 3\n\n\n\nPartie 1 : exposer localement un modèle de ML en tant qu’API\n\n\n\n\nNous avons construit une API REST très simpliste à l’aide de FastAPI. Tous les fichiers sous-jacents se trouvent dans le dossier app. Consultez-les.\nDéployez l’API localement en lançant les commandes suivantes dans un terminal :\n\nexport MLFLOW_MODEL_NAME=\"fasttext\"\nexport MLFLOW_MODEL_VERSION=1\nuvicorn app.main:app --root-path /proxy/8000\n\nOuvrez la page de l’API à l’aide du bouton proposé par VSCode.\nAffichez la documentation de votre API en ajoutant /docs à votre URL.\nTestez votre API !"
+    "text": "Application 3\n\n\n\nPartie 1 : exposer localement un modèle de ML en tant qu’API\n\n\n\nNous avons construit une API REST très simpliste à l’aide de FastAPI. Tous les fichiers sous-jacents se trouvent dans le dossier app. Consultez-les.\nDéployez l’API localement en lançant les commandes suivantes dans un terminal :\n\nexport MLFLOW_MODEL_NAME=\"fasttext\"\nexport MLFLOW_MODEL_VERSION=1\nuvicorn app.main:app --root-path /proxy/8000\n\nOuvrez la page de l’API à l’aide du bouton proposé par VSCode.\nAffichez la documentation de votre API en ajoutant /docs à votre URL.\nTestez votre API !"
   },
   {
     "objectID": "slides/fr/index.html#application-3-1",
     "href": "slides/fr/index.html#application-3-1",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 3",
-    "text": "Application 3\n\n\n\nPartie 2 : déploiement manuel d’un modèle de ML en tant qu’API\n\n\n\n\nOuvrez le Dockerfile pour voir comment l’image est construite. L’image est automatiquement reconstruite et publiée via Github Actions, si vous êtes intéressé, jetez un coup d’œil à .github/workflows/build_image.yml. Dans le cadre de cette formation, nous allons tous utiliser cette même image.\nOuvrez le fichier kubernetes/deployment.yml et modifiez les lignes surlignées comme suit :\n\n\n\ndeployment.yml\n\ncontainers:\n- name: api\n    image: inseefrlab/formation-mlops-api:main\n    imagePullPolicy: Always\n    env:\n    - name: MLFLOW_TRACKING_URI\n        value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: MLFLOW_MODEL_NAME\n        value: fasttext\n    - name: MLFLOW_MODEL_VERSION\n        value: \"1\"\n\n\nOuvrez le fichier kubernetes/ingress.yml et modifiez (deux fois) l’URL du point de terminaison de l’API pour qu’elle soit de la forme &lt;votre_prénom&gt;-&lt;votre_nom&gt;-api.lab.sspcloud.fr.\nAppliquez les trois contrats Kubernetes contenus dans le dossier kubernetes/ dans un terminal pour déployer l’API\n\nkubectl apply -f formation-mlops/kubernetes/\n\nAccédez à votre API en utilisant l’URL définie dans votre fichier ingress.yml.\nRéentrainez un nouveau modèle et déployez ce nouveau modèle dans votre API\n\n\n\nCliquez pour voir les étapes \n\n\nEntrainez un modèle.\nEnregistrez le modèle dans MLflow.\nAjustez votre variable d’environnement MLFLOW_MODEL_NAME ou MLFLOW_MODEL_VERSION (si vous n’avez pas modifié le nom du modèle) dans le fichier deployment.yml.\nAppliquez les nouveaux contrats Kubernetes pour mettre à jour l’API\n\nkubectl apply -f formation-mlops/kubernetes/\n\nRafraîchissez votre API et vérifiez sur la page d’accueil qu’elle est désormais basée sur la nouvelle version du modèle."
+    "text": "Application 3\n\n\n\nPartie 2 : déploiement manuel d’un modèle de ML en tant qu’API\n\n\n\nOuvrez le Dockerfile pour voir comment l’image est construite. L’image est automatiquement reconstruite et publiée via Github Actions, si vous êtes intéressé, jetez un coup d’œil à .github/workflows/build_image.yml. Dans le cadre de cette formation, nous allons tous utiliser cette même image.\nOuvrez le fichier kubernetes/deployment.yml et modifiez les lignes surlignées comme suit :\n\n\n\ndeployment.yml\n\ncontainers:\n- name: api\n    image: inseefrlab/formation-mlops-api:main\n    imagePullPolicy: Always\n    env:\n    - name: MLFLOW_TRACKING_URI\n        value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: MLFLOW_MODEL_NAME\n        value: fasttext\n    - name: MLFLOW_MODEL_VERSION\n        value: \"1\"\n\n\nOuvrez le fichier kubernetes/ingress.yml et modifiez (deux fois) l’URL du point de terminaison de l’API pour qu’elle soit de la forme &lt;votre_prénom&gt;-&lt;votre_nom&gt;-api.lab.sspcloud.fr.\nAppliquez les trois contrats Kubernetes contenus dans le dossier kubernetes/ dans un terminal pour déployer l’API\n\nkubectl apply -f formation-mlops/kubernetes/\n\nAccédez à votre API en utilisant l’URL définie dans votre fichier ingress.yml.\nRéentrainez un nouveau modèle et déployez ce nouveau modèle dans votre API\n\n\n\nCliquez pour voir les étapes \n\n\nEntrainez un modèle.\nEnregistrez le modèle dans MLflow.\nAjustez votre variable d’environnement MLFLOW_MODEL_NAME ou MLFLOW_MODEL_VERSION (si vous n’avez pas modifié le nom du modèle) dans le fichier deployment.yml.\nAppliquez les nouveaux contrats Kubernetes pour mettre à jour l’API\n\nkubectl apply -f formation-mlops/kubernetes/\n\nRafraîchissez votre API et vérifiez sur la page d’accueil qu’elle est désormais basée sur la nouvelle version du modèle."
   },
   {
     "objectID": "slides/fr/index.html#application-3-2",
     "href": "slides/fr/index.html#application-3-2",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 3",
-    "text": "Application 3\n\n\n\nPartie 3 : déploiement continu d’un modèle de ML en tant qu’API\n\n\n\n⚠️ Les précédentes applications doivent avoir été réalisées avec l’option Git pour pouvoir suivre celle-ci.\nPrécedement, vous avez déployé votre modèle manuellement. Grâce à ArgoCD il est possible de déployer un modèle de manière continu, ainsi chaque modification d’un fichier présent dans le dossier kubernetes/ va entrainer le redéploiement automatique en se synchronisation avec votre dépôt Github. Pour vous en convaincre, suivez les étapes ci dessous :\n\nSupprimez le déploiement manuel de l’application précédente pour éviter que les ressources Kubernetes ne se superposent :\n\nkubectl apply -f formation-mlops/kubernetes/\n\nLancez un service ArgoCD en cliquant sur cette URL. Ouvrez le service, saisissez l’identifiant (admin) et le mot de passe du service.\nFaite un commit des changements effectués et pousser vers votre dépôt Github.\nOuvrez le template argocd/template-argocd.yml et modifiez les lignes surlignées :\n\n\n\ntemplate-argocd.yml\n\nspec:\n  project: default\n  source:\n    repoURL: https://github.com/&lt;your-github-id&gt;/formation-mlops.git\n    targetRevision: HEAD\n    path: kubernetes\n  destination:\n    server: https://kubernetes.default.svc\n    namespace: &lt;your-namespace&gt;\n\n\nDans ArgoCD, cliquez sur New App puis Edit as a YAML. Copiez-collez le contenu de argocd/template-argocd.yml et cliquez sur Create.\nAccédez à votre API en utilisant l’URL définie dans votre fichier ingress.yml.\nAffichez la documentation de votre API en ajoutant /docs à votre URL.\nTestez votre API !\nRéentrainez un nouveau modèle et déployez automatiquement ce nouveau modèle dans votre API\n\n\n\nCliquez pour voir les étapes \n\n\nEntrainez un modèle.\nEnregistrez le modèle dans MLflow.\nAjustez votre variable d’environnement MLFLOW_MODEL_NAME ou MLFLOW_MODEL_VERSION (si vous n’avez pas modifié le nom du modèle) dans le fichier deployment.yml.\nFaite un commit de ces changements et poussez les sur votre dépôt Github.\nPatientez 5 minutes qu’ArgoCD synchronise automatiquement les changements depuis votre dépôt Github ou bien forcez la synchronisation. Rafraîchissez votre API et vérifiez sur la page d’accueil qu’elle est désormais basée sur la nouvelle version du modèle."
+    "text": "Application 3\n\n\n\nPartie 3 : déploiement continu d’un modèle de ML en tant qu’API\n\n\n⚠️ Les précédentes applications doivent avoir été réalisées avec l’option Git pour pouvoir suivre celle-ci.\nPrécedement, vous avez déployé votre modèle manuellement. Grâce à ArgoCD il est possible de déployer un modèle de manière continu, ainsi chaque modification d’un fichier présent dans le dossier kubernetes/ va entrainer le redéploiement automatique en se synchronisation avec votre dépôt Github. Pour vous en convaincre, suivez les étapes ci dessous :\n\nSupprimez le déploiement manuel de l’application précédente pour éviter que les ressources Kubernetes ne se superposent :\n\nkubectl delete -f formation-mlops/kubernetes/\n\nLancez un service ArgoCD en cliquant sur cette URL. Ouvrez le service, saisissez l’identifiant (admin) et le mot de passe du service.\nFaite un commit des changements effectués et pousser vers votre dépôt Github.\nOuvrez le template argocd/template-argocd.yml et modifiez les lignes surlignées :\n\n\n\ntemplate-argocd.yml\n\nspec:\n  project: default\n  source:\n    repoURL: https://github.com/&lt;your-github-id&gt;/formation-mlops.git\n    targetRevision: HEAD\n    path: kubernetes\n  destination:\n    server: https://kubernetes.default.svc\n    namespace: &lt;your-namespace&gt;\n\n\nDans ArgoCD, cliquez sur New App puis Edit as a YAML. Copiez-collez le contenu de argocd/template-argocd.yml et cliquez sur Create.\nAccédez à votre API en utilisant l’URL définie dans votre fichier ingress.yml.\nAffichez la documentation de votre API en ajoutant /docs à votre URL.\nTestez votre API !\nRéentrainez un nouveau modèle et déployez automatiquement ce nouveau modèle dans votre API\n\n\n\nCliquez pour voir les étapes \n\n\nEntrainez un modèle.\nEnregistrez le modèle dans MLflow.\nAjustez votre variable d’environnement MLFLOW_MODEL_NAME ou MLFLOW_MODEL_VERSION (si vous n’avez pas modifié le nom du modèle) dans le fichier deployment.yml.\nFaite un commit de ces changements et poussez les sur votre dépôt Github.\nPatientez 5 minutes qu’ArgoCD synchronise automatiquement les changements depuis votre dépôt Github ou bien forcez la synchronisation. Rafraîchissez votre API et vérifiez sur la page d’accueil qu’elle est désormais basée sur la nouvelle version du modèle."
   },
   {
     "objectID": "slides/fr/index.html#application-3-3",
     "href": "slides/fr/index.html#application-3-3",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 3",
-    "text": "Application 3\n\n\n\nPartie 4 : requêter votre modèle déployé\n\n\n\n\nCréez un fichier predict_api.py. Ce script doit :\n\nLire le fichier parquet disponible à l’adresse suivante :\n\nhttps://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet\n\nEffectuer des requêtes à votre API pour chaque libellé présent dans le fichier parquet.\nAfficher le résultats des prédictions\n\n\n\n\nCliquez pour voir le contenu du script \n\n\n\npredict_api.py\n\nimport pandas as pd\nimport requests\n\n\n# Fonction pour effectuer la requête à l'API\ndef make_prediction(api_url: str, description: str):\n    params = {\"description\": description, \"nb_echoes_max\": 2}\n    response = requests.get(api_url, params=params)\n    return response.json()\n\n\n# URL des données\ndata_path = \"https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet\"\n\n# Charge le fichier Parquet dans un DataFrame pandas\ndf = pd.read_parquet(data_path)\n\n# URL de l'API\napi_url = \"https://&lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr/predict\"\n\n# Effectue les requêtes\nresponses = df[\"text\"].apply(lambda x: make_prediction(api_url, x))\n\n# Affiche le DataFrame avec les résultats des prédictions\nprint(pd.merge(df, pd.json_normalize(responses),\n               left_index=True,\n               right_index=True))\n\n\n\nExécutez votre script predict_api.py.\n\n\n\nCliquez pour voir la commande \n\npython formation-mlops/src/predict_api.py\n\n\nDans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par \"codification-api-...\". Observez les logs.\nQuelles informations détenez-vous ? Est-ce suffisant ?\n\n\n\n\n\n\n\n\nImportant\n\n\nNous avons ici réalisé une succession de requêtes GET car nous avons un seul point d’entrée vers notre API. Pour réaliser des requêtes en batch il est préférable de réaliser des requêtes POST."
+    "text": "Application 3\n\n\n\nPartie 4 : requêter votre modèle déployé\n\n\n\nCréez un fichier predict_api.py. Ce script doit :\n\nLire le fichier parquet disponible à l’adresse suivante :\n\nhttps://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet\n\nEffectuer des requêtes à votre API pour chaque libellé présent dans le fichier parquet.\nAfficher le résultats des prédictions\n\n\n\n\nCliquez pour voir le contenu du script \n\n\n\npredict_api.py\n\nimport pandas as pd\nimport requests\n\n\n# Fonction pour effectuer la requête à l'API\ndef make_prediction(api_url: str, description: str):\n    params = {\"description\": description, \"nb_echoes_max\": 2}\n    response = requests.get(api_url, params=params)\n    return response.json()\n\n\n# URL des données\ndata_path = \"https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet\"\n\n# Charge le fichier Parquet dans un DataFrame pandas\ndf = pd.read_parquet(data_path)\n\n# URL de l'API\napi_url = \"https://&lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr/predict\"\n\n# Effectue les requêtes\nresponses = df[\"text\"].apply(lambda x: make_prediction(api_url, x))\n\n# Affiche le DataFrame avec les résultats des prédictions\nprint(pd.merge(df, pd.json_normalize(responses),\n               left_index=True,\n               right_index=True))\n\n\n\nExécutez votre script predict_api.py.\n\n\n\nCliquez pour voir la commande \n\npython formation-mlops/src/predict_api.py\n\n\nDans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par \"codification-api-...\". Observez les logs.\nQuelles informations détenez-vous ? Est-ce suffisant ?\n\n\n\n\n\n\n\nImportant\n\n\nNous avons ici réalisé une succession de requêtes GET car nous avons un seul point d’entrée vers notre API. Pour réaliser des requêtes en batch il est préférable de réaliser des requêtes POST."
   },
   {
     "objectID": "slides/fr/index.html#bilan-2",
     "href": "slides/fr/index.html#bilan-2",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Bilan",
-    "text": "Bilan\n\nMLflow est polyvalent\n\nUtilisation dee frameworks custom (modulo une classe “interface”)\nIndustrialisation de l’entraînement (fichier MLproject)\nRequêtage simple des modèles entraînés et stockés\n\nLimite : le modèle entraîné n’est pas accessible\n\nRequêtage simplifié… mais format non-pertinent pour tous les utilisateurs\nLe modèle n’est pas déployé"
+    "text": "Bilan"
   },
   {
     "objectID": "slides/fr/index.html#cycle-de-vie-dun-modèle-ml-en-production",
     "href": "slides/fr/index.html#cycle-de-vie-dun-modèle-ml-en-production",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Cycle de vie d’un modèle ML en production",
-    "text": "Cycle de vie d’un modèle ML en production\n\nSource: martinfowler.com"
+    "text": "Cycle de vie d’un modèle ML en production"
   },
   {
     "objectID": "slides/fr/index.html#le-défi-de-la-responsabilité",
     "href": "slides/fr/index.html#le-défi-de-la-responsabilité",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Le défi de la responsabilité",
-    "text": "Le défi de la responsabilité\n\n\nLe cycle de vie d’un modèle ML est complexe\nPlusieurs parties prenantes impliquées :\n\nData scientist\nIT/DevOps\nEquipes métiers\n\nExpertises et vocabulaire différents entre ces parties prenantes\n\n➡️ Communication essentielle entre les équipes pour contrôler le modèle en production"
+    "text": "Le défi de la responsabilité\n\nLe cycle de vie d’un modèle ML est complexe\nPlusieurs parties prenantes impliquées :\n\nData scientists\nIT/DevOps\nEquipes métiers\n\nExpertises et vocabulaire différents entre ces parties prenantes\n\n➡️ Communication essentielle entre les équipes pour contrôler le modèle en production"
   },
   {
     "objectID": "slides/fr/index.html#pourquoi-surveiller-un-modèle-en-production",
     "href": "slides/fr/index.html#pourquoi-surveiller-un-modèle-en-production",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Pourquoi surveiller un modèle en production ?",
-    "text": "Pourquoi surveiller un modèle en production ?\n\n\nDétecter des données biaisées : adéquation entre les données de production et données d’entrainement\nAnticiper une instabilité du modèle : performance du modèle stable au fil du temps\nAméliorer de manière continue le modèle : ré-entrainements réguliers\n\n⚠️ Le mot surveillance d’une application/modèle a des définitions différentes en fonction de l’équipe où l’on se trouve."
+    "text": "Pourquoi surveiller un modèle en production ?\n\nDétecter des données biaisées : adéquation entre les données de production et données d’entrainement\nAnticiper une instabilité du modèle : performance du modèle stable au fil du temps\nAméliorer de manière continue le modèle : ré-entrainements réguliers\n\n⚠️ Le mot surveillance d’une application/modèle a des définitions différentes en fonction de l’équipe où l’on se trouve."
   },
   {
     "objectID": "slides/fr/index.html#surveillance-selon-linformaticien",
     "href": "slides/fr/index.html#surveillance-selon-linformaticien",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Surveillance selon l’informaticien",
-    "text": "Surveillance selon l’informaticien\n\n\nSurveiller une application est partie intégrante de l’approche DevOps\nContrôle technique du modèle :\n\nLatence\nMémoire\nUtilisation disque\n…"
+    "text": "Surveillance selon l’informaticien\n\nSurveiller une application est partie intégrante de l’approche DevOps\nContrôle technique du modèle :\n\nLatence\nMémoire\nUtilisation disque\n…"
   },
   {
     "objectID": "slides/fr/index.html#surveillance-selon-le-data-scientist",
     "href": "slides/fr/index.html#surveillance-selon-le-data-scientist",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Surveillance selon le data scientist",
-    "text": "Surveillance selon le data scientist\n\n\nSurveiller un modèle ML est partie intégrante de l’approche MLOps\nContrôle méthodologique du modèle\nPerformance en temps réel du modèle souvent impossible, utilisation de proxys :\n\nData drift : la distribution des données d’entrée change dans le temps\nConcept drift : la relation modélisée change dans le temps"
+    "text": "Surveillance selon le data scientist\n\nSurveiller un modèle ML est partie intégrante de l’approche MLOps\nContrôle méthodologique du modèle\nPerformance en temps réel du modèle souvent impossible, utilisation de proxys :\n\nData drift : la distribution des données d’entrée change dans le temps\nConcept drift : la relation modélisée change dans le temps"
   },
   {
     "objectID": "slides/fr/index.html#comment-surveiller-un-modèle-en-production",
     "href": "slides/fr/index.html#comment-surveiller-un-modèle-en-production",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Comment surveiller un modèle en production ?",
-    "text": "Comment surveiller un modèle en production ?\n\n\nIntégration de logs dans l’API\nRécupération et mise en forme des logs\nSuivi de métriques de ML\nMise en place d’un système d’alertes"
+    "text": "Comment surveiller un modèle en production ?\n\nIntégration de logs dans l’API\nRécupération et mise en forme des logs\nSuivi de métriques de ML\nMise en place d’un système d’alertes"
   },
   {
     "objectID": "slides/fr/index.html#application-4",
     "href": "slides/fr/index.html#application-4",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 4",
-    "text": "Application 4\n\n\n\n\nPartie 1 : Logger des métriques métier\n\n\n\nGrâce au package logging, rajoutez des logs à votre API. Pour chaque requête, affichez le libellé à coder ainsi que les réponses renvoyées par votre API. Pour cela, modifiez le fichier app/main.py.\n\n\n\nCliquez pour voir les étapes à réaliser \n\n\nImportez le package logging :\n\n\n\nmain.py\n\nimport logging\n\n\nDéfinissez la configuration de vos logs avant la définition de votre premier point d’entrée :\n\n\n\nmain.py\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s - %(levelname)s - %(message)s\",\n    handlers=[\n        logging.FileHandler(\"log_file.log\"),\n        logging.StreamHandler(),\n    ],\n)\n\n\nAjoutez une le libellé et la réponse de l’API dans vos logs :\n\n\n\nmain.py\n\n# Logging\nlogging.info(f\"{{'Query': {description}, 'Response': {predictions[0]}}}\")\n\n\n\nFaites un commit de vos changements et poussez les sur votre dépôt distant.\nDès lors que vous réalisez un changement sur votre API, il est nécessaire de la redéployer pour que les changements soient effectifs. En théorie, il serait nécessaire de re-construire une nouvelle image pour notre API contenant les derniers ajustements. Pour simplifier, nous avons déjà construit les deux images avec et sans logs dans l’API. Jusqu’à présent vous avez utilisé l’image sans logs, redéployez votre API en utilisant l’image avec les logs dont le tag est logs.\n\n\n\nCliquez pour voir les étapes à réaliser \n\n\nDans le fichier kubernetes/deployment.yml, remplacer le tag no-logs par le tag logs :\n\n\n\ndeployment.yml\n\ntemplate:\n  metadata:\n    labels:\n      app: codification-api\n  spec:\n    containers:\n      - name: api\n        image: inseefrlab/formation-mlops:logs\n        imagePullPolicy: Always\n\n\nFaites un commit de vos changements et poussez les sur votre dépôt distant.\nPatientez 5 minutes qu’ArgoCD synchronise automatiquement les changements depuis votre dépôt Github ou bien forcez la synchronisation.\n\n\n\nExécutez votre script predict-api.py.\n\n\n\nCliquez pour voir la commande \n\npython formation-mlops/src/predict-api.py\n\n\nDans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par \"codification-api-...\". Observez les logs."
+    "text": "Application 4\n\n\n\nPartie 1 : Logger des métriques métier\n\n\n\nGrâce au package logging, rajoutez des logs à votre API. Pour chaque requête, affichez le libellé à coder ainsi que les réponses renvoyées par votre API. Pour cela, modifiez le fichier app/main.py.\n\n\n\nCliquez pour voir les étapes à réaliser \n\n\nImportez le package logging :\n\n\n\nmain.py\n\nimport logging\n\n\nDéfinissez la configuration de vos logs avant la définition de votre premier point d’entrée :\n\n\n\nmain.py\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s - %(levelname)s - %(message)s\",\n    handlers=[\n        logging.FileHandler(\"log_file.log\"),\n        logging.StreamHandler(),\n    ],\n)\n\n\nAjoutez une le libellé et la réponse de l’API dans vos logs :\n\n\n\nmain.py\n\n# Logging\nlogging.info(f\"{{'Query': {description}, 'Response': {predictions[0]}}}\")\n\n\n\nFaites un commit de vos changements et poussez les sur votre dépôt distant.\nDès lors que vous réalisez un changement sur votre API, il est nécessaire de la redéployer pour que les changements soient effectifs. En théorie, il serait nécessaire de re-construire une nouvelle image pour notre API contenant les derniers ajustements. Pour simplifier, nous avons déjà construit les deux images avec et sans logs dans l’API. Jusqu’à présent vous avez utilisé l’image sans logs, redéployez votre API en utilisant l’image avec les logs dont le tag est logs.\n\n\n\nCliquez pour voir les étapes à réaliser \n\n\nDans le fichier kubernetes/deployment.yml, remplacer le tag no-logs par le tag logs :\n\n\n\ndeployment.yml\n\ntemplate:\n  metadata:\n    labels:\n      app: codification-api\n  spec:\n    containers:\n      - name: api\n        image: inseefrlab/formation-mlops:logs\n        imagePullPolicy: Always\n\n\nFaites un commit de vos changements et poussez les sur votre dépôt distant.\nPatientez 5 minutes qu’ArgoCD synchronise automatiquement les changements depuis votre dépôt Github ou bien forcez la synchronisation.\n\n\n\nExécutez votre script predict-api.py.\n\n\n\nCliquez pour voir la commande \n\npython formation-mlops/src/predict-api.py\n\n\nDans ArgoCD, ouvrez votre application puis cliquez sur votre pod qui doit commencer par \"codification-api-...\". Observez les logs."
   },
   {
     "objectID": "slides/fr/index.html#observabilité-du-modèle-grâce-à-un-tableau-de-bord",
@@ -333,14 +333,14 @@
     "href": "slides/fr/index.html#application-4-1",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 4",
-    "text": "Application 4\n\n\n\nPartie 2 : Création d’un tableau de bord de monitoring\n\n\n\n\nNous allons utiliser Quarto Dashboards qui fera partie de la version 1.4 de Quarto. Téléchargez et installez la pre-release.\nwget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.489/quarto-1.4.489-linux-amd64.deb \\\n    -O quarto.deb\nsudo dpkg -i quarto.deb\nquarto check install\nrm quarto.deb\nOuvrez le fichier dashboard/index.qmd et inspectez le code. Pour récupérer les données nécessaires à la création du tableau de bord, on utilise un SGBD serverless : DuckDB. DuckDB nous permet de faire des requêtes SQL sur un fichier .parquet contenant des logs parsés. Ce fichier contient une ligne par prédiction, avec les variables timestamp, text, prediction_1, proba_1, prediction_2 et proba_2.\nPour visualiser le tableau de bord, entrez les commandes suivantes dans un Terminal depuis la racine du projet et cliquez sur le lien généré.\ncd dashboard\nquarto preview index.qmd\nPour l’instant le pourcentage de prédictions avec une probabilité supérieure à 0.8 ne correspond pas à la réalité. Modifiez la requête SQL permettant d’obtenir la variable pct_predictions pour afficher la bonne valeur.\n\n\n\nCliquez pour voir la réponse \n\npct_predictions = duckdb.sql(\n    \"\"\"\n    SELECT 100 * COUNT(*) / COUNT(*)\n    FROM data;\n    \"\"\"\n).fetchall()[0][0]\n\n\nLes deux graphiques situés en bas du tableau de bord ne sont pas corrects non plus. Modifiez la requête SQL permettant d’obtenir la variable daily_stats pour afficher les bons graphiques.\n\n\n\nCliquez pour voir la réponse \n\ndaily_stats = duckdb.sql(\n    \"\"\"\n    SELECT\n        CAST(timestamp AS DATE) AS date,\n        COUNT(*) AS n_liasses,\n        (\n            COUNT(\n                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END\n            ) * 100.0 / COUNT(*)\n        ) AS pct_high_proba\n    FROM data\n    GROUP BY CAST(timestamp AS DATE);\n    \"\"\"\n).to_df()\n\nConstatez les changements apportés au tableau de bord."
+    "text": "Application 4\n\n\n\nPartie 2 : Création d’un tableau de bord de monitoring\n\n\n\nNous allons utiliser Quarto Dashboards. Ouvrez le fichier dashboard/index.qmd et inspectez le code. Pour récupérer les données nécessaires à la création du tableau de bord, on utilise un SGBD serverless : DuckDB. DuckDB nous permet de faire des requêtes SQL sur un fichier .parquet contenant des logs parsés. Ce fichier contient une ligne par prédiction, avec les variables timestamp, text, prediction_1, proba_1, prediction_2 et proba_2.\nPour visualiser le tableau de bord, entrez les commandes suivantes dans un Terminal depuis la racine du projet et cliquez sur le lien généré.\ncd dashboard\nquarto preview index.qmd\nPour l’instant le pourcentage de prédictions avec une probabilité supérieure à 0.8 ne correspond pas à la réalité. Modifiez la requête SQL permettant d’obtenir la variable pct_predictions pour afficher la bonne valeur.\n\n\n\nCliquez pour voir la réponse \n\npct_predictions = duckdb.sql(\n    \"\"\"\n    SELECT 100 * COUNT(*) / COUNT(*)\n    FROM data;\n    \"\"\"\n).fetchall()[0][0]\n\n\nLes deux graphiques situés en bas du tableau de bord ne sont pas corrects non plus. Modifiez la requête SQL permettant d’obtenir la variable daily_stats pour afficher les bons graphiques.\n\n\n\nCliquez pour voir la réponse \n\ndaily_stats = duckdb.sql(\n    \"\"\"\n    SELECT\n        CAST(timestamp AS DATE) AS date,\n        COUNT(*) AS n_liasses,\n        (\n            COUNT(\n                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END\n            ) * 100.0 / COUNT(*)\n        ) AS pct_high_proba\n    FROM data\n    GROUP BY CAST(timestamp AS DATE);\n    \"\"\"\n).to_df()\n\nConstatez les changements apportés au tableau de bord."
   },
   {
     "objectID": "slides/fr/index.html#bilan-3",
     "href": "slides/fr/index.html#bilan-3",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Bilan",
-    "text": "Bilan\n\nMLflow est polyvalent\n\nUtilisation dee frameworks custom (modulo une classe “interface”)\nIndustrialisation de l’entraînement (fichier MLproject)\nRequêtage simple des modèles entraînés et stockés\n\nLimite : le modèle entraîné n’est pas accessible\n\nRequêtage simplifié… mais format non-pertinent pour tous les utilisateurs\nLe modèle n’est pas déployé"
+    "text": "Bilan"
   },
   {
     "objectID": "slides/fr/index.html#entraînement-distribué",
@@ -466,14 +466,14 @@
     "href": "slides/fr/index.html#application-5",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 5",
-    "text": "Application 5\n\n\n\n\nPartie 1 : introduction à Argo Workflows\n\n\n\nLancez un service Argo Workflows en cliquant sur cette URL. Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier README du service).\nDans VSCode, créez un fichier hello_world.yaml à la racine du projet avec le contenu suivant :\n\n\n\nhello_world.yml\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: hello-world-\n  labels:\n    workflows.argoproj.io/archive-strategy: \"false\"\n  annotations:\n    workflows.argoproj.io/description: |\n      Ceci est un exemple simple de \"Hello World\".\n      Vous pouvez également l'exécuter en Python : https://couler-proj.github.io/couler/examples/#hello-world\nspec:\n  entrypoint: whalesay\n  templates:\n  - name: whalesay\n    container:\n      image: docker/whalesay:latest\n      command: [cowsay]\n      args: [\"hello world\"]\n\n\nSoumettez le workflow “Hello World” via un terminal dans VSCode :\n\nargo submit formation-mlops/hello_world.yaml\n\nOuvrez l’interface utilisateur d’Argo Workflows. Trouvez les logs du workflow que vous venez de lancer. Vous devriez voir le logo Docker ."
+    "text": "Application 5\n\n\n\nPartie 1 : introduction à Argo Workflows\n\n\n\nLancez un service Argo Workflows en cliquant sur cette URL. Ouvrez le service et saisissez le mot de passe du service (soit copié automatiquement, soit disponible dans le fichier README du service).\nDans VSCode, créez un fichier hello_world.yaml à la racine du projet avec le contenu suivant :\n\n\n\nhello_world.yml\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: hello-world-\n  labels:\n    workflows.argoproj.io/archive-strategy: \"false\"\n  annotations:\n    workflows.argoproj.io/description: |\n      Ceci est un exemple simple de \"Hello World\".\n      Vous pouvez également l'exécuter en Python : https://couler-proj.github.io/couler/examples/#hello-world\nspec:\n  entrypoint: whalesay\n  templates:\n  - name: whalesay\n    container:\n      image: docker/whalesay:latest\n      command: [cowsay]\n      args: [\"hello world\"]\n\n\nSoumettez le workflow “Hello World” via un terminal dans VSCode :\n\nargo submit formation-mlops/hello_world.yaml\n\nOuvrez l’interface utilisateur d’Argo Workflows. Trouvez les logs du workflow que vous venez de lancer. Vous devriez voir le logo Docker ."
   },
   {
     "objectID": "slides/fr/index.html#application-5-1",
     "href": "slides/fr/index.html#application-5-1",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Application 5",
-    "text": "Application 5\n\n\n\n\nPartie 2 : distriubtion de l’optimisation des hyperparamètres\n\n\n\nJetez un coup d’œil au fichier argo_workflows/workflow.yml. Que pensez-vous qu’il se passera lorsque nous soumettrons ce flux de travail ?\nModifiez la ligne surlignée de la même manière que dans l’application 3.\n\n\n\nworkflow.yml\n\nparameters:\n    # Le serveur de suivi MLflow est responsable de l'enregistrement des hyper-paramètres et des métriques du modèle.\n    - name: mlflow-tracking-uri\n    value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: mlflow-experiment-name\n    value: nace-prediction\n\n\nSoumettez le flux de travail et observez les tâches s’exécuter en direct dans l’interface utilisateur.\n\n\n\nCliquez pour voir la commande \n\nargo submit formation-mlops/argo_workflows/workflow.yml\n\n\nUne fois que toutes les tâches sont terminées, visualisez les logs de l’ensemble du flux de travail.\nEnfin, ouvrez l’interface utilisateur de MLflow pour vérifier ce qui a été fait."
+    "text": "Application 5\n\n\n\nPartie 2 : distriubtion de l’optimisation des hyperparamètres\n\n\n\nJetez un coup d’œil au fichier argo_workflows/workflow.yml. Que pensez-vous qu’il se passera lorsque nous soumettrons ce flux de travail ?\nModifiez la ligne surlignée de la même manière que dans l’application 3.\n\n\n\nworkflow.yml\n\nparameters:\n    # Le serveur de suivi MLflow est responsable de l'enregistrement des hyper-paramètres et des métriques du modèle.\n    - name: mlflow-tracking-uri\n    value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: mlflow-experiment-name\n    value: nace-prediction\n\n\nSoumettez le flux de travail et observez les tâches s’exécuter en direct dans l’interface utilisateur.\n\n\n\nCliquez pour voir la commande \n\nargo submit formation-mlops/argo_workflows/workflow.yml\n\n\nUne fois que toutes les tâches sont terminées, visualisez les logs de l’ensemble du flux de travail.\nEnfin, ouvrez l’interface utilisateur de MLflow pour vérifier ce qui a été fait."
   },
   {
     "objectID": "slides/fr/index.html#lopportunité-dorganisations-plus-continues",
@@ -487,7 +487,7 @@
     "href": "slides/fr/index.html#des-transformations-requises",
     "title": "Une introduction au MLOps avec MLflow",
     "section": "Des transformations requises",
-    "text": "Des transformations requises\n\nDes transformations à différents niveaux\n\nOutils techniques\nMéthodologiques\nOrganisationnels\n\nStratégie : changement incrémental\n\nFormation\nApplication à des projets pilotes\n\n\n\n\nUne introduction au MLOps avec MLflow"
+    "text": "Des transformations requises\n\nDes transformations à différents niveaux\n\nOutils techniques\nMéthodologiques\nOrganisationnels\n\nStratégie : changement incrémental\n\nFormation\nApplication à des projets pilotes"
   },
   {
     "objectID": "slides/en/index.html#who-are-we",
@@ -550,7 +550,7 @@
     "href": "slides/en/index.html#app0",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 0",
-    "text": "Application 0\n\nWithout GitWith Git\n\n\n\n\n\nPreparation of the working environment\n\n\n\n\nCreate an account on the SSP Cloud using your professional mail address\nLaunch a MLflow service by clicking this URL\nLaunch a Jupyter-python service by clicking this URL\nOpen the Jupyter-python service and input the service password\nYou’re all set !\n\n\n\n\n\n\n\n\n\n\nPreparation of the working environment\n\n\n\n\nIt is assumed that you have a Github account and have already created a token. Fork the training repository by clicking here.\nCreate an account on the SSP Cloud using your professional mail address\nLaunch a MLflow service by clicking this URL\nLaunch a Jupyter-python service by clicking this URL\nOpen the Jupyter-python service and input the service password\nIn Jupyter, open a terminal and clone your forked repository (modify the first two lines):\nGIT_REPO=formation-mlops\nGIT_USERNAME=InseeFrLab\n\ngit clone https://github.com/$GIT_USERNAME/$GIT_REPO.git\ncd $GIT_REPO\nInstall the necessary packages for the training:\npip install -r requirements.txt\npython -m nltk.downloader stopwords\nYou’re all set !"
+    "text": "Application 0\n\nWithout GitWith Git\n\n\n\n\n\nPreparation of the working environment\n\n\n\nCreate an account on the SSP Cloud using your professional mail address\nLaunch a MLflow service by clicking this URL\nLaunch a VSCode-python service by clicking this URL\nOpen the VSCode-python service and input the service password\nYou’re all set !\n\n\n\n\n\n\n\n\n\nPreparation of the working environment\n\n\n\nIt is assumed that you have a Github account and have already created a token. Fork the training repository by clicking here.\nCreate an account on the SSP Cloud using your professional mail address\nLaunch a MLflow service by clicking this URL\nLaunch a VSCode-python service by clicking this URL\nOpen the VSCode-python service and input the service password\nIn VSCode, open a terminal and clone your forked repository (modify the first two lines):\nGIT_REPO=formation-mlops\nGIT_USERNAME=InseeFrLab\n\ngit clone https://github.com/$GIT_USERNAME/$GIT_REPO.git\ncd $GIT_REPO\nInstall the necessary packages for the training (with uv):\nuv sync\nuv run python -m nltk.downloader stopwords\n```\nYou’re all set !"
   },
   {
     "objectID": "slides/en/index.html#tracking-server",
@@ -585,7 +585,14 @@
     "href": "slides/en/index.html#application-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 1",
-    "text": "Application 1\n\n\n\nIntroduction to MLflow concepts\n\n\n\n\nIn JupyterLab, open the notebook located at formation-mlops/notebooks/mlflow-introduction.ipynb\nExecute the notebook cell by cell. If you are finished early, explore the MLflow UI and try to build your own experiments from the example code provided in the notebook."
+    "text": "Application 1\n\n\n\nIntroduction to MLflow concepts\n\n\n\nIn VSCode, open the notebook located at formation-mlops/notebooks/mlflow-introduction.ipynb\nExecute the notebook cell by cell.\nIf you are finished early, explore the MLflow UI and try to build your own experiments from the example code provided in the notebook. For example, try to add other hyperparameters in the grid search process."
+  },
+  {
+    "objectID": "slides/en/index.html#summary",
+    "href": "slides/en/index.html#summary",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Summary",
+    "text": "Summary\n\nMLflow simplifies the tracking of model training\n\nKeeps record of experiments and their outputs\nSimple integration with main ML frameworks\n\nLimitations\n\nHow to use custom frameworks (non-natively integrated)?\nHow to move from experimentation to production?"
   },
   {
     "objectID": "slides/en/index.html#context-1",
@@ -599,7 +606,7 @@
     "href": "slides/en/index.html#fasttext-model",
     "title": "An introduction to MLOps with MLflow",
     "section": "FastText model",
-    "text": "FastText model\n\n\n“Bag of n-gram model” : embeddings for words but also n-gram of words and characters\nVery simple and fast model\n\n\nOVA: One vs. All"
+    "text": "FastText model\n\n“Bag of n-gram model” : embeddings for words but also n-gram of words and characters\nVery simple and fast model\n\nOVA: One vs. All"
   },
   {
     "objectID": "slides/en/index.html#data-used",
@@ -613,14 +620,14 @@
     "href": "slides/en/index.html#mlflow-with-a-non-standard-framework",
     "title": "An introduction to MLOps with MLflow",
     "section": "MLflow with a non standard framework",
-    "text": "MLflow with a non standard framework\n\n\n\nEasy to use with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch…)\n\n\n\nmlflow.sklearn.log_model(pipe_rf, \"model\")\n\nmlflow.pyfunc.load_model(model_uri=f\"models:/{model_name}/{version}\")\ny_train_pred = model.predict(X_train)\n\n\n\nWhat if we require greater flexibility, e.g. to use a custom framework?\n\n\n\n\nPossibility to track , register and deliver your own model"
+    "text": "MLflow with a non standard framework\n\n\nEasy to use with a variety of machine learning frameworks (scikit-learn, Keras, Pytorch…)\n\n\n\nmlflow.sklearn.log_model(pipe_rf, \"model\")\n\nmlflow.pyfunc.load_model(model_uri=f\"models:/{model_name}/{version}\")\ny_train_pred = model.predict(X_train)\n\n\n\nWhat if we require greater flexibility, e.g. to use a custom framework?\n\n\n\n\nPossibility to track , register and deliver your own model"
   },
   {
     "objectID": "slides/en/index.html#mlflow-with-a-non-standard-framework-1",
     "href": "slides/en/index.html#mlflow-with-a-non-standard-framework-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "MLflow with a non standard framework",
-    "text": "MLflow with a non standard framework\n\n\n\nThere are 2 main differences when using your own framework:\n\nlogging of parameters, metrics and artifacts\nwrapping of your custom model so that MLflow can serve it\n\n\n\n\n# Define a custom model\nclass MyModel(mlflow.pyfunc.PythonModel):\n\n    def load_context(self, context):\n        self.my_model.load_model(context.artifacts[\"my_model\"])\n\n    def predict(self, context, model_input):\n        return self.my_model.predict(model_input)"
+    "text": "MLflow with a non standard framework\n\n\nThere are 2 main differences when using your own framework:\n\nlogging of parameters, metrics and artifacts\nwrapping of your custom model so that MLflow can serve it\n\n\n\n\n# Define a custom model\nclass MyModel(mlflow.pyfunc.PythonModel):\n\n    def load_context(self, context):\n        self.my_model.load_model(context.artifacts[\"my_model\"])\n\n    def predict(self, context, model_input):\n        return self.my_model.predict(model_input)"
   },
   {
     "objectID": "slides/en/index.html#from-experiment-towards-production",
@@ -634,28 +641,42 @@
     "href": "slides/en/index.html#application-2",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 2",
-    "text": "Application 2\n\nWithout GitWith Git\n\n\n\n\n\nPart 1 : From notebooks to a package-like project\n\n\n\n\nLaunch a VSCode service by clicking this URL. Open the service and input the service password.\nAll scripts related to our custom model are stored in the src folder. Check them out. Have a look at the MLproject file as well.\nRun a training of the model using MLflow. To do so, open a terminal ( -&gt; Terminal -&gt; New Terminal) and run the following command :\nexport MLFLOW_EXPERIMENT_NAME=\"nace-prediction\"\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME\nIn the UI of MLflow, look at the results of your previous run:\n\nExperiments -&gt; nace-prediction -&gt; &lt;run_name&gt;\n\nYou have trained the model with some default parameters. In MLproject check the available parameters. Re-train a model with different parameters (e.g. dim = 25).\n\n\n\nClick to see the command \n\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \\\n    -P dim=25\n\n\nIn MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. dim)\n\nSelect the 2 runs -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis\n\n\n\n\n\n\n\n\n\n\n\nPart 1 : From notebooks to a package-like project\n\n\n\n\nLaunch a VSCode service by clicking this URL. Open the service and input the service password.\nIn VSCode, open a terminal ( -&gt; Terminal -&gt; New Terminal) and redo steps 6 and 7 of application 0 (clone and package installation).\nAll scripts related to our custom model are stored in the src folder. Check them out. Have a look at the MLproject file as well.\nRun a training of the model using MLflow. To do so, open a terminal and run the following command :\nexport MLFLOW_EXPERIMENT_NAME=\"nace-prediction\"\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME\nIn the UI of MLflow, look at the results of your previous run:\n\nExperiments -&gt; nace-prediction -&gt; &lt;run_name&gt;\n\nYou have trained the model with some default parameters. In MLproject check the available parameters. Re-train a model with different parameters (e.g. dim = 25).\n\n\n\nClick to see the command \n\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \\\n    -P dim=25\n\n\nIn MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. dim)\n\nSelect the 2 runs -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis"
+    "text": "Application 2\n\n\n\nPart 1: Using a custom model\n\n\n\nAll scripts related to our custom model are stored in the src folder. Check them out. In particular, the train.py script is responsible for training the model. What are the main differences compared to application 1?\nWhy can we say that the MLflow model integrates preprocessing?"
   },
   {
     "objectID": "slides/en/index.html#application-2-1",
     "href": "slides/en/index.html#application-2-1",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 2",
-    "text": "Application 2\n\n\n\n\nPart 2 : Distributing and querying a custom model\n\n\n\nExplore the src/train.py file carefully. What are the main differences with application 1?\nWhy can we say that the MLflow model onboards the preprocessing?\nIn MLflow, register your last model as fasttext to make it easily queryable from the Python API\nCreate a script predict_mlflow.py in the src folder of the project. This script should:\n\nLoad the version 1 of the fasttext model\nUse the model to predict the NACE codes of a given list of activity description (e.g. [\"vendeur d'huitres\", \"boulanger\"]).\n\n\n💡 Don’t forget to read the documentation of the predict() function of the custom class (src/fasttext_wrapper.py) to understand the expected format for the inputs !\n\n\nClick to see the content of the script \n\nimport mlflow\n\nmodel_name = \"fasttext\"\nversion = 1\n\nmodel = mlflow.pyfunc.load_model(\n    model_uri=f\"models:/{model_name}/{version}\"\n)\n\nlist_libs = [\"vendeur d'huitres\", \"boulanger\"]\n\nresults = model.predict(list_libs, params={\"k\": 1})\nprint(results)\n\n\nRun your predict_mlflow.py script.\n\n\n\nClick to see the command \n\npython formation-mlops/src/predict_mlflow.py\n\n\nMake sure that the two following descriptions give the same top prediction : \"COIFFEUR\" and \"coiffeur, & 98789\".\nChange the value of the parameter k and try to understand how the structure of the output changed as a result."
+    "text": "Application 2\n\n\n\nPart 2 : From notebooks to a package-like project\n\n\n\nThe train.py script is also responsible for logging experiments in MLFlow. Note how the parameters of each experiment are passed to the training function when the script is called.\nTo make the model training procedure more reproducible, MLFlow provides the mlflow run command. The MLproject file specifies the command and parameters that will be passed to it. Inspect this file.\nRun a model training using MLFlow. To do this, open a terminal ( -&gt; Terminal -&gt; New Terminal) and execute the following command:\nexport MLFLOW_EXPERIMENT_NAME=\"nace-prediction\"\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME\nIn the MLflow interface, examine the results of your previous run:\n\nExperiments -&gt; nace-prediction -&gt; &lt;run_name&gt;\n\nYou trained the model with certain default parameters. In the MLproject file, check the available parameters. Retrain a model with different parameters (e.g., dim = 25).\n\n\n\nClick to see the command \n\nmlflow run ~/work/formation-mlops/ --env-manager=local \\\n    -P remote_server_uri=$MLFLOW_TRACKING_URI \\\n    -P experiment_name=$MLFLOW_EXPERIMENT_NAME \\\n    -P dim=25\n\n\nIn MLflow, compare the 2 models by plotting the accuracy against one parameter you have changed (i.e. dim)\n\nSelect the 2 runs -&gt; Compare -&gt; Scatter Plot -&gt; Select your X and Y axis\n\nSave the model with the best accuracy as fasttext to make it easily queryable from Python."
   },
   {
-    "objectID": "slides/en/index.html#model-serving",
-    "href": "slides/en/index.html#model-serving",
+    "objectID": "slides/en/index.html#application-2-2",
+    "href": "slides/en/index.html#application-2-2",
     "title": "An introduction to MLOps with MLflow",
-    "section": "Model serving",
-    "text": "Model serving\n\nOnce a ML model has been developed, it must be deployed to serve its end users\n\nWhich production infrastructure ?\nWho are the end users ?\nBatch serving vs. online serving"
+    "section": "Application 2",
+    "text": "Application 2\n\n\n\nPart 3: Querying the locally trained model\n\n\n\nCreate a script predict_mlflow.py in the src folder of the project. This script should:\n\nLoad version 1 of the fasttext model\nUse the model to predict NACE codes for a given list of activity descriptions (e.g., [\"vendeur d'huitres\", \"boulanger\"]).\n\n\n💡 Don’t forget to read the documentation of the predict() function from the custom class (src/fasttext_wrapper.py) to understand the expected input format!\n\n\nClick to see the script content \n\n\n\npredict_mlflow.py\n\nimport mlflow\n\nmodel_name = \"fasttext\"\nversion = 1\n\nmodel = mlflow.pyfunc.load_model(\n    model_uri=f\"models:/{model_name}/{version}\"\n)\n\nlist_libs = [\"vendeur d'huitres\", \"boulanger\"]\n\nresults = model.predict(list_libs, params={\"k\": 1})\nprint(results)\n\n\n\nRun your predict_mlflow.py script.\n\n\n\nClick to see the command \n\npython formation-mlops/src/predict_mlflow.py\n\n\nEnsure that the following two descriptions give the same main prediction: \"COIFFEUR\" et \"coiffeur, & 98789\".\nChange the value of the k parameter and try to understand how the output structure has changed accordingly."
   },
   {
-    "objectID": "slides/en/index.html#a-standard-setup",
-    "href": "slides/en/index.html#a-standard-setup",
+    "objectID": "slides/en/index.html#summary-1",
+    "href": "slides/en/index.html#summary-1",
     "title": "An introduction to MLOps with MLflow",
-    "section": "A standard setup",
-    "text": "A standard setup\n\nProduction infrastructure : Kubernetes cluster\nThe model might serve various applications\n\nMake the model accessible via an API\n\nOnline serving\n\nClient applications send a request to the API and get a fast response"
+    "section": "Summary",
+    "text": "Summary\n\nMLflow is versatile\n\nUse of custom frameworks (with a “interface” class)\nIndustrialization of training (file MLproject)\nSimple querying of trained and stored models\n\nLimitation: the trained model is not accessible\n\nSimplified querying… but irrelevant format for all users\nThe model is not deployed"
+  },
+  {
+    "objectID": "slides/en/index.html#essential-questions",
+    "href": "slides/en/index.html#essential-questions",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Essential questions",
+    "text": "Essential questions\n\nOnce a ML model has been developed, it must be deployed to serve its end users\n\nWhich production infrastructure ?\nWho are the end users ?\nBatch serving vs. online serving"
+  },
+  {
+    "objectID": "slides/en/index.html#envisioned-configuration",
+    "href": "slides/en/index.html#envisioned-configuration",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Envisioned configuration",
+    "text": "Envisioned configuration\n\nThe model might serve various applications\n\nMake the model accessible via an API\n\nOnline serving\n\nClient applications send a request to the API and get a fast response\n\nProduction infrastructure : Kubernetes cluster"
   },
   {
     "objectID": "slides/en/index.html#exposing-a-model-through-an-api",
@@ -665,32 +686,151 @@
     "text": "Exposing a model through an API"
   },
   {
+    "objectID": "slides/en/index.html#why-expose-a-model-via-a-rest-api",
+    "href": "slides/en/index.html#why-expose-a-model-via-a-rest-api",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Why expose a model via a REST API?",
+    "text": "Why expose a model via a REST API?\n\nSimplicity: single entry point that hides the underlying complexity of the model\nStandardization: HTTP requests -&gt; agnostic to the programming language used\nScalability: adapts to the load of concurrent requests\nModularity: separation of model management and its availability"
+  },
+  {
+    "objectID": "slides/en/index.html#exposing-a-model-through-an-api-1",
+    "href": "slides/en/index.html#exposing-a-model-through-an-api-1",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Exposing a model through an API",
+    "text": "Exposing a model through an API"
+  },
+  {
     "objectID": "slides/en/index.html#run-the-api-in-a-container",
     "href": "slides/en/index.html#run-the-api-in-a-container",
     "title": "An introduction to MLOps with MLflow",
     "section": "Run the API in a container",
-    "text": "Run the API in a container\n\nContainer: self-contained and isolated environment that encapsulates the model, its dependencies and the API code\nContainers provide high portability and scalability for distributing the model efficiently.\nThe Dockerfile is used to configure and build the Docker container."
-  },
-  {
-    "objectID": "slides/en/index.html#development-with-docker-architecture",
-    "href": "slides/en/index.html#development-with-docker-architecture",
-    "title": "An introduction to MLOps with MLflow",
-    "section": "Development with Docker architecture",
-    "text": "Development with Docker architecture\n\n\n\n\n\n\n\nSource: R. Krispin"
+    "text": "Run the API in a container\n\nContainer: self-contained and isolated environment that encapsulates the model, its dependencies and the API code\nAdvantages:\n\nPortability\nScalability to efficiently distribute the model\n\nTechnical prerequisites for deploying on Kubernetes"
   },
   {
     "objectID": "slides/en/index.html#deploying-an-api-on-kubernetes",
     "href": "slides/en/index.html#deploying-an-api-on-kubernetes",
     "title": "An introduction to MLOps with MLflow",
     "section": "Deploying an API on Kubernetes",
-    "text": "Deploying an API on Kubernetes\n\n\n3 main files are needed to deploy an API:\n\ndeployment.yaml : defines how the API should run (container image, resources, and environment variables)\nservice.yaml : establishes a stable internal network endpoint for the API.\ningress.yaml : provides an entry point for external clients to access the API."
+    "text": "Deploying an API on Kubernetes"
   },
   {
     "objectID": "slides/en/index.html#application-3",
     "href": "slides/en/index.html#application-3",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 3",
-    "text": "Application 3\n\nManual deploymentContinuous deployment\n\n\n\n\n\nDeploying manually a machine-learning model as an API\n\n\n\n\nWe constructed a very simplistic Rest API using FastAPI. All underlying files are in the app folder. Check them.\nOpen the Dockerfile to see how the image is built. The image is automatically rebuilt and published via Github Actions, if interested have a look to .github/workflows/build_image.yml.\nOpen the file kubernetes/deployment.yml and modify the highlighted lines accordingly:\n\n\n\ndeployment.yml\n\ncontainers:\n- name: api\n    image: inseefrlab/formation-mlops-api:main\n    imagePullPolicy: Always\n    env:\n    - name: MLFLOW_TRACKING_URI\n        value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: MLFLOW_MODEL_NAME\n        value: fasttext\n    - name: MLFLOW_MODEL_VERSION\n        value: \"1\"\n\n\nOpen the file kubernetes/ingress.yml and modify (two times) the URL of the API endpoint to be of the form &lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr\nApply the three Kubernetes contracts contained in the kubernetes/ folder in a terminal to deploy the API\n\nkubectl apply -f formation-mlops/kubernetes/\n\nReach your API using the URL defined in your ingress.yml file\nDisplay the documentation of your API by adding /docs to your URL\nTry your API out!\nRe-train a new model and deploy this new model in your API\n\n\n\nClick to see the steps \n\n\nTrain a model\nRegister the model in MLflow\nAdjust your MLFLOW_MODEL_NAME or MLFLOW_MODEL_VERSION (if you didn’t modify the model name) environment variable in the deployment.yml file\nApply the new Kubernetes contracts to update the API\n\nkubectl apply -f formation-mlops/kubernetes/\n\nRefresh your API, and verify on the home page that it is now based on the new version of the model\n\n\n\n\n\n\n\n\n\n\n\nContinuous deployment of a machine-learning model as an API\n\n\n\n⚠️ The previous applications must have been created with the Git option to be able to follow this one.\nPreviously, you deployed your model manually. Thanks to ArgoCD, it is possible to deploy a model continuously. This means that every modification of a file in the kubernetes/ folder will automatically trigger redeployment, synchronized with your GitHub repository. To convince yourself, follow the steps below:\n\nLaunch an ArgoCD service by clicking on this URL. Open the service, enter the username (admin), and the service’s password.\nResume the first 4 steps of the manual deployment.\nCommit the changes made and push them to your GitHub repository.\nOpen the template argocd/template-argocd.yml and modify the highlighted lines:\n\n\n\ntemplate-argocd.yml\n\nspec:\n  project: default\n  source:\n    repoURL: https://github.com/&lt;your-github-id&gt;/formation-mlops.git\n    targetRevision: HEAD\n    path: kubernetes\n  destination:\n    server: https://kubernetes.default.svc\n    namespace: &lt;your-namespace&gt;\n\n\nIn ArgoCD, click on New App and then Edit as a YAML. Copy and paste the content of argocd/template-argocd.yml, and click on Create.\nReach your API using the URL defined in your ingress.yml file\nDisplay the documentation of your API by adding /docs to your URL\nTry your API out!\nRe-train a new model and deploy automatically this new model in your API\n\n\n\nClick to see the steps \n\n\nTrain a model\nRegister the model in MLflow\nAdjust your MLFLOW_MODEL_NAME or MLFLOW_MODEL_VERSION (if you didn’t modify the model name) environment variable in the deployment.yml file\nCommit these changes and push them to your GitHub repository.\nWait for 5 minutes for ArgoCD to automatically synchronize the changes from your GitHub repository, or force synchronization. Refresh your API and check on the homepage that it is now based on the new version of the model."
+    "text": "Application 3\n\n\n\nPart 1: Exposing a ML model locally as an API\n\n\n\nWe constructed a very simplistic Rest API using FastAPI. All underlying files are in the app folder. Check them.\nDeploy the API locally by running the following commands in a terminal:\n\nexport MLFLOW_MODEL_NAME=\"fasttext\"\nexport MLFLOW_MODEL_VERSION=1\nuvicorn app.main:app --root-path /proxy/8000\n\nOpen the API page using the button provided by VSCode.\nDisplay your API documentation by adding /docs to your URL.\nTest your API!"
+  },
+  {
+    "objectID": "slides/en/index.html#application-3-1",
+    "href": "slides/en/index.html#application-3-1",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 3",
+    "text": "Application 3\n\n\n\nPart 2 : Deploying manually a machine-learning model as an API\n\n\n\nOpen the Dockerfile to see how the image is built. The image is automatically rebuilt and published via Github Actions, if interested have a look to .github/workflows/build_image.yml. Dans le cadre de cette formation, nous allons tous utiliser cette même image.\nOpen the file kubernetes/deployment.yml and modify the highlighted lines accordingly:\n\n\n\ndeployment.yml\n\ncontainers:\n- name: api\n    image: inseefrlab/formation-mlops-api:main\n    imagePullPolicy: Always\n    env:\n    - name: MLFLOW_TRACKING_URI\n        value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: MLFLOW_MODEL_NAME\n        value: fasttext\n    - name: MLFLOW_MODEL_VERSION\n        value: \"1\"\n\n\nOpen the file kubernetes/ingress.yml and modify (two times) the URL of the API endpoint to be of the form &lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr\nApply the three Kubernetes contracts contained in the kubernetes/ folder in a terminal to deploy the API\n\nkubectl apply -f formation-mlops/kubernetes/\n\nReach your API using the URL defined in your ingress.yml file\nRe-train a new model and deploy this new model in your API\n\n\n\nCliquez pour voir les étapes \n\n\nTrain a model\nRegister the model in MLflow\nAdjust your MLFLOW_MODEL_NAME or MLFLOW_MODEL_VERSION (if you didn’t modify the model name) environment variable in the deployment.yml file\nApply the new Kubernetes contracts to update the API\n\nkubectl apply -f formation-mlops/kubernetes/\n\nRefresh your API, and verify on the home page that it is now based on the new version of the model"
+  },
+  {
+    "objectID": "slides/en/index.html#application-3-2",
+    "href": "slides/en/index.html#application-3-2",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 3",
+    "text": "Application 3\n\n\n\nPart 3 : déploiement continu d’un modèle de ML en tant qu’API\n\n\n⚠️ The previous applications must have been created with the Git option to be able to follow this one.\nPreviously, you deployed your model manually. Thanks to ArgoCD, it is possible to deploy a model continuously. This means that every modification of a file in the kubernetes/ folder will automatically trigger redeployment, synchronized with your GitHub repository. To convince yourself, follow the steps below:\n\nDelete the manual deployment of the previous application to prevent Kubernetes resources from overlapping:\n\nkubectl delete -f formation-mlops/kubernetes/\n\nLaunch an ArgoCD service by clicking on this URL. Open the service, enter the username (admin), and the service’s password.\nCommit the changes made and push them to your GitHub repository.\nOpen the template argocd/template-argocd.yml and modify the highlighted lines:\n\n\n\ntemplate-argocd.yml\n\nspec:\n  project: default\n  source:\n    repoURL: https://github.com/&lt;your-github-id&gt;/formation-mlops.git\n    targetRevision: HEAD\n    path: kubernetes\n  destination:\n    server: https://kubernetes.default.svc\n    namespace: &lt;your-namespace&gt;\n\n\nIn ArgoCD, click on New App and then Edit as a YAML. Copy and paste the content of argocd/template-argocd.yml, and click on Create.\nReach your API using the URL defined in your ingress.yml file\nDisplay the documentation of your API by adding /docs to your URL\nTry your API out!\nRe-train a new model and deploy automatically this new model in your API\n\n\n\nClick to see the steps \n\n\nTrain a model\nRegister the model in MLflow\nAdjust your MLFLOW_MODEL_NAME or MLFLOW_MODEL_VERSION (if you didn’t modify the model name) environment variable in the deployment.yml file\nCommit these changes and push them to your GitHub repository.\nWait for 5 minutes for ArgoCD to automatically synchronize the changes from your GitHub repository, or force synchronization. Refresh your API and check on the homepage that it is now based on the new version of the model."
+  },
+  {
+    "objectID": "slides/en/index.html#application-3-3",
+    "href": "slides/en/index.html#application-3-3",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 3",
+    "text": "Application 3\n\n\n\nPart 4: Querying your deployed model\n\n\n\nCreate a file predict_api.py. This script should:\n\nRead the parquet file available at the following address:\n\nhttps://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet\n\nMake queries to your API for each label present in the parquet file.\nDisplay the prediction results.\n\n\n\n\nClick to see the script content \n\n\n\npredict_api.py\n\nimport pandas as pd\nimport requests\n\n\n# Function to make a request to the API\ndef make_prediction(api_url: str, description: str):\n    params = {\"description\": description, \"nb_echoes_max\": 2}\n    response = requests.get(api_url, params=params)\n    return response.json()\n\n\n# Data URL\ndata_path = \"https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/data_to_classify.parquet\"\n\n# Load the Parquet file into a pandas DataFrame\ndf = pd.read_parquet(data_path)\n\n# API URL\napi_url = \"https://&lt;your_firstname&gt;-&lt;your_lastname&gt;-api.lab.sspcloud.fr/predict\"\n\n# Make the requests\nresponses = df[\"text\"].apply(lambda x: make_prediction(api_url, x))\n\n# Display the DataFrame with prediction results\nprint(pd.merge(df, pd.json_normalize(responses),\n               left_index=True,\n               right_index=True))\n\n\n\nRun your predict_api.py script.\n\n\n\nClick to see the command \n\npython formation-mlops/src/predict_api.py\n\n\nIn ArgoCD, open your application and click on your pod that should start with \"codification-api-...\". Observe the logs.\nWhat information do you have? Is it sufficient?\n\n\n\n\n\n\n\nImportant\n\n\nWe performed a series of GET requests here as we have a single entry point to our API. To perform batch queries, it is preferable to use POST requests."
+  },
+  {
+    "objectID": "slides/en/index.html#summary-2",
+    "href": "slides/en/index.html#summary-2",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Summary",
+    "text": "Summary"
+  },
+  {
+    "objectID": "slides/en/index.html#lifecycle-of-a-ml-model-in-production",
+    "href": "slides/en/index.html#lifecycle-of-a-ml-model-in-production",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Lifecycle of a ML model in production",
+    "text": "Lifecycle of a ML model in production"
+  },
+  {
+    "objectID": "slides/en/index.html#the-challenge-of-responsibility",
+    "href": "slides/en/index.html#the-challenge-of-responsibility",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "The challenge of responsibility",
+    "text": "The challenge of responsibility\n\nThe lifecycle of a ML model is complex\nSeveral stakeholders involved:\n\nData scientists\nIT/DevOps\nBusiness teams\n\nDifferent expertise and vocabulary between these stakeholders\n\n➡️ Communication essential between teams to monitor the model in production"
+  },
+  {
+    "objectID": "slides/en/index.html#why-monitor-a-model-in-production",
+    "href": "slides/en/index.html#why-monitor-a-model-in-production",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Why monitor a model in production?",
+    "text": "Why monitor a model in production?\n\nDetect biased data: unalignment between production and training data\nAnticipate model instability: stable model performance over time\nContinuously improve the model: regular retraining\n\n⚠️ The term monitoring of an application/model has different definitions depending on the team."
+  },
+  {
+    "objectID": "slides/en/index.html#monitoring-according-to-the-it-specialist",
+    "href": "slides/en/index.html#monitoring-according-to-the-it-specialist",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Monitoring according to the IT specialist",
+    "text": "Monitoring according to the IT specialist\n\nMonitoring an application is part of the DevOps approach\nTechnical control of the model:\n\nLatency\nMemory\nDisk usage\n…"
+  },
+  {
+    "objectID": "slides/en/index.html#monitoring-according-to-the-data-scientist",
+    "href": "slides/en/index.html#monitoring-according-to-the-data-scientist",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Monitoring according to the data scientist",
+    "text": "Monitoring according to the data scientist\n\nMonitoring a ML model is part of the MLOps approach\nMethodological control of the model\nReal-time performance monitoring of the model often impossible, use of proxies:\n\nData drift: the input data distribution changes over time\nConcept drift: the modeled relationship changes over time"
+  },
+  {
+    "objectID": "slides/en/index.html#how-to-monitor-a-model-in-production",
+    "href": "slides/en/index.html#how-to-monitor-a-model-in-production",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "How to monitor a model in production?",
+    "text": "How to monitor a model in production?\n\nIntegration of logs in the API\nCollection and formatting of logs\nMonitoring of ML metrics\nImplementation of an alert system"
+  },
+  {
+    "objectID": "slides/en/index.html#application-4",
+    "href": "slides/en/index.html#application-4",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 4",
+    "text": "Application 4\n\n\n\nPart 1: Logging business metrics\n\n\n\nUsing the logging package, add logs to your API. For each request, display the label to be coded as well as the responses returned by your API. To do this, modify the app/main.py file.\n\n\n\nClick to see the steps to complete \n\n\nImport the logging package:\n\n\n\nmain.py\n\nimport logging\n\n\nSet up your logging configuration before defining your first entry point:\n\n\n\nmain.py\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s - %(levelname)s - %(message)s\",\n    handlers=[\n        logging.FileHandler(\"log_file.log\"),\n        logging.StreamHandler(),\n    ],\n)\n\n\nAdd the label and the API response to your logs:\n\n\n\nmain.py\n\n# Logging\nlogging.info(f\"{{'Query': {description}, 'Response': {predictions[0]}}}\")\n\n\n\nCommit your changes and push them to your remote repository.\nWhenever you make a change to your API, it needs to be redeployed for the changes to take effect. In theory, it would be necessary to rebuild a new image for our API containing the latest adjustments. To simplify, we have already built the two images with and without logs in the API. Until now you have used the image without logs, redeploy your API using the image with logs tagged as logs.\n\n\n\nClick to see the steps to complete \n\n\nIn the kubernetes/deployment.yml file, replace the no-logs tag with the logs tag:\n\n\n\ndeployment.yml\n\ntemplate:\n  metadata:\n    labels:\n      app: codification-api\n  spec:\n    containers:\n      - name: api\n        image: inseefrlab/formation-mlops:logs\n        imagePullPolicy: Always\n\n\nCommit your changes and push them to your remote repository.\nWait 5 minutes for ArgoCD to automatically synchronize the changes from your Github repository or force synchronization.\n\n\n\nRun your predict-api.py script.\n\n\n\nClick to see the command \n\npython formation-mlops/src/predict-api.py\n\n\nIn ArgoCD, open your application and click on your pod that should start with \"codification-api-...\". Observe the logs."
+  },
+  {
+    "objectID": "slides/en/index.html#model-observability-through-a-dashboard",
+    "href": "slides/en/index.html#model-observability-through-a-dashboard",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Model observability through a dashboard",
+    "text": "Model observability through a dashboard\n\nAPI logs now contain business information\nFor processing/storage of logs: ETL pipeline\nTo analyze the behavior of the coding engine: creation of a dashboard\nMultiple solutions for the dashboard: Grafana, Quarto Dashboards, Apache Superset, …"
+  },
+  {
+    "objectID": "slides/en/index.html#an-example-stack",
+    "href": "slides/en/index.html#an-example-stack",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "An example stack",
+    "text": "An example stack\n\nETL in the form of a cron job that parses logs and stores them in .parquet format\nUsing DuckDB to query the .parquet files\n… and create the components of a Quarto Dashboard\nThe dashboard is a static site to be updated daily, for example"
+  },
+  {
+    "objectID": "slides/en/index.html#an-example-stack-1",
+    "href": "slides/en/index.html#an-example-stack-1",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "An example stack",
+    "text": "An example stack"
+  },
+  {
+    "objectID": "slides/en/index.html#application-4-1",
+    "href": "slides/en/index.html#application-4-1",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 4",
+    "text": "Application 4\n\n\n\nPart 2: Creating a monitoring dashboard\n\n\n\nWe will use Quarto Dashboards. Open the dashboard/index.qmd file and inspect the code. To retrieve the data needed to create the dashboard, we use a serverless DBMS: DuckDB. DuckDB allows us to run SQL queries on a .parquet file containing parsed logs. This file contains one row per prediction, with the variables timestamp, text, prediction_1, proba_1, prediction_2, and proba_2.\nTo visualize the dashboard, enter the following commands in a Terminal from the project root and click on the generated link.\ncd dashboard\nquarto preview index.qmd\nCurrently, the percentage of predictions with a probability greater than 0.8 does not correspond to reality. Modify the SQL query to obtain the pct_predictions variable to display the correct value.\n\n\n\nClick to see the answer \n\npct_predictions = duckdb.sql(\n    \"\"\"\n    SELECT 100 * COUNT(*) / COUNT(*)\n    FROM data;\n    \"\"\"\n).fetchall()[0][0]\n\n\nThe two charts at the bottom of the dashboard are also incorrect. Modify the SQL query to obtain the daily_stats variable to display the correct charts.\n\n\n\nClick to see the answer \n\ndaily_stats = duckdb.sql(\n    \"\"\"\n    SELECT\n        CAST(timestamp AS DATE) AS date,\n        COUNT(*) AS n_liasses,\n        (\n            COUNT(\n                CASE WHEN data.proba_1 &gt; 0.8 THEN 1 END\n            ) * 100.0 / COUNT(*)\n        ) AS pct_high_proba\n    FROM data\n    GROUP BY CAST(timestamp AS DATE);\n    \"\"\"\n).to_df()\n\nNotice the changes made to the dashboard."
+  },
+  {
+    "objectID": "slides/en/index.html#summary-3",
+    "href": "slides/en/index.html#summary-3",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Summary",
+    "text": "Summary"
   },
   {
     "objectID": "slides/en/index.html#parallel-training",
@@ -812,31 +952,31 @@
     "text": "Notes\n\nPython SDK for Argo Workflows\nKubeflow pipelines\nCouler : unified interface for constructing and managing workflows on different workflow engines\nOther Python-native orchestration tools : Apache Airflow, Metaflow, Prefect"
   },
   {
-    "objectID": "slides/en/index.html#application-4",
-    "href": "slides/en/index.html#application-4",
-    "title": "An introduction to MLOps with MLflow",
-    "section": "Application 4",
-    "text": "Application 4\n\n\n\n\nPart 1 : introduction to Argo Workflows\n\n\n\nLaunch an Argo Workflows service by clicking this URL. Open the service and input the service password (either automatically copied or available in the README of the service)\nIn VSCode, create a file hello_world.yaml at the root of the project with the following content:\n\n\n\nhello_world.yml\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: hello-world-\n  labels:\n    workflows.argoproj.io/archive-strategy: \"false\"\n  annotations:\n    workflows.argoproj.io/description: |\n      This is a simple hello world example.\n      You can also run it in Python: https://couler-proj.github.io/couler/examples/#hello-world\nspec:\n  entrypoint: whalesay\n  templates:\n  - name: whalesay\n    container:\n      image: docker/whalesay:latest\n      command: [cowsay]\n      args: [\"hello world\"]\n\n\nSubmit the Hello world workflow via a terminal in VSCode :\n\nargo submit formation-mlops/hello_world.yaml\n\nOpen the UI of Argo Workflows. Find the logs of the workflow you just launched. You should see the Docker logo ."
-  },
-  {
-    "objectID": "slides/en/index.html#application-4-1",
-    "href": "slides/en/index.html#application-4-1",
-    "title": "An introduction to MLOps with MLflow",
-    "section": "Application 4",
-    "text": "Application 4\n\n\n\n\nPart 2 : distributing the hyperparameters optimization\n\n\n\nTake a look at the argo_workflows/workflow.yml file. What do you expect will happen when we submit this workflow ?\nModify the highlighted line in the same manner as in application 3.\n\n\n\nworkflow.yml\n\nparameters:\n    # The MLflow tracking server is responsable to log the hyper-parameter and model metrics.\n    - name: mlflow-tracking-uri\n    value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: mlflow-experiment-name\n    value: nace-prediction\n\n\nSubmit the workflow and look at the jobs completing live in the UI.\n\n\n\nClick to see the command \n\nargo submit formation-mlops/argo_workflows/workflow.yml\n\n\nOnce all jobs are completed, visualize the logs of the whole workflow.\nFinally, open the MLflow UI to check what has been done."
-  },
-  {
-    "objectID": "slides/en/index.html#observability",
-    "href": "slides/en/index.html#observability",
-    "title": "An introduction to MLOps with MLflow",
-    "section": "Observability",
-    "text": "Observability"
-  },
-  {
     "objectID": "slides/en/index.html#application-5",
     "href": "slides/en/index.html#application-5",
     "title": "An introduction to MLOps with MLflow",
     "section": "Application 5",
-    "text": "Application 5\n\n\n\n\nLogging"
+    "text": "Application 5\n\n\n\nPart 1 : introduction to Argo Workflows\n\n\n\nLaunch an Argo Workflows service by clicking this URL. Open the service and input the service password (either automatically copied or available in the README of the service)\nIn VSCode, create a file hello_world.yaml at the root of the project with the following content:\n\n\n\nhello_world.yml\n\napiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata:\n  generateName: hello-world-\n  labels:\n    workflows.argoproj.io/archive-strategy: \"false\"\n  annotations:\n    workflows.argoproj.io/description: |\n      This is a simple hello world example.\n      You can also run it in Python: https://couler-proj.github.io/couler/examples/#hello-world\nspec:\n  entrypoint: whalesay\n  templates:\n  - name: whalesay\n    container:\n      image: docker/whalesay:latest\n      command: [cowsay]\n      args: [\"hello world\"]\n\n\nSubmit the Hello world workflow via a terminal in VSCode :\n\nargo submit formation-mlops/hello_world.yaml\n\nOpen the UI of Argo Workflows. Find the logs of the workflow you just launched. You should see the Docker logo ."
+  },
+  {
+    "objectID": "slides/en/index.html#application-4-2",
+    "href": "slides/en/index.html#application-4-2",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Application 4",
+    "text": "Application 4\n\n\n\nPart 2 : distributing the hyperparameters optimization\n\n\n\nTake a look at the argo_workflows/workflow.yml file. What do you expect will happen when we submit this workflow ?\nModify the highlighted line in the same manner as in application 3.\n\n\n\nworkflow.yml\n\nparameters:\n    # The MLflow tracking server is responsable to log the hyper-parameter and model metrics.\n    - name: mlflow-tracking-uri\n    value: https://user-&lt;namespace&gt;-&lt;pod_id&gt;.user.lab.sspcloud.fr\n    - name: mlflow-experiment-name\n    value: nace-prediction\n\n\nSubmit the workflow and look at the jobs completing live in the UI.\n\n\n\nClick to see the command \n\nargo submit formation-mlops/argo_workflows/workflow.yml\n\n\nOnce all jobs are completed, visualize the logs of the whole workflow.\nFinally, open the MLflow UI to check what has been done."
+  },
+  {
+    "objectID": "slides/en/index.html#the-opportunity-for-more-continuous-organizations",
+    "href": "slides/en/index.html#the-opportunity-for-more-continuous-organizations",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "The opportunity for more continuous organizations",
+    "text": "The opportunity for more continuous organizations"
+  },
+  {
+    "objectID": "slides/en/index.html#required-transformations",
+    "href": "slides/en/index.html#required-transformations",
+    "title": "An introduction to MLOps with MLflow",
+    "section": "Required transformations",
+    "text": "Required transformations\n\nTransformations at different levels\n\nTechnical tools\nMethodological\nOrganizational\n\nStrategy: incremental change\n\nTraining\nApplication to pilot projects"
   }
 ]
