@@ -1,5 +1,5 @@
 FROM inseefrlab/onyxia-python-minimal:py3.10.9
-COPY --from=ghcr.io/astral-sh/uv:0.8.24 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.9.8 /uv /uvx /bin/
 
 # set current work dir
 WORKDIR /formation-mlops
