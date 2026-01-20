@@ -41,7 +41,7 @@ class FastTextWrapper(mlflow.pyfunc.PythonModel):
     def predict(
         self,
         context: mlflow.pyfunc.PythonModelContext,
-        model_input: List,
+        model_input: List[str],
         params: Optional[Dict[str, Any]] = None
     ) -> Tuple:
         """
